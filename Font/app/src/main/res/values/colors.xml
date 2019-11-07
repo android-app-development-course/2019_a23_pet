@@ -3,4 +3,10 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <!--主题色系-->
+    <color name="yellow">#ffd369</color>
+    <!--底部菜单栏图标色-->
+    <color name="orange">#e26241</color>
+    <color name="darkRed">#940a37</color>
+    <color name="black">#5b0909</color>
 </resources>

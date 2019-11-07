@@ -17,15 +17,17 @@
         />
 
     <Button
+        android:id="@+id/btn_member"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="admin"/>
+
+
+    <Button
         android:id="@+id/btn_organizer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="organizer"/>
-    <Button
-        android:id="@+id/btn_admin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="admin"/>
 
 
 </LinearLayout>

@@ -7,7 +7,7 @@
     tools:context=".Member.MemberHomeActivity">
 
     <com.aurelhubert.ahbottomnavigation.AHBottomNavigation
-        android:id="@+id/btmNav_org"
+        android:id="@+id/btmNav_mem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

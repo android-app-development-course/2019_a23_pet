@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         Button btn_organizer = findViewById(R.id.btn_organizer);
         Button btn_member = findViewById(R.id.btn_member);
 
-        btn_organizer.setOnClickListener(new View.OnClickListener() {
+        btn_member.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, MemberHomeActivity.class);

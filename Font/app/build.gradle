@@ -10,6 +10,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        renderscriptTargetApi 25
+        renderscriptSupportModeEnabled true
     }
     buildTypes {
         release {
@@ -26,4 +28,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+<<<<<<< HEAD
+=======
+    implementation 'com.aurelhubert:ahbottomnavigation:0.1.1'
+
+    implementation 'com.ms-square:etsyblur:0.2.1'
+>>>>>>> 068ab61b566a51354f06a5e84308d5d0e63c5586
 }

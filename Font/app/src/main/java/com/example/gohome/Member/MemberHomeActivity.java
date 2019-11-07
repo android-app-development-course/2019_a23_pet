@@ -25,9 +25,9 @@ public class MemberHomeActivity extends AppCompatActivity {
         bottomNavigation = (AHBottomNavigation) findViewById(R.id.btmNav_mem);
 
     // Create items
-        AHBottomNavigationItem item1 = new AHBottomNavigationItem("领养", R.drawable.organizer_adopt, 000000);
-        AHBottomNavigationItem item2 = new AHBottomNavigationItem("救助", R.drawable.organizer_help, 000000);
-        AHBottomNavigationItem item3 = new AHBottomNavigationItem("审核", R.drawable.organizer_check, 000000);
+        AHBottomNavigationItem item1 = new AHBottomNavigationItem("领养", R.drawable.member_adopt, 747474);
+        AHBottomNavigationItem item2 = new AHBottomNavigationItem("救助", R.drawable.member_help, 747474);
+        AHBottomNavigationItem item3 = new AHBottomNavigationItem("审核", R.drawable.member_check, 747474);
 
     // Add items
         bottomNavigation.addItem(item1);

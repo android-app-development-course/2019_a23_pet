@@ -29,7 +29,6 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
-    implementation 'com.aurelhubert:ahbottomnavigation:0.1.1'
-
+    implementation 'com.aurelhubert:ahbottomnavigation:2.3.4'
     implementation 'com.ms-square:etsyblur:0.2.1'
 }

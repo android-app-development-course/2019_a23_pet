@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         btn_member.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.gohome.Member.MemberHomeActivity;
+import com.example.gohome.user.UserHomeActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +26,14 @@ public class MainActivity extends AppCompatActivity {
         Button btn_user = findViewById(R.id.btn_user);
         Button btn_organizer = findViewById(R.id.btn_organizer);
         Button btn_member = findViewById(R.id.btn_member);
+
+        btn_user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, UserHomeActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btn_member.setOnClickListener(new View.OnClickListener() {
             @Override

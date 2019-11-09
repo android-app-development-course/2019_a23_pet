@@ -16,9 +16,9 @@
         app:overlayColor="#66eeeeee" />
 
     <LinearLayout
-        android:id="@+id/lin_tab"
+        android:id="@+id/lin_bottom"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="240dp"
         android:layout_alignParentBottom="true"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
@@ -27,11 +27,12 @@
             android:id="@+id/tv_user_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="50dp"
             android:layout_weight="1"
-            android:layout_marginTop="50dp"
+            android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:drawablePadding="10dp"
             android:drawableTop="@drawable/user_send"
             android:text="我要送养"
@@ -41,11 +42,12 @@
             android:id="@+id/tv_user_help"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="50dp"
             android:layout_weight="1"
-            android:layout_marginTop="50dp"
+            android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:drawablePadding="10dp"
             android:drawableTop="@drawable/user_help"
             android:text="我要报告"
@@ -56,7 +58,7 @@
     <RelativeLayout
         android:id="@+id/rel_close"
         android:layout_width="wrap_content"
-        android:layout_height="70dp"
+        android:layout_height="55dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true">
 
@@ -69,7 +71,7 @@
             android:layout_marginRight="10dp"
             android:background="?attr/selectableItemBackgroundBorderless"
 
-            android:src="@drawable/ic_tab_more" />
+            android:src="@drawable/user_more" />
     </RelativeLayout>
 
 </RelativeLayout>

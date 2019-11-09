@@ -21,6 +21,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.gohome.R;
 import com.ms_square.etsyblur.BlurringView;
@@ -31,7 +33,7 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
     private int mWidth, mHeight;
     private RelativeLayout relativeLayout;
     private View bgView;
-    private ImageView close;
+    private ImageView iv_close;
 
     OpenMenu(Activity activity) { mActivity = activity; }
 
@@ -54,8 +56,13 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
         setContentView(relativeLayout);
 
         bgView = relativeLayout.findViewById(R.id.rel_bg);
-        close = relativeLayout.findViewById(R.id.iv_close);
-        close.setOnClickListener(this);
+        bgView.setOnClickListener(this);
+
+        LinearLayout lin_bottom = relativeLayout.findViewById(R.id.lin_bottom);
+        lin_bottom.setOnClickListener(this);
+
+        iv_close = relativeLayout.findViewById(R.id.iv_close);
+        iv_close.setOnClickListener(this);
 
         BlurringView blurringView = relativeLayout.findViewById(R.id.blurring_view);
         blurringView.blurredView(view);//模糊背景
@@ -63,13 +70,25 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
         setFocusable(true);
         setOutsideTouchable(true);
         setClippingEnabled(false);//使popup window全屏显示
+
+        TextView tv_send = relativeLayout.findViewById(R.id.tv_user_send);
+        TextView tv_help = relativeLayout.findViewById(R.id.tv_user_help);
+        tv_send.setOnClickListener(this);
+        tv_help.setOnClickListener(this);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void onClick(View view){
         switch (view.getId()) {
+            case R.id.rel_bg:
+            case R.id.lin_bottom:
             case R.id.iv_close:
                 if (isShowing()) closeAnimation();
+                break;
+            case R.id.tv_user_send:
+                break;
+            case R.id.tv_user_help:
+
                 break;
         }
     }
@@ -108,11 +127,11 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
 
     private void showAnimation(ViewGroup layout){
         try {
-            LinearLayout linearLayout = layout.findViewById(R.id.lin_tab);
+            LinearLayout linearLayout = layout.findViewById(R.id.lin_bottom);
             mHandler.post(new Runnable() {
                 @Override
                 public void run() { //加号旋转
-                    close.animate().rotation(90).setDuration(500);
+                    iv_close.animate().rotation(90).setDuration(500);
                 }
             });
             //菜单项弹出动画
@@ -144,7 +163,7 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-                close.animate().rotation(-90).setDuration(500);
+                iv_close.animate().rotation(-90).setDuration(500);
             }
         });
         try {

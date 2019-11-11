@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.gohome.Member.MemberHomeActivity;
+import com.example.gohome.Organizer.OrganizerMain;
 import com.example.gohome.user.UserHomeActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,6 +39,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, MemberHomeActivity.class);
+                startActivity(intent);
+            }
+        });
+        btn_organizer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, OrganizerMain.class);
                 startActivity(intent);
             }
         });

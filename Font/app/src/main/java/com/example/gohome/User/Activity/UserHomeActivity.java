@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -22,10 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class UserHomeActivity extends AppCompatActivity
-        implements View.OnClickListener {
-   private RelativeLayout container;
-//     private LinearLayout container;
+public class UserHomeActivity extends AppCompatActivity implements View.OnClickListener {
+    private RelativeLayout container;
+
+    //     private LinearLayout container;
     private OpenMenu openMenu;
     private LinearLayout bl_menu;
     private BottomLayout bl_home, bl_me;
@@ -42,19 +41,17 @@ public class UserHomeActivity extends AppCompatActivity
 
         Objects.requireNonNull(getSupportActionBar()).hide();
         //状态栏透明
-//        getWindow().getDecorView().setSystemUiVisibility(
-//                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
-//                        View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        getWindow().setStatusBarColor(Color.parseColor("#ffd369"));
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                        View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        getWindow().setStatusBarColor(getResources().getColor(R.color.yellow));
 
         initBottom(); // 底部导航栏
-
         initRec(); // recycler view
     }
 
-    private void initBottom(){
+    private void initBottom() {
         container = findViewById(R.id.rel_container);
-
         openMenu = new OpenMenu(this);
         openMenu.init(container);
 
@@ -101,25 +98,25 @@ public class UserHomeActivity extends AppCompatActivity
     }
 
     private void showMenu() {
-        if(openMenu == null){
+        if (openMenu == null) {
             openMenu = new OpenMenu(this);
             openMenu.init(container);
         }
         openMenu.show(container);
     }
 
-    public void onClick(View view){
+    public void onClick(View view) {
         switch (view.getId()) {
             case R.id.bl_home:
                 bl_home.setFocused(true);
                 bl_me.setFocused(false);
                 break;
-            case R.id.bl_menu:
-                showMenu();
-                break;
             case R.id.bl_me:
                 bl_home.setFocused(false);
                 bl_me.setFocused(true);
+                break;
+            case R.id.bl_menu:
+                showMenu();
                 break;
         }
     }

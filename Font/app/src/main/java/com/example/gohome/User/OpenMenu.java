@@ -30,13 +30,17 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
     private Activity mActivity;
     private Handler mHandler;
     private int mWidth, mHeight;
+
     private RelativeLayout relativeLayout;
     private View bgView;
     private ImageView iv_close;
+    private BottomLayout bl_send, bl_report;
 
-    public OpenMenu(Activity activity) { mActivity = activity; }
+    public OpenMenu(Activity activity) {
+        mActivity = activity;
+    }
 
-    public void init(View view){
+    public void init(View view) {
         mHandler = new Handler();
 
         Rect frame = new Rect();
@@ -47,7 +51,6 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
 
         mWidth = metrics.widthPixels;
         mHeight = metrics.heightPixels;
-
         setWidth(mWidth);
         setHeight(mHeight);
 
@@ -57,41 +60,53 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
         bgView = relativeLayout.findViewById(R.id.rel_bg);
         bgView.setOnClickListener(this);
 
-        LinearLayout lin_bottom = relativeLayout.findViewById(R.id.lin_bottom);
-        lin_bottom.setOnClickListener(this);
+        relativeLayout.findViewById(R.id.lin_bottom).setOnClickListener(this);
 
         iv_close = relativeLayout.findViewById(R.id.iv_close);
         iv_close.setOnClickListener(this);
 
         BlurringView blurringView = relativeLayout.findViewById(R.id.blurring_view);
         blurringView.blurredView(view);//模糊背景
-
         setFocusable(true);
         setOutsideTouchable(true);
         setClippingEnabled(false);//使popup window全屏显示
 
-        TextView tv_send = relativeLayout.findViewById(R.id.tv_user_send);
-        TextView tv_help = relativeLayout.findViewById(R.id.tv_user_help);
-        tv_send.setOnClickListener(this);
-        tv_help.setOnClickListener(this);
+        bl_send = relativeLayout.findViewById(R.id.bl_send);
+        bl_send.setNormalIcon(R.drawable.user_send_normal);
+        bl_send.setFocusIcon(R.drawable.user_send);
+        bl_send.setIconText("送养");
+        bl_send.setOnClickListener(this);
+
+        bl_report = relativeLayout.findViewById(R.id.bl_report);
+        bl_report.setNormalIcon(R.drawable.user_report_normal);
+        bl_report.setFocusIcon(R.drawable.user_report);
+        bl_report.setIconText("报告");
+        bl_report.setOnClickListener(this);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public void onClick(View view){
+    public void onClick(View view) {
+        bl_send.setFocused(false);
+        bl_report.setFocused(false);
+
         switch (view.getId()) {
             case R.id.rel_bg:
-            case R.id.lin_bottom:
             case R.id.iv_close:
-                if (isShowing()) closeAnimation();
+                if (isShowing())
+                    closeAnimation();
                 break;
-            case R.id.tv_user_send:
+            case R.id.bl_send:
+                bl_send.setFocused(true);
+                bl_report.setFocused(false);
                 break;
-            case R.id.tv_user_help:
+            case R.id.bl_report:
+                bl_send.setFocused(false);
+                bl_report.setFocused(true);
                 break;
         }
     }
 
-    public void show(View container){
+    public void show(View container) {
         showAtLocation(container, Gravity.TOP | Gravity.START, 0, 0);
         mHandler.post(new Runnable() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -123,7 +138,7 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
         showAnimation(relativeLayout);
     }
 
-    private void showAnimation(ViewGroup layout){
+    private void showAnimation(ViewGroup layout) {
         try {
             LinearLayout linearLayout = layout.findViewById(R.id.lin_bottom);
             mHandler.post(new Runnable() {
@@ -133,7 +148,7 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
                 }
             });
             //菜单项弹出动画
-            for(int i = 0; i < linearLayout.getChildCount(); i++){
+            for (int i = 0; i < linearLayout.getChildCount(); i++) {
                 final View child = linearLayout.getChildAt(i);
                 child.setOnClickListener(this);
                 child.setVisibility(View.INVISIBLE);
@@ -188,7 +203,7 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
         }
     }
 
-    private float fromDp2Px (float dp){
+    private float fromDp2Px(float dp) {
         return dp * Resources.getSystem().getDisplayMetrics().density;
     }
 }

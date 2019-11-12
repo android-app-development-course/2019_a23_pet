@@ -1,7 +1,6 @@
 package com.example.gohome.User;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
@@ -44,14 +43,14 @@ public class BottomLayout extends LinearLayout {
             this.isFocused = isFocused;
             if (isFocused) {
                 //设置获得焦点后的图片
-                //文字加粗
+                //文字颜色改变
                 ivIcon.setImageResource(focusIcon);
-                tvText.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+                tvText.setTextColor(getResources().getColor(R.color.orange));
             } else {
                 //设置获得普通状态的图片
-                //文字不加粗
+                //文字颜色改变
                 ivIcon.setImageResource(normalIcon);
-                tvText.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                tvText.setTextColor(getResources().getColor(R.color.inactiveGray));
             }
         }
     }

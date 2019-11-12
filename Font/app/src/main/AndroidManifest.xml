@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Organizer.OrganizerMain"></activity>
-        <activity android:name=".Member.MemberHomeActivity" />
         <activity android:name=".user.UserHomeActivity" />
+        <activity android:name=".Member.Activity.MemberHomeActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

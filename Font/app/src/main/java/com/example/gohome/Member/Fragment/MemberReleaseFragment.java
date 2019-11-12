@@ -10,10 +10,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.gohome.R;
+import com.unstoppable.submitbuttonview.SubmitButton;
+
+//import butterknife.BindView;
 
 public class MemberReleaseFragment extends Fragment {
 
-    Button btn_releaseSubmit;     //提交领养信息按钮
+//    @BindView(R.id.btn_releaseSubmit)
+    SubmitButton btn_releaseSubmit;     //提交领养信息按钮
 
 
 
@@ -26,5 +30,13 @@ public class MemberReleaseFragment extends Fragment {
 
 
     private void init(){
+
+
+//        btn_releaseSubmit.setProgress(100);
+//
+//        btn_releaseSubmit.doResult(true);
+
+
+
     }
 }

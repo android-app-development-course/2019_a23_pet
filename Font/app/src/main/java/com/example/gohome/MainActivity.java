@@ -7,9 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.gohome.Member.MemberHomeActivity;
+import com.example.gohome.Member.Activity.MemberHomeActivity;
 import com.example.gohome.Organizer.OrganizerMain;
-import com.example.gohome.user.UserHomeActivity;
+import com.example.gohome.User.UserHomeActivity;
 
 public class MainActivity extends AppCompatActivity {
 

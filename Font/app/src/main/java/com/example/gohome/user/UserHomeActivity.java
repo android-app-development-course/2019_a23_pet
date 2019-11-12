@@ -1,4 +1,4 @@
-package com.example.gohome.user;
+package com.example.gohome.User;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;

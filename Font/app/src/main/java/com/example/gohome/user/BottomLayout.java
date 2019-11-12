@@ -1,4 +1,4 @@
-package com.example.gohome.user;
+package com.example.gohome.User;
 
 import android.content.Context;
 import android.graphics.Typeface;

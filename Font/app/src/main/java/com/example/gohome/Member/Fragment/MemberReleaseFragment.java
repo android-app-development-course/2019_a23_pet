@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -12,6 +13,8 @@ import com.example.gohome.R;
 
 public class MemberReleaseFragment extends Fragment {
 
+    Button btn_releaseSubmit;     //提交领养信息按钮
+
 
 
     @Nullable
@@ -19,5 +22,9 @@ public class MemberReleaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState ){
         View view = inflater.inflate(R.layout.fragment_member_release,null);
         return view;
+    }
+
+
+    private void init(){
     }
 }

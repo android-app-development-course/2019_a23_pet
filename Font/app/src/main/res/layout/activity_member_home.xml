@@ -7,14 +7,7 @@
     tools:context=".Member.Activity.MemberHomeActivity">
 
 
-
-<!--    <ViewPager-->
-<!--        android:id="@+id/fragment_vp"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_above="@+id/btmNav_mem" />-->
-
-    <com.example.gohome.Member.NoScrollViewPager
+    <com.example.gohome.Utils.NoScrollViewPager
         android:id="@+id/vp_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

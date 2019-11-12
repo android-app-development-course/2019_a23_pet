@@ -1,19 +1,14 @@
 package com.example.gohome.Member.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.example.gohome.Member.Adapter.MemberHomeViewPagerAdapter;
-import com.example.gohome.Member.Fragment.MemberAdoptFragment;
-import com.example.gohome.Member.Fragment.MemberHelpFragment;
-import com.example.gohome.Member.NoScrollViewPager;
+import com.example.gohome.Utils.NoScrollViewPager;
 import com.example.gohome.R;
-
-import java.util.ArrayList;
 
 public class MemberHomeActivity extends AppCompatActivity {
 

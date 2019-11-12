@@ -29,11 +29,11 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation 'com.rengwuxian.materialedittext:library:2.1.4'
 
     implementation 'com.aurelhubert:ahbottomnavigation:2.3.4'
-<<<<<<< HEAD
-
-=======
->>>>>>> 3ddd8ba32918fc4d015e817515a001b21ae8f75e
     implementation 'com.ms-square:etsyblur:0.2.1'
+    implementation 'com.github.ceryle:RadioRealButton:v2.1.1'
+    implementation 'com.unstoppable:submitbutton:1.1.3'
+
 }

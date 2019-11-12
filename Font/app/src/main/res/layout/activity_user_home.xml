@@ -4,47 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:id="@+id/rel_container"
-    tools:context=".user.UserHomeActivity">
+    tools:context=".User.Activity.UserHomeActivity">
 
-    <LinearLayout
-        android:id="@+id/lin_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#FFFFFF"
-        android:elevation="12dp"
-        android:gravity="center"
-        android:orientation="horizontal">
 
-        <com.example.gohome.user.BottomLayout
-            android:id="@+id/bl_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-        </com.example.gohome.user.BottomLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </androidx.recyclerview.widget.RecyclerView>
 
         <LinearLayout
-            android:id="@+id/bl_menu"
-            android:layout_width="wrap_content"
+            android:id="@+id/lin_bottom"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_alignParentBottom="true"
+            android:background="#ffffffff"
+            android:elevation="12dp"
             android:gravity="center"
-            android:orientation="vertical">
-            <ImageView
+            android:orientation="horizontal">
+
+            <com.example.gohome.User.BottomLayout
+                android:id="@+id/bl_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/user_more_normal"/>
+                android:layout_weight="1">
+            </com.example.gohome.User.BottomLayout>
+
+            <LinearLayout
+                android:id="@+id/bl_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/user_more_normal"/>
+            </LinearLayout>
+
+            <com.example.gohome.User.BottomLayout
+                android:id="@+id/bl_me"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+            </com.example.gohome.User.BottomLayout>
+
         </LinearLayout>
-
-        <com.example.gohome.user.BottomLayout
-            android:id="@+id/bl_me"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-        </com.example.gohome.user.BottomLayout>
-
-    </LinearLayout>
 
 </RelativeLayout>

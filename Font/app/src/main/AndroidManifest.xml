@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Organizer.OrganizerMain"></activity>
-        <activity android:name=".user.UserHomeActivity" />
+        <activity android:name=".User.Activity.UserHomeActivity" />
         <activity android:name=".Member.Activity.MemberHomeActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -19,6 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".User.Activity.UserAdoptActivity" />
     </application>
 
 </manifest>

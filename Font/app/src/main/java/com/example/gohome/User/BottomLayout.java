@@ -20,7 +20,7 @@ public class BottomLayout extends LinearLayout {
     public BottomLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         //加载布局文件，与setContentView()效果一样
-        LayoutInflater.from(context).inflate(R.layout.activity_user_bottom, this);
+        LayoutInflater.from(context).inflate(R.layout.activity_user_bottom_menu_item, this);
         ivIcon = findViewById(R.id.iv_main_bottom_icon);
         tvText = findViewById(R.id.tv_main_bottom_text);
     }

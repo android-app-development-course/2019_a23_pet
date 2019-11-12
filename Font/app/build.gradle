@@ -40,6 +40,8 @@ dependencies {
     implementation 'com.ms-square:etsyblur:0.2.1'
     implementation 'com.github.ceryle:RadioRealButton:v2.1.1'
     implementation 'com.unstoppable:submitbutton:1.1.3'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
 
 //    implementation 'com.jakewharton:butterknife:10.0.0'
 //    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'

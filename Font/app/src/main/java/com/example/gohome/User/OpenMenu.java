@@ -22,7 +22,6 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.gohome.R;
 import com.ms_square.etsyblur.BlurringView;
@@ -35,9 +34,9 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
     private View bgView;
     private ImageView iv_close;
 
-    OpenMenu(Activity activity) { mActivity = activity; }
+    public OpenMenu(Activity activity) { mActivity = activity; }
 
-    void init(View view){
+    public void init(View view){
         mHandler = new Handler();
 
         Rect frame = new Rect();
@@ -52,7 +51,7 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
         setWidth(mWidth);
         setHeight(mHeight);
 
-        relativeLayout = (RelativeLayout) LayoutInflater.from(mActivity).inflate(R.layout.activity_open_menu, null);
+        relativeLayout = (RelativeLayout) LayoutInflater.from(mActivity).inflate(R.layout.activity_user_bottom_open, null);
         setContentView(relativeLayout);
 
         bgView = relativeLayout.findViewById(R.id.rel_bg);
@@ -88,12 +87,11 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
             case R.id.tv_user_send:
                 break;
             case R.id.tv_user_help:
-
                 break;
         }
     }
 
-    void show(View container){
+    public void show(View container){
         showAtLocation(container, Gravity.TOP | Gravity.START, 0, 0);
         mHandler.post(new Runnable() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

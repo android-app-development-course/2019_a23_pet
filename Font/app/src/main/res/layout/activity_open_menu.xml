@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rel_bg"
+    tools:context=".user.OpenMenu">
+
+    <com.ms_square.etsyblur.BlurringView
+        android:id="@id/blurring_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:radius="17"
+        app:overlayColor="#66eeeeee" />
+
+    <LinearLayout
+        android:id="@+id/lin_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_alignParentBottom="true"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_user_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="50dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:drawablePadding="10dp"
+            android:drawableTop="@drawable/user_send"
+            android:text="我要送养"
+            android:textColor="@color/black"
+            android:textSize="15sp"/>
+        <TextView
+            android:id="@+id/tv_user_help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="50dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:drawablePadding="10dp"
+            android:drawableTop="@drawable/user_help"
+            android:text="我要报告"
+            android:textColor="@color/black"
+            android:textSize="15sp"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rel_close"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+
+            android:src="@drawable/user_more" />
+    </RelativeLayout>
+
+</RelativeLayout>

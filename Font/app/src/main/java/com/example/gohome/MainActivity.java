@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.gohome.Member.Activity.MemberHomeActivity;
+import com.example.gohome.Member.MemberHomeActivity;
+import com.example.gohome.Organizer.OrganizerMain;
+import com.example.gohome.user.UserHomeActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,10 +28,24 @@ public class MainActivity extends AppCompatActivity {
         Button btn_organizer = findViewById(R.id.btn_organizer);
         Button btn_member = findViewById(R.id.btn_member);
 
+        btn_user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, UserHomeActivity.class);
+                startActivity(intent);
+            }
+        });
         btn_member.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, MemberHomeActivity.class);
+                startActivity(intent);
+            }
+        });
+        btn_organizer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, OrganizerMain.class);
                 startActivity(intent);
             }
         });

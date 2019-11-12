@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rel_container"
+    tools:context=".user.UserHomeActivity">
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/lin_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        android:elevation="12dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.example.gohome.user.BottomLayout
+            android:id="@+id/bl_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+        </com.example.gohome.user.BottomLayout>
+
+        <LinearLayout
+            android:id="@+id/bl_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/user_more_normal"/>
+        </LinearLayout>
+
+        <com.example.gohome.user.BottomLayout
+            android:id="@+id/bl_me"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+        </com.example.gohome.user.BottomLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

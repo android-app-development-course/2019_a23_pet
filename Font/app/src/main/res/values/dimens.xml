@@ -4,4 +4,7 @@
     <dimen name="margin">
         10dp
     </dimen>
+    <dimen name="margin_double">
+        20dp
+    </dimen>
 </resources>

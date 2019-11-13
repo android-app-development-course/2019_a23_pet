@@ -263,7 +263,42 @@
             </RelativeLayout>
 
 
+
+
+
         </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:overScrollMode="never" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/cb_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:gravity="center_vertical"
+                android:text="相册or单独拍照"
+                android:textColor="@color/color_53"
+                android:textSize="14sp" />
+
+
+        </FrameLayout>
 
 
 
@@ -322,7 +357,7 @@
             android:layout_gravity="center">
 
             <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
-                android:id="@+id/btn_id"
+                android:id="@+id/btn_releaseSubmit"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/margin"
                 android:layout_width="match_parent"

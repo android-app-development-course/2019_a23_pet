@@ -13,5 +13,8 @@
     <color name="white">#FFFFFF</color>
     <color name="red">#F70938</color>
     <color name="green">#8BC34A</color>
+    <!--照片选择背景-->
+    <color name="imgBackground">#f6f6f6</color>
+
 
 </resources>

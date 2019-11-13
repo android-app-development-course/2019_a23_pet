@@ -15,10 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Organizer.OrganizerMain"></activity>
-<<<<<<< HEAD
-=======
-        <activity android:name=".User.UserHomeActivity" />
->>>>>>> 03ad637ac986d5ae4e2c9fe7261ded7f5565d641
         <activity android:name=".User.Activity.UserHomeActivity" />
         <activity android:name=".Member.Activity.MemberHomeActivity"></activity>
         <activity android:name=".MainActivity">

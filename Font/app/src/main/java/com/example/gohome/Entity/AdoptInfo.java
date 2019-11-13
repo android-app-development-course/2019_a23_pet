@@ -1,4 +1,4 @@
-package com.example.gohome.User.Model;
+package com.example.gohome.Entity;
 
 import java.io.Serializable;
 

@@ -8,10 +8,8 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -19,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gohome.R;
 import com.example.gohome.User.Activity.UserAdoptActivity;
-import com.example.gohome.User.Model.AdoptInfo;
+import com.example.gohome.Entity.AdoptInfo;
 
 public class RecyclerViewAdapter
         extends RecyclerView.Adapter<RecyclerViewAdapter.InfoViewHolder>
@@ -68,13 +66,10 @@ public class RecyclerViewAdapter
         viewHolder.tv_petName.setText(infoList.get(position).getPetName());
         viewHolder.tv_desc.setText(infoList.get(position).getDesc());
 
-        viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, UserAdoptActivity.class);
-                intent.putExtra("info", infoList.get(pos));
-                context.startActivity(intent);
-            }
+        viewHolder.cardView.setOnClickListener(view -> {
+            Intent intent = new Intent(context, UserAdoptActivity.class);
+            intent.putExtra("info", infoList.get(pos));
+            context.startActivity(intent);
         });
     }
 

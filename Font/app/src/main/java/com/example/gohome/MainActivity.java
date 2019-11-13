@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import com.example.gohome.Member.Activity.MemberHomeActivity;
 import com.example.gohome.Organizer.OrganizerMain;
-import com.example.gohome.User.UserHomeActivity;
+import com.example.gohome.User.Activity.UserHomeActivity;
 
 public class MainActivity extends AppCompatActivity {
 

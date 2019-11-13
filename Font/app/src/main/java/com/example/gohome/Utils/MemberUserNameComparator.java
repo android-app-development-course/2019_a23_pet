@@ -1,4 +1,4 @@
-package com.example.gohome.utils;
+package com.example.gohome.Utils;
 
 import com.example.gohome.Entity.Member;
 

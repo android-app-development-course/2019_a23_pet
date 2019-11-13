@@ -1,4 +1,4 @@
-package com.example.gohome.Organizer.Component;
+package com.example.gohome.Component;
 /*
 * 参考： https://github.com/AlexLiuSheng/AnimSideBar/blob/master/app/src/main/java/com/allenliu/sidebar/SideBar.java
 * https://www.jianshu.com/p/985ce4b5bba3
@@ -19,7 +19,7 @@ import com.example.gohome.R;
 /**
  * Created by Allen Liu on 2016/5/12.
  */
-public class MemberSideBar extends AppCompatTextView {
+public class OrganizerMemberSideBar extends AppCompatTextView {
     private String[] letters = new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I",
             "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V",
             "W", "X", "Y", "Z", "#"};
@@ -52,15 +52,15 @@ public class MemberSideBar extends AppCompatTextView {
     private int scaleItemCount = 6;
     private ISideBarSelectCallBack callBack;
 
-    public MemberSideBar(Context context) {
+    public OrganizerMemberSideBar(Context context) {
         this(context, null);
     }
 
-    public MemberSideBar(Context context, AttributeSet attrs) {
+    public OrganizerMemberSideBar(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public MemberSideBar(Context context, AttributeSet attrs, int defStyleAttr) {
+    public OrganizerMemberSideBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(attrs);
     }
@@ -93,10 +93,10 @@ public class MemberSideBar extends AppCompatTextView {
     private void init(AttributeSet attrs) {
         //  setPadding(dp(10), 0, dp(10), 0);
         if(attrs != null) {
-            TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.MemberSideBar);
-            scaleSize = typedArray.getInteger(R.styleable.MemberSideBar_scaleSize,1);
-            scaleItemCount = typedArray.getInteger(R.styleable.MemberSideBar_scaleItemCount,6);
-            scaleWidth = typedArray.getDimensionPixelOffset(R.styleable.MemberSideBar_scaleWidth, dp(100));
+            TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.OrganizerMemberSideBar);
+            scaleSize = typedArray.getInteger(R.styleable.OrganizerMemberSideBar_scaleSize,1);
+            scaleItemCount = typedArray.getInteger(R.styleable.OrganizerMemberSideBar_scaleItemCount,6);
+            scaleWidth = typedArray.getDimensionPixelOffset(R.styleable.OrganizerMemberSideBar_scaleWidth, dp(100));
         }
         textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         textPaint.setColor(getCurrentTextColor());

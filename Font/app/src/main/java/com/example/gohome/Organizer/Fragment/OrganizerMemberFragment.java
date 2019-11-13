@@ -13,9 +13,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.gohome.Entity.Member;
 import com.example.gohome.Organizer.Adapter.MemberListViewAdapter;
-import com.example.gohome.Organizer.Component.MemberSideBar;
+import com.example.gohome.Component.OrganizerMemberSideBar;
 import com.example.gohome.R;
-import com.example.gohome.utils.MemberUserNameComparator;
+import com.example.gohome.Utils.MemberUserNameComparator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,7 +26,7 @@ public class OrganizerMemberFragment extends Fragment {
 
 
     private ListView memberListView;
-    private MemberSideBar memberSideBar;
+    private OrganizerMemberSideBar memberSideBar;
     private List<Member> memberList;
 
     @Nullable
@@ -97,7 +97,7 @@ public class OrganizerMemberFragment extends Fragment {
         memberListView.setAdapter(memberListViewAdapter);
 
         //设置字母栏跳转监听
-        memberSideBar.setOnStrSelectCallBack(new MemberSideBar.ISideBarSelectCallBack() {
+        memberSideBar.setOnStrSelectCallBack(new OrganizerMemberSideBar.ISideBarSelectCallBack() {
             @Override
             public void onSelectStr(int index, String selectStr) {
                 if(memberList != null){

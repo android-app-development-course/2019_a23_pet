@@ -1,4 +1,4 @@
-package com.example.gohome.Utils;
+package com.example.gohome.Component;
 
 import android.content.Context;
 import android.util.AttributeSet;

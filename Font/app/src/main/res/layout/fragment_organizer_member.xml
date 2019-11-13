@@ -14,7 +14,7 @@
     </ListView>
 
 
-    <com.example.gohome.Organizer.Component.MemberSideBar
+    <com.example.gohome.Component.OrganizerMemberSideBar
         android:id="@+id/member_side_bar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

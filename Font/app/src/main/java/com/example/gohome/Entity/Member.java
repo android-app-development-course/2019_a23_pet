@@ -1,6 +1,6 @@
 package com.example.gohome.Entity;
 
-import com.example.gohome.utils.Cn2Spell;
+import com.example.gohome.Utils.Cn2Spell;
 
 import java.util.Date;
 

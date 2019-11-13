@@ -1,4 +1,4 @@
-package com.example.gohome.utils;
+package com.example.gohome.Utils;
 
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;

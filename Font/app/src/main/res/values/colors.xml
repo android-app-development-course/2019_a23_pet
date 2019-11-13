@@ -10,4 +10,6 @@
     <color name="darkRed">#940a37</color>
     <color name="black">#5b0909</color>
     <color name="inactiveGray">#747474</color>
+    <color name="white">#FFFFFF</color>
+    <color name="red">#F70938</color>
 </resources>

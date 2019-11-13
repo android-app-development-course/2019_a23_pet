@@ -10,8 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Organizer.OrganizerMain"></activity>
-        <activity android:name=".Member.MemberHomeActivity" />
-        <activity android:name=".user.UserHomeActivity" />
+<<<<<<< HEAD
+        <activity android:name=".User.UserHomeActivity" />
+=======
+        <activity android:name=".User.Activity.UserHomeActivity" />
+>>>>>>> f55a0607b00f4171e0c04c84d2d548de1f888441
+        <activity android:name=".Member.Activity.MemberHomeActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,6 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".User.Activity.UserAdoptActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"/>

@@ -4,6 +4,7 @@
     <dimen name="margin">
         10dp
     </dimen>
+<<<<<<< HEAD
 
     <!--    不同后缀大小对比: *_xs < *_s < *_l < *_xl    -->
 
@@ -27,4 +28,9 @@
     <!--    列表头像大小-->
     <dimen name="list_protrait_size">60dp</dimen>
 
+=======
+    <dimen name="margin_double">
+        20dp
+    </dimen>
+>>>>>>> c9ed9cb0b6f5e131d0404a2d36292579b96448da
 </resources>

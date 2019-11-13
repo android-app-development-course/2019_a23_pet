@@ -1,50 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rel_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/rel_container"
-    tools:context=".user.UserHomeActivity">
+    android:orientation="vertical"
+    tools:context=".User.Activity.UserHomeActivity">
 
     <LinearLayout
         android:id="@+id/lin_bottom"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55sp"
         android:layout_alignParentBottom="true"
-        android:background="#FFFFFF"
-        android:elevation="12dp"
+        android:background="@color/yellow"
         android:gravity="center"
         android:orientation="horizontal">
 
-        <com.example.gohome.user.BottomLayout
+        <com.example.gohome.User.BottomLayout
             android:id="@+id/bl_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-        </com.example.gohome.user.BottomLayout>
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless" />
 
         <LinearLayout
             android:id="@+id/bl_menu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:gravity="center"
             android:orientation="vertical">
+
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/user_more_normal"/>
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/user_more_normal" />
+
         </LinearLayout>
 
-        <com.example.gohome.user.BottomLayout
+        <com.example.gohome.User.BottomLayout
             android:id="@+id/bl_me"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-        </com.example.gohome.user.BottomLayout>
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless" />
 
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/lin_bottom"/>
 
 </RelativeLayout>

@@ -7,7 +7,7 @@ import android.os.Bundle;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.example.gohome.Member.Adapter.MemberHomeViewPagerAdapter;
-import com.example.gohome.Utils.NoScrollViewPager;
+import com.example.gohome.Component.NoScrollViewPager;
 import com.example.gohome.R;
 
 public class MemberHomeActivity extends AppCompatActivity {

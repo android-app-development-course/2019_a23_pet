@@ -33,6 +33,7 @@ public class OrganizerMain extends AppCompatActivity {
         OrganizerMainViewPagerAdapter adapter = new OrganizerMainViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(0);
+        viewPager.setScanScroll(false);
 
         //创建items，3个参数分别是item的文字，item的icon，选中item时的整体颜色（该项需要开启）
         AHBottomNavigationItem item1 = new AHBottomNavigationItem("审核", R.drawable.member_check, R.color.colorPrimary);

@@ -4,6 +4,28 @@
     <dimen name="margin">
         10dp
     </dimen>
+
+    <!--    不同后缀大小对比: *_xs < *_s < *_l < *_xl    -->
+
+    <!--    字体大小-->
+    <!--    顶部导航栏字体大小-->
+    <dimen name="font_size_xl">84px</dimen>
+    <!--    文章标题字体大小-->
+    <dimen name="font_size_l">54px</dimen>
+    <!--    文本字体大小-->
+    <dimen name="font_size_s">42px</dimen>
+    <!--    注释最小字体-->
+    <dimen name="font_size_xs">36px</dimen>
+
+    <!--    宽距大小-->
+    <!--    最小宽距-->
+    <dimen name="margin_xs">8dp</dimen>
+    <!--    次小宽距-->
+    <!--    中等宽距-->
+    <!--    大宽距-->
+
+    <!--    列表头像大小-->
+    <dimen name="list_protrait_size">60dp</dimen>
     <dimen name="margin_double">
         20dp
     </dimen>

@@ -7,11 +7,6 @@
     android:orientation="vertical"
     tools:context=".User.Activity.UserHomeActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <LinearLayout
         android:id="@+id/lin_bottom"
         android:layout_width="match_parent"
@@ -23,14 +18,14 @@
 
         <com.example.gohome.User.BottomLayout
             android:id="@+id/bl_home"
-            android:layout_width="0sp"
-            android:layout_height="45sp"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackgroundBorderless" />
 
         <LinearLayout
             android:id="@+id/bl_menu"
-            android:layout_width="0sp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackgroundBorderless"
@@ -38,19 +33,25 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="35sp"
-                android:layout_height="35sp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:src="@drawable/user_more_normal" />
 
         </LinearLayout>
 
         <com.example.gohome.User.BottomLayout
             android:id="@+id/bl_me"
-            android:layout_width="0sp"
-            android:layout_height="45sp"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackgroundBorderless" />
 
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/lin_bottom"/>
 
 </RelativeLayout>

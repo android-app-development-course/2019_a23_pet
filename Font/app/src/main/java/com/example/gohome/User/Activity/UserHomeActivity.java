@@ -78,7 +78,7 @@ public class UserHomeActivity extends AppCompatActivity implements View.OnClickL
 
         initData();
 
-        adapter = new RecyclerViewAdapter(infoList, this);
+        adapter = new RecyclerViewAdapter(this, infoList);
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);

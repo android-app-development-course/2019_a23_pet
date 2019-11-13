@@ -21,7 +21,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.example.gohome.R;
 import com.ms_square.etsyblur.BlurringView;
@@ -67,18 +66,19 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
 
         BlurringView blurringView = relativeLayout.findViewById(R.id.blurring_view);
         blurringView.blurredView(view);//模糊背景
+
         setFocusable(true);
         setOutsideTouchable(true);
         setClippingEnabled(false);//使popup window全屏显示
 
         bl_send = relativeLayout.findViewById(R.id.bl_send);
-        bl_send.setNormalIcon(R.drawable.user_send_normal);
+        bl_send.setNormalIcon(R.drawable.user_send);
         bl_send.setFocusIcon(R.drawable.user_send);
         bl_send.setIconText("送养");
         bl_send.setOnClickListener(this);
 
         bl_report = relativeLayout.findViewById(R.id.bl_report);
-        bl_report.setNormalIcon(R.drawable.user_report_normal);
+        bl_report.setNormalIcon(R.drawable.user_report);
         bl_report.setFocusIcon(R.drawable.user_report);
         bl_report.setIconText("报告");
         bl_report.setOnClickListener(this);
@@ -91,6 +91,7 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
 
         switch (view.getId()) {
             case R.id.rel_bg:
+            case R.id.lin_bottom:
             case R.id.iv_close:
                 if (isShowing())
                     closeAnimation();

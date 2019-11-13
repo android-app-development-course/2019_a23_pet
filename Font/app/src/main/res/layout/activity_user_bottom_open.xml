@@ -11,30 +11,30 @@
         android:id="@id/blurring_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:overlayColor="#28747474"
+        app:overlayColor="#CBFFFFFF"
         app:radius="15" />
 
     <LinearLayout
         android:id="@+id/lin_bottom"
         android:layout_width="match_parent"
-        android:layout_height="150sp"
+        android:layout_height="200dp"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:paddingLeft="45sp"
-        android:paddingTop="10sp"
-        android:paddingRight="45sp">
+        android:paddingTop="30dp"
+        android:paddingLeft="45dp"
+        android:paddingRight="45dp">
 
         <com.example.gohome.User.BottomLayout
             android:id="@+id/bl_send"
-            android:layout_width="0sp"
-            android:layout_height="60sp"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackgroundBorderless" />
 
         <com.example.gohome.User.BottomLayout
             android:id="@+id/bl_report"
             android:layout_width="0sp"
-            android:layout_height="60sp"
+            android:layout_height="60dp"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackgroundBorderless" />
 
@@ -43,14 +43,14 @@
     <RelativeLayout
         android:id="@+id/rel_close"
         android:layout_width="match_parent"
-        android:layout_height="55sp"
+        android:layout_height="55dp"
         android:layout_alignParentBottom="true"
         android:background="?attr/selectableItemBackgroundBorderless">
 
         <ImageView
             android:id="@+id/iv_close"
-            android:layout_width="35sp"
-            android:layout_height="35sp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_centerInParent="true"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/user_more" />

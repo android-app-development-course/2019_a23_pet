@@ -8,8 +8,10 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -17,19 +19,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gohome.R;
 import com.example.gohome.User.Activity.UserAdoptActivity;
-import com.example.gohome.User.Activity.UserHomeActivity;
 import com.example.gohome.User.Model.AdoptInfo;
 
 public class RecyclerViewAdapter
-        extends RecyclerView.Adapter<RecyclerViewAdapter.InfoViewHolder> {
-
-    private List<AdoptInfo> infoList;
+        extends RecyclerView.Adapter<RecyclerViewAdapter.InfoViewHolder>
+{
     private Context context;
+    private List<AdoptInfo> infoList;
 
-    public RecyclerViewAdapter(List<AdoptInfo> infoList, Context context){
+    public RecyclerViewAdapter(Context context, List<AdoptInfo> infoList){
         super();
-        this.infoList = infoList;
         this.context = context;
+        this.infoList = infoList;
     }
 
     static class InfoViewHolder extends RecyclerView.ViewHolder{
@@ -37,8 +38,9 @@ public class RecyclerViewAdapter
         ImageView iv_photo;
         TextView tv_petName, tv_desc;
 
-        InfoViewHolder(View item){
+        InfoViewHolder(final View item){
             super(item);
+
             cardView = item.findViewById(R.id.user_card_view);
             iv_photo = item.findViewById(R.id.user_iv_photo);
             tv_petName = item.findViewById(R.id.user_tv_name);
@@ -49,9 +51,13 @@ public class RecyclerViewAdapter
         }
     }
 
+    @NonNull
     @Override
-    public int getItemCount() {
-        return infoList == null ? 0 : infoList.size();
+    public RecyclerViewAdapter.InfoViewHolder onCreateViewHolder(
+            @NonNull ViewGroup viewGroup, int viewType){
+        View view = LayoutInflater.from(context).inflate(R.layout.activity_user_adopt_info_item,
+                null);
+        return new InfoViewHolder(view);
     }
 
     @Override
@@ -72,12 +78,9 @@ public class RecyclerViewAdapter
         });
     }
 
-    @NonNull
     @Override
-    public RecyclerViewAdapter.InfoViewHolder onCreateViewHolder(
-            @NonNull ViewGroup viewGroup, int viewType){
-        View view = LayoutInflater.from(context).inflate(R.layout.activity_user_adopt_info_item, null);
-        return new InfoViewHolder(view);
+    public int getItemCount() {
+        return infoList == null ? 0 : infoList.size();
     }
 }
 

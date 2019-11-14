@@ -9,72 +9,101 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        >
+        android:background="@color/background">
 
 
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/et_releaseName"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="宠物姓名"
-            android:layout_margin="@dimen/margin"
-            app:met_iconLeft="@drawable/member_name"
-            app:met_baseColor="@color/orange"
-            app:met_primaryColor="@color/orange"/>
+            android:background="@color/white"
+            android:layout_marginTop="@dimen/margin">
 
 
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/et_releaseAge"
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_releaseName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin"
+                android:hint="宠物姓名"
+                app:met_iconLeft="@drawable/member_name"
+                app:met_baseColor="@color/orange"
+                app:met_primaryColor="@color/orange" />
+
+        </FrameLayout>
+
+
+
+
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="宠物年龄"
-            android:layout_margin="@dimen/margin"
-            app:met_iconLeft="@drawable/member_age"
-            app:met_baseColor="@color/orange"
-            app:met_primaryColor="@color/orange"/>
+            android:layout_marginTop="@dimen/margin"
+            android:background="@color/white">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_releaseAge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="宠物年龄"
+                android:layout_marginHorizontal="@dimen/margin"
+                app:met_iconLeft="@drawable/member_age"
+                app:met_baseColor="@color/orange"
+                app:met_primaryColor="@color/orange"/>
+
+        </FrameLayout>
 
 
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/et_releaseType"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="宠物类型"
-            android:layout_margin="@dimen/margin"
-            app:met_iconLeft="@drawable/member_type"
-            app:met_baseColor="@color/orange"
-            app:met_primaryColor="@color/orange"/>
+            android:background="@color/white"
+            android:layout_marginTop="@dimen/margin">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_releaseType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="宠物类型"
+                android:layout_marginHorizontal="@dimen/margin"
+                app:met_iconLeft="@drawable/member_type"
+                app:met_baseColor="@color/orange"
+                app:met_primaryColor="@color/orange"/>
 
 
-<!--        <com.rengwuxian.materialedittext.MaterialEditText-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="宠物疫苗情况"-->
-<!--            android:layout_margin="@dimen/margin"-->
-<!--            app:met_iconLeft="@drawable/member_vaccine"-->
-<!--            app:met_baseColor="@color/orange"-->
-<!--            app:met_primaryColor="@color/orange"/>-->
+        </FrameLayout>
 
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/et_releaseDescription"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="宠物描述（性格等）"
-            android:layout_margin="@dimen/margin"
-            app:met_iconLeft="@drawable/member_describe"
-            app:met_baseColor="@color/orange"
-            app:met_primaryColor="@color/orange"
-            android:maxLines="2"/>
+            android:background="@color/white"
+            android:layout_marginTop="@dimen/margin">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_releaseDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="宠物描述（性格等）"
+                android:layout_marginHorizontal="@dimen/margin"
+                app:met_iconLeft="@drawable/member_describe"
+                app:met_baseColor="@color/orange"
+                app:met_primaryColor="@color/orange"
+                android:maxLines="2"/>
+
+        </FrameLayout>
+
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="@dimen/margin_double">
+            android:layout_marginTop="@dimen/margin"
+            android:background="@color/white">
 
             <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_double"
                 android:layout_gravity="center">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -89,7 +118,7 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/margin">
+                android:layout_margin="@dimen/margin">
 
 
 
@@ -112,7 +141,7 @@
                         android:layout_height="wrap_content"
                         app:rrb_ripple="true"
                         app:rrb_rippleColor="@color/black"
-                        app:rrb_text="boy"
+                        app:rrb_text="男生"
                         app:rrb_textColor="@color/black" />
 
 
@@ -122,7 +151,7 @@
                         android:layout_height="wrap_content"
                         app:rrb_ripple="true"
                         app:rrb_rippleColor="@color/black"
-                        app:rrb_text="girl"
+                        app:rrb_text="女生"
                         app:rrb_textColor="@color/black"/>
 
                 </co.ceryle.radiorealbutton.RadioRealButtonGroup>
@@ -137,11 +166,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="@dimen/margin_double">
+            android:layout_marginTop="@dimen/margin"
+            android:background="@color/white">
 
             <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_double"
                 android:layout_gravity="center">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -156,7 +187,7 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/margin">
+                android:layout_margin="@dimen/margin">
 
 
 
@@ -179,7 +210,7 @@
                         android:layout_height="wrap_content"
                         app:rrb_ripple="true"
                         app:rrb_rippleColor="@color/black"
-                        app:rrb_text="yes"
+                        app:rrb_text="已绝育"
                         app:rrb_textColor="@color/black"/>
 
 
@@ -189,7 +220,7 @@
                         android:layout_height="wrap_content"
                         app:rrb_ripple="true"
                         app:rrb_rippleColor="@color/black"
-                        app:rrb_text="no"
+                        app:rrb_text="未绝育"
                         app:rrb_textColor="@color/black"/>
 
                 </co.ceryle.radiorealbutton.RadioRealButtonGroup>
@@ -203,11 +234,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_margin="@dimen/margin_double">
+            android:layout_marginTop="@dimen/margin"
+            android:background="@color/white">
 
             <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_double"
                 android:layout_gravity="center">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -222,7 +255,7 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/margin">
+                android:layout_margin="@dimen/margin">
 
 
 
@@ -245,7 +278,7 @@
                         android:layout_height="wrap_content"
                         app:rrb_ripple="true"
                         app:rrb_rippleColor="@color/black"
-                        app:rrb_text="yes"
+                        app:rrb_text="已疫苗"
                         app:rrb_textColor="@color/black"/>
 
 
@@ -255,7 +288,7 @@
                         android:layout_height="wrap_content"
                         app:rrb_ripple="true"
                         app:rrb_rippleColor="@color/black"
-                        app:rrb_text="no"
+                        app:rrb_text="未疫苗"
                         app:rrb_textColor="@color/black"/>
 
                 </co.ceryle.radiorealbutton.RadioRealButtonGroup>
@@ -268,37 +301,71 @@
 
         </LinearLayout>
 
-        <FrameLayout
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin">
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:layout_marginTop="@dimen/margin">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler"
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:overScrollMode="never" />
+                android:layout_marginTop="@dimen/margin_double"
+                android:layout_marginHorizontal="@dimen/margin_double"
+                android:orientation="horizontal">
 
-        </FrameLayout>
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/member_photo"/>
+                </FrameLayout>
 
-            <CheckBox
-                android:id="@+id/cb_mode"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin"
+                    android:text="选择图片："
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/font_size_xs"
+                    android:textColor="@color/orange"/>
+
+
+            </LinearLayout>
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checked="true"
-                android:gravity="center_vertical"
-                android:text="相册or单独拍照"
-                android:textColor="@color/color_53"
-                android:textSize="14sp" />
+                android:layout_marginHorizontal="@dimen/margin"
+                android:layout_marginTop="@dimen/margin">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_releaseImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:overScrollMode="never" />
+
+            </FrameLayout>
 
 
-        </FrameLayout>
+
+        </LinearLayout>
+
+
+
+
+
+
+
 
 
 
@@ -370,8 +437,6 @@
                 app:spinning_bar_padding="6dp" />
 
         </FrameLayout>
-
-
 
     </LinearLayout>
 

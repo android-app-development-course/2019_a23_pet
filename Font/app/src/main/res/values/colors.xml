@@ -15,6 +15,8 @@
     <color name="green">#8BC34A</color>
     <!--照片选择背景-->
     <color name="imgBackground">#f6f6f6</color>
+    <!--普通背景颜色-->
+    <color name="background">#f6f6f6</color>
 
 
 </resources>

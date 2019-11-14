@@ -1,4 +1,4 @@
-package com.example.gohome.Member.Fragment;
+package com.example.gohome.Member;
 
 import android.content.Context;
 import android.view.View;

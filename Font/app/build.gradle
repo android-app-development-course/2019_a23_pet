@@ -57,6 +57,10 @@ dependencies {
     implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.9'
     implementation "com.github.bumptech.glide:glide:4.5.0"
 
+    //dialog弹框
+    implementation 'com.github.sd6352051:NiftyDialogEffects:v1.0.3'
+
+
 
 
 

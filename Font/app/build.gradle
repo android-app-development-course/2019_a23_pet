@@ -34,6 +34,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+
     //editText简约风编辑框
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
     //member和organizer底部栏
@@ -57,16 +58,15 @@ dependencies {
     //照片上传
     implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.2.9'
     implementation "com.github.bumptech.glide:glide:4.5.0"
-
     //dialog弹框
     implementation 'com.github.sd6352051:NiftyDialogEffects:v1.0.3'
 
     implementation "com.google.android.material:material:1.0.0"
-
-
-
-
-    implementation 'com.belerweb:pinyin4j:2.5.0' //汉字转拼音
+    //汉字转拼音
+    implementation 'com.belerweb:pinyin4j:2.5.0'
+    //加载图片
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
 
 
 }

@@ -15,58 +15,52 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.gohome.R;
 import com.example.gohome.User.Activity.UserAdoptActivity;
 import com.example.gohome.Entity.AdoptInfo;
 
-public class RecyclerViewAdapter
-        extends RecyclerView.Adapter<RecyclerViewAdapter.InfoViewHolder>
-{
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.InfoViewHolder> {
     private Context context;
     private List<AdoptInfo> infoList;
 
-    public RecyclerViewAdapter(Context context, List<AdoptInfo> infoList){
+    public RecyclerViewAdapter(Context context, List<AdoptInfo> infoList) {
         super();
         this.context = context;
         this.infoList = infoList;
     }
 
-    static class InfoViewHolder extends RecyclerView.ViewHolder{
+    static class InfoViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
         ImageView iv_photo;
         TextView tv_petName, tv_desc;
 
-        InfoViewHolder(final View item){
+        InfoViewHolder(final View item) {
             super(item);
 
             cardView = item.findViewById(R.id.user_card_view);
             iv_photo = item.findViewById(R.id.user_iv_photo);
             tv_petName = item.findViewById(R.id.user_tv_name);
             tv_desc = item.findViewById(R.id.user_tv_desc);
-
-            // 设置TextView背景为半透明
-            tv_petName.setBackgroundColor(Color.argb(20,0,0,0));
         }
     }
 
     @NonNull
     @Override
-    public RecyclerViewAdapter.InfoViewHolder onCreateViewHolder(
-            @NonNull ViewGroup viewGroup, int viewType){
-        View view = LayoutInflater.from(context).inflate(R.layout.activity_user_adopt_info_item,
-                null);
+    public RecyclerViewAdapter.InfoViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.activity_user_adopt_info_item, null);
         return new InfoViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerViewAdapter.InfoViewHolder viewHolder, int position) {
+    public void onBindViewHolder(RecyclerViewAdapter.InfoViewHolder infoViewHolder, int position) {
         final int pos = position;
 
-        viewHolder.iv_photo.setImageResource(infoList.get(position).getPhotoId());
-        viewHolder.tv_petName.setText(infoList.get(position).getPetName());
-        viewHolder.tv_desc.setText(infoList.get(position).getDesc());
+        Glide.with(context).load(infoList.get(position).getPhotoId()).into(infoViewHolder.iv_photo);
+        infoViewHolder.tv_petName.setText(infoList.get(position).getPetName());
+        infoViewHolder.tv_desc.setText(infoList.get(position).getDesc());
 
-        viewHolder.cardView.setOnClickListener(view -> {
+        infoViewHolder.cardView.setOnClickListener(view -> {
             Intent intent = new Intent(context, UserAdoptActivity.class);
             intent.putExtra("info", infoList.get(pos));
             context.startActivity(intent);

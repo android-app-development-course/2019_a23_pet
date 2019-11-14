@@ -7,9 +7,11 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gohome.MainActivity;
 import com.example.gohome.R;
 import com.example.gohome.User.Adapter.RecyclerViewAdapter;
 import com.example.gohome.Entity.AdoptInfo;
@@ -21,26 +23,28 @@ public class UserAdoptFragment extends Fragment {
     private RecyclerView recyclerView;
     private List<AdoptInfo> infoList;
 
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState ) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_adopt_info, null);
         recyclerView = view.findViewById(R.id.recyclerView);
+
         initRec();
         return view;
     }
 
     private void initRec() {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
-
-        initList();
+        initAdoptInfo();
 
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(this.getContext(), infoList);
+        recyclerView.setAdapter(adapter);
 
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        //设置列表默认动画效果
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        //设置列表显示方式
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
     }
 
-    private void initList() {
+    private void initAdoptInfo() {
         infoList = new ArrayList<>();
         infoList.add(new AdoptInfo(R.drawable.dog, "一一", "豫章故郡，洪都新府。星分翼轸，地接衡庐。襟三江而带五湖，控蛮荆而引瓯越。物华天宝，龙光射牛斗之墟；人杰地灵，徐孺下陈蕃之榻。雄州雾列，俊采星驰。台隍枕夷夏之交，宾主尽东南之美。都督阎公之雅望，棨戟遥临；宇文新州之懿范，襜帷暂驻。十旬休假，胜友如云；千里逢迎，高朋满座。腾蛟起凤，孟学士之词宗；紫电青霜，王将军之武库。家君作宰，路出名区；童子何知，躬逢胜饯。"));
         infoList.add(new AdoptInfo(R.drawable.cat2, "二二", "时维九月，序属三秋。潦水尽而寒潭清，烟光凝而暮山紫。俨骖騑于上路，访风景于崇阿；临帝子之长洲，得天人之旧馆。层峦耸翠，上出重霄；飞阁流丹，下临无地。鹤汀凫渚，穷岛屿之萦回；桂殿兰宫，即冈峦之体势。"));

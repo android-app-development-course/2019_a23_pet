@@ -1,11 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tl_memberCheck"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="这是审核页面" />
+        android:layout_height="wrap_content"
+        android:background="@color/lightYellow"
+        app:tabIndicator="@color/orange"
+        app:tabSelectedTextColor="@color/black"
+        app:tabMode="fixed"
+        app:tabTextColor="@color/gray"
+        app:tabGravity="fill"
+        app:tabIndicatorHeight="@dimen/tabIndicatorHeight"/>
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_memberCheck"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+
 
 </LinearLayout>

@@ -344,7 +344,7 @@ public class MemberReleaseFragment extends Fragment  {
     }
 
 
-
+    //给上传图片添加点击事件
     private GridImageAdapter.onAddPicClickListener onAddPicClickListener = new GridImageAdapter.onAddPicClickListener() {
         @Override
         public void onAddPicClick() {
@@ -380,6 +380,8 @@ public class MemberReleaseFragment extends Fragment  {
 
     };
 
+
+    //返回结果并显示
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

@@ -8,7 +8,12 @@
     <!--底部菜单栏图标色-->
     <color name="orange">#e26241</color>
     <color name="darkRed">#940a37</color>
-    <color name="black">#5b0909</color>
+    <!--不知道怎么形容这个颜色-->
+    <color name="darkRedDeeply">#5b0909</color>
+    <color name="lightYellow">#FCFCCF</color>
+
+
+
     <color name="inactiveGray">#747474</color>
     <color name="white">#FFFFFF</color>
     <color name="red">#F70938</color>
@@ -17,6 +22,8 @@
     <color name="imgBackground">#f6f6f6</color>
     <!--普通背景颜色-->
     <color name="background">#f6f6f6</color>
-
+    <!--顶部栏字体未选中颜色-->
+    <color name="gray">	#BBBBBB</color>
+    <color name="black">#000000</color>
 
 </resources>

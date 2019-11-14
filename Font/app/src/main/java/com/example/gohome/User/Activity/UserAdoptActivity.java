@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.gohome.R;
-import com.example.gohome.User.Model.AdoptInfo;
+import com.example.gohome.Entity.AdoptInfo;
 
 public class UserAdoptActivity extends Activity {
     private ImageView iv_photo;
@@ -16,7 +16,7 @@ public class UserAdoptActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_adopt);
+        setContentView(R.layout.activity_user_adopt_info);
 
         iv_photo = findViewById(R.id.user_iv_info_photo);
         tv_petName = findViewById(R.id.user_tv_info_name);

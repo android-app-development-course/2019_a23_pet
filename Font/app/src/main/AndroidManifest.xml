@@ -2,11 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.gohome">
 
+<<<<<<< HEAD
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
     <uses-permission android:name="android.permission.CAMERA" />
 
 
+=======
+>>>>>>> 66c9aecb78f83cb3583c6ce10b23fa12a80a738e
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Organizer.OrganizerMain"></activity>
-        <activity android:name=".User.Activity.UserHomeActivity" />
+        <activity android:name=".User.Activity.UserHomeActivity"></activity>
         <activity android:name=".Member.Activity.MemberHomeActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -27,5 +30,4 @@
         <activity android:name=".User.Activity.UserAdoptActivity" />
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>

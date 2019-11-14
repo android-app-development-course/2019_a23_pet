@@ -1,11 +1,11 @@
-package com.example.gohome.User;
+package com.example.gohome.Utils;
 
 import android.animation.TypeEvaluator;
 
 public class KickBackAnimator implements TypeEvaluator<Float> {
     private float mDuration = 0f;
 
-    void setDuration(float duration) {
+    public void setDuration(float duration) {
         mDuration = duration;
     }
 

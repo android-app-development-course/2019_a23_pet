@@ -1,12 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rel_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".User.Activity.UserHomeActivity">
-
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:Context=".User.Activity.UserHomeActivity">
+    <com.example.gohome.Component.NoScrollViewPager
+        android:id="@+id/user_home_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/lin_bottom"
+        />
     <LinearLayout
         android:id="@+id/lin_bottom"
         android:layout_width="match_parent"
@@ -17,14 +21,14 @@
         android:orientation="horizontal">
 
         <com.example.gohome.User.BottomLayout
-            android:id="@+id/bl_home"
+            android:id="@+id/btm_home"
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackgroundBorderless" />
 
         <LinearLayout
-            android:id="@+id/bl_menu"
+            android:id="@+id/btm_more"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -40,18 +44,11 @@
         </LinearLayout>
 
         <com.example.gohome.User.BottomLayout
-            android:id="@+id/bl_me"
+            android:id="@+id/btm_mine"
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="?attr/selectableItemBackgroundBorderless" />
 
     </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/lin_bottom"/>
-
 </RelativeLayout>

@@ -23,6 +23,7 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
 import com.example.gohome.R;
+import com.example.gohome.Utils.KickBackAnimator;
 import com.ms_square.etsyblur.BlurringView;
 
 public class OpenMenu extends PopupWindow implements View.OnClickListener {
@@ -107,33 +108,30 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void show(View container) {
         showAtLocation(container, Gravity.TOP | Gravity.START, 0, 0);
-        mHandler.post(new Runnable() {
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void run() {
-                try {
-                    int x = mWidth / 2;
-                    int y = (int) (mHeight - fromDp2Px(25));
-                    Animator animator = ViewAnimationUtils.createCircularReveal(bgView,
-                            x, y, 0, bgView.getHeight());
-                    animator.addListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationStart(Animator animation) {
+        mHandler.post(() -> {
+            try {
+                int x = mWidth / 2;
+                int y = (int) (mHeight - fromDp2Px(25));
+                Animator animator = ViewAnimationUtils.createCircularReveal(bgView,
+                        x, y, 0, bgView.getHeight());
+                animator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
 //                            bgView.setVisibility(View.VISIBLE);
-                        }
+                    }
 
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
 //                            relativeLayout.setVisibility(View.VISIBLE);
-                        }
-                    });
-                    animator.setDuration(300);
-                    animator.start();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                    }
+                });
+                animator.setDuration(300);
+                animator.start();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
         showAnimation(relativeLayout);
@@ -142,29 +140,23 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
     private void showAnimation(ViewGroup layout) {
         try {
             LinearLayout linearLayout = layout.findViewById(R.id.lin_bottom);
-            mHandler.post(new Runnable() {
-                @Override
-                public void run() { //加号旋转
-                    iv_close.animate().rotation(90).setDuration(500);
-                }
+            mHandler.post(() -> { //加号旋转
+                iv_close.animate().rotation(90).setDuration(500);
             });
             //菜单项弹出动画
             for (int i = 0; i < linearLayout.getChildCount(); i++) {
                 final View child = linearLayout.getChildAt(i);
                 child.setOnClickListener(this);
                 child.setVisibility(View.INVISIBLE);
-                mHandler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        child.setVisibility(View.VISIBLE);
-                        ValueAnimator fadeAnim = ObjectAnimator.ofFloat(child,
-                                "translationY", 600, 0);
-                        fadeAnim.setDuration(500);
-                        KickBackAnimator kickAnimator = new KickBackAnimator();
-                        kickAnimator.setDuration(500);
-                        fadeAnim.setEvaluator(kickAnimator);
-                        fadeAnim.start();
-                    }
+                mHandler.postDelayed(() -> {
+                    child.setVisibility(View.VISIBLE);
+                    ValueAnimator fadeAnim = ObjectAnimator.ofFloat(child,
+                            "translationY", 600, 0);
+                    fadeAnim.setDuration(500);
+                    KickBackAnimator kickAnimator = new KickBackAnimator();
+                    kickAnimator.setDuration(500);
+                    fadeAnim.setEvaluator(kickAnimator);
+                    fadeAnim.start();
                 }, i * 50 + 100);
             }
         } catch (Exception e) {
@@ -174,12 +166,7 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void closeAnimation() {
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                iv_close.animate().rotation(-90).setDuration(500);
-            }
-        });
+        mHandler.post(() -> iv_close.animate().rotation(-90).setDuration(500));
         try {
             int x = mWidth / 2;
             int y = (int) (mHeight - fromDp2Px(25));

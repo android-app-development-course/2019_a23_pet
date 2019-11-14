@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
 
@@ -13,21 +13,20 @@
         android:id="@+id/btn_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="user"
-        />
+        android:text="user" />
 
     <Button
         android:id="@+id/btn_member"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="member"/>
+        android:text="member" />
 
 
     <Button
         android:id="@+id/btn_organizer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="organizer"/>
+        android:text="organizer" />
 
 
 </LinearLayout>

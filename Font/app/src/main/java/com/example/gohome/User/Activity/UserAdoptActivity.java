@@ -20,14 +20,14 @@ public class UserAdoptActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_adopt_info);
 
-        iv_info_photo = findViewById(R.id.user_iv_info_photo);
-        tv_info_name = findViewById(R.id.user_tv_info_name);
-        tv_info_desc = findViewById(R.id.user_tv_info_desc);
+        iv_info_photo = findViewById(R.id.user_iv_info_petPhoto);
+        tv_info_name = findViewById(R.id.user_tv_info_petName);
+        tv_info_desc = findViewById(R.id.user_tv_info_petDesc);
 
         Intent intent = getIntent();
         AdoptInfo info = (AdoptInfo) intent.getSerializableExtra("info");
 
-        Glide.with(this).load(info.getPhotoId()).into(iv_info_photo);
+        Glide.with(this).load(info.getPetPhotoId()).into(iv_info_photo);
         tv_info_name.setText(info.getPetName());
         tv_info_desc.setText(info.getDesc());
     }

@@ -70,5 +70,9 @@ dependencies {
 
     //下拉列表
     implementation 'com.github.wzgl5533:DropMenu:1.0.1'
-
+    //圆角ImageView
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.mostafagazar:customshapeimageview:1.0.4'
+    //自适应TextView
+    implementation 'me.grantland:autofittextview:0.2.1'
 }

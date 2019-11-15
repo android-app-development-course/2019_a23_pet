@@ -22,6 +22,9 @@ import com.example.gohome.Entity.AdoptInfo;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.InfoViewHolder> {
     private Context context;
     private List<AdoptInfo> infoList;
+    private final String s0 = "♀";
+    private final String s1 = "♂";
+    private final String s2 = "· ";
 
     public RecyclerViewAdapter(Context context, List<AdoptInfo> infoList) {
         super();
@@ -32,7 +35,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     static class InfoViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
         ImageView iv_petPhoto;
-        TextView tv_petName, tv_petType, tv_petGender, tv_petAge, tv_desc, tv_area, tv_time;
+        TextView tv_petName, tv_petGenderAndAge, tv_desc, tv_area, tv_time;
 
         InfoViewHolder(final View item) {
             super(item);
@@ -40,9 +43,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             cardView = item.findViewById(R.id.user_cv_petInfo);
             iv_petPhoto = item.findViewById(R.id.user_iv_petPhoto);
             tv_petName = item.findViewById(R.id.user_tv_petName);
-            tv_petType = item.findViewById(R.id.user_tv_petType);
-            tv_petGender = item.findViewById(R.id.user_tv_petGender);
-            tv_petAge = item.findViewById(R.id.user_tv_petAge);
+            tv_petGenderAndAge = item.findViewById(R.id.user_tv_petGenderAndAge);
             tv_desc = item.findViewById(R.id.user_tv_petDesc);
             tv_area = item.findViewById(R.id.user_tv_petArea);
             tv_time = item.findViewById(R.id.user_tv_pubTime);
@@ -62,11 +63,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         AdoptInfo info = infoList.get(pos);
 
+        String gender = info.getGender() == 0 ? s0 : s1;
+        String age = info.getPetAge();
+        String text = gender + s2 + age;
+
         Glide.with(context).load(info.getPetPhotoId()).into(infoViewHolder.iv_petPhoto);
         infoViewHolder.tv_petName.setText(info.getPetName());
-        infoViewHolder.tv_petType.setText(info.getPetType());
-        infoViewHolder.tv_petGender.setText(info.getGender() == 0 ? "母" : "公");
-        infoViewHolder.tv_petAge.setText(info.getPetAge());
+        infoViewHolder.tv_petGenderAndAge.setText(text);
         infoViewHolder.tv_desc.setText(info.getDesc());
         infoViewHolder.tv_area.setText(info.getArea());
         infoViewHolder.tv_time.setText(info.getTime());

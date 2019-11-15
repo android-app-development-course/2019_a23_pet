@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/recyclerView"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+    android:layout_height="match_parent">
+
+    <com.qlh.dropdownmenu.DropDownMenu
+        android:id="@+id/dropDownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        app:dddividerColor="@color/yellow"
+        app:ddunderlineColor="@color/yellow"
+
+        app:ddmaskColor="#88888888"
+        app:ddmenuBackgroundColor="@color/background"
+        app:ddmenuSelectedIcon="@drawable/up"
+        app:ddmenuUnselectedIcon="@drawable/down"
+        app:ddmenuTextSize="14sp"
+        app:ddtextSelectedColor="@color/black"
+        app:ddtextUnselectedColor="@color/gray" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/dropDownMenu">
+    </androidx.recyclerview.widget.RecyclerView>
+</RelativeLayout>

@@ -11,7 +11,7 @@
         android:id="@id/blurring_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:overlayColor="#CBFFFFFF"
+        app:overlayColor="#7AFFFFFF"
         app:radius="15" />
 
     <LinearLayout

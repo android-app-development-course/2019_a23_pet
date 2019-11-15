@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -14,7 +15,13 @@ import com.example.gohome.R;
 import com.example.gohome.User.Adapter.ViewPagerAdapter;
 import com.example.gohome.User.BottomLayout;
 import com.example.gohome.User.OpenMenu;
+import com.qlh.dropdownmenu.DropDownMenu;
+import com.qlh.dropdownmenu.view.MultiMenusView;
+import com.qlh.dropdownmenu.view.SingleMenuView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class UserHomeActivity extends AppCompatActivity implements View.OnClickListener {
@@ -38,6 +45,7 @@ public class UserHomeActivity extends AppCompatActivity implements View.OnClickL
         getWindow().setStatusBarColor(getResources().getColor(R.color.yellow));
 
         initView();
+
     }
 
     private void initView() {
@@ -82,6 +90,7 @@ public class UserHomeActivity extends AppCompatActivity implements View.OnClickL
         btm_mine.setOnClickListener(this);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btm_home:

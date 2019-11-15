@@ -1,16 +1,18 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rel_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     tools:Context=".User.Activity.UserHomeActivity">
+
     <com.example.gohome.Component.NoScrollViewPager
         android:id="@+id/user_home_vp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/lin_bottom"
         />
+
     <LinearLayout
         android:id="@+id/lin_bottom"
         android:layout_width="match_parent"

@@ -75,4 +75,6 @@ dependencies {
     implementation 'com.mostafagazar:customshapeimageview:1.0.4'
     //自适应TextView
     implementation 'me.grantland:autofittextview:0.2.1'
+    //带字符数统计TextView
+    implementation 'com.github.FJ917:FJEditTextCount:1.0.4'
 }

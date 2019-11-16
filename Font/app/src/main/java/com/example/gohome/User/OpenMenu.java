@@ -7,6 +7,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Build;
@@ -23,6 +24,8 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
 import com.example.gohome.R;
+import com.example.gohome.User.Activity.UserReportActivity;
+import com.example.gohome.User.Activity.UserSendActivity;
 import com.example.gohome.Utils.KickBackAnimator;
 import com.ms_square.etsyblur.BlurringView;
 
@@ -98,12 +101,18 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
                     closeAnimation();
                 break;
             case R.id.bl_send:
-                bl_send.setFocused(true);
-                bl_report.setFocused(false);
+//                bl_send.setFocused(true);
+//                bl_report.setFocused(false);
+                closeAnimation();
+                Intent intent1 = new Intent(mActivity, UserSendActivity.class);
+                mActivity.startActivity(intent1);
                 break;
             case R.id.bl_report:
-                bl_send.setFocused(false);
-                bl_report.setFocused(true);
+//                bl_send.setFocused(false);
+//                bl_report.setFocused(true);
+                closeAnimation();
+                Intent intent2 = new Intent(mActivity, UserReportActivity.class);
+                mActivity.startActivity(intent2);
                 break;
         }
     }

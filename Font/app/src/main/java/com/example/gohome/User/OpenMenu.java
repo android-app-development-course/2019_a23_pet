@@ -57,7 +57,7 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
         setWidth(mWidth);
         setHeight(mHeight);
 
-        relativeLayout = (RelativeLayout) LayoutInflater.from(mActivity).inflate(R.layout.activity_user_bottom_open, null);
+        relativeLayout = (RelativeLayout) LayoutInflater.from(mActivity).inflate(R.layout.layout_user_bottom_open, null);
         setContentView(relativeLayout);
 
         bgView = relativeLayout.findViewById(R.id.rel_bg);

@@ -1,5 +1,7 @@
 package com.example.gohome.Entity;
 
+import android.view.View;
+
 import java.io.Serializable;
 
 public class AdoptInfo implements Serializable {
@@ -11,12 +13,16 @@ public class AdoptInfo implements Serializable {
     private int vacn; // 疫苗
     private int strl; // 绝育
     private String desc;
+    private String publisher;
     private String area;
     private String time;
 
+    private View.OnClickListener requestBtnClickListener;
+
     public AdoptInfo(int photoId, String petName,
                      String petType,int petGender, String petAge,
-                     String desc, String area, String time) {
+                     String desc, String area, String time,
+                     int vacn, int strl, String publisher) {
         super();
         this.petPhotoId = photoId;
         this.petName = petName;
@@ -24,7 +30,10 @@ public class AdoptInfo implements Serializable {
         this.petGender = petGender;
         this.petAge = petAge;
         this.desc = desc;
+        this.vacn = vacn;
+        this.strl = strl;
         this.area = area;
+        this.publisher = publisher;
         this.time = time;
     }
 
@@ -52,17 +61,14 @@ public class AdoptInfo implements Serializable {
 
     public String getArea() { return area; }
 
+    public String getPublisher() { return publisher; }
+
     public String getTime() { return time; }
 
-    public void setPetPhotoId(int petPhotoId) {
-        this.petPhotoId = petPhotoId;
+    public View.OnClickListener getRequestBtnClickListener() { return requestBtnClickListener;}
+
+    public void setRequestBtnClickListener(View.OnClickListener requestBtnClickListener) {
+        this.requestBtnClickListener = requestBtnClickListener;
     }
 
-    public void setPetName(String petName) {
-        this.petName = petName;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
 }

@@ -77,4 +77,14 @@ dependencies {
     implementation 'me.grantland:autofittextview:0.2.1'
     //带字符数统计TextView
     implementation 'com.github.FJ917:FJEditTextCount:1.0.4'
+    //下拉放大
+    implementation 'com.gavin.view.flexible:library:1.0.2'
+    //图片轮播
+    implementation 'com.github.xiaohaibin:XBanner:androidx_v1.0.2'
+    //折叠
+    implementation 'com.ramotion.foldingcell:folding-cell:1.2.3'
+    //按钮
+    implementation 'com.lai:buttonStyle:1.0.2'
+    //圆角TextView
+    implementation 'com.github.JayChan95318:MultipleTextView:1.0'
 }

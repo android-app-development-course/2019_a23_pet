@@ -21,10 +21,14 @@
         app:ddtextSelectedColor="@color/black"
         app:ddtextUnselectedColor="@color/gray" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <ListView
+        android:id="@+id/user_lv_adopt"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/dropDownMenu">
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_below="@+id/dropDownMenu"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:padding="16dp"
+        android:scrollbars="none">
+    </ListView>
 </RelativeLayout>

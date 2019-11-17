@@ -1,34 +1,41 @@
 package com.example.gohome.User.Activity;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.TextView;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
-import com.bumptech.glide.Glide;
-import com.example.gohome.Entity.AdoptInfo;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.WindowManager;
+
 import com.example.gohome.R;
 
-public class UserAdoptActivity extends Activity {
-    private ImageView iv_info_photo;
-    private TextView tv_info_name;
-    private TextView tv_info_desc;
+public class UserAdoptActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_adopt_info);
+        setContentView(R.layout.activity_user_adopt);
 
-        iv_info_photo = findViewById(R.id.user_iv_info_petPhoto);
-        tv_info_name = findViewById(R.id.user_tv_info_petName);
-        tv_info_desc = findViewById(R.id.user_tv_info_petDesc);
+        setTitle("填写领养信息");
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null){
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+        init();
+    }
 
-        Intent intent = getIntent();
-        AdoptInfo info = (AdoptInfo) intent.getSerializableExtra("info");
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish(); // back button
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
-        Glide.with(this).load(info.getPetPhotoId()).into(iv_info_photo);
-        tv_info_name.setText(info.getPetName());
-        tv_info_desc.setText(info.getDesc());
+    private void init() {
     }
 }

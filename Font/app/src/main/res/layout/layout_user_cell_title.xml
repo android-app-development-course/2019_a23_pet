@@ -2,19 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="3dp">
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/user_cv_petInfo"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_margin="15dp"
-        android:clickable="true"
-        android:focusable="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:foreground="?android:attr/selectableItemBackground"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="12dp">
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -26,8 +24,7 @@
                     android:id="@+id/user_iv_petPhoto"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/dog"/>
+                    android:scaleType="centerCrop"/>
                 <TextView
                     android:id="@+id/user_tv_petName"
                     android:layout_width="match_parent"
@@ -47,49 +44,60 @@
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/user_tv_petDesc"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:padding="10dp"
                     android:maxLines="2"
                     android:ellipsize="end"
-                    android:textSize="15sp"
-                    android:text="豫章故郡，洪都新府。星分翼轸，地接衡庐。襟三江而带五湖，控蛮荆而引瓯越。物华天宝，龙光射牛斗之墟；人杰地灵，徐孺下陈蕃之榻。雄州雾列，俊采星驰。台隍枕夷夏之交，宾主尽东南之美。都督阎公之雅望，棨戟遥临；宇文新州之懿范，襜帷暂驻。十旬休假，胜友如云；千里逢迎，高朋满座。腾蛟起凤，孟学士之词宗；紫电青霜，王将军之武库。家君作宰，路出名区；童子何知，躬逢胜饯。" />
+                    android:textSize="15sp" />
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true">
                     <TextView
-                        android:id="@+id/user_tv_petGenderAndAge"
-                        android:layout_width="112dp"
+                        android:id="@+id/user_tv_petGender"
+                        android:layout_width="22dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
-                        android:padding="10dp"
+                        android:gravity="center"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:paddingStart="10dp"
+                        android:text="♂"/>
+                    <!-- 占位符 -->
+                    <TextView
+                        android:id="@+id/user_tv_zwf"
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/user_tv_petGender"
+                        android:gravity="center"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="·"/>
+                    <TextView
+                        android:id="@+id/user_tv_petAge"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/user_tv_zwf"
+                        android:gravity="start"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
                         android:singleLine="true"
-                        android:text="♂· 8岁11个月"/>
+                        android:text="10岁11个月"/>
+
                     <TextView
                         android:id="@+id/user_tv_petArea"
-                        android:layout_width="160dp"
+                        android:layout_width="165dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:gravity="end"
                         android:padding="10dp"
-                        android:singleLine="true"
-                        android:text="内蒙古呼和浩特"/>
+                        android:singleLine="true"/>
                 </RelativeLayout>
             </RelativeLayout>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/user_tv_pubTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/user_cv_petInfo"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="-8dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="6dp"
-        android:text="3天前"/>
 </RelativeLayout>

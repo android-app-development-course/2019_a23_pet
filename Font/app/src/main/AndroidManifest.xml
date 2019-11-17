@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="stateHidden|stateUnchanged">
-        <activity android:name=".User.Activity.UserReportActivity"></activity>
+        <activity android:name=".User.Activity.UserAdoptActivity"></activity>
+        <activity android:name=".User.Activity.UserReportActivity" />
         <activity android:name=".User.Activity.UserSendActivity" />
         <activity android:name=".Organizer.OrganizerMain" />
         <activity android:name=".User.Activity.UserHomeActivity" />
@@ -26,7 +27,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".User.Activity.UserAdoptActivity" />
     </application>
 
 </manifest>

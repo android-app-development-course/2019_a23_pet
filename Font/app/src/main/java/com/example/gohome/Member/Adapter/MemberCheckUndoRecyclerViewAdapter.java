@@ -47,7 +47,7 @@ public class MemberCheckUndoRecyclerViewAdapter extends RecyclerView.Adapter<Mem
     @NonNull
     @Override
     public MemberCheckUndoRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType){
-        View view = LayoutInflater.from(context).inflate(R.layout.fragment_member_check_undo_item,null);
+        View view = LayoutInflater.from(context).inflate(R.layout.fragment_member_check_undo_item_cell,null);
         return new ViewHolder(view);
     }
 

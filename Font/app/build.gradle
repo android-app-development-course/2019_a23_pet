@@ -13,6 +13,9 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         renderscriptTargetApi 25
         renderscriptSupportModeEnabled true
+        multiDexEnabled true
+
+
     }
     buildTypes {
         release {
@@ -68,7 +71,6 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
 
-<<<<<<< HEAD
 
     //下拉刷新和加载更多recyclerview
     implementation 'com.jcodecraeer:xrecyclerview:1.6.0'
@@ -78,8 +80,6 @@ dependencies {
     //折叠动画卡片显示
     implementation 'com.ramotion.foldingcell:folding-cell:1.2.3'
 
-
-=======
     //下拉列表
     implementation 'com.github.wzgl5533:DropMenu:1.0.1'
     //圆角ImageView
@@ -99,5 +99,8 @@ dependencies {
     implementation 'com.lai:buttonStyle:1.0.2'
     //圆角TextView
     implementation 'com.github.JayChan95318:MultipleTextView:1.0'
->>>>>>> 8d423e20b5725b9a3ef4d278eec78c1cd86f5a04
+
+    // 引入multidex库
+    implementation 'com.android.support:multidex:1.0.3'
+
 }

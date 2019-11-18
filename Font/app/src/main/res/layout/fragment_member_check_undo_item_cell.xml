@@ -15,6 +15,7 @@
 
 
 
+
     <com.ramotion.foldingcell.FoldingCell
         android:id="@+id/item_fcCheckUndo"
         android:layout_width="match_parent"

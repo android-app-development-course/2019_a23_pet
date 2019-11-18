@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<!--    <TextView-->
+<!--        android:id="@+id/item_tx"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:gravity="center"-->
+<!--        android:padding="10dp"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:text="Item"/>-->
+
+
+
+    <com.ramotion.foldingcell.FoldingCell
+        android:id="@+id/item_fcCheckUndo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <FrameLayout
+            android:id="@+id/cell_content_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/black"
+            android:visibility="gone">
+            <TextView
+                android:id="@+id/tv_one"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:text="lla"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/cell_title_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_two"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@android:color/holo_blue_dark" />
+        </FrameLayout>
+
+    </com.ramotion.foldingcell.FoldingCell>
+
+
+
+</LinearLayout>

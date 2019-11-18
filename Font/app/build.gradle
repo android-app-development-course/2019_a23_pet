@@ -64,9 +64,13 @@ dependencies {
     implementation "com.google.android.material:material:1.0.0"
 
 
-
+    //下拉刷新和加载更多recyclerview
+    implementation 'com.jcodecraeer:xrecyclerview:1.6.0'
 
     implementation 'com.belerweb:pinyin4j:2.5.0' //汉字转拼音
+
+    //折叠动画卡片显示
+    implementation 'com.ramotion.foldingcell:folding-cell:1.2.3'
 
 
 }

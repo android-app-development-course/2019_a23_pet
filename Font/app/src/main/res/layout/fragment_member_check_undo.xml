@@ -4,9 +4,9 @@
     android:layout_height="match_parent">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="这是member审核待审核页面"/>
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/xrv_memberCheckUndo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

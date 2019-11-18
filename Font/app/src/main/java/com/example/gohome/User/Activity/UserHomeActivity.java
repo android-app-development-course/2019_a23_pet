@@ -38,6 +38,7 @@ public class UserHomeActivity extends AppCompatActivity implements View.OnClickL
         getWindow().setStatusBarColor(getResources().getColor(R.color.yellow));
 
         initView();
+
     }
 
     private void initView() {
@@ -54,8 +55,7 @@ public class UserHomeActivity extends AppCompatActivity implements View.OnClickL
 
         viewPager.setCurrentItem(0);
 
-//        initNav(); // 初始化底部栏
-
+        // 初始化底部栏
         initBottom();
     }
 
@@ -82,6 +82,7 @@ public class UserHomeActivity extends AppCompatActivity implements View.OnClickL
         btm_mine.setOnClickListener(this);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btm_home:

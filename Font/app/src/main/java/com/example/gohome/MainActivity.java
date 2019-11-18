@@ -21,8 +21,6 @@ public class MainActivity extends AppCompatActivity {
         init();
     }
 
-
-
     private void init(){
         Button btn_user = findViewById(R.id.btn_user);
         Button btn_organizer = findViewById(R.id.btn_organizer);

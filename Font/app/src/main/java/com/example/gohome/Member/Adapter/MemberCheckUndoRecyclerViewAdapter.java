@@ -38,9 +38,9 @@ public class MemberCheckUndoRecyclerViewAdapter extends RecyclerView.Adapter<Mem
         public ViewHolder(View itemView) {
             super(itemView);
 //            mView = itemView.findViewById(R.id.item_tx);
-            fc_checkUndo = itemView.findViewById(R.id.item_fcCheckUndo);
-            tv_one = itemView.findViewById(R.id.tv_one);
-            tv_two = itemView.findViewById(R.id.tv_two);
+//            fc_checkUndo = itemView.findViewById(R.id.item_fcCheckUndo);
+//            tv_one = itemView.findViewById(R.id.tv_one);
+//            tv_two = itemView.findViewById(R.id.tv_two);
         }
     }
 

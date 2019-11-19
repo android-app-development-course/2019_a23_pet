@@ -2,12 +2,28 @@
 <resources>
     <!--    不同后缀大小对比: *_xs < *_s < *_l < *_xl    -->
 
+
+
+
+
     <!--  margin边距  -->
     <dimen name="margin">
         10dp
     </dimen>
     <!--    大宽距-->
     <dimen name="margin_l">
+        20dp
+    </dimen>
+    <!--    最小宽距-->
+    <dimen name="margin_xs">
+        8dp
+    </dimen>
+
+    <!--padding边距-->
+    <dimen name="padding">
+        10dp
+    </dimen>
+    <dimen name="padding_l">
         20dp
     </dimen>
 
@@ -22,11 +38,7 @@
     <!--    注释最小字体-->
     <dimen name="font_size_xs">36px</dimen>
 
-    <!--    宽距大小-->
-    <!--    最小宽距-->
-    <dimen name="margin_xs">8dp</dimen>
-    <!--    次小宽距-->
-    <!--    中等宽距-->
+
 
     <!--    列表头像大小-->
     <dimen name="list_protrait_size">60dp</dimen>
@@ -34,5 +46,33 @@
     <!--顶部导航栏下划线高度-->
     <dimen name="tabIndicatorHeight">2dp</dimen>
 
+
+    <!--可折叠卡片大小设置-->
+    <!--foldingCard Title CardView Height-->
+    <dimen name="cardViewHeight">100dp</dimen>
+    <!--卡片圆角-->
+    <dimen name="cardCornerRadius">8dp</dimen>
+    <!--卡片高度-->
+    <dimen name="cardElevation">8dp</dimen>
+    <!--foldingCard Title图片高度-->
+    <dimen name="cardTitleImgHeight">100dp</dimen>
+    <!--foldingCard Title图片文字高度-->
+    <dimen name="cardTitleImgTextHeight">25dp</dimen>
+    <!--foldingCard Title 图片文字大小-->
+    <dimen name="cardTitleImgTextSize">16sp</dimen>
+    <!--foldingCard Title 申请/发布时间text宽度-->
+    <dimen name="cardTitleTimeWidth">165dp</dimen>
+    <!--foldingCard Title 申请人姓名文字大小-->
+    <dimen name="cardTitleNameSize">15sp</dimen>
+    <!--foldingCard content 图片大小-->
+    <dimen name="cardContentIconSize">20dp</dimen>
+    <!--foldingCard content按钮文字大小-->
+    <dimen name="cardContentBtnTextSize">15sp</dimen>
+    <!--foldingCard content描述文字大小-->
+    <dimen name="cardContentTextSize">15sp</dimen>
+    <!--foldingCard content动物图片高度-->
+    <dimen name="cardContentPetPhotoSize">150dp</dimen>
+    <!--foldingCard content按钮宽度-->
+    <dimen name="cardContentBtnWidthSize">120dp</dimen>
 
 </resources>

@@ -1,30 +1,9 @@
 package com.example.gohome.Entity;
 
+import java.util.Date;
+
 public class AdoptAppliment {
 
-    public Integer getApplimentId() {
-        return applimentId;
-    }
-
-    public void setApplimentId(Integer applimentId) {
-        this.applimentId = applimentId;
-    }
-
-    public Integer getAdoptId() {
-        return adoptId;
-    }
-
-    public void setAdoptId(Integer adoptId) {
-        this.adoptId = adoptId;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
 
     public String getApplyName() {
         return applyName;
@@ -58,33 +37,121 @@ public class AdoptAppliment {
         this.description = description;
     }
 
-    public Integer getState() {
-        return state;
-    }
 
-    public void setState(Integer state) {
-        this.state = state;
-    }
-
-    private Integer applimentId;  //领养申请信息id
-    private Integer adoptId;  //领养动物信息id
-    private Integer userId; //用户Id
     private String applyName; //用户申请姓名
     private String telephone; //电话号码
     private String address; //用户住址
-    private String description; //描述
-    private Integer state; //领养申请状态：0联系中，1已通过，2未通过
 
-    public AdoptAppliment(Integer applimentId,Integer adoptId,Integer userId,String applyName,
-        String telephone,String address,String description,Integer state){
+
+
+    private String job; //用户职业
+    private String description; //描述
+    private String petName;  //申请领养的宠物姓名
+    private String petAge;   //申请领养宠物的年龄
+    private String petType;  //宠物类型
+    private Integer petGender;  //宠物性别
+    private Integer vaccine; // 是否注射疫苗
+    private Integer sterilization ; // 绝育情况
+    private Integer petPhotoId;      //宠物图片的id
+    private Date date;  //申请日期
+
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
+
+    public void setPetPhotoId(Integer petPhotoId) {
+        this.petPhotoId = petPhotoId;
+    }
+
+
+
+    public String getPetName() {
+        return petName;
+    }
+
+    public void setPetName(String petName) {
+        this.petName = petName;
+    }
+
+    public String getPetAge() {
+        return petAge;
+    }
+
+    public void setPetAge(String petAge) {
+        this.petAge = petAge;
+    }
+
+    public String getPetType() {
+        return petType;
+    }
+
+    public void setPetType(String petType) {
+        this.petType = petType;
+    }
+
+    public Integer getPetGender() {
+        return petGender;
+    }
+
+    public void setPetGender(Integer petGender) {
+        this.petGender = petGender;
+    }
+
+    public Integer getVaccine() {
+        return vaccine;
+    }
+
+    public void setVaccine(Integer vaccine) {
+        this.vaccine = vaccine;
+    }
+
+    public Integer getSterilization() {
+        return sterilization;
+    }
+
+    public void setSterilization(Integer sterilization) {
+        this.sterilization = sterilization;
+    }
+
+
+    public int getPetPhotoId() {
+        return petPhotoId;
+    }
+
+    public void setPetPhotoId(int petPhotoId) {
+        this.petPhotoId = petPhotoId;
+    }
+
+
+
+    public AdoptAppliment(String applyName,
+        String telephone,String address,String description,String petName ,String petAge,
+                          String petType,Integer petGender,Integer vaccine,Integer sterilization, Integer petPhotoId,Date date,String job){
         this.address = address;
-        this.adoptId = adoptId;
-        this.applimentId = applimentId;
         this.applyName = applyName;
         this.description = description;
-        this.state = state;
         this.telephone = telephone;
-        this.userId = userId;
+        this.petName = petName;
+        this.petAge = petAge;
+        this.petType = petType;
+        this.petGender = petGender;
+        this.vaccine = vaccine;
+        this.sterilization = sterilization;
+        this.petPhotoId = petPhotoId;
+        this.date = date;
+        this.job = job;
     }
 
 

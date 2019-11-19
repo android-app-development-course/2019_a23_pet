@@ -26,4 +26,7 @@
     <color name="gray">	#BBBBBB</color>
     <color name="black">#000000</color>
 
+    <!--FoldingCardTitleImg文字背景色-->
+    <color name="FoldingCardTitleImgText">#34000000</color>
+
 </resources>

@@ -103,4 +103,8 @@ dependencies {
     // 引入multidex库
     implementation 'com.android.support:multidex:1.0.3'
 
+    //浮动菜单栏
+    implementation 'com.nightonke:boommenu:2.1.1'
+
+
 }

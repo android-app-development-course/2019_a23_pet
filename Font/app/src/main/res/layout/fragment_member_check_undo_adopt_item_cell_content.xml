@@ -26,7 +26,7 @@
 
 
         <TextView
-            android:id="@+id/tv_memberCheckUndoContentDate"
+            android:id="@+id/tv_memberCheckUndoAdoptContentDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/iv_memberCheckUndoContentPetPhoto"
+            android:id="@+id/iv_memberCheckUndoAdoptContentPetPhoto"
             android:layout_width="match_parent"
             android:layout_height="@dimen/cardContentPetPhotoSize"
             android:scaleType="centerCrop"
@@ -78,7 +78,7 @@
                     android:text="昵称:"/>
 
                 <TextView
-                    android:id="@+id/tv_memberCheckUndoContentPetName"
+                    android:id="@+id/tv_memberCheckUndoAdoptContentPetName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="2dp"
@@ -114,7 +114,7 @@
                     android:text="性别:"/>
 
                 <TextView
-                    android:id="@+id/tv_memberCheckUndoPetGender"
+                    android:id="@+id/tv_memberCheckUndoAdoptPetGender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="2dp"
@@ -135,7 +135,7 @@
                     android:text="年龄:"/>
 
                 <TextView
-                    android:id="@+id/tv_memberCheckUndoPetAge"
+                    android:id="@+id/tv_memberCheckUndoAdoptPetAge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="2dp"
@@ -170,7 +170,7 @@
                     android:text="疫苗:"/>
 
                 <ImageView
-                    android:id="@+id/iv_memberCheckUndoVaccine"
+                    android:id="@+id/iv_memberCheckUndoAdoptVaccine"
                     android:layout_width="@dimen/cardContentIconSize"
                     android:layout_height="@dimen/cardContentIconSize"
                     android:paddingStart="2dp"
@@ -190,7 +190,7 @@
                     android:text="绝育:"/>
 
                 <ImageView
-                    android:id="@+id/iv_memberCheckUndoSterilization"
+                    android:id="@+id/iv_memberCheckUndoAdoptSterilization"
                     android:layout_width="@dimen/cardContentIconSize"
                     android:layout_height="@dimen/cardContentIconSize"
                     android:paddingStart="2dp"
@@ -225,7 +225,7 @@
                     android:text="申请人:"/>
 
                 <TextView
-                    android:id="@+id/tv_memberCheckUndoApplicantName"
+                    android:id="@+id/tv_memberCheckUndoAdoptApplicantName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="2dp"
@@ -246,7 +246,7 @@
                     android:text="职业:"/>
 
                 <TextView
-                    android:id="@+id/tv_memberCheckUndoApplicantJob"
+                    android:id="@+id/tv_memberCheckUndoAdoptApplicantJob"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="2dp"
@@ -282,7 +282,7 @@
                     android:text="联系方式:"/>
 
                 <TextView
-                    android:id="@+id/tv_memberCheckUndoApplicantTel"
+                    android:id="@+id/tv_memberCheckUndoAdoptApplicantTel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="2dp"
@@ -318,7 +318,7 @@
                     android:text="地址:"/>
 
                 <TextView
-                    android:id="@+id/tv_memberCheckUndoApplicantAddress"
+                    android:id="@+id/tv_memberCheckUndoAdoptApplicantAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="2dp"
@@ -353,7 +353,7 @@
                     android:text="领养申请描述:"/>
 
                 <TextView
-                    android:id="@+id/tv_memberCheckUndoApplicantDescription"
+                    android:id="@+id/tv_memberCheckUndoAdoptApplicantDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLines="5"
@@ -366,7 +366,7 @@
 
 
         <TextView
-            android:id="@+id/btn_memberCheckUndo"
+            android:id="@+id/btn_memberCheckUndoAdopt"
             android:layout_width="@dimen/cardContentBtnWidthSize"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

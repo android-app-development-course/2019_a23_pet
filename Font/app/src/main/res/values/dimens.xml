@@ -14,6 +14,12 @@
     <dimen name="margin_l">
         20dp
     </dimen>
+    <dimen name="margin_xl">
+        30dp
+    </dimen>
+    <dimen name="margin_xxl">
+        40dp
+    </dimen>
     <!--    最小宽距-->
     <dimen name="margin_xs">
         8dp

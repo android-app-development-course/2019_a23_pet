@@ -49,11 +49,22 @@ public class AdoptAppliment {
     private String petName;  //申请领养的宠物姓名
     private String petAge;   //申请领养宠物的年龄
     private String petType;  //宠物类型
-    private Integer petGender;  //宠物性别
-    private Integer vaccine; // 是否注射疫苗
-    private Integer sterilization ; // 绝育情况
+    private boolean petGender;  //宠物性别
+    private boolean vaccine; // 是否注射疫苗
+    private boolean sterilization ; // 绝育情况
     private Integer petPhotoId;      //宠物图片的id
     private Date date;  //申请日期
+    private Integer adoptApplimentId;    //领养申请信息数据库ID
+
+
+    public Integer getAdoptApplimentId() {
+        return adoptApplimentId;
+    }
+
+    public void setAdoptApplimentId(Integer adoptApplimentId) {
+        this.adoptApplimentId = adoptApplimentId;
+    }
+
 
 
     public Date getDate() {
@@ -101,27 +112,27 @@ public class AdoptAppliment {
         this.petType = petType;
     }
 
-    public Integer getPetGender() {
+    public boolean getPetGender() {
         return petGender;
     }
 
-    public void setPetGender(Integer petGender) {
+    public void setPetGender(boolean petGender) {
         this.petGender = petGender;
     }
 
-    public Integer getVaccine() {
+    public boolean getVaccine() {
         return vaccine;
     }
 
-    public void setVaccine(Integer vaccine) {
+    public void setVaccine(boolean vaccine) {
         this.vaccine = vaccine;
     }
 
-    public Integer getSterilization() {
+    public boolean getSterilization() {
         return sterilization;
     }
 
-    public void setSterilization(Integer sterilization) {
+    public void setSterilization(boolean sterilization) {
         this.sterilization = sterilization;
     }
 
@@ -138,7 +149,8 @@ public class AdoptAppliment {
 
     public AdoptAppliment(String applyName,
         String telephone,String address,String description,String petName ,String petAge,
-                          String petType,Integer petGender,Integer vaccine,Integer sterilization, Integer petPhotoId,Date date,String job){
+                          String petType,boolean petGender,boolean vaccine,boolean sterilization,
+                          Integer petPhotoId,Date date,String job, Integer adoptApplimentId){
         this.address = address;
         this.applyName = applyName;
         this.description = description;
@@ -152,6 +164,7 @@ public class AdoptAppliment {
         this.petPhotoId = petPhotoId;
         this.date = date;
         this.job = job;
+        this.adoptApplimentId = adoptApplimentId;
     }
 
 

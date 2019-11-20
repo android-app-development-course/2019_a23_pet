@@ -14,7 +14,6 @@
         app:tabIndicator="@color/orange"
         app:tabSelectedTextColor="@color/black"
         app:tabMode="fixed"
-        app:tabTextColor="@color/gray"
         app:tabGravity="fill"
         app:tabIndicatorHeight="@dimen/tabIndicatorHeight"/>
 

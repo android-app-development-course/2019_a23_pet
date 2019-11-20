@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_memberCheckUndoAdoptInfo"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/cardViewHeight"
+        android:layout_marginTop="@dimen/margin"
+        android:layout_marginBottom="@dimen/margin"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="@dimen/cardCornerRadius"
+        app:cardElevation="@dimen/cardElevation">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:layout_width="@dimen/cardTitleImgHeight"
+                android:layout_height="match_parent">
+
+                <!--显示申请领养的动物图片-->
+                <ImageView
+                    android:id="@+id/iv_memberCheckUndoAdoptTitlePetPhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"/>
+                <!--显示申请领养的动物的名字-->
+                <TextView
+                    android:id="@+id/tv_memberCheckUndoAdoptTitlePetName"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/cardTitleImgTextHeight"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/FoldingCardTitleImgText"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/cardTitleImgTextSize"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!--申请人姓名-->
+                <TextView
+                    android:id="@+id/tv_memberCheckUndoAdoptApplicantMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:padding="@dimen/padding"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textSize="@dimen/cardTitleNameSize"
+                    android:text="小小发来了申请，点击查看详情"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true">
+                    <TextView
+                        android:id="@+id/tv_memberCheckUndoAdoptType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:gravity="center"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:paddingStart="10dp"
+                        android:text="领养申请"/>
+
+                    <TextView
+                        android:id="@+id/tv_memberCheckUndoAdoptTitleDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:gravity="end"
+                        android:padding="@dimen/padding"
+                        android:singleLine="true"
+                        android:text="2019年12月11日"/>
+                </RelativeLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

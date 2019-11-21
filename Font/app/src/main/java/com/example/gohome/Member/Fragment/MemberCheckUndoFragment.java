@@ -120,6 +120,7 @@ public class MemberCheckUndoFragment extends Fragment {
 //                        for(int i = 0; i < itemLimit ;i++){
 //                            infoList.add("item" + i + "after " + refreshTime + " times of refresh");
 //                        }
+                        //加载完成
                         memberCheckUndoFoldingCellAdapter.notifyDataSetChanged(); //更新列表
                         if(xrv_memberCheckUndo != null)
                             xrv_memberCheckUndo.refreshComplete();
@@ -141,6 +142,7 @@ public class MemberCheckUndoFragment extends Fragment {
 //                                infoList.add("item" + (1 + infoList.size() ) );
 //                            }
 
+                            //显示加载完成
                             if(xrv_memberCheckUndo != null) {
                                 xrv_memberCheckUndo.loadMoreComplete();
                                 memberCheckUndoFoldingCellAdapter.notifyDataSetChanged();
@@ -154,6 +156,7 @@ public class MemberCheckUndoFragment extends Fragment {
 //                            for(int i = 0; i < itemLimit ;i++){
 //                                infoList.add("item" + (1 + infoList.size() ) );
 //                            }
+                            //显示没有更多数据了
                             if(xrv_memberCheckUndo != null) {
                                 xrv_memberCheckUndo.setNoMore(true);
                                 memberCheckUndoFoldingCellAdapter.notifyDataSetChanged();
@@ -178,6 +181,12 @@ public class MemberCheckUndoFragment extends Fragment {
                         Toast.makeText(getActivity(), "点击了: " + index, Toast.LENGTH_SHORT).show();
                         type = 0;
                         memberCheckUndoFoldingCellAdapter = new MemberCheckUndoFoldingCellAdapter(getContext(),adoptApplimentList,type);
+                        memberCheckUndoFoldingCellAdapter.setClickCallBack(new MemberCheckUndoFoldingCellAdapter.ItemClickCallBack() {
+                            @Override
+                            public void onItemClick(int pos) {
+                                System.out.println("点击了第："+pos+"个item");
+                            }
+                        });
                         xrv_memberCheckUndo.setAdapter(memberCheckUndoFoldingCellAdapter);
                     }
                 })
@@ -194,6 +203,12 @@ public class MemberCheckUndoFragment extends Fragment {
                         Toast.makeText(getActivity(), "点击了: " + index, Toast.LENGTH_SHORT).show();
                         type = 1;
                         memberCheckUndoFoldingCellAdapter = new MemberCheckUndoFoldingCellAdapter(getContext(),helpApplimentList,type);
+                        memberCheckUndoFoldingCellAdapter.setClickCallBack(new MemberCheckUndoFoldingCellAdapter.ItemClickCallBack() {
+                            @Override
+                            public void onItemClick(int pos) {
+                                System.out.println("点击了第："+pos+"个item");
+                            }
+                        });
                         xrv_memberCheckUndo.setAdapter(memberCheckUndoFoldingCellAdapter);
                     }
                 })

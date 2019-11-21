@@ -177,18 +177,15 @@ public class MemberCheckUndoFoldingCellAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType){
 
-        System.out.println("viewType:"+viewType);
-        System.out.println("type:"+type);
-
         //类型为领养申请
         if(type == 0){
 
-            View view = (FoldingCell)LayoutInflater.from(context).inflate(R.layout.fragment_member_check_undo_adopt_item_cell,null);
+            View view = LayoutInflater.from(context).inflate(R.layout.fragment_member_check_undo_adopt_item_cell,null);
             return new AdoptViewHolder(view);
         }
         else{  //类型为求助申请
-            View view = (FoldingCell)LayoutInflater.from(context).inflate(R.layout.fragment_member_check_undo_adopt_item_cell,null);
-            return new AdoptViewHolder(view);
+            View view = LayoutInflater.from(context).inflate(R.layout.fragment_member_check_undo_help_item_cell,null);
+            return new HelpViewHolder(view);
         }
 
     }
@@ -268,7 +265,6 @@ public class MemberCheckUndoFoldingCellAdapter extends RecyclerView.Adapter {
 
         }else{   //信息为求助申请
 
-
             HelpViewHolder helpViewHolder = new HelpViewHolder(viewHolder.itemView);
             FoldingCell foldingCell = (FoldingCell)viewHolder.itemView;
 
@@ -283,7 +279,7 @@ public class MemberCheckUndoFoldingCellAdapter extends RecyclerView.Adapter {
             helpViewHolder.titleDate.setText(helpApplimentList.get(position).getDate().getYear()+"年"+helpApplimentList.get(position).getDate().getMonth()+"月"+
                     helpApplimentList.get(position).getDate().getDay()+"日");
             if(helpApplimentList.get(position).getPetType().equals("0")){    //类型为0则表示领养申请
-                helpViewHolder.type.setText("领养申请");
+                helpViewHolder.type.setText("救助申请");
             }
 
             //content

@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-<!--    <com.jcodecraeer.xrecyclerview.XRecyclerView-->
-<!--        android:id="@+id/xrv_memberCheckDoing"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_margin="@dimen/margin"/>-->
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-<!--    <com.nightonke.boommenu.BoomMenuButton-->
-<!--        android:id="@+id/bmb_memberCheckDoing"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:bmb_buttonEnum="ham"-->
-<!--        app:bmb_piecePlaceEnum="piecePlace_ham_2"-->
-<!--        app:bmb_buttonPlaceEnum="buttonPlace_ham_2"-->
-<!--        android:layout_alignParentEnd="true"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:layout_marginBottom="@dimen/margin_xxl"-->
-<!--        />-->
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/xrv_memberCheckDoing"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/margin"/>
 
 
-</LinearLayout>
+    <com.nightonke.boommenu.BoomMenuButton
+        android:id="@+id/bmb_memberCheckDoing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:bmb_buttonEnum="ham"
+        app:bmb_piecePlaceEnum="piecePlace_ham_2"
+        app:bmb_buttonPlaceEnum="buttonPlace_ham_2"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/margin_xxl"
+        />
+
+
+</RelativeLayout>

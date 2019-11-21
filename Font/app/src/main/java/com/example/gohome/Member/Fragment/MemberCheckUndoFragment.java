@@ -33,8 +33,6 @@ import butterknife.ButterKnife;
 public class MemberCheckUndoFragment extends Fragment {
 
 
-    private List<String> infoList;//显示的数据list
-
     XRecyclerView xrv_memberCheckUndo;
 //    MemberCheckUndoRecyclerViewAdapter memberCheckUndoRecyclerViewAdapter;
 

@@ -26,7 +26,7 @@
 
 
         <TextView
-            android:id="@+id/tv_memberCheckDoingContentDate"
+            android:id="@+id/tv_memberCheckDoingHelpContentDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -35,20 +35,6 @@
             android:textSize="15sp"/>
 
     </RelativeLayout>
-
-<!--    &lt;!&ndash; content header image &ndash;&gt;-->
-<!--    <RelativeLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content">-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/iv_memberCheckUndoContentPetPhoto"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="@dimen/cardContentPetPhotoSize"-->
-<!--            android:scaleType="centerCrop"-->
-<!--            android:src="@drawable/dog" />-->
-
-<!--    </RelativeLayout>-->
 
     <!-- content body layout -->
     <LinearLayout
@@ -78,7 +64,7 @@
                     android:text="昵称:"/>
 
                 <TextView
-                    android:id="@+id/tv_memberCheckDoingContentPetName"
+                    android:id="@+id/tv_memberCheckDoingHelpContentPetName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="2dp"
@@ -114,7 +100,7 @@
                     android:text="性别:"/>
 
                 <TextView
-                    android:id="@+id/tv_memberCheckDoingPetGender"
+                    android:id="@+id/tv_memberCheckDoingHelpPetGender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="2dp"
@@ -135,7 +121,7 @@
                     android:text="年龄:"/>
 
                 <TextView
-                    android:id="@+id/tv_memberCheckDoingPetAge"
+                    android:id="@+id/tv_memberCheckDoingHelpPetAge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="2dp"
@@ -170,7 +156,7 @@
                     android:text="疫苗:"/>
 
                 <ImageView
-                    android:id="@+id/iv_memberCheckDoingVaccine"
+                    android:id="@+id/iv_memberCheckDoingHelpVaccine"
                     android:layout_width="@dimen/cardContentIconSize"
                     android:layout_height="@dimen/cardContentIconSize"
                     android:paddingStart="2dp"
@@ -190,7 +176,7 @@
                     android:text="绝育:"/>
 
                 <ImageView
-                    android:id="@+id/iv_memberCheckDoingSterilization"
+                    android:id="@+id/iv_memberCheckDoingHelpSterilization"
                     android:layout_width="@dimen/cardContentIconSize"
                     android:layout_height="@dimen/cardContentIconSize"
                     android:paddingStart="2dp"
@@ -208,7 +194,7 @@
             android:layout_marginTop="7dp"
             android:src="#e0e0e0" />
 
-        <!-- applicantName & job -->
+        <!-- applicantName -->
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
@@ -225,35 +211,13 @@
                     android:text="申请人:"/>
 
                 <TextView
-                    android:id="@+id/tv_memberCheckDoingApplicantName"
+                    android:id="@+id/tv_memberCheckDoingHelpApplicantName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="2dp"
                     android:text="小小"/>
 
             </LinearLayout>
-
-            <!-- job -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="职业:"/>
-
-                <TextView
-                    android:id="@+id/tv_memberCheckDoingApplicantJob"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="2dp"
-                    android:text="学生"/>
-
-            </LinearLayout>
-
 
         </RelativeLayout>
 
@@ -282,7 +246,7 @@
                     android:text="联系方式:"/>
 
                 <TextView
-                    android:id="@+id/tv_memberCheckDoingApplicantTel"
+                    android:id="@+id/tv_memberCheckDoingHelpApplicantTel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="2dp"
@@ -305,7 +269,7 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
-            <!-- telephone -->
+            <!-- address -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -318,7 +282,7 @@
                     android:text="地址:"/>
 
                 <TextView
-                    android:id="@+id/tv_memberCheckDoingApplicantAddress"
+                    android:id="@+id/tv_memberCheckDoingHelpApplicantAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="2dp"
@@ -350,10 +314,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="领养申请描述:"/>
+                    android:text="救助申请描述:"/>
 
                 <TextView
-                    android:id="@+id/tv_memberCheckDoingApplicantDescription"
+                    android:id="@+id/tv_memberCheckDoingHelpApplicantDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLines="5"
@@ -366,7 +330,7 @@
 
 
         <TextView
-            android:id="@+id/btn_memberCheckDoing"
+            android:id="@+id/btn_memberCheckDoingHelp"
             android:layout_width="@dimen/cardContentBtnWidthSize"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

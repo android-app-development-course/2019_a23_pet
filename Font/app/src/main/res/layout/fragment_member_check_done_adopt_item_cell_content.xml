@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:rtv="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:visibility="gone">
+
+    <!-- content header line -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/yellow"
+        android:paddingBottom="7dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="7dp">
+
+        <ImageView
+            android:layout_width="@dimen/cardContentIconSize"
+            android:layout_height="@dimen/cardContentIconSize"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/user_content_icon" />
+
+
+        <TextView
+            android:id="@+id/tv_memberCheckDoneAdoptContentDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="处理完成日期"
+            android:textColor="@color/orange"
+            android:textSize="15sp"/>
+
+    </RelativeLayout>
+
+
+    <!-- content body layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingTop="9dp"
+        android:paddingBottom="6dp"
+        android:paddingLeft="@dimen/padding_l"
+        android:paddingRight="@dimen/padding_l">
+
+        <!-- name  -->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <!-- name -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="昵称:"/>
+
+                <TextView
+                    android:id="@+id/tv_memberCheckDoneAdoptContentPetName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="2dp"
+                    android:text="三三"/>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <!-- divider line -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="9dp"
+            android:src="#e0e0e0" />
+
+        <!-- gender and age -->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <!-- gender -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="性别:"/>
+
+                <TextView
+                    android:id="@+id/tv_memberCheckDoneAdoptPetGender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="2dp"
+                    android:text="♂"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+            <!-- age -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="年龄:"/>
+
+                <TextView
+                    android:id="@+id/tv_memberCheckDoneAdoptPetAge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="2dp"
+                    android:text="1岁11个月"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <!-- divider line -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="7dp"
+            android:src="#e0e0e0" />
+
+        <!-- vaccination and sterilisation -->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <!-- vaccination -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="疫苗:"/>
+
+                <ImageView
+                    android:id="@+id/iv_memberCheckDoneAdoptVaccine"
+                    android:layout_width="@dimen/cardContentIconSize"
+                    android:layout_height="@dimen/cardContentIconSize"
+                    android:paddingStart="2dp"
+                    android:src="@drawable/yes"/>
+
+            </LinearLayout>
+            <!-- sterilisation -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="绝育:"/>
+
+                <ImageView
+                    android:id="@+id/iv_memberCheckDoneAdoptSterilization"
+                    android:layout_width="@dimen/cardContentIconSize"
+                    android:layout_height="@dimen/cardContentIconSize"
+                    android:paddingStart="2dp"
+                    android:src="@drawable/no"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <!-- divider line -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="7dp"
+            android:src="#e0e0e0" />
+
+        <!-- applicantName & job -->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <!-- applicantName -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="申请人:"/>
+
+                <TextView
+                    android:id="@+id/tv_memberCheckDoneAdoptApplicantName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="2dp"
+                    android:text="小小"/>
+
+            </LinearLayout>
+
+            <!-- job -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="职业:"/>
+
+                <TextView
+                    android:id="@+id/tv_memberCheckDoneAdoptApplicantJob"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="2dp"
+                    android:text="学生"/>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <!-- divider line -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="7dp"
+            android:src="#e0e0e0" />
+
+        <!-- telephone  -->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <!-- telephone -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="联系方式:"/>
+
+                <TextView
+                    android:id="@+id/tv_memberCheckDoneAdoptApplicantTel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="2dp"
+                    android:text="1322787788"/>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <!-- divider line -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="7dp"
+            android:src="#e0e0e0" />
+
+        <!-- address  -->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <!-- telephone -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="地址:"/>
+
+                <TextView
+                    android:id="@+id/tv_memberCheckDoneAdoptApplicantAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="2dp"
+                    android:text="广州市天河区"/>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <!-- divider line -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="7dp"
+            android:src="#e0e0e0" />
+
+        <!-- description  -->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="领养申请描述:"/>
+
+                <TextView
+                    android:id="@+id/tv_memberCheckDoneAdoptApplicantDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="5"
+                    android:textSize="@dimen/cardContentTextSize" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <!-- divider line -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="7dp"
+            android:src="#e0e0e0" />
+
+        <!-- state  -->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="领养申请状态:"/>
+
+                <TextView
+                    android:id="@+id/tv_memberCheckDoneAdoptState"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="5"
+                    android:textSize="@dimen/cardContentTextSize" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <!-- divider line -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="7dp"
+            android:src="#e0e0e0" />
+
+        <!-- result description  -->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="处理反馈:"/>
+
+                <TextView
+                    android:id="@+id/tv_memberCheckDoneAdoptResultDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="5"
+                    android:textSize="@dimen/cardContentTextSize" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

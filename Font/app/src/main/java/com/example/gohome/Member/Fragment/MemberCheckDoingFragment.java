@@ -222,23 +222,23 @@ public class MemberCheckDoingFragment extends Fragment {
 
     private void initAdoptAppliment() {
         adoptApplimentList = new ArrayList<>();
-        adoptApplimentList.add(new AdoptAppliment("小小","13445456576","广州市天河区","想领养","一一","2岁","狗狗",true,true,false,R.drawable.timg, new Date(2019,12,11),"学生",1));
-        adoptApplimentList.add(new AdoptAppliment("大大","13124545434","星河楼","领养","二二","1岁半","猫猫",false,false,true,R.drawable.cat2,new Date(2019,12,11),"职员",2));
-        adoptApplimentList.add(new AdoptAppliment("种种","13456565444","西一宿舍","领养一只","三三","1岁","狗狗",true,true,true,R.drawable.cat1,new Date(2019,12,11),"老师",3));
-        adoptApplimentList.add(new AdoptAppliment("呵呵","13456567876","越秀区","领养两只","四四","11个月", "猫猫",false,true,true,R.drawable.cat3,new Date(2019,12,11),"程序员",4));
-        adoptApplimentList.add(new AdoptAppliment("一会吧","13556765434","校区","领养领养领养领养领养领养","五五","5个月","猫猫",false,true,false,R.drawable.cat3,new Date(2019,12,11),"老师",5));
-        adoptApplimentList.add(new AdoptAppliment("KIKI","1567656543","番禺区","想领养","六六","8个月","狗狗",true,true,false,R.drawable.cat,new Date(2019,12,11),"学生",6));
-        adoptApplimentList.add(new AdoptAppliment("妮妮","14565678765","白云区","领养","七七","1岁7个月","猫猫",true,true,false,R.drawable.dog1,new Date(2019,12,11),"老师",7));
+        adoptApplimentList.add(new AdoptAppliment("小小","13445456576","广州市天河区","想领养","一一","2岁","狗狗",true,true,false,R.drawable.timg, new Date(2019,12,11),"学生",1,0,""));
+        adoptApplimentList.add(new AdoptAppliment("大大","13124545434","星河楼","领养","二二","1岁半","猫猫",false,false,true,R.drawable.cat2,new Date(2019,12,11),"职员",2,0,""));
+        adoptApplimentList.add(new AdoptAppliment("种种","13456565444","西一宿舍","领养一只","三三","1岁","狗狗",true,true,true,R.drawable.cat1,new Date(2019,12,11),"老师",3,0,""));
+        adoptApplimentList.add(new AdoptAppliment("呵呵","13456567876","越秀区","领养两只","四四","11个月", "猫猫",false,true,true,R.drawable.cat3,new Date(2019,12,11),"程序员",4,0,""));
+        adoptApplimentList.add(new AdoptAppliment("一会吧","13556765434","校区","领养领养领养领养领养领养","五五","5个月","猫猫",false,true,false,R.drawable.cat3,new Date(2019,12,11),"老师",5,0,""));
+        adoptApplimentList.add(new AdoptAppliment("KIKI","1567656543","番禺区","想领养","六六","8个月","狗狗",true,true,false,R.drawable.cat,new Date(2019,12,11),"学生",6,0,""));
+        adoptApplimentList.add(new AdoptAppliment("妮妮","14565678765","白云区","领养","七七","1岁7个月","猫猫",true,true,false,R.drawable.dog1,new Date(2019,12,11),"老师",7,0,""));
     }
 
     private void initHelpAppliment() {
         helpApplimentList = new ArrayList<>();
-        helpApplimentList.add(new HelpAppliment(new Date(2019,11,11),"小红","13136767678","广州市天河区","一一","2岁","狗狗",true,true,false,"很调皮的小狗",R.drawable.timg,1));
-        helpApplimentList.add(new HelpAppliment(new Date(2019,11,11),"小黑","13454565434","广州市番禺区","尔尔","4岁","猫猫",true,false,true,"很调皮",R.drawable.cat2,1));
-        helpApplimentList.add(new HelpAppliment(new Date(2019,11,11),"小百","13126565454","广州市白云区","散散","三个月","小鸟",false,true,false,"很乖",R.drawable.timg,1));
-        helpApplimentList.add(new HelpAppliment(new Date(2019,11,11),"小子","13676787888","广州市从化区","思思","一个月","小鸡",true,false,true,"很懒的小狗",R.drawable.timg,1));
-        helpApplimentList.add(new HelpAppliment(new Date(2019,11,11),"小吕","13445456656","广州市荔湾区","呜呜","1岁","小羊",true,true,false,"很蠢的小狗",R.drawable.timg,1));
-        helpApplimentList.add(new HelpAppliment(new Date(2019,11,11),"小懒","13009098987","广州市天河区","六六","3.5岁","小猪",false,false,true,"很聪明的小狗",R.drawable.timg,1));
+        helpApplimentList.add(new HelpAppliment(new Date(2019,11,11),"小红","13136767678","广州市天河区","一一","2岁","狗狗",true,true,false,"很调皮的小狗",R.drawable.timg,1,0,""));
+        helpApplimentList.add(new HelpAppliment(new Date(2019,11,11),"小黑","13454565434","广州市番禺区","尔尔","4岁","猫猫",true,false,true,"很调皮",R.drawable.cat2,1,0,""));
+        helpApplimentList.add(new HelpAppliment(new Date(2019,11,11),"小百","13126565454","广州市白云区","散散","三个月","小鸟",false,true,false,"很乖",R.drawable.timg,1,0,""));
+        helpApplimentList.add(new HelpAppliment(new Date(2019,11,11),"小子","13676787888","广州市从化区","思思","一个月","小鸡",true,false,true,"很懒的小狗",R.drawable.timg,1,0,""));
+        helpApplimentList.add(new HelpAppliment(new Date(2019,11,11),"小吕","13445456656","广州市荔湾区","呜呜","1岁","小羊",true,true,false,"很蠢的小狗",R.drawable.timg,1,0,""));
+        helpApplimentList.add(new HelpAppliment(new Date(2019,11,11),"小懒","13009098987","广州市天河区","六六","3.5岁","小猪",false,false,true,"很聪明的小狗",R.drawable.timg,1,0,""));
 
     }
 

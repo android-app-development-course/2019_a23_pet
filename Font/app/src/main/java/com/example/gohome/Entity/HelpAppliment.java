@@ -122,11 +122,32 @@ public class HelpAppliment {
     private Integer petPhotoId;      //宠物图片的id
     private Integer helpApplimentId;   //救助申请信息数据库id
 
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
+    public String getResultDescription() {
+        return resultDescription;
+    }
+
+    public void setResultDescription(String resultDescription) {
+        this.resultDescription = resultDescription;
+    }
+
+    private Integer state;  //申请救助信息状态
+    private String resultDescription; //信息处理结果反馈
+
+
 
 
     public HelpAppliment(Date date,String applicantName,String applicantTel, String applicantAddress,
                          String petName, String petAge, String petType, boolean petGender, boolean vaccine,
-                         boolean sterilization, String description, Integer petPhotoId,Integer helpApplimentId){
+                         boolean sterilization, String description, Integer petPhotoId,Integer helpApplimentId,
+                         Integer state , String resultDescription){
 
         this.date = date;
         this.applicantName = applicantName;
@@ -141,6 +162,8 @@ public class HelpAppliment {
         this.description = description;
         this.petPhotoId = petPhotoId;
         this.helpApplimentId = helpApplimentId;
+        this.state = state;
+        this.resultDescription = resultDescription;
     }
 
 

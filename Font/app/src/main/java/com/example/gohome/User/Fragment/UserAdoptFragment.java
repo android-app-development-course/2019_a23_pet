@@ -2,20 +2,20 @@ package com.example.gohome.User.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.gohome.Entity.AdoptInfo;
 import com.example.gohome.R;
 import com.example.gohome.User.Activity.UserAdoptActivity;
 import com.example.gohome.User.Adapter.FoldingCellListAdapter;
-import com.example.gohome.Entity.AdoptInfo;
+import com.example.gohome.User.PullListView;
 import com.qlh.dropdownmenu.DropDownMenu;
 import com.qlh.dropdownmenu.view.MultiMenusView;
 import com.qlh.dropdownmenu.view.SingleMenuView;
@@ -27,6 +27,8 @@ import java.util.List;
 
 public class UserAdoptFragment extends Fragment {
     private View rootView;
+
+    private int times = 0; // 记录加载更多次数
 
     private List<AdoptInfo> infoList;
 
@@ -46,6 +48,7 @@ public class UserAdoptFragment extends Fragment {
         } else {
             rootView = inflater.inflate(R.layout.fragment_user_adopt, null);
             initDropMenus();
+            initRefresh();
 //            initRec();
             initListView();
         }
@@ -67,10 +70,19 @@ public class UserAdoptFragment extends Fragment {
 //        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 //    }
 
+    private void initRefresh(){
+
+    }
+
     private void initListView(){
         initAdoptInfo();
 
-        ListView listView = rootView.findViewById(R.id.user_lv_adopt);
+//        ListView listView = rootView.findViewById(R.id.user_lv_adopt);
+
+        PullListView listView = rootView.findViewById(R.id.user_lv_adopt);
+
+//        listView.addHeaderView(mDropDownMenu);
+//        listView.addPullHeaderView();
 
         // 创建保存元素及其状态的自定义适配器(我们需要保存可重用元素的展开元素的id)
         final FoldingCellListAdapter adapter = new FoldingCellListAdapter(this.getContext(), infoList);
@@ -82,24 +94,76 @@ public class UserAdoptFragment extends Fragment {
 
         listView.setAdapter(adapter);
 
-        listView.setOnItemClickListener((adapterView, view, i, l) -> {
-            listView.setSelection(i);
+        listView.setOnItemClickListener((adapterView, view, pos, l) -> {
+            listView.setSelection(pos);
             // 切换已单击的单元格状态
+
             ((FoldingCell) view).toggle(false);
             // 在适配器中注册所选单元格的状态已被切换
-            adapter.registerToggle(i);
+            adapter.registerToggle(pos);
         });
+
+
+        listView.setOnRefreshListener(() -> new Handler().postDelayed(() -> {
+            times = 0;
+            listView.refreshComplete();
+            adapter.notifyDataSetChanged();
+        }, 2000));
+
+        listView.setOnGetMoreListener(() -> {
+            if(times == 0) {
+                new Handler().postDelayed(() -> {
+                    add1();
+                    listView.getMoreComplete();
+                    adapter.notifyDataSetChanged();
+                }, 1000);
+            } else if (times == 1){
+                    new Handler().postDelayed(() -> {
+                        add2();
+                        listView.getMoreComplete();
+                        adapter.notifyDataSetChanged();
+                    }, 1000);
+                } else {
+                new Handler().postDelayed(() -> {
+                    listView.getMoreComplete();
+                    listView.setNoMore();
+                    adapter.notifyDataSetChanged();
+                }, 1000);
+            }
+            times++;
+        });
+    }
+
+    boolean flag1 = true, flag2 = true;
+    private void add1(){
+        if(flag1) {
+            infoList.add(new AdoptInfo(R.drawable.cat3, "九九", "猫猫", 0, "3个月", " 昨夜闲潭梦落花，可怜春半不还家。江水流春去欲尽，江潭落月复西斜。", "湖北武汉", "3小时前", 1, 0, "春回大地"));
+            infoList.add(new AdoptInfo(R.drawable.dog3, "十十", "狗狗", 1, "3岁", "  斜月沉沉藏海雾，碣石潇湘无限路。不知乘月几人归，落月摇情满江树。", "河南郑州", "3小时前", 1, 0, "福满人间"));
+            infoList.add(new AdoptInfo(R.drawable.cat4, "佳佳", "猫猫", 0, "2个月", " 汉家烟尘在东北，汉将辞家破残贼。男儿本自重横行，天子非常赐颜色。", "新疆阿克苏", "4小时前", 1, 0, "彩云追月"));
+            infoList.add(new AdoptInfo(R.drawable.dog4, "依依", "狗狗", 0, "2岁半", " 摐金伐鼓下榆关，旌旆逶迤碣石间。校尉羽书飞瀚海，单于猎火照狼山。", "香港深水埗", "5小时前", 1, 0, "骏马迎春"));
+            infoList.add(new AdoptInfo(R.drawable.cat5, "冰冰", "猫猫", 1, "1岁半", " 山川萧条极边土，胡骑凭陵杂风雨。战士军前半死生，美人帐下犹歌舞。", "吉林长春", "5小时前", 1, 0, "鲤跃龙门"));
+            flag1 = false;
+        }
+    }
+    private void add2() {
+        if (flag2) {
+            infoList.add(new AdoptInfo(R.drawable.dog5, "圆圆", "狗狗", 0, "1岁10个月", "  大漠穷秋塞草腓，孤城落日斗兵稀。身当恩遇恒轻敌，力尽关山未解围。", "江苏南京", "1天前", 1, 0, "门迎百福"));
+            infoList.add(new AdoptInfo(R.drawable.cat6, "扁扁", "猫猫", 1, "2岁2个月", "   铁衣远戍辛勤久，玉箸应啼别离后。少妇城南欲断肠，征人蓟北空回首。", "台湾高雄", "1天前", 1, 0, "户纳千祥"));
+            infoList.add(new AdoptInfo(R.drawable.dog6, "哼哈", "狗狗", 1, "2岁2个月", "   边庭飘飖哪可度，绝域苍茫更何有？杀气三时作阵云，寒声一夜催刁斗。", "安徽合肥", "2天前", 1, 0, "五谷丰登"));
+            infoList.add(new AdoptInfo(R.drawable.cat7, "中分", "猫猫", 1, "2岁", "  相看白刃血纷纷，死节从来岂顾勋。君不见沙场征战苦，至今犹忆李将军。", "哥谭市", "3天前", 1, 0, "六畜兴旺"));
+            flag2 = false;
+        }
     }
 
     private void initAdoptInfo() {
         infoList = new ArrayList<>();
-        infoList.add(new AdoptInfo(R.drawable.timg,"一一","狗狗",1,"2岁","豫章故郡，洪都新府。星分翼轸，地接衡庐。襟三江而带五湖，控蛮荆而引瓯越。物华天宝，龙光射牛斗之墟；人杰地灵，徐孺下陈蕃之榻。雄州雾列，俊采星驰。台隍枕夷夏之交，宾主尽东南之美。都督阎公之雅望，棨戟遥临；宇文新州之懿范，襜帷暂驻。十旬休假，胜友如云；千里逢迎，高朋满座。腾蛟起凤，孟学士之词宗；紫电青霜，王将军之武库。家君作宰，路出名区；童子何知，躬逢胜饯。","广东广州","5小时前",1,0,"木鱼水心"));
-        infoList.add(new AdoptInfo(R.drawable.cat2,"二二","猫猫",0,"1岁半","时维九月，序属三秋。潦水尽而寒潭清，烟光凝而暮山紫。俨骖騑于上路，访风景于崇阿；临帝子之长洲，得天人之旧馆。层峦耸翠，上出重霄；飞阁流丹，下临无地。鹤汀凫渚，穷岛屿之萦回；桂殿兰宫，即冈峦之体势。","四川成都","8小时前",1,0,"木鱼水心"));
-        infoList.add(new AdoptInfo(R.drawable.dog2,"三三","狗狗",1,"1岁","披绣闼，俯雕甍，山原旷其盈视，川泽纡其骇瞩。闾阎扑地，钟鸣鼎食之家；舸舰弥津，青雀黄龙之舳。云销雨霁，彩彻区明。落霞与孤鹜齐飞，秋水共长天一色。渔舟唱晚，响穷彭蠡之滨；雁阵惊寒，声断衡阳之浦。","辽宁铁岭","15小时前",1,0,"木鱼水心"));
-        infoList.add(new AdoptInfo(R.drawable.cat,"四四", "猫猫",0,"11个月","遥襟甫畅，逸兴遄飞。爽籁发而清风生，纤歌凝而白云遏。睢园绿竹，气凌彭泽之樽；邺水朱华，光照临川之笔。四美具，二难并。穷睇眄于中天，极娱游于暇日。天高地迥，觉宇宙之无穷；兴尽悲来，识盈虚之有数。望长安于日下，目吴会于云间。地势极而南溟深，天柱高而北辰远。关山难越，谁悲失路之人？萍水相逢，尽是他乡之客。怀帝阍而不见，奉宣室以何年？","内蒙古鄂尔多斯","1天前",1,0,"木鱼水心"));
-        infoList.add(new AdoptInfo(R.drawable.cat3,"五五","猫猫",0,"5个月","嗟乎！时运不齐，命途多舛。冯唐易老，李广难封。屈贾谊于长沙，非无圣主；窜梁鸿于海曲，岂乏明时？所赖君子见机，达人知命。老当益壮，宁移白首之心？穷且益坚，不坠青云之志。酌贪泉而觉爽，处涸辙以犹欢。北海虽赊，扶摇可接；东隅已逝，桑榆非晚。孟尝高洁，空余报国之情；阮籍猖狂，岂效穷途之哭！","浙江杭州","1天前",1,0,"木鱼水心"));
-        infoList.add(new AdoptInfo(R.drawable.dog1,"六六","狗狗",1,"8个月","勃，三尺微命，一介书生。无路请缨，等终军之弱冠；有怀投笔，慕宗悫之长风。舍簪笏于百龄，奉晨昏于万里。非谢家之宝树，接孟氏之芳邻。他日趋庭，叨陪鲤对；今兹捧袂，喜托龙门。杨意不逢，抚凌云而自惜；钟期既遇，奏流水以何惭？","上海普陀","2天前",1,0,"木鱼水心"));
-        infoList.add(new AdoptInfo(R.drawable.cat1,"七七","猫猫",1,"1岁7个月","呜乎！胜地不常，盛筵难再；兰亭已矣，梓泽丘墟。临别赠言，幸承恩于伟饯；登高作赋，是所望于群公。敢竭鄙怀，恭疏短引；一言均赋，四韵俱成。请洒潘江，各倾陆海云尔：","湖南长沙","3天前",1,0,"木鱼水心"));
+        infoList.add(new AdoptInfo(R.drawable.timg,"一一","狗狗",1,"2岁","   春江潮水连海平，海上明月共潮生。滟滟随波千万里，何处春江无月明！","广东广州","1小时前",1,0,"花开富贵"));
+        infoList.add(new AdoptInfo(R.drawable.cat,"二二","猫猫",0,"7个月","   江流宛转绕芳甸，月照花林皆似霰；空里流霜不觉飞，汀上白沙看不见。","四川成都","1小时前",1,0,"竹报平安"));
+        infoList.add(new AdoptInfo(R.drawable.dog,"三三","狗狗",1,"3岁","    江天一色无纤尘，皎皎空中孤月轮。江畔何人初见月？江月何年初照人？","辽宁铁岭","1小时前",1,0,"山间明月"));
+        infoList.add(new AdoptInfo(R.drawable.cat1,"四四", "猫猫",0,"11个月","    人生代代无穷已，江月年年望相似。不知江月待何人，但见长江送流水。","内蒙古鄂尔多斯","2小时前",1,0,"江上春风"));
+        infoList.add(new AdoptInfo(R.drawable.dog1,"五五","狗狗",0,"4个月","  白云一片去悠悠，青枫浦上不胜愁。谁家今夜扁舟子？何处相思明月楼？","浙江杭州","2小时前",1,0,"龙腾虎跃"));
+        infoList.add(new AdoptInfo(R.drawable.cat2,"六六","猫猫",1,"1岁3个月","    可怜楼上月徘徊，应照离人妆镜台。玉户帘中卷不去，捣衣砧上拂还来。","上海普陀","2小时前",1,0,"水啸山吟"));
+        infoList.add(new AdoptInfo(R.drawable.dog2,"七七","狗狗",1,"1岁5个月","    此时相望不相闻，愿逐月华流照君。鸿雁长飞光不度，鱼龙潜跃水成文。","湖南长沙","3小时前",1,0,"木鱼水心"));
     }
 
     private void initListener() {

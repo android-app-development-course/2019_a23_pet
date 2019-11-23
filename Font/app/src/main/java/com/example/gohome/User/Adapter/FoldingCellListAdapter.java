@@ -33,7 +33,15 @@ public class FoldingCellListAdapter extends ArrayAdapter<AdoptInfo> {
     @NonNull
     @Override
     public View getView(int pos, View convertView, @NonNull ViewGroup parent){
-        AdoptInfo item = getItem(pos);
+        /*
+        * ListView中的item滑出屏幕时，滑出的item会在getView()方法中返回
+        * ViewHolder: 保存item中子控件的引用
+        * convertView如果不为null, 表示可以对该布局重新设置数据并返回到列表中显示
+        * setTag(),getTag(): 实现了ViewHolder和convertView的绑定
+        * 通过setTag()方法, 将ViewHolder打包成一个包裹，放在了convertView上
+        * 再通过getTag()方法, 将这个包裹取出。
+        * */
+        AdoptInfo info = getItem(pos);
         FoldingCell cell = (FoldingCell) convertView;
         ViewHolder viewHolder;
         if (cell == null) {
@@ -64,46 +72,47 @@ public class FoldingCellListAdapter extends ArrayAdapter<AdoptInfo> {
 
             cell.setTag(viewHolder);
         } else {
-            if(unfoldedIndexes.contains(pos)) {
-                cell.unfold(true);
-            } else {
-                cell.fold(true);
-            }
+            cell.fold(true);
+//            if(unfoldedIndexes.contains(pos)) {
+//                cell.unfold(true);
+//            } else {
+//                cell.fold(true);
+//            }
             viewHolder = (ViewHolder) cell.getTag();
         }
 
-        if (item == null)
+        if (info == null)
             return cell;
 
-        String gender = item.getGender() == 0 ? s0 : s1;
-        int icon1 = item.getVacn() == 0 ? R.drawable.no : R.drawable.yes;
-        int icon2 = item.getStrl() == 0 ? R.drawable.no : R.drawable.yes;
+        String gender = info.getGender() == 0 ? s0 : s1;
+        int icon1 = info.getVacn() == 0 ? R.drawable.no : R.drawable.yes;
+        int icon2 = info.getStrl() == 0 ? R.drawable.no : R.drawable.yes;
 
-        Glide.with(getContext()).load(item.getPetPhotoId()).into(viewHolder.petPhoto1);
-        viewHolder.petName1.setText(item.getPetName());
+        Glide.with(getContext()).load(info.getPetPhotoId()).into(viewHolder.petPhoto1);
+        viewHolder.petName1.setText(info.getPetName());
         viewHolder.petGender1.setText(gender);
-        viewHolder.petAge1.setText(item.getPetAge());
-        viewHolder.desc1.setText(item.getDesc());
-        viewHolder.area1.setText(item.getArea());
+        viewHolder.petAge1.setText(info.getPetAge());
+        viewHolder.desc1.setText(info.getDesc());
+        viewHolder.area1.setText(info.getArea());
 
-        Glide.with(getContext()).load(item.getPetPhotoId()).into(viewHolder.petPhoto2);
-        viewHolder.petName2.setText(item.getPetName());
+        Glide.with(getContext()).load(info.getPetPhotoId()).into(viewHolder.petPhoto2);
+        viewHolder.petName2.setText(info.getPetName());
         viewHolder.petGender2.setText(gender);
-        viewHolder.petAge2.setText(item.getPetAge());
-        viewHolder.desc2.setText(item.getDesc());
-        viewHolder.area2.setText(item.getArea());
+        viewHolder.petAge2.setText(info.getPetAge());
+        viewHolder.desc2.setText(info.getDesc());
+        viewHolder.area2.setText(info.getArea());
 
         Glide.with(getContext()).load(icon1).into(viewHolder.iv_vacn);
         Glide.with(getContext()).load(icon2).into(viewHolder.iv_strl);
-        viewHolder.publisher.setText(item.getPublisher());
-        viewHolder.time.setText(item.getTime());
+        viewHolder.publisher.setText(info.getPublisher());
+        viewHolder.time.setText(info.getTime());
         viewHolder.contentRequestBtn.setOnClickListener(defaultRequestBtnClickListener);
 
-        if (item.getRequestBtnClickListener() != null) {
-            viewHolder.contentRequestBtn.setOnClickListener(item.getRequestBtnClickListener());
-        } else {
-            viewHolder.contentRequestBtn.setOnClickListener(defaultRequestBtnClickListener);
-        }
+//        if (info.getRequestBtnClickListener() != null) {
+//            viewHolder.contentRequestBtn.setOnClickListener(info.getRequestBtnClickListener());
+//        } else {
+//            viewHolder.contentRequestBtn.setOnClickListener(defaultRequestBtnClickListener);
+//        }
 
         return cell;
     }

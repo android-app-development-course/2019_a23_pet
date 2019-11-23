@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:rtv="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,7 +9,7 @@
     <!-- content header line -->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/yellow"
         android:paddingBottom="7dp"
         android:paddingLeft="12dp"
@@ -53,7 +52,7 @@
         <ImageView
             android:id="@+id/user_iv_cont_petPhoto"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="170dp"
             android:scaleType="centerCrop"
             android:src="@drawable/dog" />
 
@@ -67,8 +66,8 @@
         android:orientation="vertical"
         android:paddingTop="9dp"
         android:paddingBottom="6dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
 
         <!-- name and area -->
         <RelativeLayout

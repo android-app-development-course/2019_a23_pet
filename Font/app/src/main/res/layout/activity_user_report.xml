@@ -96,15 +96,15 @@
                     android:id="@+id/et_reportDesc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:etHint="请输入描述"
+                    app:etHint="请简要描述流浪动物的特征..."
                     app:etLineColor="@color/colorAccent"
-                    app:etMaxLength="100"
+                    app:etMaxLength="200"
                     app:etMinHeight="100dp"
                     etPromptPosition="promptDn"
                     app:etPromptTextColor="@color/colorAccent"
                     app:etPromptTextSize="16sp"
                     app:etTextColor="@color/black"
-                    app:etTextSize="18sp"
+                    app:etTextSize="16sp"
                     app:etType="singular"
                     />
             </FrameLayout>

@@ -12,8 +12,8 @@ import android.widget.RelativeLayout;
 import com.example.gohome.Component.NoScrollViewPager;
 import com.example.gohome.R;
 import com.example.gohome.User.Adapter.ViewPagerAdapter;
-import com.example.gohome.User.BottomLayout;
-import com.example.gohome.User.OpenMenu;
+import com.example.gohome.User.ButtonLayout;
+import com.example.gohome.User.PopupMenu;
 
 import java.util.Objects;
 
@@ -21,8 +21,8 @@ public class UserHomeActivity extends AppCompatActivity implements View.OnClickL
     private NoScrollViewPager viewPager;
 
     private RelativeLayout container;
-    private OpenMenu openMenu;
-    private BottomLayout btm_home, btm_mine;
+    private PopupMenu popupMenu;
+    private ButtonLayout btm_home, btm_mine;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -61,8 +61,8 @@ public class UserHomeActivity extends AppCompatActivity implements View.OnClickL
 
     private void initBottom() {
         container = findViewById(R.id.rel_container);
-        openMenu = new OpenMenu(this);
-        openMenu.init(container);
+        popupMenu = new PopupMenu(this);
+        popupMenu.init(container);
 
         LinearLayout btm_more = findViewById(R.id.btm_more);
         btm_more.setOnClickListener(this);
@@ -91,7 +91,7 @@ public class UserHomeActivity extends AppCompatActivity implements View.OnClickL
                 viewPager.setCurrentItem(0);
                 break;
             case R.id.btm_more:
-                openMenu.show(container);
+                popupMenu.show();
                 break;
             case R.id.btm_mine:
                 btm_home.setFocused(false);

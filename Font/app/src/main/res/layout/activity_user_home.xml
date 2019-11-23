@@ -10,19 +10,19 @@
         android:id="@+id/user_home_vp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/lin_bottom"
+        android:layout_above="@+id/lin_bottomNav"
         />
 
     <LinearLayout
-        android:id="@+id/lin_bottom"
+        android:id="@+id/lin_bottomNav"
         android:layout_width="match_parent"
-        android:layout_height="55sp"
+        android:layout_height="55dp"
         android:layout_alignParentBottom="true"
         android:background="@color/yellow"
         android:gravity="center"
         android:orientation="horizontal">
 
-        <com.example.gohome.User.BottomLayout
+        <com.example.gohome.User.ButtonLayout
             android:id="@+id/btm_home"
             android:layout_width="0dp"
             android:layout_height="45dp"
@@ -45,7 +45,7 @@
 
         </LinearLayout>
 
-        <com.example.gohome.User.BottomLayout
+        <com.example.gohome.User.ButtonLayout
             android:id="@+id/btm_mine"
             android:layout_width="0dp"
             android:layout_height="45dp"

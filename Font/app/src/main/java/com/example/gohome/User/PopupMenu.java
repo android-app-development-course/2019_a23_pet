@@ -27,29 +27,35 @@ import com.example.gohome.R;
 import com.example.gohome.User.Activity.UserReportActivity;
 import com.example.gohome.User.Activity.UserSendActivity;
 import com.example.gohome.Utils.KickBackAnimator;
-import com.ms_square.etsyblur.BlurringView;
 
-public class OpenMenu extends PopupWindow implements View.OnClickListener {
+public class PopupMenu extends PopupWindow implements View.OnClickListener {
     private Activity mActivity;
     private Handler mHandler;
     private int mWidth, mHeight;
 
-    private RelativeLayout relativeLayout;
+    private RelativeLayout popupLayout;
+    private View rootView;
     private View bgView;
     private ImageView iv_close;
-    private BottomLayout bl_send, bl_report;
+    private ButtonLayout bl_send, bl_report;
 
-    public OpenMenu(Activity activity) {
+    public PopupMenu(Activity activity) {
         mActivity = activity;
     }
 
     public void init(View view) {
         mHandler = new Handler();
 
-        Rect frame = new Rect();
-        mActivity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
+        rootView = view;
 
-        DisplayMetrics metrics = new DisplayMetrics();
+        /*
+         * decorView是window中的最顶层view，decorView有个getWindowVisibleDisplayFrame方法
+         * 可以获取到程序显示的区域，包括标题栏，但不包括状态栏。
+         * */
+        Rect outRect = new Rect(); // 根据当前窗口可视区域大小更新outRect的值↓
+        mActivity.getWindow().getDecorView().getWindowVisibleDisplayFrame(outRect);
+
+        DisplayMetrics metrics = new DisplayMetrics(); // 获取Activity的实际屏幕信息
         mActivity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
         mWidth = metrics.widthPixels;
@@ -57,31 +63,31 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
         setWidth(mWidth);
         setHeight(mHeight);
 
-        relativeLayout = (RelativeLayout) LayoutInflater.from(mActivity).inflate(R.layout.layout_user_bottom_open, null);
-        setContentView(relativeLayout);
+        popupLayout = (RelativeLayout) LayoutInflater.from(mActivity).inflate(R.layout.layout_user_popup_menu, null);
+        setContentView(popupLayout);
 
-        bgView = relativeLayout.findViewById(R.id.rel_bg);
+        bgView = popupLayout.findViewById(R.id.rel_bg);
         bgView.setOnClickListener(this);
 
-        relativeLayout.findViewById(R.id.lin_bottom).setOnClickListener(this);
+        popupLayout.findViewById(R.id.lin_bottomNav).setOnClickListener(this);
 
-        iv_close = relativeLayout.findViewById(R.id.iv_close);
+        iv_close = popupLayout.findViewById(R.id.iv_close);
         iv_close.setOnClickListener(this);
 
-        BlurringView blurringView = relativeLayout.findViewById(R.id.blurring_view);
-        blurringView.blurredView(view);//模糊背景
+//        BlurringView blurringView = popupLayout.findViewById(R.id.blurring_view);
+//        blurringView.blurredView(view);//模糊背景
 
         setFocusable(true);
         setOutsideTouchable(true);
         setClippingEnabled(false);//使popup window全屏显示
 
-        bl_send = relativeLayout.findViewById(R.id.bl_send);
+        bl_send = popupLayout.findViewById(R.id.bl_send);
         bl_send.setNormalIcon(R.drawable.user_send);
         bl_send.setFocusIcon(R.drawable.user_send);
         bl_send.setIconText("送养");
         bl_send.setOnClickListener(this);
 
-        bl_report = relativeLayout.findViewById(R.id.bl_report);
+        bl_report = popupLayout.findViewById(R.id.bl_report);
         bl_report.setNormalIcon(R.drawable.user_report);
         bl_report.setFocusIcon(R.drawable.user_report);
         bl_report.setIconText("报告");
@@ -90,27 +96,25 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void onClick(View view) {
-        bl_send.setFocused(false);
-        bl_report.setFocused(false);
 
         switch (view.getId()) {
             case R.id.rel_bg:
-            case R.id.lin_bottom:
+            case R.id.lin_bottomNav:
             case R.id.iv_close:
                 if (isShowing())
-                    closeAnimation();
+                    close();
                 break;
             case R.id.bl_send:
 //                bl_send.setFocused(true);
 //                bl_report.setFocused(false);
-                closeAnimation();
+                close();
                 Intent intent1 = new Intent(mActivity, UserSendActivity.class);
                 mActivity.startActivity(intent1);
                 break;
             case R.id.bl_report:
 //                bl_send.setFocused(false);
 //                bl_report.setFocused(true);
-                closeAnimation();
+                close();
                 Intent intent2 = new Intent(mActivity, UserReportActivity.class);
                 mActivity.startActivity(intent2);
                 break;
@@ -118,8 +122,8 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public void show(View container) {
-        showAtLocation(container, Gravity.TOP | Gravity.START, 0, 0);
+    public void show() {
+        showAtLocation(rootView, Gravity.TOP | Gravity.START, 0, 0);
         mHandler.post(() -> {
             try {
                 int x = mWidth / 2;
@@ -134,21 +138,21 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
 
                     @Override
                     public void onAnimationEnd(Animator animation) {
-//                            relativeLayout.setVisibility(View.VISIBLE);
+//                            popupLayout.setVisibility(View.VISIBLE);
                     }
                 });
-                animator.setDuration(300);
+                animator.setDuration(500);
                 animator.start();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
-        showAnimation(relativeLayout);
+        showAnimation(popupLayout);
     }
 
     private void showAnimation(ViewGroup layout) {
         try {
-            LinearLayout linearLayout = layout.findViewById(R.id.lin_bottom);
+            LinearLayout linearLayout = layout.findViewById(R.id.lin_bottomNav);
             mHandler.post(() -> { //加号旋转
                 iv_close.animate().rotation(90).setDuration(500);
             });
@@ -174,7 +178,7 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private void closeAnimation() {
+    private void close() {
         mHandler.post(() -> iv_close.animate().rotation(-90).setDuration(500));
         try {
             int x = mWidth / 2;
@@ -184,7 +188,7 @@ public class OpenMenu extends PopupWindow implements View.OnClickListener {
             animator.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationStart(Animator animation) {
-//                    relativeLayout.setVisibility(View.GONE);
+//                    popupLayout.setVisibility(View.GONE);
                 }
 
                 @Override

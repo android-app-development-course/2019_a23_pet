@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rel_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient">
+
+
+
+    <LinearLayout
+        android:id="@+id/lin_bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:paddingTop="30dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp">
+
+        <com.example.gohome.User.ButtonLayout
+            android:id="@+id/bl_send"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+
+        <com.example.gohome.User.ButtonLayout
+            android:id="@+id/bl_report"
+            android:layout_width="0sp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rel_close"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerInParent="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/user_more" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -48,7 +48,6 @@ public class UserAdoptFragment extends Fragment {
         } else {
             rootView = inflater.inflate(R.layout.fragment_user_adopt, null);
             initDropMenus();
-            initRefresh();
 //            initRec();
             initListView();
         }
@@ -69,10 +68,6 @@ public class UserAdoptFragment extends Fragment {
 //        //设置列表显示方式
 //        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 //    }
-
-    private void initRefresh(){
-
-    }
 
     private void initListView(){
         initAdoptInfo();

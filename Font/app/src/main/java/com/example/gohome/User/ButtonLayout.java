@@ -9,14 +9,14 @@ import android.widget.TextView;
 
 import com.example.gohome.R;
 
-public class BottomLayout extends LinearLayout {
+public class ButtonLayout extends LinearLayout {
     private int normalIcon;
     private int focusIcon;
     private boolean isFocused = false;
     private ImageView ivIcon;
     private TextView tvText;
 
-    public BottomLayout(Context context, AttributeSet attrs) {
+    public ButtonLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         //加载布局文件，与setContentView()效果一样
         LayoutInflater.from(context).inflate(R.layout.layout_user_menu_icon, this);

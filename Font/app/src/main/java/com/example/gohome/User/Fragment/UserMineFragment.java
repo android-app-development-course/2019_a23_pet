@@ -1,7 +1,6 @@
 package com.example.gohome.User.Fragment;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,12 +16,11 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.example.gohome.R;
 import com.example.gohome.User.Activity.UserAddGroupActivity;
-import com.example.gohome.User.Activity.UserAdoptActivity;
 import com.example.gohome.User.Activity.UserAdoptProActivity;
-import com.example.gohome.User.Activity.UserModifyNicknameActivity;
 import com.example.gohome.User.Activity.UserPersonalInforActivity;
 import com.example.gohome.User.Activity.UserSendProActivity;
 import com.example.gohome.User.Activity.UserSettingCenterActivity;
+import com.example.gohome.User.ImageDialog;
 
 public class UserMineFragment extends Fragment implements View.OnClickListener {
 
@@ -33,10 +31,10 @@ public class UserMineFragment extends Fragment implements View.OnClickListener {
     private int portrait=R.drawable.timg;
 
     private TextView tvNickname;
-    private String nickname="张咩阿";
+    private String nickname = "张咩阿";
 
     private TextView tvPhone;
-    private StringBuffer tmpphone=new StringBuffer("15626431234");
+    private StringBuffer tmpphone = new StringBuffer("15626431234");
     private String phone=tmpphone.substring(0,7)+"****";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -65,21 +63,23 @@ public class UserMineFragment extends Fragment implements View.OnClickListener {
         rootView.findViewById(R.id.user_rel_settingCenter).setOnClickListener(this);
 
         //初始化头像
-        imPortrait=(ImageView)rootView.findViewById(R.id.user_iv_portrait);
-        Glide.with(getContext()).load(portrait).into(imPortrait);
+        imPortrait = rootView.findViewById(R.id.user_iv_portrait);
+        Glide.with(rootView.getContext()).load(portrait).into(imPortrait);
+        imPortrait.setOnClickListener(this);
 
         //初始化昵称
-        tvNickname=(TextView)rootView.findViewById(R.id.user_tv_nickname);
+        tvNickname = rootView.findViewById(R.id.user_tv_nickname);
         tvNickname.setText(nickname);
 
         //初始化手机号
-        tvPhone=(TextView)rootView.findViewById(R.id.user_tv_phone);
+        tvPhone = rootView.findViewById(R.id.user_tv_phone);
         tvPhone.setText(phone);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.user_iv_portrait:
             case R.id.user_rel_personalInfo:
                 Intent intent=new Intent(activity, UserPersonalInforActivity.class);
                 intent.putExtra("oldPortrait",portrait);
@@ -110,7 +110,7 @@ public class UserMineFragment extends Fragment implements View.OnClickListener {
         if(requestCode==0){
             if(resultCode==1){
                 portrait=data.getIntExtra("newPortrait",portrait);
-                Glide.with(getContext()).load(portrait).into(imPortrait);
+                Glide.with(rootView.getContext()).load(portrait).into(imPortrait);
             }
             if(resultCode==2){
                 nickname=data.getStringExtra("newNickname");
@@ -126,7 +126,7 @@ public class UserMineFragment extends Fragment implements View.OnClickListener {
             if(resultCode==3){
                 //更改头像
                 portrait=R.drawable.defaultportrait;
-                Glide.with(getContext()).load(portrait).into(imPortrait);
+                Glide.with(rootView.getContext()).load(portrait).into(imPortrait);
 
                 //更改昵称
                 nickname="立即登录";

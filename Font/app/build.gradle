@@ -110,4 +110,7 @@ dependencies {
 
     //圆角ImageView
     implementation 'com.vivifarm.view:circleimageview:1.2.0'
+
+    //底部对话框
+    implementation 'com.bigkoo:alertview:1.0.3'
 }

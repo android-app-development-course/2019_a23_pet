@@ -1,10 +1,5 @@
 package com.example.gohome.User.Activity;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,11 +11,15 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.gohome.Member.Adapter.GridImageAdapter;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.bigkoo.alertview.AlertView;
+import com.example.gohome.Member.Adapter.GridImageAdapter;
 import com.example.gohome.Member.FullyGridLayoutManager;
 import com.example.gohome.R;
-import com.example.gohome.User.ActionSheetDialog;
 import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
@@ -207,20 +206,22 @@ public class UserSendActivity extends AppCompatActivity {
         @Override
         public void onAddPicClick() {
             //弹出对话框 选择拍照或从相册选择
-            new ActionSheetDialog(UserSendActivity.this)
-                    .builder()
-                    .setCancelable(false)
-                    .setCanceledOnTouchOutside(false)
-                    .addSheetItem("拍照", ActionSheetDialog.SheetItemColor.Blue,
-                            which -> {
-                                mode = false;
-                                selectPhotos();
-                            })
-                    .addSheetItem("从相册选择", ActionSheetDialog.SheetItemColor.Blue,
-                            which -> {
-                                mode = true;
-                                selectPhotos();
-                            })
+            new AlertView.Builder().setContext(UserSendActivity.this)
+                    .setStyle(AlertView.Style.ActionSheet)
+                    .setTitle("选择操作")
+                    .setMessage(null)
+                    .setCancelText("取消")
+                    .setDestructive("拍照", "从相册中选择")
+                    .setOthers(null)
+                    .setOnItemClickListener((object, position) -> {
+                        switch (position){
+                            case 0: mode = false;
+                                selectPhotos(); break;
+                            case 1: mode = true;
+                                selectPhotos(); break;
+                        }
+                    })
+                    .build()
                     .show();
         }
     };

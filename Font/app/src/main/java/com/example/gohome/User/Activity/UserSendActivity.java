@@ -91,7 +91,7 @@ public class UserSendActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                this.finish(); // back button
+                this.finish(); // user_back button
                 return true;
         }
         return super.onOptionsItemSelected(item);

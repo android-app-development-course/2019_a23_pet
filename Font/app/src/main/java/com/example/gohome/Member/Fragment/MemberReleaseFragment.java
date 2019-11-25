@@ -74,8 +74,6 @@ public class MemberReleaseFragment extends Fragment  {
 
     boolean mode;    //记录用户选择，拍照或从相册选择
 
-
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState ){
@@ -99,7 +97,6 @@ public class MemberReleaseFragment extends Fragment  {
         downResId = R.drawable.orange_arrow_down;
         dialogBuilderSelect = NiftyDialogBuilder.getInstance(this.getActivity());
 
-
         try {
             init();
         } catch (InterruptedException e) {
@@ -107,8 +104,6 @@ public class MemberReleaseFragment extends Fragment  {
         }
         return view;
     }
-
-
 
     public void selectPhotos(){
         if (mode) {
@@ -203,9 +198,7 @@ public class MemberReleaseFragment extends Fragment  {
                     //.videoSecond()////显示多少秒以内的视频or音频也可适用
                     .forResult(PictureConfig.CHOOSE_REQUEST);//结果回调onActivityResult code
         }
-
     }
-
 
     private void init() throws InterruptedException {
 
@@ -343,7 +336,6 @@ public class MemberReleaseFragment extends Fragment  {
 
     }
 
-
     //给上传图片添加点击事件
     private GridImageAdapter.onAddPicClickListener onAddPicClickListener = new GridImageAdapter.onAddPicClickListener() {
         @Override
@@ -376,10 +368,7 @@ public class MemberReleaseFragment extends Fragment  {
                     .show();
 
         }
-
-
     };
-
 
     //返回结果并显示
     @Override
@@ -408,8 +397,4 @@ public class MemberReleaseFragment extends Fragment  {
             }
         }
     }
-
-
-
-
 }

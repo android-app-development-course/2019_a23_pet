@@ -54,9 +54,6 @@ public class MemberHomeActivity extends AppCompatActivity {
 
         viewPager.setCurrentItem(0);
 
-
-        //初始化底部栏
-
         // Create items
         AHBottomNavigationItem item1 = new AHBottomNavigationItem("领养", R.drawable.member_adopt,R.color.yellow);
         AHBottomNavigationItem item2 = new AHBottomNavigationItem("救助", R.drawable.member_help,R.color.yellow);
@@ -95,12 +92,5 @@ public class MemberHomeActivity extends AppCompatActivity {
                 // Manage the new y position
             }
         });
-
-
-
-
-
     }
-
-
 }

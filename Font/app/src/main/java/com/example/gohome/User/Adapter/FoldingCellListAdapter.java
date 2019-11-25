@@ -119,7 +119,6 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter{
                 mholder.cell.fold(false);
             }
             else {
-
                 mholder.cell.unfold(false);
             }
         });

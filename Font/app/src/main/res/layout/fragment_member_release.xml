@@ -11,7 +11,6 @@
         android:orientation="vertical"
         android:background="@color/background">
 
-
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,9 +29,6 @@
                 app:met_primaryColor="@color/orange" />
 
         </FrameLayout>
-
-
-
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -69,7 +65,6 @@
                 app:met_baseColor="@color/orange"
                 app:met_primaryColor="@color/orange"/>
 
-
         </FrameLayout>
 
         <FrameLayout
@@ -90,8 +85,6 @@
                 android:maxLines="2"/>
 
         </FrameLayout>
-
-
 
         <LinearLayout
             android:layout_width="match_parent"

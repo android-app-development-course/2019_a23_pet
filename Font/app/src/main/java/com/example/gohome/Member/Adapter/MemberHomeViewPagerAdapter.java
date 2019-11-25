@@ -52,7 +52,6 @@ public class MemberHomeViewPagerAdapter extends FragmentPagerAdapter {
         return fragment;
     }
 
-
     @Override
     public int getCount() {
         return PAGER_COUNT;

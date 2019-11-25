@@ -4,21 +4,26 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.gohome.Entity.AdoptInfo;
 import com.example.gohome.R;
+import com.example.gohome.User.ImageDialog;
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.ramotion.foldingcell.FoldingCell;
 
 import java.util.HashSet;
 import java.util.List;
 
-public class FoldingCellListAdapter extends ArrayAdapter<AdoptInfo> {
+public class FoldingCellListAdapter extends RecyclerView.Adapter{
+
+    private Context context;
+    private List<AdoptInfo> list;
 
     private HashSet<Integer> unfoldedIndexes = new HashSet<>();
     private View.OnClickListener defaultRequestBtnClickListener;
@@ -26,104 +31,103 @@ public class FoldingCellListAdapter extends ArrayAdapter<AdoptInfo> {
     private final String s0 = "♀";
     private final String s1 = "♂";
 
-    public FoldingCellListAdapter(Context context, List<AdoptInfo> list){
-        super(context, 0, list);
+
+    public FoldingCellListAdapter(Context context, List<AdoptInfo> list) {
+        this.context = context;
+        this.list = list;
     }
 
-    @NonNull
-    @Override
-    public View getView(int pos, View convertView, @NonNull ViewGroup parent){
-        /*
-        * ListView中的item滑出屏幕时，滑出的item会在getView()方法中返回
-        * ViewHolder: 保存item中子控件的引用
-        * convertView如果不为null, 表示可以对该布局重新设置数据并返回到列表中显示
-        * setTag(),getTag(): 实现了ViewHolder和convertView的绑定
-        * 通过setTag()方法, 将ViewHolder打包成一个包裹，放在了convertView上
-        * 再通过getTag()方法, 将这个包裹取出。
-        * */
-        AdoptInfo info = getItem(pos);
-        FoldingCell cell = (FoldingCell) convertView;
-        ViewHolder viewHolder;
-        if (cell == null) {
-            viewHolder = new ViewHolder();
-            LayoutInflater inflater = LayoutInflater.from(getContext());
-            cell = (FoldingCell) inflater.inflate(R.layout.layout_user_cell, parent, false);
-
-            viewHolder.petPhoto1 = cell.findViewById(R.id.user_iv_petPhoto);
-            viewHolder.petName1 = cell.findViewById(R.id.user_tv_petName);
-            viewHolder.petGender1 = cell.findViewById(R.id.user_tv_petGender);
-            viewHolder.petAge1 = cell.findViewById(R.id.user_tv_petAge);
-            viewHolder.desc1 = cell.findViewById(R.id.user_tv_petDesc);
-            viewHolder.area1 = cell.findViewById(R.id.user_tv_petArea);
-
-            viewHolder.petPhoto2 = cell.findViewById(R.id.user_iv_cont_petPhoto);
-            viewHolder.petName2 = cell.findViewById(R.id.user_tv_cont_petName);
-            viewHolder.petGender2 = cell.findViewById(R.id.user_tv_cont_petGender);
-            viewHolder.petAge2 = cell.findViewById(R.id.user_tv_cont_petAge);
-            viewHolder.desc2 = cell.findViewById(R.id.user_tv_cont_petDesc);
-            viewHolder.area2 = cell.findViewById(R.id.user_tv_cont_petArea);
-
-            viewHolder.iv_vacn = cell.findViewById(R.id.user_iv_petVacn);
-            viewHolder.iv_strl = cell.findViewById(R.id.user_iv_petStrl);
-            viewHolder.publisher = cell.findViewById(R.id.user_tv_publisher);
-            viewHolder.time = cell.findViewById(R.id.user_tv_pubTime);
-
-            viewHolder.contentRequestBtn = cell.findViewById(R.id.user_btn_content_want);
-
-            cell.setTag(viewHolder);
-        } else {
-            cell.fold(true);
-//            if(unfoldedIndexes.contains(pos)) {
-//                cell.unfold(true);
-//            } else {
-//                cell.fold(true);
-//            }
-            viewHolder = (ViewHolder) cell.getTag();
-        }
-
-        if (info == null)
-            return cell;
-
-        String gender = info.getGender() == 0 ? s0 : s1;
-        int icon1 = info.getVacn() == 0 ? R.drawable.no : R.drawable.yes;
-        int icon2 = info.getStrl() == 0 ? R.drawable.no : R.drawable.yes;
-
-        Glide.with(getContext()).load(info.getPetPhotoId()).into(viewHolder.petPhoto1);
-        viewHolder.petName1.setText(info.getPetName());
-        viewHolder.petGender1.setText(gender);
-        viewHolder.petAge1.setText(info.getPetAge());
-        viewHolder.desc1.setText(info.getDesc());
-        viewHolder.area1.setText(info.getArea());
-
-        Glide.with(getContext()).load(info.getPetPhotoId()).into(viewHolder.petPhoto2);
-        viewHolder.petName2.setText(info.getPetName());
-        viewHolder.petGender2.setText(gender);
-        viewHolder.petAge2.setText(info.getPetAge());
-        viewHolder.desc2.setText(info.getDesc());
-        viewHolder.area2.setText(info.getArea());
-
-        Glide.with(getContext()).load(icon1).into(viewHolder.iv_vacn);
-        Glide.with(getContext()).load(icon2).into(viewHolder.iv_strl);
-        viewHolder.publisher.setText(info.getPublisher());
-        viewHolder.time.setText(info.getTime());
-        viewHolder.contentRequestBtn.setOnClickListener(defaultRequestBtnClickListener);
-
-//        if (info.getRequestBtnClickListener() != null) {
-//            viewHolder.contentRequestBtn.setOnClickListener(info.getRequestBtnClickListener());
-//        } else {
-//            viewHolder.contentRequestBtn.setOnClickListener(defaultRequestBtnClickListener);
-//        }
-
-        return cell;
-    }
-
-    private static class ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder{
+        FoldingCell cell;
         ImageView petPhoto1, petPhoto2;
         TextView petName1, petGender1, petAge1, desc1, area1; // title
         TextView petName2, petGender2, petAge2, desc2, area2; // content
         ImageView iv_vacn, iv_strl;
         TextView publisher, time;
         TextView contentRequestBtn;
+
+        ViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            cell = itemView.findViewById(R.id.user_adopt_cell);
+            // title(外)
+            petPhoto1 = itemView.findViewById(R.id.user_iv_petPhoto);
+            petName1 = itemView.findViewById(R.id.user_tv_petName);
+            petGender1 = itemView.findViewById(R.id.user_tv_petGender);
+            petAge1 = itemView.findViewById(R.id.user_tv_petAge);
+            desc1 = itemView.findViewById(R.id.user_tv_petDesc);
+            area1 = itemView.findViewById(R.id.user_tv_petArea);
+            // content(内)
+            petPhoto2 = itemView.findViewById(R.id.user_iv_cont_petPhoto);
+            petName2 = itemView.findViewById(R.id.user_tv_cont_petName);
+            petGender2 = itemView.findViewById(R.id.user_tv_cont_petGender);
+            petAge2 = itemView.findViewById(R.id.user_tv_cont_petAge);
+            desc2 = itemView.findViewById(R.id.user_tv_cont_petDesc);
+            area2 = itemView.findViewById(R.id.user_tv_cont_petArea);
+            iv_vacn = itemView.findViewById(R.id.user_iv_petVacn);
+            iv_strl = itemView.findViewById(R.id.user_iv_petStrl);
+            publisher = itemView.findViewById(R.id.user_tv_publisher);
+            time = itemView.findViewById(R.id.user_tv_pubTime);
+            contentRequestBtn = itemView.findViewById(R.id.user_btn_content_want);
+        }
+    }
+
+    @NonNull
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.layout_user_cell, null);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int pos) {
+
+        ViewHolder mholder = new ViewHolder(holder.itemView);
+
+        String gender = list.get(pos).getGender() == 0 ? s0 : s1;
+        int icon1 = list.get(pos).getVacn() == 0 ? R.drawable.no : R.drawable.yes;
+        int icon2 = list.get(pos).getStrl() == 0 ? R.drawable.no : R.drawable.yes;
+
+        // title(外)
+        Glide.with(context).load(list.get(pos).getPetPhotoId()).into(mholder.petPhoto1);
+        mholder.petName1.setText(list.get(pos).getPetName());
+        mholder.petGender1.setText(gender);
+        mholder.petAge1.setText(list.get(pos).getPetAge());
+        mholder.desc1.setText(list.get(pos).getDesc());
+        mholder.area1.setText(list.get(pos).getArea());
+
+        // content(内)
+        Glide.with(context).load(list.get(pos).getPetPhotoId()).into(mholder.petPhoto2);
+        mholder.petName2.setText(list.get(pos).getPetName());
+        mholder.petGender2.setText(gender);
+        mholder.petAge2.setText(list.get(pos).getPetAge());
+        mholder.desc2.setText(list.get(pos).getDesc());
+        mholder.area2.setText(list.get(pos).getArea());
+        Glide.with(context).load(icon1).into(mholder.iv_vacn);
+        Glide.with(context).load(icon2).into(mholder.iv_strl);
+        mholder.publisher.setText(list.get(pos).getPublisher());
+        mholder.time.setText(list.get(pos).getTime());
+        mholder.contentRequestBtn.setOnClickListener(defaultRequestBtnClickListener);
+
+        mholder.petPhoto2.setOnClickListener(view -> {
+            ImageDialog dialog = new ImageDialog(context, list.get(pos).getPetPhotoId());
+            dialog.show();
+        });
+
+        mholder.cell.setOnClickListener(view -> {
+            if(mholder.cell.isUnfolded()) {
+                mholder.cell.fold(false);
+            }
+            else {
+
+                mholder.cell.unfold(false);
+            }
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        return list.size();
     }
 
     public void registerToggle(int position) {
@@ -148,4 +152,5 @@ public class FoldingCellListAdapter extends ArrayAdapter<AdoptInfo> {
     public void setDefaultRequestBtnClickListener(View.OnClickListener defaultRequestBtnClickListener) {
         this.defaultRequestBtnClickListener = defaultRequestBtnClickListener;
     }
+
 }

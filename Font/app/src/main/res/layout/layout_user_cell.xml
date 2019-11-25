@@ -7,7 +7,8 @@
     folding-cell:additionalFlipsCount="2"
     folding-cell:animationDuration="1200"
     folding-cell:backSideColor="@color/yellow"
-    folding-cell:cameraHeight="20">
+    folding-cell:cameraHeight="20"
+    android:id="@+id/user_adopt_cell">
 
     <!-- CONTENT (UNFOLDED) LAYOUT (MUST BE AT LEAST 2x times BIGGER than content layout bellow)-->
     <include layout="@layout/layout_user_cell_content" />

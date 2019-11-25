@@ -21,16 +21,15 @@
         app:ddtextSelectedColor="@color/black"
         app:ddtextUnselectedColor="@color/gray" />
 
-        <com.example.gohome.User.PullListView
-            android:id="@+id/user_lv_adopt"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/dropDownMenu"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:padding="16dp"
-            android:scrollbars="none"
-            plv:getMoreType="click">
-        </com.example.gohome.User.PullListView>
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/user_lv_adopt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/dropDownMenu"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:padding="16dp"
+        android:scrollbars="none">
+    </com.jcodecraeer.xrecyclerview.XRecyclerView>
 
 </RelativeLayout>

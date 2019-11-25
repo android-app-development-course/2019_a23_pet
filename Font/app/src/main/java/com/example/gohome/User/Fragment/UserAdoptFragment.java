@@ -10,16 +10,17 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.gohome.Entity.AdoptInfo;
 import com.example.gohome.R;
 import com.example.gohome.User.Activity.UserAdoptActivity;
 import com.example.gohome.User.Adapter.FoldingCellListAdapter;
-import com.example.gohome.User.PullListView;
+import com.jcodecraeer.xrecyclerview.ProgressStyle;
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.qlh.dropdownmenu.DropDownMenu;
 import com.qlh.dropdownmenu.view.MultiMenusView;
 import com.qlh.dropdownmenu.view.SingleMenuView;
-import com.ramotion.foldingcell.FoldingCell;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,85 +49,70 @@ public class UserAdoptFragment extends Fragment {
         } else {
             rootView = inflater.inflate(R.layout.fragment_user_adopt, null);
             initDropMenus();
-//            initRec();
-            initListView();
+            initRecyclerView();
+//            initListView();
         }
         return rootView;
     }
 
-//    private void initRec() {
-//        initAdoptInfo();
-//
-//        RecyclerView recyclerView = rootView.findViewById(R.id.recyclerView);
-//
-//        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this.getContext(), infoList);
-//        recyclerView.setAdapter(adapter);
-//
-//        recyclerView.setHasFixedSize(true);
-//        //设置列表默认动画效果
-//        recyclerView.setItemAnimator(new DefaultItemAnimator());
-//        //设置列表显示方式
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-//    }
-
-    private void initListView(){
+    private void initRecyclerView() {
         initAdoptInfo();
 
-//        ListView listView = rootView.findViewById(R.id.user_lv_adopt);
-
-        PullListView listView = rootView.findViewById(R.id.user_lv_adopt);
-
-//        listView.addHeaderView(mDropDownMenu);
-//        listView.addPullHeaderView();
-
-        // 创建保存元素及其状态的自定义适配器(我们需要保存可重用元素的展开元素的id)
-        final FoldingCellListAdapter adapter = new FoldingCellListAdapter(this.getContext(), infoList);
-
+        FoldingCellListAdapter adapter = new FoldingCellListAdapter(getContext(), infoList);
         adapter.setDefaultRequestBtnClickListener(view -> {
             Intent intent = new Intent(this.getContext(), UserAdoptActivity.class);
             startActivity(intent);
         });
 
-        listView.setAdapter(adapter);
 
-        listView.setOnItemClickListener((adapterView, view, pos, l) -> {
-            listView.setSelection(pos);
-            // 切换已单击的单元格状态
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-            ((FoldingCell) view).toggle(false);
-            // 在适配器中注册所选单元格的状态已被切换
-            adapter.registerToggle(pos);
-        });
+        XRecyclerView recyclerView = rootView.findViewById(R.id.user_lv_adopt);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setArrowImageView(R.drawable.iconfont_downgrey);
+        recyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
+        recyclerView.getDefaultRefreshHeaderView().setRefreshTimeVisible(true);
+        recyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
 
+        recyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        recyclerView.refreshComplete();
+                        adapter.notifyDataSetChanged();
+                    }
+                }, 1500);
+            }
 
-        listView.setOnRefreshListener(() -> new Handler().postDelayed(() -> {
-            times = 0;
-            listView.refreshComplete();
-            adapter.notifyDataSetChanged();
-        }, 2000));
-
-        listView.setOnGetMoreListener(() -> {
-            if(times == 0) {
-                new Handler().postDelayed(() -> {
-                    add1();
-                    listView.getMoreComplete();
-                    adapter.notifyDataSetChanged();
-                }, 1000);
-            } else if (times == 1){
+            @Override
+            public void onLoadMore() {
+                if (times == 0) {
+                    new Handler().postDelayed(() -> {
+                        add1();
+                        recyclerView.loadMoreComplete();
+                        adapter.notifyDataSetChanged();
+                    }, 1000);
+                } else if (times == 1) {
                     new Handler().postDelayed(() -> {
                         add2();
-                        listView.getMoreComplete();
+                        recyclerView.loadMoreComplete();
                         adapter.notifyDataSetChanged();
                     }, 1000);
                 } else {
-                new Handler().postDelayed(() -> {
-                    listView.getMoreComplete();
-                    listView.setNoMore();
-                    adapter.notifyDataSetChanged();
-                }, 1000);
+                    new Handler().postDelayed(() -> {
+                        recyclerView.loadMoreComplete();
+                        recyclerView.setNoMore(true);
+                        adapter.notifyDataSetChanged();
+                    }, 1000);
+                }
+                times++;
             }
-            times++;
         });
+
     }
 
     boolean flag1 = true, flag2 = true;
@@ -161,7 +147,8 @@ public class UserAdoptFragment extends Fragment {
         infoList.add(new AdoptInfo(R.drawable.dog2,"七七","狗狗",1,"1岁5个月","    此时相望不相闻，愿逐月华流照君。鸿雁长飞光不度，鱼龙潜跃水成文。","湖南长沙","3小时前",1,0,"木鱼水心"));
     }
 
-    private void initListener() {
+    // 筛选
+    private void initFilterListener() {
         multiMenusView.setOnSelectListener(showText -> {
             mDropDownMenu.setTabText(showText);
             mDropDownMenu.closeMenu();
@@ -260,6 +247,6 @@ public class UserAdoptFragment extends Fragment {
         //装载
         mDropDownMenu.setDropDownMenu(Arrays.asList(headers), popupViews, contentView);
 
-        initListener();
+        initFilterListener();
     }
 }

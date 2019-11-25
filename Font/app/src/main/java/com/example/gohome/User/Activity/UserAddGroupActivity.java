@@ -2,8 +2,8 @@ package com.example.gohome.User.Activity;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -14,27 +14,34 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.gohome.R;
-import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 import com.sdsmdg.tastytoast.TastyToast;
 
 import br.com.simplepass.loadingbutton.customViews.CircularProgressButton;
-import co.ceryle.radiorealbutton.RadioRealButtonGroup;
 import fj.edittextcount.lib.FJEditTextCount;
 
 public class UserAddGroupActivity extends AppCompatActivity {
-    private EditText et_sendUserName;
-    private EditText et_sendUserPhone;
-    private EditText et_sendUserAddress;
+    private EditText et_groupName;
+    private EditText et_addUserName;
+    private EditText et_addUserPhone;
+    private EditText et_addUserAddress;
+    private EditText et_addUserJob;
     private FJEditTextCount et_personalDesc;
     private FJEditTextCount et_addDesc;
     private CircularProgressButton btn_addGroupSubmit;
+
+    private String groupName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_add_group);
 
-        setTitle("加入组织");
+        Intent intent = getIntent();
+        groupName = intent.getStringExtra("group");
+        String title = "加入组织";
+        if(!groupName.isEmpty()) title = title + ": " + groupName;
+
+        setTitle(title);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -56,9 +63,12 @@ public class UserAddGroupActivity extends AppCompatActivity {
     }
 
     public void init() {
-        et_sendUserName = findViewById(R.id.et_sendUserName);
-        et_sendUserPhone = findViewById(R.id.et_sendUserPhone);
-        et_sendUserAddress = findViewById(R.id.et_sendUserAddress);
+        et_groupName = findViewById(R.id.et_GroupName);
+        et_groupName.setText(groupName);
+        et_addUserName = findViewById(R.id.et_addUserName);
+        et_addUserPhone = findViewById(R.id.et_addUserPhone);
+        et_addUserAddress = findViewById(R.id.et_addUserAddress);
+        et_addUserJob = findViewById(R.id.et_addUserJob);
         et_personalDesc = findViewById(R.id.et_personalDesc);
         et_addDesc = findViewById(R.id.et_addDesc);
         btn_addGroupSubmit = findViewById(R.id.user_btn_addGroupSubmit);
@@ -82,9 +92,11 @@ public class UserAddGroupActivity extends AppCompatActivity {
             toast.show();
 
             //清空editText和选择框
-            et_sendUserName.setText("");
-            et_sendUserPhone.setText("");
-            et_sendUserAddress.setText("");
+            et_groupName.setText("");
+            et_addUserName.setText("");
+            et_addUserPhone.setText("");
+            et_addUserAddress.setText("");
+            et_addUserJob.setText("");
             et_personalDesc.setText("");
             et_addDesc.setText("");
 

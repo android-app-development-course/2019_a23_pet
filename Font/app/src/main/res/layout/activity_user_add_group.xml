@@ -19,7 +19,24 @@
             android:background="@color/white">
 
             <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/et_sendUserName"
+                android:id="@+id/et_GroupName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin"
+                android:hint="组织名称"
+                app:met_baseColor="@color/orange"
+                app:met_iconLeft="@drawable/group"
+                app:met_primaryColor="@color/orange" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin"
+            android:background="@color/white">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_addUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
@@ -36,7 +53,7 @@
             android:background="@color/white">
 
             <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/et_sendUserPhone"
+                android:id="@+id/et_addUserPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
@@ -53,13 +70,29 @@
             android:background="@color/white">
 
             <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/et_sendUserAddress"
+                android:id="@+id/et_addUserAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
                 android:hint="您的地址"
                 app:met_baseColor="@color/orange"
                 app:met_iconLeft="@drawable/address"
+                app:met_primaryColor="@color/orange" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_marginTop="@dimen/margin">
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/et_addUserJob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin"
+                android:hint="您的职业"
+                app:met_iconLeft="@drawable/user_job"
+                app:met_baseColor="@color/orange"
                 app:met_primaryColor="@color/orange" />
         </FrameLayout>
 

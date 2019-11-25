@@ -93,7 +93,9 @@ public class UserMineFragment extends Fragment implements View.OnClickListener {
                 startActivity(new Intent(activity, UserSendProActivity.class));
                 break;
             case R.id.user_rel_addGroup:
-                startActivity(new Intent(activity, UserAddGroupActivity.class));
+                Intent intent3 = new Intent(activity, UserAddGroupActivity.class);
+                intent3.putExtra("group", "");
+                startActivity(intent3);
                 break;
             case R.id.user_rel_settingCenter:
                 Intent intent4=new Intent(activity, UserSettingCenterActivity.class);

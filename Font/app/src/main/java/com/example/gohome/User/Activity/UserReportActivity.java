@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.gohome.Member.Adapter.GridImageAdapter;
 import com.example.gohome.Member.FullyGridLayoutManager;
 import com.example.gohome.R;
+import com.example.gohome.User.ActionSheetDialog;
 import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
@@ -175,23 +176,38 @@ public class UserReportActivity extends AppCompatActivity {
         @Override
         public void onAddPicClick() {
             //弹出对话框 选择拍照或从相册选择
-            dialogBuilderSelect
-                    .withTitle("上传照片")
-                    .withMessage("请选择一张照片")
-                    .withDialogColor(getResources().getColor(R.color.red))                               //def  | withDialogColor(int resid)
-                    .withButton1Text("拍照")
-                    .withButton2Text("从相册选择")
-                    .setButton1Click(v -> {
-                        mode = false;
-                        selectPhotos();
-                        dialogBuilderSelect.dismiss();
-                    })
-                    .setButton2Click(v -> {
-                        mode = true;
-                        selectPhotos();
-                        dialogBuilderSelect.dismiss();
-                    })
+            new ActionSheetDialog(UserReportActivity.this)
+                    .builder()
+                    .setCancelable(false)
+                    .setCanceledOnTouchOutside(false)
+                    .addSheetItem("拍照", ActionSheetDialog.SheetItemColor.Blue,
+                            which -> {
+                                mode = false;
+                                selectPhotos();
+                            })
+                    .addSheetItem("从相册选择", ActionSheetDialog.SheetItemColor.Blue,
+                            which -> {
+                                mode = true;
+                                selectPhotos();
+                            })
                     .show();
+//            dialogBuilderSelect
+//                    .withTitle("上传照片")
+//                    .withMessage("请选择一张照片")
+//                    .withDialogColor(getResources().getColor(R.color.red))                               //def  | withDialogColor(int resid)
+//                    .withButton1Text("拍照")
+//                    .withButton2Text("从相册选择")
+//                    .setButton1Click(v -> {
+//                        mode = false;
+//                        selectPhotos();
+//                        dialogBuilderSelect.dismiss();
+//                    })
+//                    .setButton2Click(v -> {
+//                        mode = true;
+//                        selectPhotos();
+//                        dialogBuilderSelect.dismiss();
+//                    })
+//                    .show();
         }
     };
 

@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
                 android:hint="您的姓名"
-                app:met_iconLeft="@drawable/user_me"
+                app:met_iconLeft="@drawable/mine_selected"
                 app:met_baseColor="@color/orange"
                 app:met_primaryColor="@color/orange" />
         </FrameLayout>
@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
                 android:hint="宠物昵称"
-                app:met_iconLeft="@drawable/member_name"
+                app:met_iconLeft="@drawable/name_selected"
                 app:met_baseColor="@color/orange"
                 app:met_primaryColor="@color/orange" />
 

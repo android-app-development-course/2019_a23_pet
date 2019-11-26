@@ -46,7 +46,7 @@
                 android:maxLines="1"
                 app:met_textColor="@color/black"
                 app:met_baseColor="@color/orange"
-                app:met_iconLeft="@drawable/user_me"
+                app:met_iconLeft="@drawable/mine_selected"
                 app:met_primaryColor="@color/orange" />
         </FrameLayout>
 

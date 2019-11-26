@@ -26,7 +26,7 @@
                 android:hint="您的姓名"
                 android:maxLines="1"
                 app:met_textColor="@color/black"
-                app:met_iconLeft="@drawable/user_me"
+                app:met_iconLeft="@drawable/mine_selected"
                 app:met_baseColor="@color/orange"
                 app:met_primaryColor="@color/orange" />
         </FrameLayout>
@@ -80,13 +80,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
                 android:hint="动物类型"
-<<<<<<< HEAD
                 app:met_iconLeft="@drawable/type_selected"
-=======
                 android:maxLines="1"
                 app:met_textColor="@color/black"
-                app:met_iconLeft="@drawable/member_type"
->>>>>>> 549eaecb591c9ed7d7e6d16b5d51194eeff1ff65
                 app:met_baseColor="@color/orange"
                 app:met_primaryColor="@color/orange"/>
 

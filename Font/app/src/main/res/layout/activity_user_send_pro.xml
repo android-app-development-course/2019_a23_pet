@@ -3,8 +3,7 @@
     android:id="@+id/recyclerView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="7dp"
-    android:paddingBottom="10dp"
+    android:layout_marginVertical="8dp"
     android:background="@color/background">
 
 </com.jcodecraeer.xrecyclerview.XRecyclerView>

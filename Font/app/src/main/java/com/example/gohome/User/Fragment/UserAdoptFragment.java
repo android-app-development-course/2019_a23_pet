@@ -33,10 +33,10 @@ public class UserAdoptFragment extends Fragment {
 
     private List<AdoptInfo> infoList;
 
-    private String description1 = " 性格乖巧，比较黏人，已驱虫。希望找一个爱它的主人，有责任心不抛弃，接受定期回访。";
+    private String description1 = "性格乖巧，比较黏人，已驱虫。希望找一个爱它的主人，有责任心不抛弃，接受定期回访。";
     private String description2 = "有偿领养，疫苗已打，未绝育，有证，定期内外驱虫。性格活泼，能吃好动。希望能找到一个对它好的有爱心有经验的铲屎官。";
     private String description3 = "要求：有时间陪伴，有病治病，吃安全狗粮，有耐心。基本情况：不在家大小便，必须出去上，不破坏东西，很听话。";
-    private String description4 = "身体健康，做了狂犬和驱虫，性格乖巧粘人。最近在发情期还未绝育，希望你能带去配种or绝育。";
+    private String description4 = "身体健康，做了狂犬和驱虫，性格乖巧粘人。最近在发情期还未绝育，希望你能带去配种或绝育。";
 
     private DropDownMenu mDropDownMenu;
     private MultiMenusView multiMenusView;//多级菜单

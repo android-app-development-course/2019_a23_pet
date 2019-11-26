@@ -3,9 +3,6 @@
     <!--    不同后缀大小对比: *_xs < *_s < *_l < *_xl    -->
 
 
-
-
-
     <!--  margin边距  -->
     <dimen name="margin">
         10dp
@@ -49,7 +46,6 @@
     <dimen name="font_size_xs">36px</dimen>
 
 
-
     <!--    列表头像大小-->
     <dimen name="list_protrait_size">60dp</dimen>
 
@@ -84,5 +80,8 @@
     <dimen name="cardContentPetPhotoSize">150dp</dimen>
     <!--foldingCard content按钮宽度-->
     <dimen name="cardContentBtnWidthSize">120dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
 
 </resources>

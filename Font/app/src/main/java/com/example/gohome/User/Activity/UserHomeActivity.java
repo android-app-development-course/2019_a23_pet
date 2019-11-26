@@ -1,8 +1,11 @@
 package com.example.gohome.User.Activity;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentResolver;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +26,7 @@ public class UserHomeActivity extends AppCompatActivity implements View.OnClickL
     private RelativeLayout container;
     private PopupMenu popupMenu;
     private ButtonLayout btm_home, btm_mine;
+    public Boolean isLogin=true;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -35,7 +39,7 @@ public class UserHomeActivity extends AppCompatActivity implements View.OnClickL
 //        getWindow().getDecorView().setSystemUiVisibility(
 //                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
 //                        View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        getWindow().setStatusBarColor(getResources().getColor(R.color.yellow));
+//        getWindow().setStatusBarColor(getResources().getColor(R.color.yellow));
 
         initView();
 

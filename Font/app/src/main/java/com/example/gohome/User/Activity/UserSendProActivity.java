@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 
 import com.example.gohome.Entity.ProcessInfo;
@@ -23,7 +25,15 @@ public class UserSendProActivity extends AppCompatActivity {
     private XRecyclerView recyclerView;
     private ProcessRecyclerViewAdapter adapter;
     private List<ProcessInfo> infoList;
-    private int[] processState = {1, 1, 2};
+    private int[] processState1 = {1, 1, 0};
+    private int[] processState2 = {1, 1, 1};
+    private int[] processState3 = {1, 0, 0};
+    private int[] processState4 = {1, 2, 0};
+    private String[] userText = {"性格乖巧，比较黏人，已驱虫。希望找一个爱它的主人，有责任心不抛弃，接受定期回访。",
+            "有偿领养，疫苗已打，未绝育，有证，定期内外驱虫。性格活泼，能吃好动。希望能找到一个对它好的有爱心有经验的铲屎官。",
+            "要求：有时间陪伴，有病治病，吃安全狗粮，有耐心。基本情况：不在家大小便，必须出去上，不破坏东西，很听话。",
+            "身体健康，做了狂犬和驱虫，性格乖巧粘人。最近在发情期还未绝育，希望你能带去配种或绝育。"};
+
     // 记录加载的次数
     private int times = 0;
     //记录是否已加载
@@ -32,7 +42,7 @@ public class UserSendProActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_send_pro);
+        setContentView(R.layout.activity_user_adopt_pro);
 
         setTitle("送养进度");
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
@@ -48,18 +58,22 @@ public class UserSendProActivity extends AppCompatActivity {
 
     private void initPetInfo() {
         infoList = new ArrayList<>();
-        infoList.add(new ProcessInfo(R.drawable.timg, "一一", "春江潮水连海平，海上明月共潮生。滟滟随波千万里，何处春江无月明！", processState));
-        infoList.add(new ProcessInfo(R.drawable.cat, "二二", "江流宛转绕芳甸，月照花林皆似霰；空里流霜不觉飞，汀上白沙看不见。", processState));
-        infoList.add(new ProcessInfo(R.drawable.dog, "三三", "江天一色无纤尘，皎皎空中孤月轮。江畔何人初见月？江月何年初照人？", processState));
-        infoList.add(new ProcessInfo(R.drawable.cat1, "四四", "人生代代无穷已，江月年年望相似。不知江月待何人，但见长江送流水。", processState));
-        infoList.add(new ProcessInfo(R.drawable.dog1, "五五", "白云一片去悠悠，青枫浦上不胜愁。谁家今夜扁舟子？何处相思明月楼？", processState));
-        infoList.add(new ProcessInfo(R.drawable.cat2, "六六", "可怜楼上月徘徊，应照离人妆镜台。玉户帘中卷不去，捣衣砧上拂还来。", processState));
-        infoList.add(new ProcessInfo(R.drawable.dog2, "七七", "此时相望不相闻，愿逐月华流照君。鸿雁长飞光不度，鱼龙潜跃水成文。", processState));
+        infoList.add(new ProcessInfo(R.drawable.timg, "一一", userText[0], processState1));
+        infoList.add(new ProcessInfo(R.drawable.cat, "二二", userText[1], processState3));
+        infoList.add(new ProcessInfo(R.drawable.dog, "三三", userText[3], processState4));
+        infoList.add(new ProcessInfo(R.drawable.cat1, "四四", userText[2], processState2));
+        infoList.add(new ProcessInfo(R.drawable.dog1, "五五", userText[0], processState3));
+        infoList.add(new ProcessInfo(R.drawable.cat2, "六六", userText[3], processState4));
+        infoList.add(new ProcessInfo(R.drawable.dog2, "七七", userText[2], processState1));
     }
 
     private void initRecyclerView() {
         recyclerView = findViewById(R.id.recyclerView);
         adapter = new ProcessRecyclerViewAdapter(infoList, this);
+        adapter.getCardViewOnClickListener(view -> {
+            Intent intent = new Intent(this, UserSendDetailActivity.class);
+            startActivity(intent);
+        });
         recyclerView.setAdapter(adapter);
 
         recyclerView.setHasFixedSize(true);
@@ -74,7 +88,7 @@ public class UserSendProActivity extends AppCompatActivity {
         recyclerView.getDefaultRefreshHeaderView().setRefreshTimeVisible(true);
         recyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
 
-        //设置加载的动作
+        //设置刷新和加载的动作
         recyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
@@ -115,21 +129,22 @@ public class UserSendProActivity extends AppCompatActivity {
 
     private void add1() {
         if (flag1) {
-            infoList.add(new ProcessInfo(R.drawable.cat3, "九九", "昨夜闲潭梦落花，可怜春半不还家。江水流春去欲尽，江潭落月复西斜。", processState));
-            infoList.add(new ProcessInfo(R.drawable.dog3, "十十", "斜月沉沉藏海雾，碣石潇湘无限路。不知乘月几人归，落月摇情满江树。", processState));
-            infoList.add(new ProcessInfo(R.drawable.cat4, "佳佳", "汉家烟尘在东北，汉将辞家破残贼。男儿本自重横行，天子非常赐颜色。", processState));
-            infoList.add(new ProcessInfo(R.drawable.dog4, "依依", "摐金伐鼓下榆关，旌旆逶迤碣石间。校尉羽书飞瀚海，单于猎火照狼山。", processState));
-            infoList.add(new ProcessInfo(R.drawable.cat5, "冰冰", "山川萧条极边土，胡骑凭陵杂风雨。战士军前半死生，美人帐下犹歌舞。", processState));
+            infoList.add(new ProcessInfo(R.drawable.timg, "大大", userText[0], processState1));
+            infoList.add(new ProcessInfo(R.drawable.dog3, "小小", userText[2], processState2));
+            infoList.add(new ProcessInfo(R.drawable.cat3, "开开", userText[3], processState3));
+            infoList.add(new ProcessInfo(R.drawable.dog4, "明明", userText[1], processState1));
+            infoList.add(new ProcessInfo(R.drawable.cat4, "白白", userText[0], processState4));
             flag1 = false;
         }
     }
 
     private void add2() {
         if (flag2) {
-            infoList.add(new ProcessInfo(R.drawable.dog5, "圆圆", "大漠穷秋塞草腓，孤城落日斗兵稀。身当恩遇恒轻敌，力尽关山未解围。", processState));
-            infoList.add(new ProcessInfo(R.drawable.cat6, "扁扁", "铁衣远戍辛勤久，玉箸应啼别离后。少妇城南欲断肠，征人蓟北空回首。", processState));
-            infoList.add(new ProcessInfo(R.drawable.dog6, "哼哈", "边庭飘飖哪可度，绝域苍茫更何有？杀气三时作阵云，寒声一夜催刁斗。", processState));
-            infoList.add(new ProcessInfo(R.drawable.cat7, "中分", "相看白刃血纷纷，死节从来岂顾勋。君不见沙场征战苦，至今犹忆李将军。", processState));
+            infoList.add(new ProcessInfo(R.drawable.cat5, "九九", userText[0], processState1));
+            infoList.add(new ProcessInfo(R.drawable.dog5, "十十", userText[2], processState2));
+            infoList.add(new ProcessInfo(R.drawable.cat6, "佳佳", userText[3], processState3));
+            infoList.add(new ProcessInfo(R.drawable.dog6, "依依", userText[1], processState1));
+            infoList.add(new ProcessInfo(R.drawable.cat7, "冰冰", userText[0], processState4));
             flag2 = false;
         }
     }

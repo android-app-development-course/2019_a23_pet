@@ -3,8 +3,6 @@ package com.example.gohome.Entity;
 import java.util.Date;
 
 public class AdoptAppliment {
-
-
     public String getApplyName() {
         return applyName;
     }
@@ -41,8 +39,6 @@ public class AdoptAppliment {
     private String applyName; //用户申请姓名
     private String telephone; //电话号码
     private String address; //用户住址
-
-
 
     private String job; //用户职业
     private String description; //描述
@@ -83,7 +79,6 @@ public class AdoptAppliment {
     }
 
 
-
     public Date getDate() {
         return date;
     }
@@ -91,6 +86,7 @@ public class AdoptAppliment {
     public void setDate(Date date) {
         this.date = date;
     }
+
     public String getJob() {
         return job;
     }
@@ -102,8 +98,6 @@ public class AdoptAppliment {
     public void setPetPhotoId(Integer petPhotoId) {
         this.petPhotoId = petPhotoId;
     }
-
-
 
     public String getPetName() {
         return petName;
@@ -153,7 +147,6 @@ public class AdoptAppliment {
         this.sterilization = sterilization;
     }
 
-
     public int getPetPhotoId() {
         return petPhotoId;
     }
@@ -161,8 +154,6 @@ public class AdoptAppliment {
     public void setPetPhotoId(int petPhotoId) {
         this.petPhotoId = petPhotoId;
     }
-
-
 
     public AdoptAppliment(String applyName,
         String telephone,String address,String description,String petName ,String petAge,
@@ -185,6 +176,5 @@ public class AdoptAppliment {
         this.state = state;
         this.resultDescription = resultDescription;
     }
-
 
 }

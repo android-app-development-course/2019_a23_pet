@@ -1,6 +1,7 @@
 package com.example.gohome.User.Activity;
 
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -25,10 +26,12 @@ import java.io.File;
 import java.util.List;
 
 public class UserPersonalInforActivity extends AppCompatActivity implements View.OnClickListener {
+
     private ImageView imPortrait;
-    private int portrait = R.drawable.defaultportrait;
+    private Uri portrait;
     private TextView tvNickname;
     private String nickname;
+    private Intent backIntent = new Intent();
 
     //向上箭头、向下箭头
     private int upResId = R.drawable.orange_arrow_up,
@@ -62,16 +65,6 @@ public class UserPersonalInforActivity extends AppCompatActivity implements View
         init();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish(); // user_back button
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     private void init() {
 
         findViewById(R.id.user_rel_portrait).setOnClickListener(this);
@@ -81,10 +74,10 @@ public class UserPersonalInforActivity extends AppCompatActivity implements View
         //初始化头像、昵称
         Intent receivedIntent = getIntent();
 
-        portrait = receivedIntent.getIntExtra("oldPortrait", portrait);
+        portrait = Uri.parse(receivedIntent.getStringExtra("oldPortrait"));
         imPortrait = findViewById(R.id.user_iv_portrait2);
-        imPortrait.setOnClickListener(this);
         Glide.with(this).load(portrait).into(imPortrait);
+        imPortrait.setOnClickListener(this);
 
         nickname = receivedIntent.getStringExtra("oldNickname");
         tvNickname = findViewById(R.id.user_tv_nickname2);
@@ -137,28 +130,6 @@ public class UserPersonalInforActivity extends AppCompatActivity implements View
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 0) {
-            if (resultCode == 1) {
-                portrait = data.getIntExtra("newNickname", portrait);
-                Glide.with(this).load(portrait).into(imPortrait);
-
-                Intent backIntent = new Intent();
-                backIntent.putExtra("newPortrait", portrait);
-                setResult(1, backIntent);
-            }
-        }
-
-        if (requestCode == 1) {
-            if (resultCode == 1) {
-                nickname = data.getStringExtra("newNickname");
-                tvNickname.setText(nickname);
-
-                Intent backIntent = new Intent();
-                backIntent.putExtra("newNickname", nickname);
-                setResult(2, backIntent);
-            }
-        }
-
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case PictureConfig.CHOOSE_REQUEST:
@@ -171,9 +142,22 @@ public class UserPersonalInforActivity extends AppCompatActivity implements View
                     // 如果裁剪并压缩了，已取压缩路径为准，因为是先裁剪后压缩的
                     // 4.media.getAndroidQToPath();为Android Q版本特有返回的字段，此字段有值就用来做上传使用
                     LocalMedia media = selectList.get(0);
+                    portrait = Uri.fromFile(new File(media.getPath()));
+                    Glide.with(this).load(portrait).into(imPortrait);
 
-                    Glide.with(this).load(Uri.fromFile(new File(media.getPath()))).into(imPortrait);
+                    backIntent.putExtra("newPortrait", portrait.toString());
+                    setResult(1, backIntent);
                     break;
+            }
+        }
+
+        if (requestCode == 1) {
+            if (resultCode == 1) {
+                nickname = data.getStringExtra("newNickname");
+                tvNickname.setText(nickname);
+
+                backIntent.putExtra("newNickname", nickname);
+                setResult(1, backIntent);
             }
         }
     }
@@ -265,5 +249,15 @@ public class UserPersonalInforActivity extends AppCompatActivity implements View
                     //.videoSecond()////显示多少秒以内的视频or音频也可适用
                     .forResult(PictureConfig.CHOOSE_REQUEST);//结果回调onActivityResult code
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish(); // user_back button
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

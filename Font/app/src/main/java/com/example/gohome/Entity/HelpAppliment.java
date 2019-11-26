@@ -142,8 +142,6 @@ public class HelpAppliment {
     private String resultDescription; //信息处理结果反馈
 
 
-
-
     public HelpAppliment(Date date,String applicantName,String applicantTel, String applicantAddress,
                          String petName, String petAge, String petType, boolean petGender, boolean vaccine,
                          boolean sterilization, String description, Integer petPhotoId,Integer helpApplimentId,
@@ -165,7 +163,4 @@ public class HelpAppliment {
         this.state = state;
         this.resultDescription = resultDescription;
     }
-
-
-
 }

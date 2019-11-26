@@ -75,8 +75,11 @@ public class MemberCheckDoneFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
         //适配器
 
-        memberCheckDoneFoldingCellAdapter = new MemberCheckDoneFoldingCellAdapter(this.getContext(), adoptApplimentList,type);
-
+        if(type == 0 ){
+            memberCheckDoneFoldingCellAdapter = new MemberCheckDoneFoldingCellAdapter(this.getContext(), adoptApplimentList,type);
+        }else{
+            memberCheckDoneFoldingCellAdapter = new MemberCheckDoneFoldingCellAdapter(this.getContext(), helpApplimentList,type);
+        }
 
         memberCheckDoneFoldingCellAdapter.setClickCallBack(new MemberCheckDoneFoldingCellAdapter.ItemClickCallBack() {
             @Override

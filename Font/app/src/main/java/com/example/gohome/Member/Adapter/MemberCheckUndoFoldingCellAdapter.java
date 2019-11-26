@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.gohome.Entity.AdoptAppliment;
 import com.example.gohome.Entity.HelpAppliment;
 import com.example.gohome.R;
+import com.example.gohome.User.ImageDialog;
 import com.ramotion.foldingcell.FoldingCell;
 
 import java.util.HashSet;
@@ -263,6 +264,11 @@ public class MemberCheckUndoFoldingCellAdapter extends RecyclerView.Adapter {
             }
         });
 
+        adoptViewHolder.petPhoto2.setOnClickListener(view -> {
+                ImageDialog dialog = new ImageDialog(context, adoptApplimentList.get(position).getPetPhotoId());
+                dialog.show();
+            });
+
         }else{   //信息为求助申请
 
             HelpViewHolder helpViewHolder = new HelpViewHolder(viewHolder.itemView);
@@ -326,6 +332,11 @@ public class MemberCheckUndoFoldingCellAdapter extends RecyclerView.Adapter {
 
                     }
                 }
+            });
+
+            helpViewHolder.petPhoto2.setOnClickListener(view -> {
+                ImageDialog dialog = new ImageDialog(context, helpApplimentList.get(position).getPetPhotoId());
+                dialog.show();
             });
 
         }

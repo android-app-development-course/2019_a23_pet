@@ -12,6 +12,8 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.gohome.Member.Adapter.MemberCheckViewPagerAdapter;
 import com.example.gohome.R;
 
+import java.util.Objects;
+
 import butterknife.ButterKnife;
 
 public class MemberCheckFragment extends Fragment {
@@ -43,7 +45,7 @@ public class MemberCheckFragment extends Fragment {
     private void init(){
 
         // 创建ViewPager适配器
-        MemberCheckViewPagerAdapter memberCheckViewPagerAdapter = new MemberCheckViewPagerAdapter(getFragmentManager(),titles);
+        MemberCheckViewPagerAdapter memberCheckViewPagerAdapter = new MemberCheckViewPagerAdapter(getChildFragmentManager(),titles);
 
         // 给ViewPager设置适配器
         vp_memberCheck.setAdapter(memberCheckViewPagerAdapter);
@@ -51,6 +53,8 @@ public class MemberCheckFragment extends Fragment {
         vp_memberCheck.setCurrentItem(0);
 
         tl_memberCheck.setupWithViewPager(vp_memberCheck);
+
+
 
     }
 

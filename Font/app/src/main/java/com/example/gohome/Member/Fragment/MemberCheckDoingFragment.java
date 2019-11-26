@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.gohome.Entity.AdoptAppliment;
 import com.example.gohome.Entity.HelpAppliment;
 import com.example.gohome.Member.Adapter.MemberCheckDoingFoldingCellAdapter;
+import com.example.gohome.Member.Adapter.MemberCheckUndoFoldingCellAdapter;
 import com.example.gohome.R;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -75,8 +76,11 @@ public class MemberCheckDoingFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
         //适配器
 
-        memberCheckDoingFoldingCellAdapter = new MemberCheckDoingFoldingCellAdapter(this.getContext(), adoptApplimentList,type);
-
+        if(type == 0 ){
+            memberCheckDoingFoldingCellAdapter = new MemberCheckDoingFoldingCellAdapter(this.getContext(), adoptApplimentList,type);
+        }else{
+            memberCheckDoingFoldingCellAdapter = new MemberCheckDoingFoldingCellAdapter(this.getContext(), helpApplimentList,type);
+        }
 
         memberCheckDoingFoldingCellAdapter.setClickCallBack(new MemberCheckDoingFoldingCellAdapter.ItemClickCallBack() {
             @Override

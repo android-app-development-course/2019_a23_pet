@@ -30,15 +30,15 @@ public class MemberHomeActivity extends AppCompatActivity {
     }
 
     private void initView() {
-
-        //隐藏标题栏
-        ActionBar actionBar = getSupportActionBar();
-        //ActionBar actionBar = getActionBar();
-        actionBar.hide();
-        //隐藏标题栏阴影
-        if(Build.VERSION.SDK_INT>=21){
-            getSupportActionBar().setElevation(0);
-        }
+//
+//        //隐藏标题栏
+//        ActionBar actionBar = getSupportActionBar();
+//        //ActionBar actionBar = getActionBar();
+//        actionBar.hide();
+//        //隐藏标题栏阴影
+//        if(Build.VERSION.SDK_INT>=21){
+//            getSupportActionBar().setElevation(0);
+//        }
 
 
         bottomNavigation = (AHBottomNavigation) findViewById(R.id.btmNav_mem);

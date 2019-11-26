@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,6 +34,7 @@ import com.sdsmdg.tastytoast.TastyToast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import br.com.simplepass.loadingbutton.customViews.CircularProgressButton;
 import butterknife.ButterKnife;
@@ -211,6 +214,7 @@ public class MemberReleaseFragment extends Fragment  {
 
         Bitmap bitmapDone =  BitmapFactory.decodeResource(this.getContext().getResources(), R.drawable.ic_action_done);
         Bitmap bitmapFail = BitmapFactory.decodeResource(this.getContext().getResources(),R.drawable.ic_action_fail);
+        
 
 
         // onClickButton listener detects any click performed on buttons by touch

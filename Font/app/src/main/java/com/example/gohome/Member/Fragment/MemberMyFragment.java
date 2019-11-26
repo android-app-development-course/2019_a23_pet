@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.gohome.R;
 
+import java.util.Objects;
+
 public class MemberMyFragment extends Fragment {
 
 
@@ -17,6 +19,8 @@ public class MemberMyFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState ){
         View view = inflater.inflate(R.layout.fragment_member_my,null);
+
+
         return view;
     }
 }

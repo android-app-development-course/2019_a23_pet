@@ -68,15 +68,15 @@ public class UserHomeActivity extends AppCompatActivity implements View.OnClickL
         btm_more.setOnClickListener(this);
 
         btm_home = findViewById(R.id.btm_home);
-        btm_home.setNormalIcon(R.drawable.user_home_normal);
-        btm_home.setFocusIcon(R.drawable.user_home);
+        btm_home.setNormalIcon(R.drawable.home);
+        btm_home.setFocusIcon(R.drawable.home_selected);
         btm_home.setIconText("首页");
         btm_home.setFocused(true);
         btm_home.setOnClickListener(this);
 
         btm_mine = findViewById(R.id.btm_mine);
-        btm_mine.setNormalIcon(R.drawable.user_me_normal);
-        btm_mine.setFocusIcon(R.drawable.user_me);
+        btm_mine.setNormalIcon(R.drawable.mine);
+        btm_mine.setFocusIcon(R.drawable.mine_selected);
         btm_mine.setIconText("我的");
         btm_mine.setFocused(false);
         btm_mine.setOnClickListener(this);

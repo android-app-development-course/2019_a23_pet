@@ -29,8 +29,8 @@
         <activity android:name=".User.Activity.UserSendActivity" />
         <activity android:name=".Organizer.OrganizerMain" />
         <activity android:name=".User.Activity.UserHomeActivity" />
-        <activity android:name=".Member.Activity.MemberHomeActivity" />
-        <activity android:name=".Member.Activity.MemberHandleOperationActivity" />
+        <activity android:name=".Member.Activity.MemberHomeActivity"/>
+        <activity android:name=".Member.Activity.MemberHandleOperationActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -259,7 +259,7 @@
         -->
         <TextView
             android:id="@+id/user_btn_content_want"
-            android:layout_width="120dp"
+            android:layout_width="@dimen/cardContentBtnWidthSize"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
@@ -267,8 +267,9 @@
             android:background="@drawable/shape_user_circle_textview"
             android:gravity="center"
             android:text="带我回家"
-            android:textSize="18sp"
-            android:textColor="@color/red"/>
+            android:textSize="@dimen/cardContentBtnTextSize"
+            android:textColor="@color/orange"/>
+
     </LinearLayout>
 
 </LinearLayout>

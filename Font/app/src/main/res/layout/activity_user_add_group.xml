@@ -25,7 +25,7 @@
                 android:layout_marginHorizontal="@dimen/margin"
                 android:hint="组织名称"
                 app:met_baseColor="@color/orange"
-                app:met_iconLeft="@drawable/group"
+                app:met_iconLeft="@drawable/group_selected"
                 app:met_primaryColor="@color/orange" />
         </FrameLayout>
 

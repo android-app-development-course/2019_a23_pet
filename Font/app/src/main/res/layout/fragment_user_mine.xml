@@ -87,7 +87,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="15dp"
-                android:src="@drawable/member_adopt" />
+                android:src="@drawable/home_selected" />
 
             <TextView
                 android:id="@+id/user_tv_adoptPro"
@@ -131,7 +131,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="15dp"
-                android:src="@drawable/member_help" />
+                android:src="@drawable/help_selected" />
 
             <TextView
                 android:id="@+id/user_tv_sendPro"
@@ -171,7 +171,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="15dp"
-                android:src="@drawable/user_add" />
+                android:src="@drawable/group" />
 
             <TextView
                 android:id="@+id/user_tv_add"
@@ -209,7 +209,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="15dp"
-                android:src="@drawable/user_setting" />
+                android:src="@drawable/setting" />
 
             <TextView
                 android:id="@+id/user_tv_setting"

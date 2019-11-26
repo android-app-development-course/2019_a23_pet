@@ -378,8 +378,7 @@
                     android:id="@+id/tv_memberCheckDoneAdoptState"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxLines="5"
-                    android:textSize="@dimen/cardContentTextSize" />
+                    android:maxLines="5"/>
 
             </LinearLayout>
 
@@ -413,8 +412,7 @@
                     android:id="@+id/tv_memberCheckDoneAdoptResultDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxLines="5"
-                    android:textSize="@dimen/cardContentTextSize" />
+                    android:maxLines="5" />
 
             </LinearLayout>
 

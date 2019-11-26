@@ -171,7 +171,7 @@ public class MemberCheckDoneFragment extends Fragment {
         bmb.setButtonEnum(ButtonEnum.Ham);
         //领养信息筛选
         HamButton.Builder adoptBuilder = new HamButton.Builder()
-                .normalImageRes(R.drawable.member_adopt)
+                .normalImageRes(R.drawable.home)
                 .subNormalTextRes(R.string.floatMenuAdopt)
                 .listener(new OnBMClickListener() {
                     @Override
@@ -193,7 +193,7 @@ public class MemberCheckDoneFragment extends Fragment {
 
         //救助信息筛选
         HamButton.Builder helpBuilder = new HamButton.Builder()
-                .normalImageRes(R.drawable.member_help)
+                .normalImageRes(R.drawable.help)
                 .subNormalTextRes(R.string.floatMenuHelp)
                 .listener(new OnBMClickListener() {
                     @Override

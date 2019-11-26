@@ -40,6 +40,8 @@ public class MemberHomeActivity extends AppCompatActivity {
 //            getSupportActionBar().setElevation(0);
 //        }
 
+        setTitle("待领养宠物");
+
 
         bottomNavigation = (AHBottomNavigation) findViewById(R.id.btmNav_mem);
         viewPager = findViewById(R.id.vp_home);
@@ -55,11 +57,11 @@ public class MemberHomeActivity extends AppCompatActivity {
         viewPager.setCurrentItem(0);
 
         // Create items
-        AHBottomNavigationItem item1 = new AHBottomNavigationItem("领养", R.drawable.member_adopt,R.color.yellow);
-        AHBottomNavigationItem item2 = new AHBottomNavigationItem("救助", R.drawable.member_help,R.color.yellow);
-        AHBottomNavigationItem item3 = new AHBottomNavigationItem("发布", R.drawable.member_release,R.color.yellow);
-        AHBottomNavigationItem item4 = new AHBottomNavigationItem("审核", R.drawable.member_check,R.color.yellow);
-        AHBottomNavigationItem item5 = new AHBottomNavigationItem("我的", R.drawable.member_me,R.color.yellow);
+        AHBottomNavigationItem item1 = new AHBottomNavigationItem("领养", R.drawable.home_selected,R.color.yellow);
+        AHBottomNavigationItem item2 = new AHBottomNavigationItem("救助", R.drawable.help_selected,R.color.yellow);
+        AHBottomNavigationItem item3 = new AHBottomNavigationItem("发布", R.drawable.edit_selected,R.color.yellow);
+        AHBottomNavigationItem item4 = new AHBottomNavigationItem("审核", R.drawable.check_selected,R.color.yellow);
+        AHBottomNavigationItem item5 = new AHBottomNavigationItem("我的", R.drawable.mine_selected,R.color.yellow);
 
         // Add items
         bottomNavigation.addItem(item1);
@@ -84,6 +86,23 @@ public class MemberHomeActivity extends AppCompatActivity {
             public boolean onTabSelected(int position, boolean wasSelected) {
                 // Do something cool here...
                 viewPager.setCurrentItem(position);
+                switch (position){
+                    case 0:
+                        setTitle("待领养宠物");
+                        break;
+                    case 1:
+                        setTitle("填写救助申请");
+                        break;
+                    case 2:
+                        setTitle("发布领养宠物");
+                        break;
+                    case 3:
+                        setTitle("审核信息");
+                        break;
+                    case 4:
+                        setTitle("我的页面");
+                        break;
+                }
                 return true;
             }
         });

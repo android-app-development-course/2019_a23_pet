@@ -343,8 +343,7 @@
                     android:id="@+id/tv_memberCheckDoingAdoptApplicantDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxLines="5"
-                    android:textSize="@dimen/cardContentTextSize" />
+                    android:maxLines="5" />
 
             </LinearLayout>
 

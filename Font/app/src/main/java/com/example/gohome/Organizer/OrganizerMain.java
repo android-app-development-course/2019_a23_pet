@@ -36,11 +36,11 @@ public class OrganizerMain extends AppCompatActivity {
         viewPager.setScanScroll(false);
 
         //创建items，3个参数分别是item的文字，item的icon，选中item时的整体颜色（该项需要开启）
-        AHBottomNavigationItem item1 = new AHBottomNavigationItem("审核", R.drawable.member_check, R.color.colorPrimary);
-        AHBottomNavigationItem item2 = new AHBottomNavigationItem("加入审核", R.drawable.member_check, R.color.colorPrimary);
-        AHBottomNavigationItem item3 = new AHBottomNavigationItem("发布领养", R.drawable.member_check, R.color.colorPrimary);
-        AHBottomNavigationItem item4 = new AHBottomNavigationItem("组员", R.drawable.member_check, R.color.colorPrimary);
-        AHBottomNavigationItem item5 = new AHBottomNavigationItem("我的", R.drawable.member_check, R.color.colorPrimary);
+        AHBottomNavigationItem item1 = new AHBottomNavigationItem("审核", R.drawable.check_selected, R.color.colorPrimary);
+        AHBottomNavigationItem item2 = new AHBottomNavigationItem("加入审核", R.drawable.group_selected, R.color.colorPrimary);
+        AHBottomNavigationItem item3 = new AHBottomNavigationItem("发布领养", R.drawable.edit_selected, R.color.colorPrimary);
+        AHBottomNavigationItem item4 = new AHBottomNavigationItem("组员", R.drawable.member_selected, R.color.colorPrimary);
+        AHBottomNavigationItem item5 = new AHBottomNavigationItem("我的", R.drawable.mine_selected, R.color.colorPrimary);
 
         // Add items
         bottomNavigation.addItem(item1);

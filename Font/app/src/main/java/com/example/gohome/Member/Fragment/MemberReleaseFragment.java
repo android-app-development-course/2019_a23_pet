@@ -348,7 +348,7 @@ public class MemberReleaseFragment extends Fragment  {
             dialogBuilderSelect
                     .withTitle("上传照片")
                     .withMessage("请选择一张照片")
-                    .withDialogColor(getResources().getColor(R.color.orange))                               //def  | withDialogColor(int resid)
+                    .withDialogColor(getResources().getColor(R.color.white))                               //def  | withDialogColor(int resid)
                     .withButton1Text("拍照")                                      //def gone
                     .withButton2Text("从相册选择")                                  //def gone
                     .setButton1Click(new View.OnClickListener() {

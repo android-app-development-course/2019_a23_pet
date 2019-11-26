@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
                 android:hint="动物类型"
-                app:met_iconLeft="@drawable/member_type"
+                app:met_iconLeft="@drawable/type_selected"
                 app:met_baseColor="@color/orange"
                 app:met_primaryColor="@color/orange"/>
 
@@ -123,7 +123,7 @@
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/member_photo"/>
+                        android:src="@drawable/photo_selected"/>
                 </FrameLayout>
 
                 <TextView

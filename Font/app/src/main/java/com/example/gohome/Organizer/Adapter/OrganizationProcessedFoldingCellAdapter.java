@@ -1,6 +1,5 @@
 package com.example.gohome.Organizer.Adapter;
 
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.List;
 
-public class OrganizationUnProcessFoldingCellAdapter extends RecyclerView.Adapter{
+public class OrganizationProcessedFoldingCellAdapter extends RecyclerView.Adapter{
 
     // data source
     private List<JoinAppliment> joinApplimentList;
@@ -43,7 +42,7 @@ public class OrganizationUnProcessFoldingCellAdapter extends RecyclerView.Adapte
         void onItemClick(int pos);
     }
 
-    public OrganizationUnProcessFoldingCellAdapter(Context context, List list){
+    public OrganizationProcessedFoldingCellAdapter(Context context, List list){
         this.context = context;
         this.joinApplimentList = list;
     }
@@ -51,9 +50,9 @@ public class OrganizationUnProcessFoldingCellAdapter extends RecyclerView.Adapte
     public class ApplyViewHolder extends RecyclerView.ViewHolder{
 
         ImageView titleApplyProtrait;
-        TextView contentApplyDate, contentUsername, contentApplyName, contentGender, contentTelephone, contentAddress, contentDescription;
+        TextView contentApplyDate, contentOperateDate, contentUsername, contentApplyName, contentGender, contentTelephone, contentAddress, contentDescription;
         TextView titleTitle, titleInfoMessage, titleApplyDate;
-        TextView contentBtn;
+        TextView contentPassBtn, contentUnpassBtn;
         FoldingCell cell;
 
         public ApplyViewHolder(View itemView){
@@ -73,9 +72,11 @@ public class OrganizationUnProcessFoldingCellAdapter extends RecyclerView.Adapte
             contentTelephone = itemView.findViewById(R.id.text_view_apply_telephone);
             contentAddress =itemView.findViewById(R.id.text_view_apply_address);
             contentDescription = itemView.findViewById(R.id.text_view_apply_description);
-            contentBtn = itemView.findViewById(R.id.text_view_apply_handle);
+            contentPassBtn = itemView.findViewById(R.id.text_view_apply_pass);
+            contentUnpassBtn = itemView.findViewById(R.id.text_view_apply_unpass);
+            contentOperateDate = itemView.findViewById(R.id.text_view_apply_content_operate_date);
 
-            cell = itemView.findViewById(R.id.foldingcell_unprocess);
+            cell = itemView.findViewById(R.id.foldingcell_processed);
         }
 
     }
@@ -83,7 +84,7 @@ public class OrganizationUnProcessFoldingCellAdapter extends RecyclerView.Adapte
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.fragment_organizer_organization_unprocess_item_cell, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.fragment_organizer_organization_processed_item_cell, null);
         return new ApplyViewHolder(view);
     }
 
@@ -97,12 +98,13 @@ public class OrganizationUnProcessFoldingCellAdapter extends RecyclerView.Adapte
         String gender = joinAppliment.getGender().equals(1)? "男":"女";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
         String applyDate = simpleDateFormat.format(joinAppliment.getApplyDate());
+        String operateDate = simpleDateFormat.format(joinAppliment.getOperatorTime());
 
 
         //set title
         Glide.with(context).load(joinAppliment.getPhotoId()).into(applyViewHolder.titleApplyProtrait);
-        applyViewHolder.titleInfoMessage.setText(joinAppliment.getUsername() + "的申请，点击继续处理");
-        applyViewHolder.titleApplyDate.setText(applyDate);
+        applyViewHolder.titleInfoMessage.setText(joinAppliment.getUsername() + "的申请，点击处理");
+        applyViewHolder.titleApplyDate.setText(operateDate);
 
         //set content
         applyViewHolder.contentUsername.setText(joinAppliment.getUsername());
@@ -112,15 +114,7 @@ public class OrganizationUnProcessFoldingCellAdapter extends RecyclerView.Adapte
         applyViewHolder.contentTelephone.setText(joinAppliment.getTelephone());
         applyViewHolder.contentDescription.setText(joinAppliment.getDescription());
         applyViewHolder.contentApplyDate.setText(applyDate);
-
-        applyViewHolder.contentBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("点击了第" + position + "个处理按钮");
-                Toast.makeText(context, "点击了第" + position + "个处理按钮", Toast.LENGTH_LONG).show();
-                //处理+刷新
-            }
-        });
+        applyViewHolder.contentOperateDate.setText(operateDate);
 
         //控制cell的折叠与收缩
         applyViewHolder.cell.setOnClickListener(new View.OnClickListener() {

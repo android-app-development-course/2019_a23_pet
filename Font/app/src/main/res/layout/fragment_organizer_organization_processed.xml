@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <com.jcodecraeer.xrecyclerview.XRecyclerView
-        android:id="@+id/unprocess_xrecyclerview"
+        android:id="@+id/processed_xrecyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipChildren="false"

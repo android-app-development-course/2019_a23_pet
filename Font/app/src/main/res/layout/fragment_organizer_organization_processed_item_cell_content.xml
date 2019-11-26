@@ -25,7 +25,7 @@
             android:src="@drawable/user_content_icon" />
 
         <TextView
-            android:id="@+id/text_view_apply_content_date"
+            android:id="@+id/text_view_apply_content_operate_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -224,18 +224,36 @@
 
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/text_view_apply_handle"
-            android:layout_width="@dimen/cardContentBtnWidthSize"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/shape_user_circle_textview"
-            android:gravity="center"
-            android:text="处理"
-            android:textSize="@dimen/cardContentBtnTextSize"
-            android:textColor="@color/orange"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="9dp"
+            android:src="#e0e0e0" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="申请时间:"/>
+                <TextView
+                    android:id="@+id/text_view_apply_content_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="2dp"
+                    android:text="......"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>[
 
     </LinearLayout>
 

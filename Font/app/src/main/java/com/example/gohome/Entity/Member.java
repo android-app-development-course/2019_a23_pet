@@ -16,14 +16,24 @@ public class Member {
     private Date memberCreated;
     private String headerWord;
     private String pinyin;
+    private Integer photoId;
 
-    public Member(Integer userId, String userName, String address, String protrait){
+    public Member(Integer userId, String userName, String address, String protrait, Integer photoId){
         this.userId = userId;
         this.userName = userName;
         this.address = address;
         this.pinyin = Cn2Spell.getPinYin(userName);
         this.headerWord = Cn2Spell.getPinYinFirstLetter(userName);
         this.protrait = protrait;
+        this.photoId = photoId;
+    }
+
+    public Integer getPhotoId() {
+        return photoId;
+    }
+
+    public void setPhotoId(Integer photoId) {
+        this.photoId = photoId;
     }
 
     public Integer getUserId() {

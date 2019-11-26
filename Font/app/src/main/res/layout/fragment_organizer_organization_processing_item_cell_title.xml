@@ -57,7 +57,7 @@
                     android:maxLines="2"
                     android:ellipsize="end"
                     android:textSize="@dimen/cardTitleNameSize"
-                    android:text="小小的申请，点击进行处理"/>
+                    android:text="小小的申请，点击继续处理"/>
 
                 <RelativeLayout
                     android:layout_width="match_parent"

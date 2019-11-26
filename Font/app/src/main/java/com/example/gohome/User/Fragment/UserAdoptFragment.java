@@ -33,6 +33,11 @@ public class UserAdoptFragment extends Fragment {
 
     private List<AdoptInfo> infoList;
 
+    private String description1 = " 性格乖巧，比较黏人，已驱虫。希望找一个爱它的主人，有责任心不抛弃，接受定期回访。";
+    private String description2 = "有偿领养，疫苗已打，未绝育，有证，定期内外驱虫。性格活泼，能吃好动。希望能找到一个对它好的有爱心有经验的铲屎官。";
+    private String description3 = "要求：有时间陪伴，有病治病，吃安全狗粮，有耐心。\n基本情况：不在家大小便，必须出去上，不破坏东西，很听话。";
+    private String description4 = "身体健康，做了狂犬和驱虫，性格乖巧粘人。最近在发情期还未绝育，希望你能带去配种or绝育。";
+
     private DropDownMenu mDropDownMenu;
     private MultiMenusView multiMenusView;//多级菜单
     private SingleMenuView singleMenuView1;//单级菜单
@@ -79,12 +84,9 @@ public class UserAdoptFragment extends Fragment {
         recyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        recyclerView.refreshComplete();
-                        adapter.notifyDataSetChanged();
-                    }
+                new Handler().postDelayed(() -> {
+                    recyclerView.refreshComplete();
+                    adapter.notifyDataSetChanged();
                 }, 1500);
             }
 
@@ -118,33 +120,33 @@ public class UserAdoptFragment extends Fragment {
     boolean flag1 = true, flag2 = true;
     private void add1(){
         if(flag1) {
-            infoList.add(new AdoptInfo(R.drawable.cat3, "九九", "猫猫", 0, "3个月", " 昨夜闲潭梦落花，可怜春半不还家。江水流春去欲尽，江潭落月复西斜。", "湖北武汉", "3小时前", 1, 0, "春回大地"));
-            infoList.add(new AdoptInfo(R.drawable.dog3, "十十", "狗狗", 1, "3岁", "  斜月沉沉藏海雾，碣石潇湘无限路。不知乘月几人归，落月摇情满江树。", "河南郑州", "3小时前", 1, 0, "福满人间"));
-            infoList.add(new AdoptInfo(R.drawable.cat4, "佳佳", "猫猫", 0, "2个月", " 汉家烟尘在东北，汉将辞家破残贼。男儿本自重横行，天子非常赐颜色。", "新疆阿克苏", "4小时前", 1, 0, "彩云追月"));
-            infoList.add(new AdoptInfo(R.drawable.dog4, "依依", "狗狗", 0, "2岁半", " 摐金伐鼓下榆关，旌旆逶迤碣石间。校尉羽书飞瀚海，单于猎火照狼山。", "香港深水埗", "5小时前", 1, 0, "骏马迎春"));
-            infoList.add(new AdoptInfo(R.drawable.cat5, "冰冰", "猫猫", 1, "1岁半", " 山川萧条极边土，胡骑凭陵杂风雨。战士军前半死生，美人帐下犹歌舞。", "吉林长春", "5小时前", 1, 0, "鲤跃龙门"));
+            infoList.add(new AdoptInfo(R.drawable.cat3, "九九", "猫猫", 0, "3个月", description2, "湖北武汉", "3小时前", 1, 0, "春回大地"));
+            infoList.add(new AdoptInfo(R.drawable.dog3, "十十", "狗狗", 1, "3岁", description3, "河南郑州", "3小时前", 1, 0, "福满人间"));
+            infoList.add(new AdoptInfo(R.drawable.cat4, "佳佳", "猫猫", 0, "2个月", description1, "新疆阿克苏", "4小时前", 1, 0, "彩云追月"));
+            infoList.add(new AdoptInfo(R.drawable.dog4, "依依", "狗狗", 0, "2岁半", description4, "香港深水埗", "5小时前", 1, 0, "骏马迎春"));
+            infoList.add(new AdoptInfo(R.drawable.cat5, "冰冰", "猫猫", 1, "1岁半", description2, "吉林长春", "5小时前", 1, 0, "鲤跃龙门"));
             flag1 = false;
         }
     }
     private void add2() {
         if (flag2) {
-            infoList.add(new AdoptInfo(R.drawable.dog5, "圆圆", "狗狗", 0, "1岁10个月", "  大漠穷秋塞草腓，孤城落日斗兵稀。身当恩遇恒轻敌，力尽关山未解围。", "江苏南京", "1天前", 1, 0, "门迎百福"));
-            infoList.add(new AdoptInfo(R.drawable.cat6, "扁扁", "猫猫", 1, "2岁2个月", "   铁衣远戍辛勤久，玉箸应啼别离后。少妇城南欲断肠，征人蓟北空回首。", "台湾高雄", "1天前", 1, 0, "户纳千祥"));
-            infoList.add(new AdoptInfo(R.drawable.dog6, "哼哈", "狗狗", 1, "2岁2个月", "   边庭飘飖哪可度，绝域苍茫更何有？杀气三时作阵云，寒声一夜催刁斗。", "安徽合肥", "2天前", 1, 0, "五谷丰登"));
-            infoList.add(new AdoptInfo(R.drawable.cat7, "中分", "猫猫", 1, "2岁", "  相看白刃血纷纷，死节从来岂顾勋。君不见沙场征战苦，至今犹忆李将军。", "哥谭市", "3天前", 1, 0, "六畜兴旺"));
+            infoList.add(new AdoptInfo(R.drawable.dog5, "圆圆", "狗狗", 0, "1岁10个月", description1, "江苏南京", "1天前", 1, 0, "门迎百福"));
+            infoList.add(new AdoptInfo(R.drawable.cat6, "扁扁", "猫猫", 1, "2岁2个月", description2, "台湾高雄", "1天前", 1, 0, "户纳千祥"));
+            infoList.add(new AdoptInfo(R.drawable.dog6, "哼哈", "狗狗", 1, "2岁2个月", description3, "安徽合肥", "2天前", 1, 0, "五谷丰登"));
+            infoList.add(new AdoptInfo(R.drawable.cat7, "中分", "猫猫", 1, "2岁", description4, "哥谭市", "3天前", 1, 0, "六畜兴旺"));
             flag2 = false;
         }
     }
 
     private void initAdoptInfo() {
         infoList = new ArrayList<>();
-        infoList.add(new AdoptInfo(R.drawable.timg,"一一","狗狗",1,"2岁","   春江潮水连海平，海上明月共潮生。滟滟随波千万里，何处春江无月明！","广东广州","1小时前",1,0,"花开富贵"));
-        infoList.add(new AdoptInfo(R.drawable.cat,"二二","猫猫",0,"7个月","   江流宛转绕芳甸，月照花林皆似霰；空里流霜不觉飞，汀上白沙看不见。","四川成都","1小时前",1,0,"竹报平安"));
-        infoList.add(new AdoptInfo(R.drawable.dog,"三三","狗狗",1,"3岁","    江天一色无纤尘，皎皎空中孤月轮。江畔何人初见月？江月何年初照人？","辽宁铁岭","1小时前",1,0,"山间明月"));
-        infoList.add(new AdoptInfo(R.drawable.cat1,"四四", "猫猫",0,"11个月","    人生代代无穷已，江月年年望相似。不知江月待何人，但见长江送流水。","内蒙古鄂尔多斯","2小时前",1,0,"江上春风"));
-        infoList.add(new AdoptInfo(R.drawable.dog1,"五五","狗狗",0,"4个月","  白云一片去悠悠，青枫浦上不胜愁。谁家今夜扁舟子？何处相思明月楼？","浙江杭州","2小时前",1,0,"龙腾虎跃"));
-        infoList.add(new AdoptInfo(R.drawable.cat2,"六六","猫猫",1,"1岁3个月","    可怜楼上月徘徊，应照离人妆镜台。玉户帘中卷不去，捣衣砧上拂还来。","上海普陀","2小时前",1,0,"水啸山吟"));
-        infoList.add(new AdoptInfo(R.drawable.dog2,"七七","狗狗",1,"1岁5个月","    此时相望不相闻，愿逐月华流照君。鸿雁长飞光不度，鱼龙潜跃水成文。","湖南长沙","3小时前",1,0,"木鱼水心"));
+        infoList.add(new AdoptInfo(R.drawable.timg,"一一","狗狗",1,"2岁", description3,"广东广州","1小时前",1,0,"花开富贵"));
+        infoList.add(new AdoptInfo(R.drawable.cat,"二二","猫猫",0,"7个月", description1,"四川成都","1小时前",1,0,"竹报平安"));
+        infoList.add(new AdoptInfo(R.drawable.dog,"三三","狗狗",1,"3岁", description4,"辽宁铁岭","1小时前",1,0,"山间明月"));
+        infoList.add(new AdoptInfo(R.drawable.cat1,"四四", "猫猫",0,"11个月", description2,"内蒙古鄂尔多斯","2小时前",1,0,"江上春风"));
+        infoList.add(new AdoptInfo(R.drawable.dog1,"五五","狗狗",0,"4个月", description1,"浙江杭州","2小时前",1,0,"龙腾虎跃"));
+        infoList.add(new AdoptInfo(R.drawable.cat2,"六六","猫猫",1,"1岁3个月", description2,"上海普陀","2小时前",1,0,"水啸山吟"));
+        infoList.add(new AdoptInfo(R.drawable.dog2,"七七","狗狗",1,"1岁5个月", description3,"湖南长沙","3小时前",1,0,"木鱼水心"));
     }
 
     // 筛选

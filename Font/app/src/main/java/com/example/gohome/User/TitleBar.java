@@ -17,12 +17,18 @@ public class TitleBar extends RelativeLayout {
 
     public TitleBar(Context context) {
         super(context);
+        init(context);
     }
     public TitleBar(Context context, AttributeSet attrs) {
         super(context, attrs, 0);
+        init(context);
     }
     public TitleBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init(context);
+    }
+
+    public void init(Context context){
         LayoutInflater.from(context).inflate(R.layout.layout_title, this);
 
         iv_back = findViewById(R.id.title_back);
@@ -33,9 +39,14 @@ public class TitleBar extends RelativeLayout {
         tv_save.setOnClickListener(view -> click.saveClick());
     }
 
-    public void setTitle(String title){
+    public void setTv_title(String title){
         if(!title.isEmpty())
             tv_title.setText(title);
+    }
+
+    public void setTv_save(String name){
+        if(!name.isEmpty())
+            tv_save.setText(name);
     }
 
     public void setClick(TitleOnClick click) { this.click = click;}

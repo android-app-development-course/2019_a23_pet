@@ -116,13 +116,10 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter{
             dialog.show();
         });
 
-        mholder.publisher.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, UserAddGroupActivity.class);
-                intent.putExtra("group", mholder.publisher.getText());
-                context.startActivity(intent);
-            }
+        mholder.publisher.setOnClickListener(view -> {
+            Intent intent = new Intent(context, UserAddGroupActivity.class);
+            intent.putExtra("group", mholder.publisher.getText());
+            context.startActivity(intent);
         });
 
         mholder.cell.setOnClickListener(view -> {

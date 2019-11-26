@@ -24,6 +24,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
                 android:hint="您的姓名"
+                android:maxLines="1"
+                app:met_textColor="@color/black"
                 app:met_iconLeft="@drawable/user_me"
                 app:met_baseColor="@color/orange"
                 app:met_primaryColor="@color/orange" />
@@ -40,6 +42,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
                 android:hint="您的电话"
+                android:maxLines="1"
+                android:inputType="phone"
+                app:met_textColor="@color/black"
                 app:met_iconLeft="@drawable/phone"
                 app:met_baseColor="@color/orange"
                 app:met_primaryColor="@color/orange" />
@@ -56,6 +61,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
                 android:hint="您的地址"
+                android:maxLines="1"
+                app:met_textColor="@color/black"
                 app:met_iconLeft="@drawable/address"
                 app:met_baseColor="@color/orange"
                 app:met_primaryColor="@color/orange" />
@@ -73,7 +80,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
                 android:hint="宠物昵称"
+<<<<<<< HEAD
                 app:met_iconLeft="@drawable/name_selected"
+=======
+                android:maxLines="1"
+                app:met_textColor="@color/black"
+                app:met_iconLeft="@drawable/user_send"
+>>>>>>> 549eaecb591c9ed7d7e6d16b5d51194eeff1ff65
                 app:met_baseColor="@color/orange"
                 app:met_primaryColor="@color/orange" />
 
@@ -91,7 +104,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
                 android:hint="宠物年龄"
+<<<<<<< HEAD
                 app:met_iconLeft="@drawable/age_selected"
+=======
+                android:maxLines="1"
+                app:met_textColor="@color/black"
+                app:met_iconLeft="@drawable/member_age"
+>>>>>>> 549eaecb591c9ed7d7e6d16b5d51194eeff1ff65
                 app:met_baseColor="@color/orange"
                 app:met_primaryColor="@color/orange"/>
 
@@ -109,7 +128,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
                 android:hint="宠物类型"
+<<<<<<< HEAD
                 app:met_iconLeft="@drawable/type_selected"
+=======
+                android:maxLines="1"
+                app:met_textColor="@color/black"
+                app:met_iconLeft="@drawable/member_type"
+>>>>>>> 549eaecb591c9ed7d7e6d16b5d51194eeff1ff65
                 app:met_baseColor="@color/orange"
                 app:met_primaryColor="@color/orange"/>
 

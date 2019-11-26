@@ -1,24 +1,16 @@
 package com.example.gohome.User.Activity;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.gohome.R;
-import com.sdsmdg.tastytoast.TastyToast;
 
 import br.com.simplepass.loadingbutton.customViews.CircularProgressButton;
-import co.ceryle.radiorealbutton.RadioRealButton;
 import co.ceryle.radiorealbutton.RadioRealButtonGroup;
 
 public class UserSystemSettingActivity extends AppCompatActivity {
@@ -54,12 +46,7 @@ public class UserSystemSettingActivity extends AppCompatActivity {
 
         radGro_vibration.setOnPositionChangedListener((btn, curPos, lastPos) -> vibration = curPos);
 
-        btn_modifySystemSetting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(UserSystemSettingActivity.this, "修改成功！", Toast.LENGTH_SHORT).show();
-            }
-        });
+        btn_modifySystemSetting.setOnClickListener(view -> Toast.makeText(UserSystemSettingActivity.this, "修改成功！", Toast.LENGTH_SHORT).show());
     }
 
     @Override

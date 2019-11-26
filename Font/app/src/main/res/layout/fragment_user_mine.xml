@@ -87,7 +87,11 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="15dp"
+<<<<<<< HEAD
                 android:src="@drawable/home_selected" />
+=======
+                android:src="@drawable/schedule" />
+>>>>>>> 549eaecb591c9ed7d7e6d16b5d51194eeff1ff65
 
             <TextView
                 android:id="@+id/user_tv_adoptPro"
@@ -131,7 +135,11 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="15dp"
+<<<<<<< HEAD
                 android:src="@drawable/help_selected" />
+=======
+                android:src="@drawable/schedule" />
+>>>>>>> 549eaecb591c9ed7d7e6d16b5d51194eeff1ff65
 
             <TextView
                 android:id="@+id/user_tv_sendPro"

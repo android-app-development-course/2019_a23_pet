@@ -1,10 +1,5 @@
 package com.example.gohome.User.Activity;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,10 +11,15 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.bigkoo.alertview.AlertView;
 import com.example.gohome.Member.Adapter.GridImageAdapter;
 import com.example.gohome.Member.FullyGridLayoutManager;
 import com.example.gohome.R;
-import com.example.gohome.User.ActionSheetDialog;
 import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
@@ -81,7 +81,7 @@ public class UserReportActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                this.finish(); // back button
+                this.finish(); // user_back button
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -176,38 +176,23 @@ public class UserReportActivity extends AppCompatActivity {
         @Override
         public void onAddPicClick() {
             //弹出对话框 选择拍照或从相册选择
-            new ActionSheetDialog(UserReportActivity.this)
-                    .builder()
-                    .setCancelable(false)
-                    .setCanceledOnTouchOutside(false)
-                    .addSheetItem("拍照", ActionSheetDialog.SheetItemColor.Blue,
-                            which -> {
-                                mode = false;
-                                selectPhotos();
-                            })
-                    .addSheetItem("从相册选择", ActionSheetDialog.SheetItemColor.Blue,
-                            which -> {
-                                mode = true;
-                                selectPhotos();
-                            })
+            new AlertView.Builder().setContext(UserReportActivity.this)
+                    .setStyle(AlertView.Style.ActionSheet)
+                    .setTitle("选择操作")
+                    .setMessage(null)
+                    .setCancelText("取消")
+                    .setDestructive("拍照", "从相册中选择")
+                    .setOthers(null)
+                    .setOnItemClickListener((object, position) -> {
+                        switch (position){
+                            case 0: mode = false;
+                            selectPhotos(); break;
+                            case 1: mode = true;
+                            selectPhotos(); break;
+                        }
+                    })
+                    .build()
                     .show();
-//            dialogBuilderSelect
-//                    .withTitle("上传照片")
-//                    .withMessage("请选择一张照片")
-//                    .withDialogColor(getResources().getColor(R.color.red))                               //def  | withDialogColor(int resid)
-//                    .withButton1Text("拍照")
-//                    .withButton2Text("从相册选择")
-//                    .setButton1Click(v -> {
-//                        mode = false;
-//                        selectPhotos();
-//                        dialogBuilderSelect.dismiss();
-//                    })
-//                    .setButton2Click(v -> {
-//                        mode = true;
-//                        selectPhotos();
-//                        dialogBuilderSelect.dismiss();
-//                    })
-//                    .show();
         }
     };
 

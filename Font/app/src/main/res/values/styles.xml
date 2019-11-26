@@ -31,4 +31,9 @@
         <item name="android:windowEnterAnimation">@anim/actionsheet_dialog_in</item>
         <item name="android:windowExitAnimation">@anim/actionsheet_dialog_out</item>
     </style>
+
+    <style name="edittext" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/yellow</item>
+        <item name="colorControlNormal">@color/gray</item>
+    </style>
 </resources>

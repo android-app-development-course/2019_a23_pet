@@ -120,7 +120,7 @@ public class MemberCheckUndoFragment extends Fragment {
 //                        infoList.clear();
                         //模拟加载后的数据
 //                        for(int i = 0; i < itemLimit ;i++){
-//                            infoList.add("item" + i + "after " + refreshTime + " times of refresh");
+//                            infoList.user_add("item" + i + "after " + refreshTime + " times of refresh");
 //                        }
                         //加载完成
                         memberCheckUndoFoldingCellAdapter.notifyDataSetChanged(); //更新列表
@@ -141,7 +141,7 @@ public class MemberCheckUndoFragment extends Fragment {
 
 //                            //模拟上拉加载的数据
 //                            for(int i = 0; i < itemLimit ;i++){
-//                                infoList.add("item" + (1 + infoList.size() ) );
+//                                infoList.user_add("item" + (1 + infoList.size() ) );
 //                            }
 
                             //显示加载完成
@@ -156,7 +156,7 @@ public class MemberCheckUndoFragment extends Fragment {
                         public void run() {
                             //模拟上拉加载的数据
 //                            for(int i = 0; i < itemLimit ;i++){
-//                                infoList.add("item" + (1 + infoList.size() ) );
+//                                infoList.user_add("item" + (1 + infoList.size() ) );
 //                            }
                             //显示没有更多数据了
                             if(xrv_memberCheckUndo != null) {

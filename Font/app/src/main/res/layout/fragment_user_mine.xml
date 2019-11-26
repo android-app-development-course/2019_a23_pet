@@ -1,10 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="欢迎用户"/>
-</RelativeLayout>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/user_rel_personalInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingHorizontal="30dp"
+            android:paddingTop="80dp"
+            android:paddingBottom="30dp">
+
+            <com.zuowei.circleimageview.CircleImageView
+                android:id="@+id/user_iv_portrait"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentRight="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/defaultportrait" />
+
+            <!--        <ImageView-->
+            <!--            android:id="@+id/user_iv_userHead"-->
+            <!--            android:layout_width="80dp"-->
+            <!--            android:layout_height="80dp"-->
+            <!--            android:layout_alignParentRight="true"-->
+            <!--            android:scaleType="centerCrop"-->
+            <!--            android:src="@drawable/timg" />-->
+
+            <TextView
+                android:id="@+id/user_tv_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:ellipsize="end"
+                android:maxWidth="190dp"
+                android:maxLines="1"
+                android:text="用户昵称"
+                android:textColor="@color/black"
+                android:textSize="28sp" />
+
+            <TextView
+                android:id="@+id/user_tv_phoneText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/user_iv_portrait"
+                android:layout_alignParentLeft="true"
+                android:paddingBottom="10sp"
+                android:text="手机号：" />
+
+            <TextView
+                android:id="@+id/user_tv_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/user_iv_portrait"
+                android:layout_toRightOf="@+id/user_tv_phoneText"
+                android:paddingBottom="10sp"
+                android:text="手机号" />
+
+        </RelativeLayout>
+        <!--        分割线-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/selectedGray" />
+
+        <RelativeLayout
+            android:id="@+id/user_rel_adoptPro"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/user_select_bg"
+            android:paddingLeft="30dp">
+
+            <ImageView
+                android:id="@+id/user_iv_adopt"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/member_adopt" />
+
+            <TextView
+                android:id="@+id/user_tv_adoptPro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/user_iv_adopt"
+                android:text="领养进度"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:typeface="serif" />
+
+            <ImageView
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="30dp"
+                android:src="@drawable/user_back" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignLeft="@+id/user_tv_adoptPro"
+                android:layout_alignParentBottom="true"
+                android:background="@color/selectedGray" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/user_rel_sendPro"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@drawable/user_select_bg"
+            android:paddingLeft="30dp">
+
+            <ImageView
+                android:id="@+id/user_iv_send"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/member_help" />
+
+            <TextView
+                android:id="@+id/user_tv_sendPro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/user_iv_send"
+                android:autoLink="all"
+                android:text="送养进度"
+
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:typeface="serif" />
+
+            <ImageView
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="30dp"
+                android:src="@drawable/user_back" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/user_rel_addGroup"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/user_select_bg"
+            android:paddingLeft="30dp">
+
+            <ImageView
+                android:id="@+id/user_iv_add"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/user_add" />
+
+            <TextView
+                android:id="@+id/user_tv_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/user_iv_add"
+                android:text="加入组织"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:typeface="serif" />
+
+            <ImageView
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="30dp"
+                android:src="@drawable/user_back" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/user_rel_settingCenter"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/user_select_bg"
+            android:paddingHorizontal="30dp">
+
+            <ImageView
+                android:id="@+id/user_iv_setting"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/user_setting" />
+
+            <TextView
+                android:id="@+id/user_tv_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/user_iv_setting"
+                android:text="设置中心"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:typeface="serif" />
+
+            <ImageView
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/user_back" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</ScrollView>

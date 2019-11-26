@@ -1,6 +1,7 @@
 package com.example.gohome.User.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.gohome.Entity.AdoptInfo;
 import com.example.gohome.R;
+import com.example.gohome.User.Activity.UserAddGroupActivity;
 import com.example.gohome.User.ImageDialog;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.ramotion.foldingcell.FoldingCell;
@@ -114,12 +116,20 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter{
             dialog.show();
         });
 
+        mholder.publisher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, UserAddGroupActivity.class);
+                intent.putExtra("group", mholder.publisher.getText());
+                context.startActivity(intent);
+            }
+        });
+
         mholder.cell.setOnClickListener(view -> {
             if(mholder.cell.isUnfolded()) {
                 mholder.cell.fold(false);
             }
             else {
-
                 mholder.cell.unfold(false);
             }
         });

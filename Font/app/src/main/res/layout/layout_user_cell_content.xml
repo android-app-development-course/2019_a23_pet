@@ -52,7 +52,7 @@
         <ImageView
             android:id="@+id/user_iv_cont_petPhoto"
             android:layout_width="match_parent"
-            android:layout_height="170dp"
+            android:layout_height="205dp"
             android:scaleType="centerCrop"
             android:src="@drawable/dog" />
 

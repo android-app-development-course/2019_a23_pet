@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/margin">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/user_sound" />
+
+            </FrameLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin">
+
+                <co.ceryle.radiorealbutton.RadioRealButtonGroup
+                    android:id="@+id/user_radGro_sound"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:rrbg_animateDrawables_enter="overshoot"
+                    app:rrbg_animateTexts_enter="overshoot"
+                    app:rrbg_backgroundColor="@color/yellow"
+                    app:rrbg_dividerColor="@color/black"
+                    app:rrbg_dividerSize="1dp"
+                    app:rrbg_radius="10dp"
+                    app:rrbg_selectorColor="@color/orange"
+                    app:rrbg_selectorSize="4dp">
+
+                    <co.ceryle.radiorealbutton.RadioRealButton
+                        android:id="@+id/user_radGro_soundOpen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:rrb_ripple="true"
+                        app:rrb_rippleColor="@color/black"
+                        app:rrb_text="开"
+                        app:rrb_textColor="@color/black" />
+
+                    <co.ceryle.radiorealbutton.RadioRealButton
+                        android:id="@+id/user_radGro_soundClose"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:rrb_ripple="true"
+                        app:rrb_rippleColor="@color/black"
+                        app:rrb_text="关"
+                        app:rrb_textColor="@color/black" />
+
+                </co.ceryle.radiorealbutton.RadioRealButtonGroup>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/margin">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/user_vibration" />
+
+            </FrameLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin">
+
+                <co.ceryle.radiorealbutton.RadioRealButtonGroup
+                    android:id="@+id/user_radGro_vibration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:rrbg_animateDrawables_enter="overshoot"
+                    app:rrbg_animateTexts_enter="overshoot"
+                    app:rrbg_backgroundColor="@color/yellow"
+                    app:rrbg_dividerColor="@color/black"
+                    app:rrbg_dividerSize="1dp"
+                    app:rrbg_radius="10dp"
+                    app:rrbg_selectorColor="@color/orange"
+                    app:rrbg_selectorSize="4dp">
+
+                    <co.ceryle.radiorealbutton.RadioRealButton
+                        android:id="@+id/user_radGro_vibrationOpen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:rrb_ripple="true"
+                        app:rrb_rippleColor="@color/black"
+                        app:rrb_text="开"
+                        app:rrb_textColor="@color/black" />
+
+                    <co.ceryle.radiorealbutton.RadioRealButton
+                        android:id="@+id/user_radGro_vibrationClose"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:rrb_checked="true"
+                        app:rrb_ripple="true"
+                        app:rrb_rippleColor="@color/black"
+                        app:rrb_text="关"
+                        app:rrb_textColor="@color/black" />
+
+                </co.ceryle.radiorealbutton.RadioRealButtonGroup>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+            android:id="@+id/user_btn_modifySystemSetting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/btn_background"
+            android:letterSpacing="0.05"
+            android:text="确认修改"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:spinning_bar_color="#FFF"
+            app:spinning_bar_padding="6dp"
+            app:spinning_bar_width="4dp" />
+
+    </LinearLayout>
+
+</ScrollView>

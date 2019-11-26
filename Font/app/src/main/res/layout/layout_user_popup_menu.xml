@@ -11,7 +11,7 @@
     <LinearLayout
         android:id="@+id/lin_bottomNav"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="234dp"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:paddingTop="30dp"

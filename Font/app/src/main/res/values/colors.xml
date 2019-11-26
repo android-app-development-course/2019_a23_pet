@@ -11,9 +11,10 @@
     <!--不知道怎么形容这个颜色-->
     <color name="darkRedDeeply">#5b0909</color>
     <color name="lightYellow">#FCFCCF</color>
+    <color name="selectedGray">#DCDCDC</color>
 
 
-
+    <color name="shallowOrange">#80E26241</color>
     <color name="inactiveGray">#747474</color>
     <color name="white">#FFFFFF</color>
     <color name="red">#F70938</color>

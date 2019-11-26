@@ -33,6 +33,10 @@
         20dp
     </dimen>
 
+    <dimen name="xrv_padding">
+        16dp
+    </dimen>
+
 
     <!--    字体大小-->
     <!--    顶部导航栏字体大小-->

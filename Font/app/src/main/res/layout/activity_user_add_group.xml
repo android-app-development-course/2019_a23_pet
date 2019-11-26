@@ -24,6 +24,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
                 android:hint="组织名称"
+                android:maxLines="1"
+                app:met_textColor="@color/black"
                 app:met_baseColor="@color/orange"
                 app:met_iconLeft="@drawable/group"
                 app:met_primaryColor="@color/orange" />
@@ -41,6 +43,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
                 android:hint="您的姓名"
+                android:maxLines="1"
+                app:met_textColor="@color/black"
                 app:met_baseColor="@color/orange"
                 app:met_iconLeft="@drawable/user_me"
                 app:met_primaryColor="@color/orange" />
@@ -58,6 +62,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
                 android:hint="您的电话"
+                android:maxLines="1"
+                android:inputType="phone"
+                app:met_textColor="@color/black"
                 app:met_baseColor="@color/orange"
                 app:met_iconLeft="@drawable/phone"
                 app:met_primaryColor="@color/orange" />
@@ -75,6 +82,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
                 android:hint="您的地址"
+                android:maxLines="1"
+                app:met_textColor="@color/black"
                 app:met_baseColor="@color/orange"
                 app:met_iconLeft="@drawable/address"
                 app:met_primaryColor="@color/orange" />
@@ -91,6 +100,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
                 android:hint="您的职业"
+                android:maxLines="1"
+                app:met_textColor="@color/black"
                 app:met_iconLeft="@drawable/user_job"
                 app:met_baseColor="@color/orange"
                 app:met_primaryColor="@color/orange" />
@@ -108,34 +119,10 @@
                 etPromptPosition="promptDn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:etHint="个人简介"
+                app:etHint="个人简介、加入理由"
                 app:etHintColor="@color/shallowOrange"
                 app:etLineColor="@color/colorAccent"
-                app:etMaxLength="200"
-                app:etMinHeight="200dp"
-                app:etPromptTextColor="@color/colorAccent"
-                app:etPromptTextSize="16sp"
-                app:etTextColor="@color/orange"
-                app:etTextSize="16sp"
-                app:etType="singular" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin"
-            android:background="@color/white"
-            android:padding="12dp">
-
-            <fj.edittextcount.lib.FJEditTextCount
-                android:id="@+id/et_addDesc"
-                etPromptPosition="promptDn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:etHint="加入理由"
-                app:etHintColor="@color/shallowOrange"
-                app:etLineColor="@color/colorAccent"
-                app:etMaxLength="200"
+                app:etMaxLength="300"
                 app:etMinHeight="200dp"
                 app:etPromptTextColor="@color/colorAccent"
                 app:etPromptTextSize="16sp"

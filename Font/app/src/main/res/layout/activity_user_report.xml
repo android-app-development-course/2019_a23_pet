@@ -24,6 +24,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
                 android:hint="您的姓名"
+                android:maxLines="1"
+                app:met_textColor="@color/black"
                 app:met_iconLeft="@drawable/user_me"
                 app:met_baseColor="@color/orange"
                 app:met_primaryColor="@color/orange" />
@@ -40,6 +42,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
                 android:hint="您的电话"
+                android:maxLines="1"
+                app:met_textColor="@color/black"
+                android:inputType="phone"
                 app:met_iconLeft="@drawable/phone"
                 app:met_baseColor="@color/orange"
                 app:met_primaryColor="@color/orange" />
@@ -56,6 +61,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
                 android:hint="动物地址"
+                android:maxLines="1"
+                app:met_textColor="@color/black"
                 app:met_iconLeft="@drawable/address"
                 app:met_baseColor="@color/orange"
                 app:met_primaryColor="@color/orange" />
@@ -73,6 +80,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
                 android:hint="动物类型"
+                android:maxLines="1"
+                app:met_textColor="@color/black"
                 app:met_iconLeft="@drawable/member_type"
                 app:met_baseColor="@color/orange"
                 app:met_primaryColor="@color/orange"/>

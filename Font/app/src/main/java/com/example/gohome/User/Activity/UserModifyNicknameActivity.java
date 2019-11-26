@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gohome.R;
+import com.example.gohome.User.TitleBar;
 
 public class UserModifyNicknameActivity extends AppCompatActivity {
     private EditText etNickname;

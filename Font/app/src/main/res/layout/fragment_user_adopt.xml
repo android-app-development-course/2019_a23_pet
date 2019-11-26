@@ -2,24 +2,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:plv="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <com.qlh.dropdownmenu.DropDownMenu
         android:id="@+id/dropDownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        app:dddividerColor="@color/yellow"
+        app:dddividerColor="@color/inactiveGray"
         app:ddunderlineColor="@color/yellow"
-
         app:ddmaskColor="#88888888"
-        app:ddmenuBackgroundColor="@color/background"
+        app:ddmenuBackgroundColor="@color/yellow"
         app:ddmenuSelectedIcon="@drawable/up"
         app:ddmenuUnselectedIcon="@drawable/down"
         app:ddmenuTextSize="14sp"
         app:ddtextSelectedColor="@color/black"
-        app:ddtextUnselectedColor="@color/gray" />
+        app:ddtextUnselectedColor="@color/inactiveGray" />
 
     <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:id="@+id/user_lv_adopt"

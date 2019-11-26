@@ -26,7 +26,6 @@ public class UserAddGroupActivity extends AppCompatActivity {
     private EditText et_addUserAddress;
     private EditText et_addUserJob;
     private FJEditTextCount et_personalDesc;
-    private FJEditTextCount et_addDesc;
     private CircularProgressButton btn_addGroupSubmit;
 
     private String groupName;
@@ -70,7 +69,6 @@ public class UserAddGroupActivity extends AppCompatActivity {
         et_addUserAddress = findViewById(R.id.et_addUserAddress);
         et_addUserJob = findViewById(R.id.et_addUserJob);
         et_personalDesc = findViewById(R.id.et_personalDesc);
-        et_addDesc = findViewById(R.id.et_addDesc);
         btn_addGroupSubmit = findViewById(R.id.user_btn_addGroupSubmit);
 
         btn_addGroupSubmit.setOnClickListener(view -> {
@@ -98,7 +96,6 @@ public class UserAddGroupActivity extends AppCompatActivity {
             et_addUserAddress.setText("");
             et_addUserJob.setText("");
             et_personalDesc.setText("");
-            et_addDesc.setText("");
 
             //还原提交按钮
             //btn_addGroupSubmit.revertAnimation();

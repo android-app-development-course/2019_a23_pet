@@ -77,7 +77,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="昵称:"/>
+                    android:text="昵称："/>
 
                 <TextView
                     android:id="@+id/tv_memberCheckUndoHelpContentPetName"
@@ -113,7 +113,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="性别:"/>
+                    android:text="性别："/>
 
                 <TextView
                     android:id="@+id/tv_memberCheckUndoHelpPetGender"
@@ -134,7 +134,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="年龄:"/>
+                    android:text="年龄："/>
 
                 <TextView
                     android:id="@+id/tv_memberCheckUndoHelpPetAge"
@@ -169,7 +169,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="疫苗:"/>
+                    android:text="疫苗："/>
 
                 <ImageView
                     android:id="@+id/iv_memberCheckUndoHelpVaccine"
@@ -189,7 +189,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="绝育:"/>
+                    android:text="绝育："/>
 
                 <ImageView
                     android:id="@+id/iv_memberCheckUndoHelpSterilization"
@@ -224,7 +224,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="申请人:"/>
+                    android:text="申请人："/>
 
                 <TextView
                     android:id="@+id/tv_memberCheckUndoHelpApplicantName"
@@ -260,7 +260,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="联系方式:"/>
+                    android:text="联系方式："/>
 
                 <TextView
                     android:id="@+id/tv_memberCheckUndoHelpApplicantTel"
@@ -319,19 +319,19 @@
             android:src="#e0e0e0" />
 
         <!-- description  -->
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:orientation="horizontal">
+<!--        <RelativeLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent">-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentStart="true"-->
+<!--                android:orientation="horizontal">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="求助申请描述:"/>
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="求助申请描述："/>-->
 
                 <TextView
                     android:id="@+id/tv_memberCheckUndoHelpApplicantDescription"
@@ -339,10 +339,10 @@
                     android:layout_height="wrap_content"
                     android:maxLines="5" />
 
-            </LinearLayout>
+<!--            </LinearLayout>-->
 
 
-        </RelativeLayout>
+<!--        </RelativeLayout>-->
 
 
         <TextView

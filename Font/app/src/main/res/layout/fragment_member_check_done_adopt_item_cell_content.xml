@@ -62,7 +62,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="昵称:"/>
+                    android:text="昵称："/>
 
                 <TextView
                     android:id="@+id/tv_memberCheckDoneAdoptContentPetName"
@@ -98,7 +98,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="性别:"/>
+                    android:text="性别："/>
 
                 <TextView
                     android:id="@+id/tv_memberCheckDoneAdoptPetGender"
@@ -119,7 +119,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="年龄:"/>
+                    android:text="年龄："/>
 
                 <TextView
                     android:id="@+id/tv_memberCheckDoneAdoptPetAge"
@@ -154,7 +154,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="疫苗:"/>
+                    android:text="疫苗："/>
 
                 <ImageView
                     android:id="@+id/iv_memberCheckDoneAdoptVaccine"
@@ -174,7 +174,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="绝育:"/>
+                    android:text="绝育："/>
 
                 <ImageView
                     android:id="@+id/iv_memberCheckDoneAdoptSterilization"
@@ -209,7 +209,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="申请人:"/>
+                    android:text="申请人："/>
 
                 <TextView
                     android:id="@+id/tv_memberCheckDoneAdoptApplicantName"
@@ -230,7 +230,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="职业:"/>
+                    android:text="职业："/>
 
                 <TextView
                     android:id="@+id/tv_memberCheckDoneAdoptApplicantJob"
@@ -266,7 +266,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="联系方式:"/>
+                    android:text="联系方式："/>
 
                 <TextView
                     android:id="@+id/tv_memberCheckDoneAdoptApplicantTel"
@@ -302,7 +302,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="地址:"/>
+                    android:text="地址："/>
 
                 <TextView
                     android:id="@+id/tv_memberCheckDoneAdoptApplicantAddress"
@@ -337,7 +337,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="领养申请描述:"/>
+                    android:text="领养申请描述："/>
 
                 <TextView
                     android:id="@+id/tv_memberCheckDoneAdoptApplicantDescription"
@@ -372,7 +372,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="领养申请状态:"/>
+                    android:text="领养申请状态："/>
 
                 <TextView
                     android:id="@+id/tv_memberCheckDoneAdoptState"
@@ -394,19 +394,19 @@
             android:src="#e0e0e0" />
 
         <!-- result description  -->
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:orientation="horizontal">
+<!--        <RelativeLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent">-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentStart="true"-->
+<!--                android:orientation="horizontal">-->
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="处理反馈:"/>
+                    android:text="处理反馈："/>
 
                 <TextView
                     android:id="@+id/tv_memberCheckDoneAdoptResultDescription"
@@ -414,10 +414,10 @@
                     android:layout_height="wrap_content"
                     android:maxLines="5" />
 
-            </LinearLayout>
+<!--            </LinearLayout>-->
 
 
-        </RelativeLayout>
+<!--        </RelativeLayout>-->
 
     </LinearLayout>
 

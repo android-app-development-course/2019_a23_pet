@@ -27,7 +27,8 @@
                 android:hint="您的姓名"
                 app:met_iconLeft="@drawable/mine_selected"
                 app:met_baseColor="@color/orange"
-                app:met_primaryColor="@color/orange" />
+                app:met_primaryColor="@color/orange"
+                android:maxLines="1"/>
         </FrameLayout>
 
         <FrameLayout
@@ -43,7 +44,9 @@
                 android:hint="您的电话"
                 app:met_iconLeft="@drawable/phone"
                 app:met_baseColor="@color/orange"
-                app:met_primaryColor="@color/orange" />
+                app:met_primaryColor="@color/orange"
+                android:maxLines="1"
+                android:inputType="phone"/>
         </FrameLayout>
 
         <FrameLayout
@@ -59,7 +62,8 @@
                 android:hint="您的地址"
                 app:met_iconLeft="@drawable/address"
                 app:met_baseColor="@color/orange"
-                app:met_primaryColor="@color/orange" />
+                app:met_primaryColor="@color/orange"
+                android:maxLines="1"/>
         </FrameLayout>
 
         <FrameLayout
@@ -76,7 +80,8 @@
                 android:hint="宠物昵称"
                 app:met_iconLeft="@drawable/name_selected"
                 app:met_baseColor="@color/orange"
-                app:met_primaryColor="@color/orange" />
+                app:met_primaryColor="@color/orange"
+                android:maxLines="1"/>
 
         </FrameLayout>
 
@@ -94,7 +99,8 @@
                 android:hint="宠物年龄"
                 app:met_iconLeft="@drawable/age_selected"
                 app:met_baseColor="@color/orange"
-                app:met_primaryColor="@color/orange"/>
+                app:met_primaryColor="@color/orange"
+                android:maxLines="1"/>
 
         </FrameLayout>
 
@@ -112,7 +118,8 @@
                 android:hint="宠物类型"
                 app:met_iconLeft="@drawable/type_selected"
                 app:met_baseColor="@color/orange"
-                app:met_primaryColor="@color/orange"/>
+                app:met_primaryColor="@color/orange"
+                android:maxLines="1"/>
 
         </FrameLayout>
 
@@ -160,7 +167,7 @@
                         android:layout_height="wrap_content"
                         app:rrb_ripple="true"
                         app:rrb_rippleColor="@color/black"
-                        app:rrb_text="公"
+                        app:rrb_text="男生"
                         app:rrb_textColor="@color/black" />
 
                     <co.ceryle.radiorealbutton.RadioRealButton
@@ -169,7 +176,7 @@
                         android:layout_height="wrap_content"
                         app:rrb_ripple="true"
                         app:rrb_rippleColor="@color/black"
-                        app:rrb_text="母"
+                        app:rrb_text="女生"
                         app:rrb_textColor="@color/black"/>
 
                 </co.ceryle.radiorealbutton.RadioRealButtonGroup>

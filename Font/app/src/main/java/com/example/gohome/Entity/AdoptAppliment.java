@@ -53,7 +53,7 @@ public class AdoptAppliment {
     private boolean vaccine; // 是否注射疫苗
     private boolean sterilization ; // 绝育情况
     private Integer petPhotoId;      //宠物图片的id
-    private Date date;  //申请日期
+    private String date;  //申请日期
     private Integer adoptApplimentId;    //领养申请信息数据库ID
     private Integer state;  //申请领养信息状态
     private String resultDescription; //信息处理结果反馈
@@ -84,11 +84,11 @@ public class AdoptAppliment {
 
 
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
     public String getJob() {
@@ -167,7 +167,7 @@ public class AdoptAppliment {
     public AdoptAppliment(String applyName,
         String telephone,String address,String description,String petName ,String petAge,
                           String petType,boolean petGender,boolean vaccine,boolean sterilization,
-                          Integer petPhotoId,Date date,String job, Integer adoptApplimentId, Integer state, String resultDescription){
+                          Integer petPhotoId,String date,String job, Integer adoptApplimentId, Integer state, String resultDescription){
         this.address = address;
         this.applyName = applyName;
         this.description = description;

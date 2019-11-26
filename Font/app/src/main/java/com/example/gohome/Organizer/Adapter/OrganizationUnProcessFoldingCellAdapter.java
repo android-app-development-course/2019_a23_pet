@@ -33,9 +33,9 @@ public class OrganizationUnProcessFoldingCellAdapter extends RecyclerView.Adapte
     private View.OnClickListener defaultRequestBtnClickListener;
     //点击的返回
 
-    private OrganizationUnProcessFoldingCellAdapter.ItemClickCallBack clickCallBack;
+    private ItemClickCallBack clickCallBack;
 
-    public void setClickCallBack(OrganizationUnProcessFoldingCellAdapter.ItemClickCallBack clickCallBack) {
+    public void setClickCallBack(ItemClickCallBack clickCallBack) {
         this.clickCallBack = clickCallBack;
     }
 

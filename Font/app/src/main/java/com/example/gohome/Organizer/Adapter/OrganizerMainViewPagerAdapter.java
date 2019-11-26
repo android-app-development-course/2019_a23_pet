@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.example.gohome.Member.Fragment.MemberCheckFragment;
+import com.example.gohome.Member.Fragment.MemberReleaseFragment;
 import com.example.gohome.Organizer.Fragment.OrganizerAdoptFragment;
 import com.example.gohome.Organizer.Fragment.OrganizerCheckFragment;
 import com.example.gohome.Organizer.Fragment.OrganizerMemberFragment;
@@ -24,9 +26,9 @@ public class OrganizerMainViewPagerAdapter extends FragmentPagerAdapter {
         super(fm);
 
         fragmentList = new ArrayList<>();
-        fragmentList.add(0, new OrganizerCheckFragment());
+        fragmentList.add(0, new MemberCheckFragment());
         fragmentList.add(1, new OrganizerOrganizationFragment());
-        fragmentList.add(2, new OrganizerAdoptFragment());
+        fragmentList.add(2, new MemberReleaseFragment());
         fragmentList.add(3, new OrganizerMemberFragment());
         fragmentList.add(4, new OrganizerMineFragment());
     }

@@ -15,6 +15,7 @@ public class OrganizerMain extends AppCompatActivity {
 
     private AHBottomNavigation bottomNavigation;
     private OrganizerViewPager viewPager;
+    public Boolean isLogin=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +51,11 @@ public class OrganizerMain extends AppCompatActivity {
         bottomNavigation.addItem(item5);
 
         //设置整体背景颜色（如果开启了单个的背景颜色，该项将会无效）
-        bottomNavigation.setDefaultBackgroundColor(Color.parseColor("#FFFFFF"));
+        bottomNavigation.setDefaultBackgroundColor(getResources().getColor(R.color.yellow));
 
         //设置item被选中和待选时的颜色
-        bottomNavigation.setAccentColor(Color.parseColor("#98F5FF"));
-        bottomNavigation.setInactiveColor(Color.parseColor("#ffffff"));
+        bottomNavigation.setAccentColor(getResources().getColor(R.color.orange));
+        bottomNavigation.setInactiveColor(getResources().getColor(R.color.inactiveGray));
 
         //是否开启切换item切换颜色
         bottomNavigation.setColored(true);
@@ -72,9 +73,24 @@ public class OrganizerMain extends AppCompatActivity {
         bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
             @Override
             public boolean onTabSelected(int position, boolean wasSelected) {
-                //点击item时的事件
-                System.out.println("onTabSelected position: " + position);
                 viewPager.setCurrentItem(position);
+                switch (position){
+                    case 0:
+                        setTitle("审核领养申请");
+                        break;
+                    case 1:
+                        setTitle("审核加入申请");
+                        break;
+                    case 2:
+                        setTitle("发布领养宠物");
+                        break;
+                    case 3:
+                        setTitle("组织成员");
+                        break;
+                    case 4:
+                        setTitle("我的页面");
+                        break;
+                }
                 return true;
             }
         });

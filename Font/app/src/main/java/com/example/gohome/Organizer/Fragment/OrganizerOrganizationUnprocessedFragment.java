@@ -101,10 +101,16 @@ public class OrganizerOrganizationUnprocessedFragment extends Fragment {
                     new Handler().postDelayed(new Runnable(){
                         public void run() {
 
-//                            //模拟上拉加载的数据
-//                            for(int i = 0; i < itemLimit ;i++){
-//                                infoList.user_add("item" + (1 + infoList.size() ) );
-//                            }
+//                            if (times == 0){
+//                                    add1();
+//                                    memberCheckUndoFoldingCellAdapter.notifyDataSetChanged();
+//                                    xrv_memberCheckUndo.loadMoreComplete();
+//                                }
+//                                if(times == 1){
+//                                    add2();
+//                                    memberCheckUndoFoldingCellAdapter.notifyDataSetChanged();
+//                                    xrv_memberCheckUndo.loadMoreComplete();
+//                                }
 
                             //显示加载完成
                             if(xrv_organizerCheckDoing != null) {

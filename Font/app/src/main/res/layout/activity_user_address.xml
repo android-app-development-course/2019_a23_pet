@@ -9,6 +9,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="仍未实现，暂时搁置"/>
+        android:text="我的地址页面，暂时搁置"/>
 
 </LinearLayout>

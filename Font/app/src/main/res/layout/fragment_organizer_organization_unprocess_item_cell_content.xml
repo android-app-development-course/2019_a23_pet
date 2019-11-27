@@ -75,7 +75,6 @@
             android:layout_marginBottom="6dp"
             android:layout_marginTop="9dp"
             android:src="#e0e0e0" />
-
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
@@ -98,10 +97,23 @@
                     android:text="......"/>
 
             </LinearLayout>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="9dp"
+            android:src="#e0e0e0" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
                 android:orientation="horizontal">
 
                 <TextView
@@ -118,6 +130,7 @@
             </LinearLayout>
 
         </RelativeLayout>
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -146,10 +159,23 @@
                     android:text="......"/>
 
             </LinearLayout>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="9dp"
+            android:src="#e0e0e0" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
                 android:orientation="horizontal">
 
                 <TextView
@@ -166,6 +192,7 @@
             </LinearLayout>
 
         </RelativeLayout>
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="1dp"

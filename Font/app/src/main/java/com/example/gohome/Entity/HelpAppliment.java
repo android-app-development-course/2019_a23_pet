@@ -165,7 +165,4 @@ public class HelpAppliment {
         this.state = state;
         this.resultDescription = resultDescription;
     }
-
-
-
 }

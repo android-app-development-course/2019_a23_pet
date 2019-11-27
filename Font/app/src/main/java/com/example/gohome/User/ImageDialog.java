@@ -2,6 +2,7 @@ package com.example.gohome.User;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -14,11 +15,19 @@ import com.example.gohome.R;
 
 public class ImageDialog extends Dialog {
     private ImageView magnifiedImage;
-    private int imageId;
+    private int intImageId;
+    private Uri uriImageId;
 
-    public ImageDialog(@NonNull Context context, int imageId) {
+    public ImageDialog(@NonNull Context context, int intImageId) {
         super(context);
-        this.imageId = imageId;
+        this.intImageId = intImageId;
+        uriImageId = null;
+    }
+
+    public ImageDialog(@NonNull Context context, Uri uriImageId) {
+        super(context);
+        this.uriImageId = uriImageId;
+        intImageId = 0;
     }
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +42,10 @@ public class ImageDialog extends Dialog {
 
         magnifiedImage = findViewById(R.id.image_dialog);
 
-        Glide.with(getContext()).load(imageId).into(magnifiedImage);
+        if (uriImageId == null)
+            Glide.with(getContext()).load(intImageId).into(magnifiedImage);
+        else
+            Glide.with(getContext()).load(uriImageId).into(magnifiedImage);
 
         magnifiedImage.setOnClickListener(view -> dismiss());
 

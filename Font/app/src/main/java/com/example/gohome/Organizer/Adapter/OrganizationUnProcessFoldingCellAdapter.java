@@ -94,14 +94,14 @@ public class OrganizationUnProcessFoldingCellAdapter extends RecyclerView.Adapte
         FoldingCell foldingCell = (FoldingCell)holder.itemView;
 
         JoinAppliment joinAppliment = joinApplimentList.get(position);
-        String gender = joinAppliment.getGender().equals(Integer.valueOf(1))? "男":"女";
+        String gender = joinAppliment.getGender().equals(1)? "男":"女";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
         String applyDate = simpleDateFormat.format(joinAppliment.getApplyDate());
 
 
         //set title
         Glide.with(context).load(joinAppliment.getPhotoId()).into(applyViewHolder.titleApplyProtrait);
-        applyViewHolder.titleInfoMessage.setText(joinAppliment.getUsername() + "的申请，点击处理");
+        applyViewHolder.titleInfoMessage.setText(joinAppliment.getUsername() + "的申请，点击继续处理");
         applyViewHolder.titleApplyDate.setText(applyDate);
 
         //set content

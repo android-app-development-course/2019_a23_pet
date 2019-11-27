@@ -8,7 +8,7 @@ public class JoinAppliment {
     private String applyName, telephone, description, address, username, protrait;
     private int photoId;
 
-    public JoinAppliment(Integer gender, Date applyDate, String telephone, String applyName, String description, String address, String username, Integer photoId) {
+    public JoinAppliment(Integer gender, Date applyDate, String applyName, String telephone, String address, String description, String username, Integer photoId) {
         this.gender = gender;
         this.applyDate = applyDate;
         this.applyName = applyName;
@@ -17,6 +17,18 @@ public class JoinAppliment {
         this.address = address;
         this.username = username;
         this.photoId = photoId;
+    }
+
+    public JoinAppliment(Integer gender, Date applyDate, String applyName, String telephone, String address, String description, String username, Integer photoId, Date operatorTime) {
+        this.gender = gender;
+        this.applyDate = applyDate;
+        this.applyName = applyName;
+        this.telephone = telephone;
+        this.description = description;
+        this.address = address;
+        this.username = username;
+        this.photoId = photoId;
+        this.operatorTime = operatorTime;
     }
 
     public int getPhotoId() {

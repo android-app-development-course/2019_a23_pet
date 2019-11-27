@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.gohome.Entity.Member;
 import com.example.gohome.R;
 
@@ -74,7 +75,7 @@ public class MemberListViewAdapter extends BaseAdapter {
         Member member = memberList.get(i);
         String word = member.getHeaderWord();
         viewHolder.tv_userName.setText(member.getUserName());
-        viewHolder.iv_protrait.setImageURI(Uri.parse(member.getProtrait()));
+        Glide.with(view.getContext()).load(member.getPhotoId()).override(60, 60).centerCrop().into(viewHolder.iv_protrait);
         viewHolder.tv_address.setText(member.getAddress());//            viewHolder.tv_pinyin = member.getPinyin();
         viewHolder.tv_headerWord.setText(word);
 

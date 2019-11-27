@@ -9,6 +9,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="未找到合适的手机验证码的样式，此页面暂时搁置。"/>
+        android:text="修改手机号页面，未找到合适的手机验证码的样式，此页面暂时搁置。"/>
 
 </LinearLayout>

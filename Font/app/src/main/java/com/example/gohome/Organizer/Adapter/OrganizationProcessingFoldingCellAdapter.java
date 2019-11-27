@@ -98,7 +98,7 @@ public class OrganizationProcessingFoldingCellAdapter extends RecyclerView.Adapt
 
         //set title
         Glide.with(context).load(joinAppliment.getPhotoId()).into(applyViewHolder.titleApplyProtrait);
-        applyViewHolder.titleInfoMessage.setText(joinAppliment.getUsername() + "的申请，点击处理");
+        applyViewHolder.titleInfoMessage.setText(joinAppliment.getUsername() + "的申请，点击继续处理");
         applyViewHolder.titleApplyDate.setText(applyDate);
 
         //set content

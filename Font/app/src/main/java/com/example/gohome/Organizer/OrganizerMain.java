@@ -58,7 +58,7 @@ public class OrganizerMain extends AppCompatActivity {
         bottomNavigation.setInactiveColor(getResources().getColor(R.color.inactiveGray));
 
         //是否开启切换item切换颜色
-        bottomNavigation.setColored(true);
+//        bottomNavigation.setColored(true);
 
         //设置初始选中的item
         bottomNavigation.setCurrentItem(0);

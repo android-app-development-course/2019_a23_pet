@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class HelpAppliment {
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -108,7 +108,7 @@ public class HelpAppliment {
     }
 
 
-    private Date date;     //救助申请日期
+    private String date;     //救助申请日期
     private String applicantName;   //救助申请人姓名
     private String applicantTel;     //救助申请人电话
     private String applicantAddress; //救助申请人地址
@@ -142,7 +142,9 @@ public class HelpAppliment {
     private String resultDescription; //信息处理结果反馈
 
 
-    public HelpAppliment(Date date,String applicantName,String applicantTel, String applicantAddress,
+
+
+    public HelpAppliment(String date,String applicantName,String applicantTel, String applicantAddress,
                          String petName, String petAge, String petType, boolean petGender, boolean vaccine,
                          boolean sterilization, String description, Integer petPhotoId,Integer helpApplimentId,
                          Integer state , String resultDescription){

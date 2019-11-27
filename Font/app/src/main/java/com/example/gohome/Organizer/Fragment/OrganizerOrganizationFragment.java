@@ -39,7 +39,7 @@ public class OrganizerOrganizationFragment extends Fragment {
 
     private void init(){
 
-        OrganizerCheckViewPagerAdapter organizerCheckViewPagerAdapter = new OrganizerCheckViewPagerAdapter(getFragmentManager(), titles);
+        OrganizerCheckViewPagerAdapter organizerCheckViewPagerAdapter = new OrganizerCheckViewPagerAdapter(getChildFragmentManager(), titles);
 
         viewPager.setAdapter(organizerCheckViewPagerAdapter);
 

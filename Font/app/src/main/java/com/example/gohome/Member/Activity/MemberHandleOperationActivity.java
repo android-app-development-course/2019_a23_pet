@@ -1,5 +1,6 @@
 package com.example.gohome.Member.Activity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.gohome.Member.Fragment.MemberCheckUndoFragment;
 import com.example.gohome.R;
 import com.sdsmdg.tastytoast.TastyToast;
 
@@ -92,7 +94,8 @@ public class MemberHandleOperationActivity extends AppCompatActivity {
 
                 //还原提交按钮
 //                btn.revertAnimation();
-
+                Intent intent = new Intent(MemberHandleOperationActivity.this, MemberCheckUndoFragment.class);
+                startActivity(intent);
             }
         });
 

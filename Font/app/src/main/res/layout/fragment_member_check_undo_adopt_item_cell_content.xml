@@ -75,7 +75,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="昵称:"/>
+                    android:text="昵称："/>
 
                 <TextView
                     android:id="@+id/tv_memberCheckUndoAdoptContentPetName"
@@ -111,7 +111,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="性别:"/>
+                    android:text="性别："/>
 
                 <TextView
                     android:id="@+id/tv_memberCheckUndoAdoptPetGender"
@@ -132,7 +132,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="年龄:"/>
+                    android:text="年龄："/>
 
                 <TextView
                     android:id="@+id/tv_memberCheckUndoAdoptPetAge"
@@ -167,7 +167,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="疫苗:"/>
+                    android:text="疫苗："/>
 
                 <ImageView
                     android:id="@+id/iv_memberCheckUndoAdoptVaccine"
@@ -187,7 +187,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="绝育:"/>
+                    android:text="绝育："/>
 
                 <ImageView
                     android:id="@+id/iv_memberCheckUndoAdoptSterilization"
@@ -222,7 +222,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="申请人:"/>
+                    android:text="申请人："/>
 
                 <TextView
                     android:id="@+id/tv_memberCheckUndoAdoptApplicantName"
@@ -243,7 +243,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="职业:"/>
+                    android:text="职业："/>
 
                 <TextView
                     android:id="@+id/tv_memberCheckUndoAdoptApplicantJob"
@@ -279,7 +279,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="联系方式:"/>
+                    android:text="联系方式："/>
 
                 <TextView
                     android:id="@+id/tv_memberCheckUndoAdoptApplicantTel"
@@ -315,7 +315,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="地址:"/>
+                    android:text="地址："/>
 
                 <TextView
                     android:id="@+id/tv_memberCheckUndoAdoptApplicantAddress"
@@ -338,19 +338,19 @@
             android:src="#e0e0e0" />
 
         <!-- description  -->
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:orientation="horizontal">
+<!--        <RelativeLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent">-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentStart="true"-->
+<!--                android:orientation="horizontal">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="领养申请描述:"/>
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="领养申请描述:"/>-->
 
                 <TextView
                     android:id="@+id/tv_memberCheckUndoAdoptApplicantDescription"
@@ -358,10 +358,10 @@
                     android:layout_height="wrap_content"
                     android:maxLines="5" />
 
-            </LinearLayout>
+<!--            </LinearLayout>-->
 
 
-        </RelativeLayout>
+<!--        </RelativeLayout>-->
 
 
         <TextView

@@ -16,8 +16,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="请选择："
-            android:textSize="@dimen/font_size_s"
+            android:text="请选择处理操作："
+            android:textSize="@dimen/font_size_xs"
             android:textColor="@color/orange"
             android:layout_marginTop="@dimen/margin"
             android:layout_marginHorizontal="@dimen/margin"/>
@@ -88,7 +88,7 @@
                 android:id="@+id/et_handleOperationDes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:etHint="请输入操作描述"
+                app:etHint="请输入反馈信息"
                 app:etLineColor="@color/colorAccent"
                 app:etMaxLength="200"
                 app:etMinHeight="200dp"

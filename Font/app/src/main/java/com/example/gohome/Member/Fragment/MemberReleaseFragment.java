@@ -40,6 +40,7 @@ import br.com.simplepass.loadingbutton.customViews.CircularProgressButton;
 import butterknife.ButterKnife;
 import co.ceryle.radiorealbutton.RadioRealButton;
 import co.ceryle.radiorealbutton.RadioRealButtonGroup;
+import fj.edittextcount.lib.FJEditTextCount;
 
 import static android.app.Activity.RESULT_OK;
 import static androidx.constraintlayout.widget.Constraints.TAG;
@@ -54,7 +55,7 @@ public class MemberReleaseFragment extends Fragment  {
     private EditText et_releaseName;
     private EditText et_releaseAge;
     private EditText et_releaseType;
-    private EditText et_releaseDescription;
+    private FJEditTextCount et_releaseDescription;
     private RadioRealButtonGroup radGro_releaseGender;
     private RadioRealButtonGroup radGro_releaseSterilizine;
     private RadioRealButtonGroup radGro_releaseVaccine;
@@ -348,7 +349,7 @@ public class MemberReleaseFragment extends Fragment  {
             dialogBuilderSelect
                     .withTitle("上传照片")
                     .withMessage("请选择一张照片")
-                    .withDialogColor(getResources().getColor(R.color.white))                               //def  | withDialogColor(int resid)
+                    .withDialogColor(getResources().getColor(R.color.gray))                               //def  | withDialogColor(int resid)
                     .withButton1Text("拍照")                                      //def gone
                     .withButton2Text("从相册选择")                                  //def gone
                     .setButton1Click(new View.OnClickListener() {

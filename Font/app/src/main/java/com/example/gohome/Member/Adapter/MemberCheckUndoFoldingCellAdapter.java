@@ -212,8 +212,7 @@ public class MemberCheckUndoFoldingCellAdapter extends RecyclerView.Adapter {
         Glide.with(context).load(adoptApplimentList.get(position).getPetPhotoId()).into(adoptViewHolder.petPhoto1);
         adoptViewHolder.petName1.setText(adoptApplimentList.get(position).getPetName());
         adoptViewHolder.applicantMessage.setText(adoptApplimentList.get(position).getApplyName() + "发来了申请，点击查看详情");
-        adoptViewHolder.titleDate.setText(adoptApplimentList.get(position).getDate().getYear() + "年" + adoptApplimentList.get(position).getDate().getMonth() + "月" +
-                adoptApplimentList.get(position).getDate().getDay() + "日");
+        adoptViewHolder.titleDate.setText(adoptApplimentList.get(position).getDate());
         if (adoptApplimentList.get(position).getPetType().equals("0")) {    //类型为0则表示领养申请
             adoptViewHolder.type.setText("领养申请");
         }
@@ -223,8 +222,7 @@ public class MemberCheckUndoFoldingCellAdapter extends RecyclerView.Adapter {
         adoptViewHolder.petName2.setText(adoptApplimentList.get(position).getPetName());
         adoptViewHolder.petGender.setText(gender);
         adoptViewHolder.petAge.setText(adoptApplimentList.get(position).getPetAge());
-        adoptViewHolder.contentDate.setText(adoptApplimentList.get(position).getDate().getYear() + "年" + adoptApplimentList.get(position).getDate().getMonth() + "月" +
-                adoptApplimentList.get(position).getDate().getDay() + "日");
+        adoptViewHolder.contentDate.setText(adoptApplimentList.get(position).getDate() );
         adoptViewHolder.applicantName.setText(adoptApplimentList.get(position).getApplyName());
         adoptViewHolder.applicantJob.setText(adoptApplimentList.get(position).getJob());
         adoptViewHolder.applicantAddress.setText(adoptApplimentList.get(position).getAddress());
@@ -240,6 +238,13 @@ public class MemberCheckUndoFoldingCellAdapter extends RecyclerView.Adapter {
             public void onClick(View v) {
                 System.out.println("点击了第" + position + "个通过审核按钮");
                 Toast.makeText(context, "点击了第" + position + "个通过审核按钮", Toast.LENGTH_LONG).show();
+                if(type == 0){
+                    adoptApplimentList.remove(position);
+                }
+                else {
+                    helpApplimentList.remove(position);
+                }
+
             }
         });
 
@@ -282,8 +287,7 @@ public class MemberCheckUndoFoldingCellAdapter extends RecyclerView.Adapter {
             Glide.with(context).load(helpApplimentList.get(position).getPetPhotoId()).into(helpViewHolder.petPhoto1);
             helpViewHolder.petName1.setText(helpApplimentList.get(position).getPetName());
             helpViewHolder.applicantMessage.setText(helpApplimentList.get(position).getApplicantName()+"发来了申请，点击查看详情");
-            helpViewHolder.titleDate.setText(helpApplimentList.get(position).getDate().getYear()+"年"+helpApplimentList.get(position).getDate().getMonth()+"月"+
-                    helpApplimentList.get(position).getDate().getDay()+"日");
+            helpViewHolder.titleDate.setText(helpApplimentList.get(position).getDate());
             if(helpApplimentList.get(position).getPetType().equals("0")){    //类型为0则表示领养申请
                 helpViewHolder.type.setText("救助申请");
             }
@@ -293,8 +297,7 @@ public class MemberCheckUndoFoldingCellAdapter extends RecyclerView.Adapter {
             helpViewHolder.petName2.setText(helpApplimentList.get(position).getPetName());
             helpViewHolder.petGender.setText(gender);
             helpViewHolder.petAge.setText(helpApplimentList.get(position).getPetAge());
-            helpViewHolder.contentDate.setText(helpApplimentList.get(position).getDate().getYear()+"年"+helpApplimentList.get(position).getDate().getMonth()+"月"+
-                    helpApplimentList.get(position).getDate().getDay()+"日");
+            helpViewHolder.contentDate.setText(helpApplimentList.get(position).getDate());
             helpViewHolder.applicantName.setText(helpApplimentList.get(position).getApplicantName());
             helpViewHolder.applicantAddress.setText(helpApplimentList.get(position).getApplicantAddress());
             helpViewHolder.applicantTelephone.setText(helpApplimentList.get(position).getApplicantTel());

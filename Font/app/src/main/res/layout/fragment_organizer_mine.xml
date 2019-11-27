@@ -1,12 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="organizer_mime"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/user_rel_personalInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingHorizontal="30dp"
+            android:paddingTop="80dp"
+            android:paddingBottom="30dp">
+
+            <com.zuowei.circleimageview.CircleImageView
+                android:id="@+id/user_iv_portrait"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentRight="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/defaultportrait" />
+
+            <!--        <ImageView-->
+            <!--            android:id="@+id/user_iv_userHead"-->
+            <!--            android:layout_width="80dp"-->
+            <!--            android:layout_height="80dp"-->
+            <!--            android:layout_alignParentRight="true"-->
+            <!--            android:scaleType="centerCrop"-->
+            <!--            android:src="@drawable/timg" />-->
+
+            <TextView
+                android:id="@+id/user_tv_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:ellipsize="end"
+                android:maxWidth="190dp"
+                android:maxLines="1"
+                android:text="用户昵称"
+                android:textColor="@color/black"
+                android:textSize="28sp" />
+
+            <TextView
+                android:id="@+id/user_tv_phoneText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/user_iv_portrait"
+                android:layout_alignParentLeft="true"
+                android:paddingBottom="10sp"
+                android:text="手机号：" />
+
+            <TextView
+                android:id="@+id/user_tv_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/user_iv_portrait"
+                android:layout_toRightOf="@+id/user_tv_phoneText"
+                android:paddingBottom="10sp"
+                android:text="手机号" />
+
+        </RelativeLayout>
+        <!--        分割线-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/selectedGray" />
+
+        <RelativeLayout
+            android:id="@+id/user_rel_adoptPro"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/user_select_bg"
+            android:paddingLeft="30dp">
+
+            <ImageView
+                android:id="@+id/user_iv_adopt"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/text_selected" />
+
+            <TextView
+                android:id="@+id/user_tv_adoptPro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/user_iv_adopt"
+                android:text="工作记录"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:typeface="serif" />
+
+            <ImageView
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="30dp"
+                android:src="@drawable/user_back" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignLeft="@+id/user_tv_adoptPro"
+                android:layout_alignParentBottom="true"
+                android:background="@color/selectedGray" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/user_rel_addGroup"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/user_select_bg"
+            android:paddingLeft="30dp">
+
+            <ImageView
+                android:id="@+id/user_iv_add"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/record_selected" />
+
+            <TextView
+                android:id="@+id/user_tv_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/user_iv_add"
+                android:text="领养信息发布记录"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:typeface="serif" />
+
+            <ImageView
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="30dp"
+                android:src="@drawable/user_back" />
+
+        </RelativeLayout>
 
 
-</LinearLayout>
+        <RelativeLayout
+            android:id="@+id/user_rel_settingCenter"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/user_select_bg"
+            android:paddingHorizontal="30dp">
+
+            <ImageView
+                android:id="@+id/user_iv_setting"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/setting_selected" />
+
+            <TextView
+                android:id="@+id/user_tv_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/user_iv_setting"
+                android:text="设置中心"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:typeface="serif" />
+
+            <ImageView
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/user_back" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</ScrollView>

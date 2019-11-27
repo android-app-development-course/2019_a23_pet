@@ -15,6 +15,7 @@ public class OrganizerMain extends AppCompatActivity {
 
     private AHBottomNavigation bottomNavigation;
     private OrganizerViewPager viewPager;
+    public Boolean isLogin=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

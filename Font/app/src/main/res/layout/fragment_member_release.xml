@@ -27,6 +27,7 @@
                 app:met_iconLeft="@drawable/name_selected"
                 app:met_baseColor="@color/orange"
                 app:met_primaryColor="@color/orange"
+                app:met_textColor="@color/black"
                 android:maxLines="1"/>
 
         </FrameLayout>
@@ -46,6 +47,7 @@
                 app:met_iconLeft="@drawable/age_selected"
                 app:met_baseColor="@color/orange"
                 app:met_primaryColor="@color/orange"
+                app:met_textColor="@color/black"
                 android:maxLines="1"/>
 
         </FrameLayout>
@@ -66,6 +68,7 @@
                 app:met_iconLeft="@drawable/type_selected"
                 app:met_baseColor="@color/orange"
                 app:met_primaryColor="@color/orange"
+                app:met_textColor="@color/black"
                 android:maxLines="1"/>
 
         </FrameLayout>

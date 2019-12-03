@@ -36,12 +36,15 @@
         <activity android:name=".User.Activity.UserHomeActivity" />
         <activity android:name=".Member.Activity.MemberHomeActivity"/>
         <activity android:name=".Member.Activity.MemberHandleOperationActivity"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".Register.RegisterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity">
+
         </activity>
     </application>
 

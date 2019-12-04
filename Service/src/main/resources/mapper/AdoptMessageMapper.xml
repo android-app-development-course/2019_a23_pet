@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.gohome.dao.AdoptMessageMapper" >
-  <resultMap id="BaseResultMap" type="com.example.gohome.entity.User.AdoptMessage" >
+  <resultMap id="BaseResultMap" type="com.example.gohome.entity.AdoptMessage" >
     <id column="adopt_id" property="adoptId" jdbcType="INTEGER" />
     <result column="pet_name" property="petName" jdbcType="VARCHAR" />
     <result column="pet_type" property="petType" jdbcType="INTEGER" />
@@ -30,7 +30,7 @@
     delete from adopt_message
     where adopt_id = #{adoptId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.example.gohome.entity.User.AdoptMessage" >
+  <insert id="insert" parameterType="com.example.gohome.entity.AdoptMessage" >
     <selectKey resultType="java.lang.Integer" keyProperty="adoptId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -45,7 +45,7 @@
       #{vaccinate,jdbcType=BIT}, #{steriled,jdbcType=BIT}, #{created,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.example.gohome.entity.User.AdoptMessage" >
+  <insert id="insertSelective" parameterType="com.example.gohome.entity.AdoptMessage" >
     <selectKey resultType="java.lang.Integer" keyProperty="adoptId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -127,7 +127,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.gohome.entity.User.AdoptMessage" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.gohome.entity.AdoptMessage" >
     update adopt_message
     <set >
       <if test="petName != null" >
@@ -169,7 +169,7 @@
     </set>
     where adopt_id = #{adoptId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.gohome.entity.User.AdoptMessage" >
+  <update id="updateByPrimaryKey" parameterType="com.example.gohome.entity.AdoptMessage" >
     update adopt_message
     set pet_name = #{petName,jdbcType=VARCHAR},
       pet_type = #{petType,jdbcType=INTEGER},

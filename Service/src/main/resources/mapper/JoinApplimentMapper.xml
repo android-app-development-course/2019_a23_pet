@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.gohome.dao.JoinApplimentMapper" >
+  <resultMap id="BaseResultMap" type="com.example.gohome.entity.JoinAppliment" >
+    <id column="appliment_id" property="applimentId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="apply_date" property="applyDate" jdbcType="TIMESTAMP" />
+    <result column="apply_name" property="applyName" jdbcType="VARCHAR" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="operator_time" property="operatorTime" jdbcType="TIMESTAMP" />
+    <result column="operation_state" property="operationState" jdbcType="INTEGER" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    appliment_id, user_id, area_id, apply_date, apply_name, telephone, description, state, 
+    operator_time, operation_state, created
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from join_appliment
+    where appliment_id = #{applimentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from join_appliment
+    where appliment_id = #{applimentId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.gohome.entity.JoinAppliment" >
+    <selectKey resultType="java.lang.Integer" keyProperty="applimentId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into join_appliment (user_id, area_id, apply_date, 
+      apply_name, telephone, description, 
+      state, operator_time, operation_state, 
+      created)
+    values (#{userId,jdbcType=INTEGER}, #{areaId,jdbcType=INTEGER}, #{applyDate,jdbcType=TIMESTAMP}, 
+      #{applyName,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{state,jdbcType=INTEGER}, #{operatorTime,jdbcType=TIMESTAMP}, #{operationState,jdbcType=INTEGER}, 
+      #{created,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.gohome.entity.JoinAppliment" >
+    <selectKey resultType="java.lang.Integer" keyProperty="applimentId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into join_appliment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="applyDate != null" >
+        apply_date,
+      </if>
+      <if test="applyName != null" >
+        apply_name,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="operatorTime != null" >
+        operator_time,
+      </if>
+      <if test="operationState != null" >
+        operation_state,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="applyDate != null" >
+        #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyName != null" >
+        #{applyName,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="operatorTime != null" >
+        #{operatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationState != null" >
+        #{operationState,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.gohome.entity.JoinAppliment" >
+    update join_appliment
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="applyDate != null" >
+        apply_date = #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applyName != null" >
+        apply_name = #{applyName,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="operatorTime != null" >
+        operator_time = #{operatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationState != null" >
+        operation_state = #{operationState,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where appliment_id = #{applimentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.gohome.entity.JoinAppliment" >
+    update join_appliment
+    set user_id = #{userId,jdbcType=INTEGER},
+      area_id = #{areaId,jdbcType=INTEGER},
+      apply_date = #{applyDate,jdbcType=TIMESTAMP},
+      apply_name = #{applyName,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      operator_time = #{operatorTime,jdbcType=TIMESTAMP},
+      operation_state = #{operationState,jdbcType=INTEGER},
+      created = #{created,jdbcType=TIMESTAMP}
+    where appliment_id = #{applimentId,jdbcType=INTEGER}
+  </update>
+</mapper>

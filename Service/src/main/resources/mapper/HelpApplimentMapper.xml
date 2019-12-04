@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.gohome.dao.HelpApplimentMapper" >
+  <resultMap id="BaseResultMap" type="com.example.gohome.entity.HelpAppliment" >
+    <id column="appliment_id" property="applimentId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="apply_name" property="applyName" jdbcType="VARCHAR" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="apply_date" property="applyDate" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="pet_name" property="petName" jdbcType="VARCHAR" />
+    <result column="pet_type" property="petType" jdbcType="INTEGER" />
+    <result column="gender" property="gender" jdbcType="INTEGER" />
+    <result column="age" property="age" jdbcType="VARCHAR" />
+    <result column="steriled" property="steriled" jdbcType="BIT" />
+    <result column="vaccinate" property="vaccinate" jdbcType="BIT" />
+    <result column="pictures" property="pictures" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    appliment_id, user_id, apply_name, telephone, area_id, description, apply_date, state, 
+    pet_name, pet_type, gender, age, steriled, vaccinate, pictures, created
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from help_appliment
+    where appliment_id = #{applimentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from help_appliment
+    where appliment_id = #{applimentId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.gohome.entity.HelpAppliment" >
+    <selectKey resultType="java.lang.Integer" keyProperty="applimentId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into help_appliment (user_id, apply_name, telephone, 
+      area_id, description, apply_date, 
+      state, pet_name, pet_type, 
+      gender, age, steriled, 
+      vaccinate, pictures, created
+      )
+    values (#{userId,jdbcType=INTEGER}, #{applyName,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
+      #{areaId,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, #{applyDate,jdbcType=TIMESTAMP}, 
+      #{state,jdbcType=INTEGER}, #{petName,jdbcType=VARCHAR}, #{petType,jdbcType=INTEGER}, 
+      #{gender,jdbcType=INTEGER}, #{age,jdbcType=VARCHAR}, #{steriled,jdbcType=BIT}, 
+      #{vaccinate,jdbcType=BIT}, #{pictures,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.gohome.entity.HelpAppliment" >
+    <selectKey resultType="java.lang.Integer" keyProperty="applimentId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into help_appliment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="applyName != null" >
+        apply_name,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="applyDate != null" >
+        apply_date,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="petName != null" >
+        pet_name,
+      </if>
+      <if test="petType != null" >
+        pet_type,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="steriled != null" >
+        steriled,
+      </if>
+      <if test="vaccinate != null" >
+        vaccinate,
+      </if>
+      <if test="pictures != null" >
+        pictures,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="applyName != null" >
+        #{applyName,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDate != null" >
+        #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="petName != null" >
+        #{petName,jdbcType=VARCHAR},
+      </if>
+      <if test="petType != null" >
+        #{petType,jdbcType=INTEGER},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="steriled != null" >
+        #{steriled,jdbcType=BIT},
+      </if>
+      <if test="vaccinate != null" >
+        #{vaccinate,jdbcType=BIT},
+      </if>
+      <if test="pictures != null" >
+        #{pictures,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.gohome.entity.HelpAppliment" >
+    update help_appliment
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="applyName != null" >
+        apply_name = #{applyName,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDate != null" >
+        apply_date = #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="petName != null" >
+        pet_name = #{petName,jdbcType=VARCHAR},
+      </if>
+      <if test="petType != null" >
+        pet_type = #{petType,jdbcType=INTEGER},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="steriled != null" >
+        steriled = #{steriled,jdbcType=BIT},
+      </if>
+      <if test="vaccinate != null" >
+        vaccinate = #{vaccinate,jdbcType=BIT},
+      </if>
+      <if test="pictures != null" >
+        pictures = #{pictures,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where appliment_id = #{applimentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.gohome.entity.HelpAppliment" >
+    update help_appliment
+    set user_id = #{userId,jdbcType=INTEGER},
+      apply_name = #{applyName,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      apply_date = #{applyDate,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=INTEGER},
+      pet_name = #{petName,jdbcType=VARCHAR},
+      pet_type = #{petType,jdbcType=INTEGER},
+      gender = #{gender,jdbcType=INTEGER},
+      age = #{age,jdbcType=VARCHAR},
+      steriled = #{steriled,jdbcType=BIT},
+      vaccinate = #{vaccinate,jdbcType=BIT},
+      pictures = #{pictures,jdbcType=VARCHAR},
+      created = #{created,jdbcType=TIMESTAMP}
+    where appliment_id = #{applimentId,jdbcType=INTEGER}
+  </update>
+</mapper>

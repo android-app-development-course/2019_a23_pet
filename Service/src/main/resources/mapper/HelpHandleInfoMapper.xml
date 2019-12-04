@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.gohome.dao.HelpHandleInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.example.gohome.entity.HelpHandleInfo" >
+    <id column="info_id" property="infoId" jdbcType="INTEGER" />
+    <result column="appliment_id" property="applimentId" jdbcType="INTEGER" />
+    <result column="handle_id" property="handleId" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    info_id, appliment_id, handle_id, state, created
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from help_handle_info
+    where info_id = #{infoId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from help_handle_info
+    where info_id = #{infoId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.gohome.entity.HelpHandleInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="infoId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into help_handle_info (appliment_id, handle_id, state, 
+      created)
+    values (#{applimentId,jdbcType=INTEGER}, #{handleId,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, 
+      #{created,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.gohome.entity.HelpHandleInfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="infoId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into help_handle_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="applimentId != null" >
+        appliment_id,
+      </if>
+      <if test="handleId != null" >
+        handle_id,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="applimentId != null" >
+        #{applimentId,jdbcType=INTEGER},
+      </if>
+      <if test="handleId != null" >
+        #{handleId,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.gohome.entity.HelpHandleInfo" >
+    update help_handle_info
+    <set >
+      <if test="applimentId != null" >
+        appliment_id = #{applimentId,jdbcType=INTEGER},
+      </if>
+      <if test="handleId != null" >
+        handle_id = #{handleId,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where info_id = #{infoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.gohome.entity.HelpHandleInfo" >
+    update help_handle_info
+    set appliment_id = #{applimentId,jdbcType=INTEGER},
+      handle_id = #{handleId,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      created = #{created,jdbcType=TIMESTAMP}
+    where info_id = #{infoId,jdbcType=INTEGER}
+  </update>
+</mapper>

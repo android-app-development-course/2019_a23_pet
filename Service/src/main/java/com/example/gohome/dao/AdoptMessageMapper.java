@@ -1,17 +1,17 @@
 package com.example.gohome.dao;
 
-import com.example.gohome.entity.User;
+import com.example.gohome.entity.AdoptMessage;
 
 public interface AdoptMessageMapper {
     int deleteByPrimaryKey(Integer adoptId);
 
-    int insert(User.AdoptMessage record);
+    int insert(AdoptMessage record);
 
-    int insertSelective(User.AdoptMessage record);
+    int insertSelective(AdoptMessage record);
 
-    User.AdoptMessage selectByPrimaryKey(Integer adoptId);
+    AdoptMessage selectByPrimaryKey(Integer adoptId);
 
-    int updateByPrimaryKeySelective(User.AdoptMessage record);
+    int updateByPrimaryKeySelective(AdoptMessage record);
 
-    int updateByPrimaryKey(User.AdoptMessage record);
+    int updateByPrimaryKey(AdoptMessage record);
 }

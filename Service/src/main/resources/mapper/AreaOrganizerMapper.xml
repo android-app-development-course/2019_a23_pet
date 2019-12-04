@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.gohome.dao.AreaOrganizerMapper" >
+  <resultMap id="BaseResultMap" type="com.example.gohome.entity.AreaOrganizer" >
+    <id column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="organizer_name" property="organizerName" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    area_id, user_id, organizer_name, address, created
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from area_organizer
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from area_organizer
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.gohome.entity.AreaOrganizer" >
+    <selectKey resultType="java.lang.Integer" keyProperty="areaId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into area_organizer (user_id, organizer_name, address, 
+      created)
+    values (#{userId,jdbcType=INTEGER}, #{organizerName,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{created,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.gohome.entity.AreaOrganizer" >
+    <selectKey resultType="java.lang.Integer" keyProperty="areaId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into area_organizer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="organizerName != null" >
+        organizer_name,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="organizerName != null" >
+        #{organizerName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.gohome.entity.AreaOrganizer" >
+    update area_organizer
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="organizerName != null" >
+        organizer_name = #{organizerName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.gohome.entity.AreaOrganizer" >
+    update area_organizer
+    set user_id = #{userId,jdbcType=INTEGER},
+      organizer_name = #{organizerName,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      created = #{created,jdbcType=TIMESTAMP}
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </update>
+</mapper>

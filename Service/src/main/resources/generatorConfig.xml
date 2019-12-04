@@ -49,11 +49,11 @@
         <!-- 指定数据库表 -->
         <!--<table schema="" tableName="adopt_message"></table>-->
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-        <table tableName="adopt_message" domainObjectName="AdoptMessage" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="help_handle_operation" domainObjectName="HelpHandleOperation" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <property name="useActualColumnNames" value="false"/>
             <!-- 数据库表主键 -->
-            <generatedKey column="adopt_id" sqlStatement="Mysql" identity="true"/>
+            <generatedKey column="operatioin_id" sqlStatement="Mysql" identity="true"/>
         </table>
 
     </context>

@@ -71,7 +71,7 @@
         android:paddingLeft="12dp"
         android:paddingRight="12dp">
 
-        <!-- name and area -->
+        <!-- name and address -->
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
@@ -95,7 +95,7 @@
                     android:text="三三"/>
 
             </LinearLayout>
-            <!-- area -->
+            <!-- address -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

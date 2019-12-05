@@ -213,7 +213,7 @@ public class MemberCheckDoingFoldingCellAdapter extends RecyclerView.Adapter {
             }
 
             //content
-//            Glide.with(context).load(adoptApplimentList.get(position).getPetPhotoId()).into(adoptViewHolder.petPhoto2);
+//            Glide.with(context).load(adoptApplimentList.get(position).getPhotos()).into(adoptViewHolder.petPhoto2);
             adoptViewHolder.petName2.setText(adoptApplimentList.get(position).getPetName());
             adoptViewHolder.petGender.setText(gender);
             adoptViewHolder.petAge.setText(adoptApplimentList.get(position).getPetAge());
@@ -278,7 +278,7 @@ public class MemberCheckDoingFoldingCellAdapter extends RecyclerView.Adapter {
             }
 
             //content
-//            Glide.with(context).load(helpApplimentList.get(position).getPetPhotoId()).into(helpViewHolder.petPhoto2);
+//            Glide.with(context).load(helpApplimentList.get(position).getPhotos()).into(helpViewHolder.petPhoto2);
             helpViewHolder.petName2.setText(helpApplimentList.get(position).getPetName());
             helpViewHolder.petGender.setText(gender);
             helpViewHolder.petAge.setText(helpApplimentList.get(position).getPetAge());

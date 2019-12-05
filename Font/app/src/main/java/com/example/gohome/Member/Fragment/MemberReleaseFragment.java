@@ -22,10 +22,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gohome.Entity.AdoptInfo;
 import com.example.gohome.Member.Adapter.GridImageAdapter;
 import com.example.gohome.Member.FullyGridLayoutManager;
 import com.example.gohome.R;
 import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
@@ -441,15 +444,24 @@ public class MemberReleaseFragment extends Fragment  {
                 paramsMap.put("age","一个月");
                 paramsMap.put("handleId","2");
                 paramsMap.put("description","very cute");
-                paramsMap.put("gender","1");
-                paramsMap.put("vaccinate","1");
-                paramsMap.put("steriled","1");
+                paramsMap.put("gender","0");
+                paramsMap.put("vaccinate","true");
+                paramsMap.put("steriled","true");
                 paramsMap.put("address","GZ");
-                FormBody.Builder builder = new FormBody.Builder();
-                for (String key : paramsMap.keySet()) {
-                    //追加表单信息
-                    builder.add(key, paramsMap.get(key));
-                }
+                paramsMap.put("petType","1");
+
+                Gson gson = new Gson();
+                String json = gson.toJson(paramsMap);
+
+                System.out.println("json:"+json);
+
+                RequestBody requestBody = FormBody.create(MediaType.parse("application/json;charset=utf-8"),json);
+
+//                FormBody.Builder builder = new FormBody.Builder();
+//                for (String key : paramsMap.keySet()) {
+//                    //追加表单信息
+//                    builder.add(key, paramsMap.get(key));
+//                }
 
 //                FormBody.Builder builder=new FormBody.Builder();
 //
@@ -464,13 +476,17 @@ public class MemberReleaseFragment extends Fragment  {
 
 //                FormBody formBody = builder.build();
 
-                RequestBody formBody=builder.build();
-                Request request=new   Request.Builder().url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.insertAdoptMessage)).post(formBody).build();
+//                RequestBody formBody=builder.build();
+                Request request=new Request.Builder()
+                        .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.insertAdoptMessage))
+                        .post(requestBody)
+                        .build();
                 Call call=client.newCall(request);
                 call.enqueue(new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
                         //请求失败的处理
+                        Log.i("TAG:","fail");
                     }
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {

@@ -16,7 +16,6 @@ import com.example.gohome.Entity.AdoptInfo;
 import com.example.gohome.R;
 import com.example.gohome.User.Activity.UserAddGroupActivity;
 import com.example.gohome.User.ImageDialog;
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.ramotion.foldingcell.FoldingCell;
 
 import java.util.HashSet;
@@ -87,32 +86,32 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter{
         ViewHolder mholder = new ViewHolder(holder.itemView);
 
         String gender = list.get(pos).getGender() == 0 ? s0 : s1;
-        int icon1 = list.get(pos).getVacn() == 0 ? R.drawable.no : R.drawable.yes;
-        int icon2 = list.get(pos).getStrl() == 0 ? R.drawable.no : R.drawable.yes;
+        int icon1 = list.get(pos).getVaccinate() == 0 ? R.drawable.no : R.drawable.yes;
+        int icon2 = list.get(pos).getSteriled() == 0 ? R.drawable.no : R.drawable.yes;
 
         // title(外)
-        Glide.with(context).load(list.get(pos).getPetPhotoId()).into(mholder.petPhoto1);
+        Glide.with(context).load(list.get(pos).getPhotos()).into(mholder.petPhoto1);
         mholder.petName1.setText(list.get(pos).getPetName());
         mholder.petGender1.setText(gender);
-        mholder.petAge1.setText(list.get(pos).getPetAge());
-        mholder.desc1.setText(list.get(pos).getDesc());
-        mholder.area1.setText(list.get(pos).getArea());
+        mholder.petAge1.setText(list.get(pos).getAge());
+        mholder.desc1.setText(list.get(pos).getDescription());
+        mholder.area1.setText(list.get(pos).getAddress());
 
         // content(内)
-        Glide.with(context).load(list.get(pos).getPetPhotoId()).into(mholder.petPhoto2);
+        Glide.with(context).load(list.get(pos).getPhotos()).into(mholder.petPhoto2);
         mholder.petName2.setText(list.get(pos).getPetName());
         mholder.petGender2.setText(gender);
-        mholder.petAge2.setText(list.get(pos).getPetAge());
-        mholder.desc2.setText(list.get(pos).getDesc());
-        mholder.area2.setText(list.get(pos).getArea());
+        mholder.petAge2.setText(list.get(pos).getAge());
+        mholder.desc2.setText(list.get(pos).getDescription());
+        mholder.area2.setText(list.get(pos).getAddress());
         Glide.with(context).load(icon1).into(mholder.iv_vacn);
         Glide.with(context).load(icon2).into(mholder.iv_strl);
-        mholder.publisher.setText(list.get(pos).getPublisher());
-        mholder.time.setText(list.get(pos).getTime());
+        mholder.publisher.setText(list.get(pos).getHandleId());
+        mholder.time.setText(list.get(pos).getCreated());
         mholder.contentRequestBtn.setOnClickListener(defaultRequestBtnClickListener);
 
         mholder.petPhoto2.setOnClickListener(view -> {
-            ImageDialog dialog = new ImageDialog(context, list.get(pos).getPetPhotoId());
+            ImageDialog dialog = new ImageDialog(context, list.get(pos).getPhotos());
             dialog.show();
         });
 

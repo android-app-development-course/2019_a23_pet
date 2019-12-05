@@ -132,4 +132,13 @@ public class AdoptMessage {
     public void setCreated(Date created) {
         this.created = created;
     }
+
+
+    @Override
+    public String toString() {
+        return "AdoptMessage [adoptId=" + adoptId + ", handleId=" + handleId + ",created=" + created+  ", petName="
+                + petName + ", address=" + address + ", description=" + description + ", gender=" + gender + ", vaccinate=" + vaccinate  +
+                ", sterilize= " + steriled + ", age=" + age  + ",state=" + state + "pictures=" + pictures + "]";
+    }
+
 }

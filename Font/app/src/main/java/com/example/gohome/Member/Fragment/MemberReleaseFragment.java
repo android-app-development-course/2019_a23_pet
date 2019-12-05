@@ -32,7 +32,16 @@ import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.sdsmdg.tastytoast.TastyToast;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -41,6 +50,14 @@ import butterknife.ButterKnife;
 import co.ceryle.radiorealbutton.RadioRealButton;
 import co.ceryle.radiorealbutton.RadioRealButtonGroup;
 import fj.edittextcount.lib.FJEditTextCount;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 import static android.app.Activity.RESULT_OK;
 import static androidx.constraintlayout.widget.Constraints.TAG;
@@ -77,6 +94,10 @@ public class MemberReleaseFragment extends Fragment  {
     NiftyDialogBuilder dialogBuilderSelect;
 
     boolean mode;    //记录用户选择，拍照或从相册选择
+
+
+    public static final MediaType FORM_CONTENT_TYPE
+            = MediaType.parse("application/json;charset=utf-8");
 
     @Nullable
     @Override
@@ -276,12 +297,14 @@ public class MemberReleaseFragment extends Fragment  {
                 System.out.println("绝育情况："+Sterilizine);
                 System.out.println("疫苗情况："+Vaccine);
 
+                sendByOKHttp();
 
 //                btn.setProgress(100000);      //模拟表单提交过程，但是好像并没有显示出来？？
                 //设置提交成功的图标和颜色
                 btn_submit.doneLoadingAnimation(getResources().getColor(R.color.green), bitmapDone);
                 //设置提交失败的图标和颜色
                 //btn.doneLoadingAnimation(getResources().getColor(R.color.red), bitmapFail);
+
 
                 //提示提交成功toast
                 Toast toast = TastyToast.makeText(getActivity(), "提交成功!", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
@@ -402,4 +425,77 @@ public class MemberReleaseFragment extends Fragment  {
             }
         }
     }
+
+    /**
+     * 发送插入待领养动物信息请求（使用 OKHttp）
+     */
+    private void sendByOKHttp() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                OkHttpClient client = new OkHttpClient();
+
+                //把参数传进Map中
+                HashMap<String,String> paramsMap=new HashMap<>();
+                paramsMap.put("petName","哈哈");
+                paramsMap.put("age","一个月");
+                paramsMap.put("handleId","2");
+                paramsMap.put("description","very cute");
+                paramsMap.put("gender","1");
+                paramsMap.put("vaccinate","1");
+                paramsMap.put("steriled","1");
+                paramsMap.put("address","GZ");
+                FormBody.Builder builder = new FormBody.Builder();
+                for (String key : paramsMap.keySet()) {
+                    //追加表单信息
+                    builder.add(key, paramsMap.get(key));
+                }
+
+//                FormBody.Builder builder=new FormBody.Builder();
+//
+//                builder.add("petName","roo")
+//                        .add("age","一个月")
+//                        .add("handleId","2")
+//                        .add("description","very cute")
+//                        .add("gender","1")
+//                        .add("vaccinate","1")
+//                        .add("steriled","1")
+//                        .add("address","GuangZhou");//要传递的参数，前面是键，后面是值
+
+//                FormBody formBody = builder.build();
+
+                RequestBody formBody=builder.build();
+                Request request=new   Request.Builder().url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.insertAdoptMessage)).post(formBody).build();
+                Call call=client.newCall(request);
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        //请求失败的处理
+                    }
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        Log.i("TAG:","asdfg");
+                        Log.i("RESPONSE:",response.body().string());
+                    }
+                });
+//
+//
+//                Request request = new Request
+//                                    .Builder()
+//                                    .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.insertAdoptMessage))
+////                                    .post(builder.build())
+//                                    .post(formBody)
+//                                    .build();
+//                try {
+//                    Response response = client.newCall(request).execute();//发送请求
+//                    String result = response.body().string();
+//                    Log.d(TAG, "result: "+result);
+////                    show(result);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+            }
+        }).start();
+    }
+
 }

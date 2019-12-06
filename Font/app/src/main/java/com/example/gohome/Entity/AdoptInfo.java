@@ -5,13 +5,57 @@ import android.view.View;
 import java.io.Serializable;
 
 public class AdoptInfo implements Serializable {
+    public void setPhotos(int photos) {
+        this.photos = photos;
+    }
+
+    public void setPetName(String petName) {
+        this.petName = petName;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public void setPetType(String petType) {
+        this.petType = petType;
+    }
+
+    public void setGender(int gender) {
+        this.gender = gender;
+    }
+
+    public void setVaccinate(boolean vaccinate) {
+        this.vaccinate = vaccinate;
+    }
+
+    public void setSteriled(boolean steriled) {
+        this.steriled = steriled;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setHandleId(String handleId) {
+        this.handleId = handleId;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
+    }
+
     private int photos;
     private String petName;
     private String age;
     private String petType;
     private int gender;
-    private int vaccinate; // 疫苗
-    private int steriled; // 绝育
+    private boolean vaccinate; // 疫苗
+    private boolean steriled; // 绝育
     private String description;
     private String handleId;
     private String address;
@@ -22,7 +66,7 @@ public class AdoptInfo implements Serializable {
     public AdoptInfo(int photoId, String petName,
                      String petType, int gender, String age,
                      String description, String address, String created,
-                     int vaccinate, int steriled, String handleId) {
+                     boolean vaccinate, boolean steriled, String handleId) {
         super();
         this.photos = photoId;
         this.petName = petName;
@@ -51,9 +95,9 @@ public class AdoptInfo implements Serializable {
 
     public int getGender() { return gender; }
 
-    public int getVaccinate() { return vaccinate; }
+    public boolean getVaccinate() { return vaccinate; }
 
-    public int getSteriled() { return steriled; }
+    public boolean getSteriled() { return steriled; }
 
     public String getDescription() {
         return description;

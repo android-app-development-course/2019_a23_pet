@@ -440,15 +440,15 @@ public class MemberReleaseFragment extends Fragment  {
 
                 //把参数传进Map中
                 HashMap<String,String> paramsMap=new HashMap<>();
-                paramsMap.put("petName","哈哈");
-                paramsMap.put("age","一个月");
+                paramsMap.put("petName","roo");
+                paramsMap.put("age","3个月");
                 paramsMap.put("handleId","2");
-                paramsMap.put("description","very cute");
+                paramsMap.put("description","活泼");
                 paramsMap.put("gender","0");
-                paramsMap.put("vaccinate","true");
+                paramsMap.put("vaccinate","false");
                 paramsMap.put("steriled","true");
-                paramsMap.put("address","GZ");
-                paramsMap.put("petType","1");
+                paramsMap.put("address","广州天河");
+                paramsMap.put("petType","0");
 
                 Gson gson = new Gson();
                 String json = gson.toJson(paramsMap);
@@ -457,26 +457,6 @@ public class MemberReleaseFragment extends Fragment  {
 
                 RequestBody requestBody = FormBody.create(MediaType.parse("application/json;charset=utf-8"),json);
 
-//                FormBody.Builder builder = new FormBody.Builder();
-//                for (String key : paramsMap.keySet()) {
-//                    //追加表单信息
-//                    builder.add(key, paramsMap.get(key));
-//                }
-
-//                FormBody.Builder builder=new FormBody.Builder();
-//
-//                builder.add("petName","roo")
-//                        .add("age","一个月")
-//                        .add("handleId","2")
-//                        .add("description","very cute")
-//                        .add("gender","1")
-//                        .add("vaccinate","1")
-//                        .add("steriled","1")
-//                        .add("address","GuangZhou");//要传递的参数，前面是键，后面是值
-
-//                FormBody formBody = builder.build();
-
-//                RequestBody formBody=builder.build();
                 Request request=new Request.Builder()
                         .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.insertAdoptMessage))
                         .post(requestBody)
@@ -486,11 +466,10 @@ public class MemberReleaseFragment extends Fragment  {
                     @Override
                     public void onFailure(Call call, IOException e) {
                         //请求失败的处理
-                        Log.i("TAG:","fail");
+                        Log.i("RESPONSE:","fail");
                     }
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
-                        Log.i("TAG:","asdfg");
                         Log.i("RESPONSE:",response.body().string());
                     }
                 });

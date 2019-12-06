@@ -123,17 +123,17 @@ public class MemberAdoptFragment extends Fragment {
     boolean flag1 = true, flag2 = true;
     private void add1(){
         if(flag1) {
-            infoList.add(new AdoptInfo(R.drawable.member_cat6, "猪猪", "猫猫", 0, "2岁8个月", "爱撒娇，乖巧听话", "广州天河区", "2019.11.26", 1, 1, "yanyanqiu"));
-            infoList.add(new AdoptInfo(R.drawable.member_dog1, "图图", "狗狗", 1, "1岁半", "耳朵有点大，左后腿有点瘸", "广州海珠区", "2019.11.26", 1, 0, "可可清"));
-            infoList.add(new AdoptInfo(R.drawable.member_cat6, "嗯哼", "猫猫", 1, "2个月左右", "很活泼好动，一定要有爱心，不放养", "广州天河区", "2019.11.26", 0, 0, "小童"));
-            infoList.add(new AdoptInfo(R.drawable.member_dog2, "溜溜", "狗狗", 1, "一岁", "16斤左右，比较粘人，平时性格温和，并且不会在家里大小便，很听话，很乖", "广州白云区", "2019.11.26", 1, 0, "谭小姐"));
+            infoList.add(new AdoptInfo(R.drawable.member_cat6, "猪猪", "猫猫", 0, "2岁8个月", "爱撒娇，乖巧听话", "广州天河区", "2019.11.26", true, true, "yanyanqiu"));
+            infoList.add(new AdoptInfo(R.drawable.member_dog1, "图图", "狗狗", 1, "1岁半", "耳朵有点大，左后腿有点瘸", "广州海珠区", "2019.11.26", true, false, "可可清"));
+            infoList.add(new AdoptInfo(R.drawable.member_cat6, "嗯哼", "猫猫", 1, "2个月左右", "很活泼好动，一定要有爱心，不放养", "广州天河区", "2019.11.26", false, false, "小童"));
+            infoList.add(new AdoptInfo(R.drawable.member_dog2, "溜溜", "狗狗", 1, "一岁", "16斤左右，比较粘人，平时性格温和，并且不会在家里大小便，很听话，很乖", "广州白云区", "2019.11.26", true, false, "谭小姐"));
             flag1 = false;
         }
     }
     private void add2() {
         if (flag2) {
-            infoList.add(new AdoptInfo(R.drawable.member_dog3, "dodo", "狗狗", 0, "一岁左右", "狗狗很乖很聪明，爱洗澡", "广州白云区", "2019.11.26", 0, 0, "kekeqin"));
-            infoList.add(new AdoptInfo(R.drawable.member_dog4, "roo", "狗狗", 1, "一岁半", "非常健康，温顺，从来不乱咬东西，不吵闹", "广州荔湾区", "2019.11.26", 1, 1, "啦啦妹"));
+            infoList.add(new AdoptInfo(R.drawable.member_dog3, "dodo", "狗狗", 0, "一岁左右", "狗狗很乖很聪明，爱洗澡", "广州白云区", "2019.11.26", true, false, "kekeqin"));
+            infoList.add(new AdoptInfo(R.drawable.member_dog4, "roo", "狗狗", 1, "一岁半", "非常健康，温顺，从来不乱咬东西，不吵闹", "广州荔湾区", "2019.11.26", true, true, "啦啦妹"));
 
 
             flag2 = false;
@@ -142,11 +142,11 @@ public class MemberAdoptFragment extends Fragment {
 
     private void initAdoptInfo() {
         infoList = new ArrayList<>();
-        infoList.add(new AdoptInfo(R.drawable.member_cat1, "小橘", "猫猫", 0, "70天", "活泼好动，田园猫，身体健康。", "广州白云区", "2019.11.27", 0, 0, "山河入梦"));
-        infoList.add(new AdoptInfo(R.drawable.member_cat2, "兔叽", "猫咪", 1, "马上一岁", "有稳定的收入，能够做到科学喂养，有爱心有责任心，有病就医，不因结婚生子或工作感情问题而中途遗弃，定期发反馈的照片视频", "广州番禺区", "2019.11.27", 0, 0, "要记笔记呀"));
-        infoList.add(new AdoptInfo(R.drawable.member_cat3, "茉莉", "猫猫", 1, "4个月", "家里安纱窗，定期驱虫打疫苗。这个猫现在年龄小，很顽皮会咬花。接受上门查看领养环境，以后不想养了，请退还给我。", "深圳宝安", "2019.11.27", 0, 0, "取什么名字好呢"));
-        infoList.add(new AdoptInfo(R.drawable.member_cat4, "阿黑", "猫猫", 0, "7个月", "照片是刚捡到的时候拍的，现在8斤毛也更亮了一些。", "广州天河区", "2019.11.26", 1, 0, "不可不可"));
-        infoList.add(new AdoptInfo(R.drawable.member_cat5, "橘橘", "猫猫", 0, "两岁", " 会自己使用猫砂盆熟悉之后超级粘人", "广州荔湾区", "2019.11.26", 1, 0, "小尾巴"));
+        infoList.add(new AdoptInfo(R.drawable.member_cat1, "小橘", "猫猫", 0, "70天", "活泼好动，田园猫，身体健康。", "广州白云区", "2019.11.27", false, false, "山河入梦"));
+        infoList.add(new AdoptInfo(R.drawable.member_cat2, "兔叽", "猫咪", 1, "马上一岁", "有稳定的收入，能够做到科学喂养，有爱心有责任心，有病就医，不因结婚生子或工作感情问题而中途遗弃，定期发反馈的照片视频", "广州番禺区", "2019.11.27", false, false, "要记笔记呀"));
+        infoList.add(new AdoptInfo(R.drawable.member_cat3, "茉莉", "猫猫", 1, "4个月", "家里安纱窗，定期驱虫打疫苗。这个猫现在年龄小，很顽皮会咬花。接受上门查看领养环境，以后不想养了，请退还给我。", "深圳宝安", "2019.11.27", false, false, "取什么名字好呢"));
+        infoList.add(new AdoptInfo(R.drawable.member_cat4, "阿黑", "猫猫", 0, "7个月", "照片是刚捡到的时候拍的，现在8斤毛也更亮了一些。", "广州天河区", "2019.11.26", true, false, "不可不可"));
+        infoList.add(new AdoptInfo(R.drawable.member_cat5, "橘橘", "猫猫", 0, "两岁", " 会自己使用猫砂盆熟悉之后超级粘人", "广州荔湾区", "2019.11.26", true, false, "小尾巴"));
     }
 
     // 筛选

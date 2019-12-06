@@ -120,33 +120,33 @@ public class UserAdoptFragment extends Fragment {
     boolean flag1 = true, flag2 = true;
     private void add1(){
         if(flag1) {
-            infoList.add(new AdoptInfo(R.drawable.cat3, "九九", "猫猫", 0, "3个月", description2, "湖北武汉", "3小时前", 1, 0, "春回大地"));
-            infoList.add(new AdoptInfo(R.drawable.dog3, "十十", "狗狗", 1, "3岁", description3, "河南郑州", "3小时前", 1, 0, "福满人间"));
-            infoList.add(new AdoptInfo(R.drawable.cat4, "佳佳", "猫猫", 0, "2个月", description1, "新疆阿克苏", "4小时前", 1, 0, "彩云追月"));
-            infoList.add(new AdoptInfo(R.drawable.dog4, "依依", "狗狗", 0, "2岁半", description4, "香港深水埗", "5小时前", 1, 0, "骏马迎春"));
-            infoList.add(new AdoptInfo(R.drawable.cat5, "冰冰", "猫猫", 1, "1岁半", description2, "吉林长春", "5小时前", 1, 0, "鲤跃龙门"));
+            infoList.add(new AdoptInfo(R.drawable.cat3, "九九", "猫猫", 0, "3个月", description2, "湖北武汉", "3小时前", true, false, "春回大地"));
+            infoList.add(new AdoptInfo(R.drawable.dog3, "十十", "狗狗", 1, "3岁", description3, "河南郑州", "3小时前", true, false, "福满人间"));
+            infoList.add(new AdoptInfo(R.drawable.cat4, "佳佳", "猫猫", 0, "2个月", description1, "新疆阿克苏", "4小时前", true, false, "彩云追月"));
+            infoList.add(new AdoptInfo(R.drawable.dog4, "依依", "狗狗", 0, "2岁半", description4, "香港深水埗", "5小时前", true, false, "骏马迎春"));
+            infoList.add(new AdoptInfo(R.drawable.cat5, "冰冰", "猫猫", 1, "1岁半", description2, "吉林长春", "5小时前", true, false, "鲤跃龙门"));
             flag1 = false;
         }
     }
     private void add2() {
         if (flag2) {
-            infoList.add(new AdoptInfo(R.drawable.dog5, "圆圆", "狗狗", 0, "1岁10个月", description1, "江苏南京", "1天前", 1, 0, "门迎百福"));
-            infoList.add(new AdoptInfo(R.drawable.cat6, "扁扁", "猫猫", 1, "2岁2个月", description2, "台湾高雄", "1天前", 1, 0, "户纳千祥"));
-            infoList.add(new AdoptInfo(R.drawable.dog6, "哼哈", "狗狗", 1, "2岁2个月", description3, "安徽合肥", "2天前", 1, 0, "五谷丰登"));
-            infoList.add(new AdoptInfo(R.drawable.cat7, "中分", "猫猫", 1, "2岁", description4, "哥谭市", "3天前", 1, 0, "六畜兴旺"));
+            infoList.add(new AdoptInfo(R.drawable.dog5, "圆圆", "狗狗", 0, "1岁10个月", description1, "江苏南京", "1天前", true, false, "门迎百福"));
+            infoList.add(new AdoptInfo(R.drawable.cat6, "扁扁", "猫猫", 1, "2岁2个月", description2, "台湾高雄", "1天前", true, false, "户纳千祥"));
+            infoList.add(new AdoptInfo(R.drawable.dog6, "哼哈", "狗狗", 1, "2岁2个月", description3, "安徽合肥", "2天前", true, false, "五谷丰登"));
+            infoList.add(new AdoptInfo(R.drawable.cat7, "中分", "猫猫", 1, "2岁", description4, "哥谭市", "3天前", true, false, "六畜兴旺"));
             flag2 = false;
         }
     }
 
     private void initAdoptInfo() {
         infoList = new ArrayList<>();
-        infoList.add(new AdoptInfo(R.drawable.timg,"一一","狗狗",1,"2岁", description3,"广东广州","1小时前",1,0,"花开富贵"));
-        infoList.add(new AdoptInfo(R.drawable.cat,"二二","猫猫",0,"7个月", description1,"四川成都","1小时前",1,0,"竹报平安"));
-        infoList.add(new AdoptInfo(R.drawable.dog,"三三","狗狗",1,"3岁", description4,"辽宁铁岭","1小时前",1,0,"山间明月"));
-        infoList.add(new AdoptInfo(R.drawable.cat1,"四四", "猫猫",0,"11个月", description2,"内蒙古鄂尔多斯","2小时前",1,0,"江上春风"));
-        infoList.add(new AdoptInfo(R.drawable.dog1,"五五","狗狗",0,"4个月", description1,"浙江杭州","2小时前",1,0,"龙腾虎跃"));
-        infoList.add(new AdoptInfo(R.drawable.cat2,"六六","猫猫",1,"1岁3个月", description2,"上海普陀","2小时前",1,0,"水啸山吟"));
-        infoList.add(new AdoptInfo(R.drawable.dog2,"七七","狗狗",1,"1岁5个月", description3,"湖南长沙","3小时前",1,0,"木鱼水心"));
+        infoList.add(new AdoptInfo(R.drawable.timg,"一一","狗狗",1,"2岁", description3,"广东广州","1小时前",true,false,"花开富贵"));
+        infoList.add(new AdoptInfo(R.drawable.cat,"二二","猫猫",0,"7个月", description1,"四川成都","1小时前",true,false,"竹报平安"));
+        infoList.add(new AdoptInfo(R.drawable.dog,"三三","狗狗",1,"3岁", description4,"辽宁铁岭","1小时前",true,false,"山间明月"));
+        infoList.add(new AdoptInfo(R.drawable.cat1,"四四", "猫猫",0,"11个月", description2,"内蒙古鄂尔多斯","2小时前",true,false,"江上春风"));
+        infoList.add(new AdoptInfo(R.drawable.dog1,"五五","狗狗",0,"4个月", description1,"浙江杭州","2小时前",true,false,"龙腾虎跃"));
+        infoList.add(new AdoptInfo(R.drawable.cat2,"六六","猫猫",1,"1岁3个月", description2,"上海普陀","2小时前",true,false,"水啸山吟"));
+        infoList.add(new AdoptInfo(R.drawable.dog2,"七七","狗狗",1,"1岁5个月", description3,"湖南长沙","3小时前",true,false,"木鱼水心"));
     }
 
     // 筛选

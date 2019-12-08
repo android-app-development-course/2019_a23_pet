@@ -14,4 +14,6 @@ public interface MemberMessageMapper {
     int updateByPrimaryKeySelective(MemberMessage record);
 
     int updateByPrimaryKey(MemberMessage record);
+
+    MemberMessage selectByUserId(Integer userId);
 }

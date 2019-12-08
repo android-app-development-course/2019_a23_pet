@@ -2,7 +2,7 @@ package com.example.gohome.service.Impl;
 
 import com.example.gohome.dao.AdoptHandleOperationMapper;
 import com.example.gohome.dao.AdoptMessageMapper;
-import com.example.gohome.dao.UserDao;
+import com.example.gohome.dao.UserMessageDao;
 import com.example.gohome.entity.AdoptMessage;
 import com.example.gohome.service.AdoptMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class AdoptMessageServiceImpl implements AdoptMessageService {
     @Autowired
     AdoptMessageMapper adoptMessageMapper;
     @Autowired
-    UserDao userDao;
+    UserMessageDao userMessageDao;
     @Autowired
     AdoptHandleOperationMapper adoptHandleRecordDao;
 

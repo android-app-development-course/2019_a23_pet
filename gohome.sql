@@ -1,5 +1,6 @@
-CREATE DATABASE gohome
-USE gohome
+DROP DATABASE IF EXISTS gohome; 
+CREATE DATABASE gohome;
+USE gohome;
 
 
 # 所有用户信息
@@ -16,6 +17,19 @@ CREATE TABLE IF NOT EXISTS user_message(
 	UNIQUE(user_id),
 	PRIMARY KEY(user_id)
 )ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+INSERT INTO user_message(user_password, telephone, address, user_name, gender, user_type)
+VALUES
+('12345678', '15521214343', '广州市', '广州动物保护', 2, 2),
+('12345678', '15521214344', '北京市', '北京动物保护', 2, 2),
+('12345678', '15521214345', '南京市', '南京动物保护', 2, 2),
+('12345678', '15521214346', '广州市天河区', '游客1', 1, 0),
+('12345678', '15521214347', '广州市白云区', '游客2', 0, 0),
+('12345678', '15521214348', '北京市', '游客3', 1, 0),
+('12345678', '15521214343', '广州市天河区', 'a组员1', 0, 1),
+('12345678', '15521214343', '广州市白云区', 'b组员2', 0, 1),
+('12345678', '15521214343', '广州市番禺区', 'c组员3', 1, 1),
+('12345678', '15521214343', '广州市越秀区', 'd组员4', 1, 1);
 
 
 
@@ -40,6 +54,15 @@ CREATE TABLE IF NOT EXISTS adopt_message(
 	FOREIGN KEY (handle_id) REFERENCES user_message(user_id)
 )ENGINE=INNODB DEFAULT CHARSET=utf8;
 
+INSERT INTO adopt_message(pet_name, pet_type, gender, age, handle_id, pictures, state, description, address, vaccinate, steriled)
+VALUES
+('小狼', '1', '0', '三个月', 1, null, 0, '超级超级可爱的狗子', '广州天河中山大道', false, false),
+('小旺', '1', '1', '四个月', 1, null, 0, '超级超级可爱的狗子啊啊啊', '广州天河中山大道中', false, false),
+('小喵', '0', '0', '六个月', 7, null, 0, '超级超级可爱的喵星人', '广州天河中山大道北', true, true),
+('小黑', '0', '1', '一岁', 8, null, 0, '超级超级粘人的小黑啊啊啊', '广州天河中山大道南', true, true),
+('小白', '0', '1', '三个月', 1, null, 0, '超级超级可爱的小白啊啊啊', '广州天河中山大道东', false, true),
+('小花', '2', '0', '不明', 1, null, 0, '超级超级可爱的鹦鹉', '广州天河中山大道西', false, false);
+
 
 # 领养申请信息
 CREATE TABLE IF NOT EXISTS adopt_appliment(
@@ -50,13 +73,22 @@ CREATE TABLE IF NOT EXISTS adopt_appliment(
 	telephone VARCHAR(16) NOT NULL,# 申请人手机号
 	address VARCHAR(100) NOT NULL,# 申请人地址
 	job VARCHAR(32) NOT NULL,# 申请人职业
-	desciption TINYTEXT DEFAULT NULL,# 申请人个人描述
+	description TINYTEXT DEFAULT NULL,# 申请人个人描述
 	state INT DEFAULT 0,# 申请状态，0待审核，1处理中，2已完成
 	created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY(appliment_id),
 	FOREIGN KEY(adopt_id) REFERENCES adopt_message(adopt_id),
 	FOREIGN KEY(user_id) REFERENCES user_message(user_id)
 )ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+INSERT INTO adopt_appliment(adopt_id, user_id, apply_name, telephone, address, job, description, state)
+VALUES
+(1, 4, '王先生', '15521214346', '广州市天河区', '程序员', '喜欢动物，想养狗狗', 0),
+(2, 4, '王先生', '15521214346', '广州市天河区', '程序员', '喜欢动物，想养狗狗', 0),
+(3, 4, '王先生', '15521214346', '广州市天河区', '程序员', '喜欢动物，想养猫猫', 0),
+(4, 5, '林先生', '15521214347', '广州市白云区', '教师', '喜欢动物，想养猫猫', 0),
+(5, 5, '林先生', '15521214347', '广州市白云区', '教师', '喜欢动物，想养猫猫', 0),
+(6, 5, '林先生', '15521214347', '广州市白云区', '教师', '喜欢动物，想养猫猫', 0);
 
 
 # 领养申请对接
@@ -97,6 +129,11 @@ CREATE TABLE IF NOT EXISTS area_organizer(
 	FOREIGN KEY(user_id) REFERENCES user_message(user_id)
 )ENGINE=INNODB DEFAULT CHARSET=utf8;
 
+INSERT INTO area_organizer(user_id, organizer_name, address)
+VALUES
+(1, '广州动物保护组织', '广州市天河区'),
+(2, '北京动物保护组织', '北京市'),
+(3, '南京动物保护组织', '南京市');
 
 
 # 组织成员信息
@@ -109,6 +146,10 @@ CREATE TABLE IF NOT EXISTS member_message(
 	FOREIGN KEY(user_id) REFERENCES user_message(user_id),
 	FOREIGN KEY(area_id) REFERENCES area_organizer(area_id)	
 )ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+INSERT INTO member_message(user_id, area_id)
+VALUES
+(7, 1), (8, 1), (9, 1), (10, 1);
 
 # 申请加入
 CREATE TABLE IF NOT EXISTS join_appliment(
@@ -177,6 +218,10 @@ CREATE TABLE IF NOT EXISTS help_handle_operation(
 	PRIMARY KEY(operatioin_id),
 	FOREIGN KEY(info_id) REFERENCES help_handle_info(info_id)
 )ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+DROP USER IF EXISTS 'gohome_root'@'localhost';
+CREATE USER 'gohome_root'@'localhost' IDENTIFIED BY 'zxcvbn';
+GRANT ALL ON gohome.* TO 'gohome_root'@'localhost';
 
 
 

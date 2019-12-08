@@ -16,6 +16,12 @@
     from member_message
     where message_id = #{messageId,jdbcType=INTEGER}
   </select>
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from member_message
+    where message_id = #{userId,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from member_message
     where message_id = #{messageId,jdbcType=INTEGER}

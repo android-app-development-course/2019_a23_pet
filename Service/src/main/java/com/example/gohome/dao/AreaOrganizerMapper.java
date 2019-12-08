@@ -14,4 +14,6 @@ public interface AreaOrganizerMapper {
     int updateByPrimaryKeySelective(AreaOrganizer record);
 
     int updateByPrimaryKey(AreaOrganizer record);
+
+    AreaOrganizer selectByUserId(Integer userId);
 }

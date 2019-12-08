@@ -13,10 +13,10 @@
     <string name="action_sign_in_short">登录</string>
     <string name="welcome">"登录成功"</string>
     <string name="invalid_username">账户名错误</string>
-    <string name="invalid_password">密码长度需要大于5</string>
+    <string name="invalid_password">密码长度需要大于8</string>
     <string name="login_failed">"登陆失败"</string>
 
     <!--url配置-->
-    <string name="serverBasePath">http://10.255.124.236:8080/gohome/</string>
+    <string name="serverBasePath">http://127.0.0.1:8080/gohome/</string>
     <string name="insertAdoptMessage">adoptmessage/insertadoptmessage</string>
 </resources>

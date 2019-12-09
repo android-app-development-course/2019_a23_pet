@@ -30,5 +30,7 @@ build/
 ### VS Code ###
 .vscode/
 /.gitignore
-/src/main/resources/application-dev.properties
 
+
+/src/main/resources/application-dev.properties
+/src/main/resources/generatorConfig.xml

@@ -14,11 +14,10 @@
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="vaccinate" property="vaccinate" jdbcType="BIT" />
     <result column="steriled" property="steriled" jdbcType="BIT" />
-    <result column="created" property="created" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
     adopt_id, pet_name, pet_type, gender, age, handle_id, pictures, state, description, 
-    address, vaccinate, steriled, created
+    address, vaccinate, steriled
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -37,12 +36,12 @@
     insert into adopt_message (pet_name, pet_type, gender, 
       age, handle_id, pictures, 
       state, description, address, 
-      vaccinate, steriled, created
+      vaccinate, steriled
       )
     values (#{petName,jdbcType=VARCHAR}, #{petType,jdbcType=INTEGER}, #{gender,jdbcType=INTEGER}, 
       #{age,jdbcType=VARCHAR}, #{handleId,jdbcType=INTEGER}, #{pictures,jdbcType=VARCHAR}, 
       #{state,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
-      #{vaccinate,jdbcType=BIT}, #{steriled,jdbcType=BIT}, #{created,jdbcType=TIMESTAMP}
+      #{vaccinate,jdbcType=BIT}, #{steriled,jdbcType=BIT}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.example.gohome.entity.AdoptMessage" >
@@ -84,9 +83,6 @@
       <if test="steriled != null" >
         steriled,
       </if>
-      <if test="created != null" >
-        created,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="petName != null" >
@@ -121,9 +117,6 @@
       </if>
       <if test="steriled != null" >
         #{steriled,jdbcType=BIT},
-      </if>
-      <if test="created != null" >
-        #{created,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -163,9 +156,7 @@
       <if test="steriled != null" >
         steriled = #{steriled,jdbcType=BIT},
       </if>
-      <if test="created != null" >
-        created = #{created,jdbcType=TIMESTAMP},
-      </if>
+
     </set>
     where adopt_id = #{adoptId,jdbcType=INTEGER}
   </update>
@@ -182,7 +173,6 @@
       address = #{address,jdbcType=VARCHAR},
       vaccinate = #{vaccinate,jdbcType=BIT},
       steriled = #{steriled,jdbcType=BIT},
-      created = #{created,jdbcType=TIMESTAMP}
     where adopt_id = #{adoptId,jdbcType=INTEGER}
   </update>
 </mapper>

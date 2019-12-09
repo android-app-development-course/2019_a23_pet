@@ -132,7 +132,7 @@ public class MemberAdoptFragment extends Fragment {
     }
     private void add2() {
         if (flag2) {
-            infoList.add(new AdoptInfo(R.drawable.member_dog3, "dodo", "狗狗", 0, "一岁左右", "狗狗很乖很聪明，爱洗澡", "广州白云区", "2019.11.26", true, false, "kekeqin"));
+            infoList.add(new AdoptInfo(R.drawable.member_dog3, "dodo", "狗狗", 0, "一岁左右", "狗狗很乖很聪明，爱洗澡", "广州白云区", "2019.11.26", false, false, "kekeqin"));
             infoList.add(new AdoptInfo(R.drawable.member_dog4, "roo", "狗狗", 1, "一岁半", "非常健康，温顺，从来不乱咬东西，不吵闹", "广州荔湾区", "2019.11.26", true, true, "啦啦妹"));
 
 

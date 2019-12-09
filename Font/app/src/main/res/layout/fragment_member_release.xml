@@ -53,26 +53,83 @@
         </FrameLayout>
 
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:layout_marginTop="@dimen/margin">
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/margin"
+            android:background="@color/white">
 
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/et_releaseType"
-                android:layout_width="match_parent"
+            <FrameLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="宠物类型"
-                android:layout_marginHorizontal="@dimen/margin"
-                app:met_iconLeft="@drawable/type_selected"
-                app:met_baseColor="@color/orange"
-                app:met_primaryColor="@color/orange"
-                app:met_textColor="@color/black"
-                android:maxLines="1"/>
+                android:layout_marginLeft="@dimen/margin_l"
+                android:layout_gravity="center">
 
-        </FrameLayout>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/gender_selected"/>
 
+
+            </FrameLayout>
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin">
+
+
+
+                <co.ceryle.radiorealbutton.RadioRealButtonGroup
+                    android:id="@+id/radGro_releaseType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:rrbg_animateDrawables_enter="overshoot"
+                    app:rrbg_animateTexts_enter="overshoot"
+                    app:rrbg_dividerColor="@color/black"
+                    app:rrbg_dividerSize="1dp"
+                    app:rrbg_radius="10dp"
+                    app:rrbg_selectorColor="@color/orange"
+                    app:rrbg_selectorSize="4dp"
+                    app:rrbg_backgroundColor="@color/yellow">
+
+                    <co.ceryle.radiorealbutton.RadioRealButton
+                        android:id="@+id/radBut_releaseCat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:rrb_ripple="true"
+                        app:rrb_rippleColor="@color/black"
+                        app:rrb_text="小猫"
+                        app:rrb_textColor="@color/black" />
+
+
+                    <co.ceryle.radiorealbutton.RadioRealButton
+                        android:id="@+id/radBut_releaseDog"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:rrb_ripple="true"
+                        app:rrb_rippleColor="@color/black"
+                        app:rrb_text="小狗"
+                        app:rrb_textColor="@color/black"/>
+
+
+                    <co.ceryle.radiorealbutton.RadioRealButton
+                        android:id="@+id/radBut_releaseBird"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:rrb_ripple="true"
+                        app:rrb_rippleColor="@color/black"
+                        app:rrb_text="小鸟"
+                        app:rrb_textColor="@color/black"/>
+
+                </co.ceryle.radiorealbutton.RadioRealButtonGroup>
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
 
 
         <LinearLayout

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -67,15 +68,13 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class MemberReleaseFragment extends Fragment  {
 
-    private static final int REQUEST_CODE_CHOOSE = 23;
-
     private List<LocalMedia> selectList = new ArrayList<>();   //照片存储列表
 
     private CircularProgressButton btn_submit;
     private EditText et_releaseName;
     private EditText et_releaseAge;
-    private EditText et_releaseType;
     private FJEditTextCount et_releaseDescription;
+    private RadioRealButtonGroup radGro_releaseType;
     private RadioRealButtonGroup radGro_releaseGender;
     private RadioRealButtonGroup radGro_releaseSterilizine;
     private RadioRealButtonGroup radGro_releaseVaccine;
@@ -90,17 +89,20 @@ public class MemberReleaseFragment extends Fragment  {
     //向上箭头、向下箭头
     private int upResId,downResId;
     private int chooseMode = PictureMimeType.ofAll();
-    int Gender;
-    int Sterilizine;
-    int Vaccine;
+    private int Type;    //动物类型，0为猫，1为狗，2为鸟
+    private int Gender;
+    private int Sterilizine;
+    private int Vaccine;
     //弹出对话框 选择照片选择方式
-    NiftyDialogBuilder dialogBuilderSelect;
+    private NiftyDialogBuilder dialogBuilderSelect;
+    //记录用户选择，拍照或从相册选择
+    private boolean mode;
+    //用于发送的待领养信息类
+    private AdoptInfo adoptInfo;
 
-    boolean mode;    //记录用户选择，拍照或从相册选择
+    //记录请求结构
+    private boolean[] result = new boolean[1];
 
-
-    public static final MediaType FORM_CONTENT_TYPE
-            = MediaType.parse("application/json;charset=utf-8");
 
     @Nullable
     @Override
@@ -111,8 +113,8 @@ public class MemberReleaseFragment extends Fragment  {
         btn_submit = view.findViewById(R.id.btn_releaseSubmit);
         et_releaseName = view.findViewById(R.id.et_releaseName);
         et_releaseAge = view.findViewById(R.id.et_releaseAge);
-        et_releaseType = view.findViewById(R.id.et_releaseType);
         et_releaseDescription = view.findViewById(R.id.et_releaseDescription);
+        radGro_releaseType = view.findViewById(R.id.radGro_releaseType);
         radGro_releaseGender = view.findViewById(R.id.radGro_releaseGender);
         radGro_releaseSterilizine = view.findViewById(R.id.radGro_releaseSterilizine);
         radGro_releaseVaccine = view.findViewById(R.id.radGro_releaseVaccine);
@@ -124,6 +126,9 @@ public class MemberReleaseFragment extends Fragment  {
         upResId = R.drawable.orange_arrow_up;
         downResId = R.drawable.orange_arrow_down;
         dialogBuilderSelect = NiftyDialogBuilder.getInstance(this.getActivity());
+
+        //创建待领养动物信息对象
+        adoptInfo = new AdoptInfo();
 
         try {
             init();
@@ -230,12 +235,26 @@ public class MemberReleaseFragment extends Fragment  {
 
     private void init() throws InterruptedException {
 
+        //提交成功图标
         Bitmap bitmapDone =  BitmapFactory.decodeResource(this.getContext().getResources(), R.drawable.ic_action_done);
+        //提交失败图标
         Bitmap bitmapFail = BitmapFactory.decodeResource(this.getContext().getResources(),R.drawable.ic_action_fail);
-        
 
+        radGro_releaseType.setPosition(-1);
+        radGro_releaseVaccine.setPosition(-1);
+        radGro_releaseSterilizine.setPosition(-1);
+        radGro_releaseGender.setPosition(-1);
 
-        // onClickButton listener detects any click performed on buttons by touch
+        //监听动物类型选择单选控件
+        radGro_releaseType.setOnClickedButtonListener(new RadioRealButtonGroup.OnClickedButtonListener() {
+            @Override
+            public void onClickedButton(RadioRealButton button, int position) {
+                Toast.makeText(getActivity(), "Clicked! Position: " + position, Toast.LENGTH_SHORT).show();
+                Type = position;
+            }
+        });
+
+        //监听性别选择单选控件
         radGro_releaseGender.setOnClickedButtonListener(new RadioRealButtonGroup.OnClickedButtonListener() {
             @Override
             public void onClickedButton(RadioRealButton button, int position) {
@@ -244,7 +263,7 @@ public class MemberReleaseFragment extends Fragment  {
             }
         });
 
-        // onPositionChanged listener detects if there is any change in position
+        //监听性别选择单选控件
         radGro_releaseGender.setOnPositionChangedListener(new RadioRealButtonGroup.OnPositionChangedListener() {
             @Override
             public void onPositionChanged(RadioRealButton button, int currentPosition, int lastPosition) {
@@ -253,6 +272,7 @@ public class MemberReleaseFragment extends Fragment  {
             }
         });
 
+        //监听是否绝育选择单选控件
         radGro_releaseSterilizine.setOnClickedButtonListener(new RadioRealButtonGroup.OnClickedButtonListener() {
             @Override
             public void onClickedButton(RadioRealButton button, int position) {
@@ -261,6 +281,7 @@ public class MemberReleaseFragment extends Fragment  {
             }
         });
 
+        //监听是否绝育选择单选控件
         radGro_releaseSterilizine.setOnPositionChangedListener(new RadioRealButtonGroup.OnPositionChangedListener() {
             @Override
             public void onPositionChanged(RadioRealButton button, int currentPosition, int lastPosition) {
@@ -269,6 +290,7 @@ public class MemberReleaseFragment extends Fragment  {
             }
         });
 
+        //监听是否绝育疫苗单选控件
         radGro_releaseVaccine.setOnClickedButtonListener(new RadioRealButtonGroup.OnClickedButtonListener() {
             @Override
             public void onClickedButton(RadioRealButton button, int position) {
@@ -277,6 +299,7 @@ public class MemberReleaseFragment extends Fragment  {
             }
         });
 
+        //监听是否疫苗选择单选控件
         radGro_releaseVaccine.setOnPositionChangedListener(new RadioRealButtonGroup.OnPositionChangedListener() {
             @Override
             public void onPositionChanged(RadioRealButton button, int currentPosition, int lastPosition) {
@@ -285,49 +308,176 @@ public class MemberReleaseFragment extends Fragment  {
             }
         });
 
-
+        //提交按钮点击监听
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 btn_submit.startAnimation();
 
-                //获取表单的数据
-                System.out.println("宠物姓名："+et_releaseName.getText());
-                System.out.println("宠物年龄："+et_releaseAge.getText());
-                System.out.println("宠物类型："+et_releaseType.getText());
-                System.out.println("宠物描述："+et_releaseDescription.getText());
-                System.out.println("宠物性别："+Gender);
-                System.out.println("绝育情况："+Sterilizine);
-                System.out.println("疫苗情况："+Vaccine);
+                //获取表单的数据，判断是否为空，空则提示用户
+                if(et_releaseName.getText().toString().equals("")){
+                    Toast.makeText(getContext(),"宠物姓名不能为空，请重新提交！",Toast.LENGTH_LONG).show();
+                    btn_submit.doneLoadingAnimation(getResources().getColor(R.color.red), bitmapFail);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            /**
+                             *要执行的操作
+                             */
+                            cleanInputContent();
+                        }
+                    }, 3000);//3秒后执行Runnable中的run方法
+                    return;
+                }
+                if(radGro_releaseType.getPosition() == -1){
+                    Toast.makeText(getContext(),"宠物类型选择不能为空，请重新提交！",Toast.LENGTH_LONG).show();
+                    btn_submit.doneLoadingAnimation(getResources().getColor(R.color.red), bitmapFail);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            /**
+                             *要执行的操作
+                             */
+                            cleanInputContent();
+                        }
+                    }, 3000);//3秒后执行Runnable中的run方法
+                    return;
+                }
+                if(radGro_releaseSterilizine.getPosition() == -1){
+                    Toast.makeText(getContext(),"宠物绝育情况选择不能为空，请重新提交！",Toast.LENGTH_LONG).show();
+                    btn_submit.doneLoadingAnimation(getResources().getColor(R.color.red), bitmapFail);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            /**
+                             *要执行的操作
+                             */
+                            cleanInputContent();
+                        }
+                    }, 3000);//3秒后执行Runnable中的run方法
+                    return;
+                }
+                if(radGro_releaseGender.getPosition() == -1){
+                    Toast.makeText(getContext(),"宠物性别选择不能为空，请重新提交！",Toast.LENGTH_LONG).show();
+                    btn_submit.doneLoadingAnimation(getResources().getColor(R.color.red), bitmapFail);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            /**
+                             *要执行的操作
+                             */
+                            cleanInputContent();
+                        }
+                    }, 3000);//3秒后执行Runnable中的run方法                    return;
+                }
+                if(radGro_releaseVaccine.getPosition() == -1){
+                    Toast.makeText(getContext(),"宠物疫苗情况选择不能为空，请重新提交！",Toast.LENGTH_LONG).show();
+                    btn_submit.doneLoadingAnimation(getResources().getColor(R.color.red), bitmapFail);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            /**
+                             *要执行的操作
+                             */
+                            cleanInputContent();
+                        }
+                    }, 3000);//3秒后执行Runnable中的run方法                    return;
+                }
 
-                sendByOKHttp();
 
-//                btn.setProgress(100000);      //模拟表单提交过程，但是好像并没有显示出来？？
-                //设置提交成功的图标和颜色
-                btn_submit.doneLoadingAnimation(getResources().getColor(R.color.green), bitmapDone);
-                //设置提交失败的图标和颜色
-                //btn.doneLoadingAnimation(getResources().getColor(R.color.red), bitmapFail);
+                adoptInfo.setPetName(et_releaseName.getText().toString());
+                adoptInfo.setAge(et_releaseAge.getText().toString());
+                adoptInfo.setPetType(String.valueOf(Type));
+                adoptInfo.setDescription(et_releaseDescription.getText().toString());
+                adoptInfo.setGender(Gender);
+                adoptInfo.setSteriled(Sterilizine == 0);
+                adoptInfo.setVaccinate(Vaccine == 0);
+                adoptInfo.setHandleId("2");
+                //地址到时候从后台去除该用户的所在地
+                adoptInfo.setAddress("广州天河区");
+
+//                insertAdoptInfo();
+
+//                System.out.println("结果："+ (result[0] ? "true":"false"));
+//                if(result[0]){
+//                    //设置提交成功的图标和颜色
+//                    btn_submit.doneLoadingAnimation(getResources().getColor(R.color.green), bitmapDone);
+//                    Toast.makeText(getContext(),"提交成功！",Toast.LENGTH_LONG).show();
+////                    //提示提交成功toast
+////                    Toast toast = TastyToast.makeText(getActivity(), "提交成功!", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
+////                    //设置toast显示位置
+////                    toast.setGravity(Gravity.CENTER,0,0);
+////                    //调用show使得toast得以显示
+////                    toast.show();
+//                }else {
+//                    //设置提交失败的图标和颜色
+//                    btn_submit.doneLoadingAnimation(getResources().getColor(R.color.red), bitmapFail);
+//                    Toast.makeText(getContext(),"提交失败，请重新提交！",Toast.LENGTH_LONG).show();
+//                }
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //建立client
+                        final OkHttpClient[] client = {new OkHttpClient()};
+                        //将传送实体类转为string类型的键值对
+                        Gson gson = new Gson();
+                        String json = gson.toJson(adoptInfo);
+
+                        System.out.println("json:"+json);
+                        //设置请求体并设置contentType
+                        RequestBody requestBody = FormBody.create(MediaType.parse("application/json;charset=utf-8"),json);
+                        //请求
+                        Request request=new Request.Builder()
+                                .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.insertAdoptMessage))
+                                .post(requestBody)
+                                .build();
+                        //新建call联结client和request
+                        Call call= client[0].newCall(request);
+                        call.enqueue(new Callback() {
+                            @Override
+                            public void onFailure(Call call, IOException e) {
+                                //请求失败的处理
+                                Log.i("RESPONSE:","fail"+e.getMessage());
+                                result[0] = false;
+//                        Log.i("result的值", String.valueOf(result[0]));
+                                Log.i("result的值", String.valueOf(result[0]));
+                                //设置提交失败的图标和颜色
+                                btn_submit.doneLoadingAnimation(getResources().getColor(R.color.red), bitmapFail);
+                                Toast.makeText(getContext(),"提交失败，请重新提交！",Toast.LENGTH_LONG).show();
+                                return;
+                            }
+                            @Override
+                            public void onResponse(Call call, Response response) throws IOException {
+                                Log.i("RESPONSE:",response.body().string());
+                                result[0] = true;
+                                Log.i("result的值", String.valueOf(result[0]));
+//                                设置提交成功的图标和颜色
+                                btn_submit.doneLoadingAnimation(getResources().getColor(R.color.green), bitmapDone);
+                                Toast.makeText(getContext(),"提交成功！",Toast.LENGTH_LONG).show();
+                                return;
+                            }
+
+                        });
+                    }
+                }).start();
 
 
-                //提示提交成功toast
-                Toast toast = TastyToast.makeText(getActivity(), "提交成功!", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
-                //设置toast显示位置
-                toast.setGravity(Gravity.CENTER,0,0);
-                //调用show使得toast得以显示
-                toast.show();
-
-                //清空editText和选择框
-                et_releaseName.setText("");
-                et_releaseAge.setText("");
-                et_releaseType.setText("");
-                et_releaseDescription.setText("");
-                radGro_releaseGender.deselect();
-                radGro_releaseVaccine.deselect();
-                radGro_releaseSterilizine.deselect();
-
-                //还原提交按钮
-//                btn.revertAnimation();
-
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        /**
+                         *要执行的操作
+                         */
+                        cleanInputContent();
+                    }
+                }, 3000);//3秒后执行Runnable中的run方法
             }
         });
 
@@ -410,6 +560,7 @@ public class MemberReleaseFragment extends Fragment  {
                 case PictureConfig.CHOOSE_REQUEST:
                     // 图片选择结果回调
                     selectList = PictureSelector.obtainMultipleResult(data);
+                    String selectString = "";
                     // 例如 LocalMedia 里面返回三种path
                     // 1.media.getPath(); 为原图path
                     // 2.media.getCutPath();为裁剪后path，需判断media.isCut();是否为true
@@ -417,11 +568,14 @@ public class MemberReleaseFragment extends Fragment  {
                     // 如果裁剪并压缩了，已取压缩路径为准，因为是先裁剪后压缩的
                     // 4.media.getAndroidQToPath();为Android Q版本特有返回的字段，此字段有值就用来做上传使用
                     for (LocalMedia media : selectList) {
+                        selectString += media.getPath();
                         Log.i(TAG, "压缩---->" + media.getCompressPath());
                         Log.i(TAG, "原图---->" + media.getPath());
                         Log.i(TAG, "裁剪---->" + media.getCutPath());
                         Log.i(TAG, "Android Q 特有Path---->" + media.getAndroidQToPath());
                     }
+
+                    adoptInfo.setPictures(selectString);
                     adapter.setList(selectList);
                     adapter.notifyDataSetChanged();
                     break;
@@ -432,65 +586,65 @@ public class MemberReleaseFragment extends Fragment  {
     /**
      * 发送插入待领养动物信息请求（使用 OKHttp）
      */
-    private void sendByOKHttp() {
+    private void insertAdoptInfo() {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                OkHttpClient client = new OkHttpClient();
-
-                //把参数传进Map中
-                HashMap<String,String> paramsMap=new HashMap<>();
-                paramsMap.put("petName","roo");
-                paramsMap.put("age","3个月");
-                paramsMap.put("handleId","2");
-                paramsMap.put("description","活泼");
-                paramsMap.put("gender","0");
-                paramsMap.put("vaccinate","false");
-                paramsMap.put("steriled","true");
-                paramsMap.put("address","广州天河");
-                paramsMap.put("petType","0");
-
+                //建立client
+                final OkHttpClient[] client = {new OkHttpClient()};
+                //将传送实体类转为string类型的键值对
                 Gson gson = new Gson();
-                String json = gson.toJson(paramsMap);
+                String json = gson.toJson(adoptInfo);
 
                 System.out.println("json:"+json);
-
+                //设置请求体并设置contentType
                 RequestBody requestBody = FormBody.create(MediaType.parse("application/json;charset=utf-8"),json);
-
+                //请求
                 Request request=new Request.Builder()
                         .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.insertAdoptMessage))
                         .post(requestBody)
                         .build();
-                Call call=client.newCall(request);
+                //新建call联结client和request
+                Call call= client[0].newCall(request);
                 call.enqueue(new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
                         //请求失败的处理
-                        Log.i("RESPONSE:","fail");
+                        Log.i("RESPONSE:","fail"+e.getMessage());
+                        result[0] = false;
+//                        Log.i("result的值", String.valueOf(result[0]));
+                        Log.i("result的值", String.valueOf(result[0]));
                     }
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
                         Log.i("RESPONSE:",response.body().string());
+                        result[0] = true;
+                        Log.i("result的值", String.valueOf(result[0]));
                     }
+
                 });
-//
-//
-//                Request request = new Request
-//                                    .Builder()
-//                                    .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.insertAdoptMessage))
-////                                    .post(builder.build())
-//                                    .post(formBody)
-//                                    .build();
-//                try {
-//                    Response response = client.newCall(request).execute();//发送请求
-//                    String result = response.body().string();
-//                    Log.d(TAG, "result: "+result);
-////                    show(result);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
             }
         }).start();
+
     }
+
+    private void cleanInputContent(){
+        //清空editText和选择框
+        et_releaseName.setText("");
+        et_releaseAge.setText("");
+        et_releaseDescription.setText("");
+        radGro_releaseType.deselect();
+        radGro_releaseType.setPosition(-1);
+        radGro_releaseGender.deselect();
+        radGro_releaseGender.setPosition(-1);
+        radGro_releaseVaccine.deselect();
+        radGro_releaseVaccine.setPosition(-1);
+        radGro_releaseSterilizine.deselect();
+        radGro_releaseSterilizine.setPosition(-1);
+
+        //还原提交按钮
+        btn_submit.revertAnimation();
+    }
+
 
 }

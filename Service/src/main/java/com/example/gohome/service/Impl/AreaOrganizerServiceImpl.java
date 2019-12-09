@@ -4,8 +4,10 @@ import com.example.gohome.dao.AreaOrganizerMapper;
 import com.example.gohome.entity.AreaOrganizer;
 import com.example.gohome.service.AreaOrganizerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
 @Transactional
 public class AreaOrganizerServiceImpl implements AreaOrganizerService {
 

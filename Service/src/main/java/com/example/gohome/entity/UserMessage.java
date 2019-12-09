@@ -3,7 +3,11 @@ package com.example.gohome.entity;
 import java.util.Date;
 
 /*  用户信息类，记录用户的所有个人信息 */
-public class User {
+public class UserMessage {
+
+    public static final int USER_TYPE_NORMAL = 0;
+    public static final int USER_TYPE_MEMBER = 1;
+    public static final int USER_TYPE_ORGANIZER = 2;
     //主键用户ID
     private Integer userId;
     //用户名

@@ -1,6 +1,6 @@
 package com.example.gohome.dao;
 
-import com.example.gohome.entity.User;
+import com.example.gohome.entity.UserMessage;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,25 +14,25 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserDaoTest {
+public class UserMessageDaoTest {
     @Autowired
-    private UserDao uDao;
+    private UserMessageDao uDao;
 
     @Test
     public void queryUser() {
-        List<User>  userList = uDao.queryUser();
-        assertEquals(1,userList.size());
+        List<UserMessage> userMessageList = uDao.queryUser();
+        assertEquals(1, userMessageList.size());
     }
 
     @Test
     public void queryUserByUserId() {
-        User u = uDao.queryUserByUserId(1);
+        UserMessage u = uDao.queryUserByUserId(1);
         assertEquals("哈哈",u.getUserName());
     }
 
     @Test
     public void insertUser() {
-        User u = new User();
+        UserMessage u = new UserMessage();
         u.setUserType(1);
         u.setTelephone("13889856476");
         u.setAddress("广州天河");
@@ -45,7 +45,7 @@ public class UserDaoTest {
 
     @Test
     public void updateUser() {
-        User u = new User();
+        UserMessage u = new UserMessage();
         u.setUserType(1);
         u.setUserId(1);
         u.setUserName("kaka");

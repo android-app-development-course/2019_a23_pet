@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:padding="@dimen/margin_xs"
         android:background="@color/background">
 
         <FrameLayout
@@ -22,12 +25,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin"
-                android:hint="用户名"
+                android:hint="用户名，2~8位中英文及下划线"
                 app:met_iconLeft="@drawable/mine_selected"
                 app:met_baseColor="@color/orange"
                 app:met_primaryColor="@color/orange"
                 app:met_textColor="@color/black"
-                android:maxLines="1"/>
+                android:maxLines="1"
+                android:maxLength="8" />
 
         </FrameLayout>
 
@@ -41,14 +45,15 @@
                 android:id="@+id/et_registerUserPsd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="密码"
+                android:hint="密码，8~16位数字、英文字母及下划线"
                 android:layout_marginHorizontal="@dimen/margin"
                 app:met_iconLeft="@drawable/edit_selected"
                 app:met_baseColor="@color/orange"
                 app:met_primaryColor="@color/orange"
                 app:met_textColor="@color/black"
                 android:inputType="textPassword"
-                android:maxLines="1"/>
+                android:maxLines="1"
+                android:maxLength="16"/>
 
         </FrameLayout>
 
@@ -69,7 +74,8 @@
                 app:met_primaryColor="@color/orange"
                 app:met_textColor="@color/black"
                 android:inputType="number"
-                android:maxLines="1"/>
+                android:maxLines="1"
+                android:maxLength="11"/>
 
         </FrameLayout>
 
@@ -90,7 +96,8 @@
                 app:met_baseColor="@color/orange"
                 app:met_primaryColor="@color/orange"
                 app:met_textColor="@color/black"
-                android:maxLines="1"/>
+                android:maxLines="1"
+                android:maxLength="24"/>
 
         </FrameLayout>
 
@@ -121,8 +128,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin">
 
-
-
                 <co.ceryle.radiorealbutton.RadioRealButtonGroup
                     android:id="@+id/radGro_registerUserGender"
                     android:layout_width="wrap_content"
@@ -137,7 +142,7 @@
                     app:rrbg_backgroundColor="@color/yellow">
 
                     <co.ceryle.radiorealbutton.RadioRealButton
-                        android:id="@+id/radBut_registerGenderBoy"
+                        android:id="@+id/radBtn_registerGenderBoy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:rrb_ripple="true"
@@ -147,7 +152,7 @@
 
 
                     <co.ceryle.radiorealbutton.RadioRealButton
-                        android:id="@+id/radBut_registerGenderGirl"
+                        android:id="@+id/radBtn_registerGenderGirl"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:rrb_ripple="true"
@@ -193,4 +198,4 @@
 
 
 
-</ScrollView>
+</RelativeLayout>

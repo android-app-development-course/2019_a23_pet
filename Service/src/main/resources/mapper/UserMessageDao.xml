@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.gohome.dao.UserDao" >
-    <resultMap id="UserResultMap" type="com.example.gohome.entity.User" >
+<mapper namespace="com.example.gohome.dao.UserMessageDao" >
+    <resultMap id="UserResultMap" type="com.example.gohome.entity.UserMessage" >
         <id column="user_id" property="userId"  />
         <result column="user_name" property="userName"  />
         <result column="user_type" property="userType" />
@@ -17,26 +17,38 @@
     <sql id="Base_Column_List" >
         user_id,user_name,user_type,protrait,telephone,gender,address,user_password,created
     </sql>
-    <select id="queryUser" resultMap="UserResultMap" resultType="com.example.gohome.entity.User">
+    <select id="queryUser" resultMap="UserResultMap" resultType="com.example.gohome.entity.UserMessage">
         SELECT * FROM user_message
         ORDER BY user_id
     </select>
 
-    <select id="queryUserByUserId" resultMap="UserResultMap" resultType="com.example.gohome.entity.User"
-            parameterType="com.example.gohome.entity.User" >
+    <select id="queryUserByUserId" resultMap="UserResultMap" resultType="com.example.gohome.entity.UserMessage"
+            parameterType="com.example.gohome.entity.UserMessage" >
         SELECT *
         FROM user_message
         WHERE user_id =#{userId}
     </select>
+    <select id="queryUserByUserName" resultMap="UserResultMap" resultType="com.example.gohome.entity.UserMessage"
+            parameterType="com.example.gohome.entity.UserMessage" >
+        SELECT *
+        FROM user_message
+        WHERE user_name =#{userName}
+    </select>
+    <select id="queryUserByUserPassword" resultMap="UserResultMap" resultType="com.example.gohome.entity.UserMessage"
+            parameterType="com.example.gohome.entity.UserMessage" >
+        SELECT *
+        FROM user_message
+        WHERE user_name =#{userName} AND user_password=#{userPassword}
+    </select>
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="userId"
-        keyColumn="userId" parameterType="com.example.gohome.entity.User">
+        keyColumn="userId" parameterType="com.example.gohome.entity.UserMessage">
         INSERT INTO user_message(user_password,telephone,address,user_name,gender,
           user_type,protrait,created)
         VALUES
         (#{userPassword},#{telephone},#{address},#{userName},#{gender},#{userType},
           #{portrait},#{created})
     </insert>
-    <update id="updateUser"  parameterType="com.example.gohome.entity.User">
+    <update id="updateUser"  parameterType="com.example.gohome.entity.UserMessage">
         UPDATE user_message
         <set>
             <if test="userPassword!=null">user_password=#{userPassword},</if>

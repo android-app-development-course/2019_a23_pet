@@ -49,6 +49,16 @@ public class AdoptInfo implements Serializable {
         this.created = created;
     }
 
+    public String getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(String pictures) {
+        this.pictures = pictures;
+    }
+
+    //用于后端测试
+    private String pictures;
     private int photos;
     private String petName;
     private String age;
@@ -62,6 +72,10 @@ public class AdoptInfo implements Serializable {
     private String created;
 
     private View.OnClickListener requestBtnClickListener;
+
+    public AdoptInfo(){
+
+    }
 
     public AdoptInfo(int photoId, String petName,
                      String petType, int gender, String age,

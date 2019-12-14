@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.gohome.Entity.AdoptAppliment;
 import com.example.gohome.Entity.HelpAppliment;
 import com.example.gohome.Entity.ResponseAdoptAppliment;
+import com.example.gohome.Entity.ResponseHelpAppliment;
 import com.example.gohome.R;
 import com.example.gohome.User.ImageDialog;
 import com.ramotion.foldingcell.FoldingCell;
@@ -26,7 +27,7 @@ public class MemberCheckUndoFoldingCellAdapter extends RecyclerView.Adapter {
 
     //数据源
     private List<ResponseAdoptAppliment.responseAdoptAppliment> adoptApplimentList;
-    private List<HelpAppliment> helpApplimentList;
+    private List<ResponseHelpAppliment.responseHelpAppliment> helpApplimentList;
     private Context context;
 
     private final String s0 = "♀";
@@ -300,7 +301,7 @@ public class MemberCheckUndoFoldingCellAdapter extends RecyclerView.Adapter {
             helpViewHolder.petAge.setText(helpApplimentList.get(position).getPetAge());
             helpViewHolder.contentDate.setText(helpApplimentList.get(position).getDate());
             helpViewHolder.applicantName.setText(helpApplimentList.get(position).getApplicantName());
-            helpViewHolder.applicantAddress.setText(helpApplimentList.get(position).getApplicantAddress());
+            helpViewHolder.applicantAddress.setText(helpApplimentList.get(position).getAddress());
             helpViewHolder.applicantTelephone.setText(helpApplimentList.get(position).getApplicantTel());
             helpViewHolder.applicantDescription.setText(helpApplimentList.get(position).getDescription());
 
@@ -338,10 +339,10 @@ public class MemberCheckUndoFoldingCellAdapter extends RecyclerView.Adapter {
                 }
             });
 
-            helpViewHolder.petPhoto2.setOnClickListener(view -> {
-                ImageDialog dialog = new ImageDialog(context, helpApplimentList.get(position).getPetPhotoId());
-                dialog.show();
-            });
+//            helpViewHolder.petPhoto2.setOnClickListener(view -> {
+//                ImageDialog dialog = new ImageDialog(context, helpApplimentList.get(position).getPetPhotoId());
+//                dialog.show();
+//            });
 
         }
 

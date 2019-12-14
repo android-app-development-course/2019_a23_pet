@@ -37,7 +37,7 @@
       )
     values (#{adoptId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{applyName,jdbcType=VARCHAR}, 
       #{telephone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, 
-      #{description,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{created,jdbcType=TIMESTAMP}
+      #{description,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.example.gohome.entity.AdoptAppliment" >

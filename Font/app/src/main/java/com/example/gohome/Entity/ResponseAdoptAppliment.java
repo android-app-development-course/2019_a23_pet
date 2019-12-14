@@ -4,6 +4,14 @@ import java.util.List;
 
 public class ResponseAdoptAppliment {
 
+
+    //变量名要与后端传来的字段名一致
+    private Integer pageSize;
+    private Integer total;
+    private List<ResponseAdoptAppliment.responseAdoptAppliment> responseAdoptApplimentList;
+    private Integer pageNum;
+
+
     public Integer getPageSize() {
         return pageSize;
     }
@@ -28,11 +36,16 @@ public class ResponseAdoptAppliment {
         this.responseAdoptApplimentList = responseAdoptApplimentList;
     }
 
-    //变量名要与后端传来的字段名一致
-    private Integer pageSize;
-    private Integer total;
-    private List<ResponseAdoptAppliment.responseAdoptAppliment> responseAdoptApplimentList;
-    private Integer pageNum;
+    public Integer getPageNum() {
+        return pageNum;
+    }
+
+    public void setPageNum(Integer pageNum) {
+        this.pageNum = pageNum;
+    }
+
+
+
 
 
     //领养申请信息
@@ -233,17 +246,6 @@ public class ResponseAdoptAppliment {
         }
 
     }
-
-
-
-    public Integer getPageNum() {
-        return pageNum;
-    }
-
-    public void setPageNum(Integer pageNum) {
-        this.pageNum = pageNum;
-    }
-
 
 
     public ResponseAdoptAppliment(Integer pageSize, Integer total, List<ResponseAdoptAppliment.responseAdoptAppliment> responseAdoptApplimentList, Integer pageNum){

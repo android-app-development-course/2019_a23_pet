@@ -121,6 +121,10 @@ public class HelpAppliment {
     private String description;     //救助申请描述
     private Integer petPhotoId;      //宠物图片的id
     private Integer helpApplimentId;   //救助申请信息数据库id
+    private Integer state;  //申请救助信息状态
+    private String resultDescription; //信息处理结果反馈
+
+
 
     public Integer getState() {
         return state;
@@ -137,9 +141,6 @@ public class HelpAppliment {
     public void setResultDescription(String resultDescription) {
         this.resultDescription = resultDescription;
     }
-
-    private Integer state;  //申请救助信息状态
-    private String resultDescription; //信息处理结果反馈
 
 
 

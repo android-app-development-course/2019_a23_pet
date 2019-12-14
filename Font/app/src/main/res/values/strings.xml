@@ -17,10 +17,8 @@
     <string name="login_failed">"登陆失败"</string>
 
     <!--url配置-->
-<<<<<<< HEAD
     <string name="serverBasePath">http://10.242.108.146:8080/gohome/</string>
-=======
-    <string name="serverBasePath">http://127.0.0.1:8080/gohome/</string>
->>>>>>> 7cf2a76a978bd2c1096e6eb714f744b0aab38a26
+<!--    <string name="serverBasePath">http://127.0.0.1:8080/gohome/</string>-->
     <string name="insertAdoptMessage">adoptmessage/insertadoptmessage</string>
+    <string name="queryAdoptApplimentByState">adoptappliment/queryadoptapplimentbystate</string>
 </resources>

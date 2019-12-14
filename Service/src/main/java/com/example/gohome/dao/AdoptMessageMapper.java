@@ -1,7 +1,9 @@
 package com.example.gohome.dao;
 
 import com.example.gohome.entity.AdoptMessage;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface AdoptMessageMapper {
     int deleteByPrimaryKey(Integer adoptId);
 

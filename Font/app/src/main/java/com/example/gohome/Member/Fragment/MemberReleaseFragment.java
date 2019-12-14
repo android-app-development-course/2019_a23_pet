@@ -1,10 +1,12 @@
 package com.example.gohome.Member.Fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -66,7 +68,13 @@ import okhttp3.Response;
 import static android.app.Activity.RESULT_OK;
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
+
+
 public class MemberReleaseFragment extends Fragment  {
+
+    //记录提交结果
+    public static final int SUCCESS = 1;
+    public static final int FAIL = 0;
 
     private List<LocalMedia> selectList = new ArrayList<>();   //照片存储列表
 
@@ -249,7 +257,7 @@ public class MemberReleaseFragment extends Fragment  {
         radGro_releaseType.setOnClickedButtonListener(new RadioRealButtonGroup.OnClickedButtonListener() {
             @Override
             public void onClickedButton(RadioRealButton button, int position) {
-                Toast.makeText(getActivity(), "Clicked! Position: " + position, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "Clicked! Position: " + position, Toast.LENGTH_SHORT).show();
                 Type = position;
             }
         });
@@ -258,7 +266,7 @@ public class MemberReleaseFragment extends Fragment  {
         radGro_releaseGender.setOnClickedButtonListener(new RadioRealButtonGroup.OnClickedButtonListener() {
             @Override
             public void onClickedButton(RadioRealButton button, int position) {
-                Toast.makeText(getActivity(), "Clicked! Position: " + position, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "Clicked! Position: " + position, Toast.LENGTH_SHORT).show();
                 Gender = position;
             }
         });
@@ -276,7 +284,7 @@ public class MemberReleaseFragment extends Fragment  {
         radGro_releaseSterilizine.setOnClickedButtonListener(new RadioRealButtonGroup.OnClickedButtonListener() {
             @Override
             public void onClickedButton(RadioRealButton button, int position) {
-                Toast.makeText(getActivity(), "Clicked! Position: " + position, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "Clicked! Position: " + position, Toast.LENGTH_SHORT).show();
                 Sterilizine = position;
             }
         });
@@ -285,7 +293,7 @@ public class MemberReleaseFragment extends Fragment  {
         radGro_releaseSterilizine.setOnPositionChangedListener(new RadioRealButtonGroup.OnPositionChangedListener() {
             @Override
             public void onPositionChanged(RadioRealButton button, int currentPosition, int lastPosition) {
-                Toast.makeText(getActivity(), "Position Changed! Position: " + currentPosition, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "Position Changed! Position: " + currentPosition, Toast.LENGTH_SHORT).show();
                 Sterilizine = currentPosition;
             }
         });
@@ -294,7 +302,7 @@ public class MemberReleaseFragment extends Fragment  {
         radGro_releaseVaccine.setOnClickedButtonListener(new RadioRealButtonGroup.OnClickedButtonListener() {
             @Override
             public void onClickedButton(RadioRealButton button, int position) {
-                Toast.makeText(getActivity(), "Clicked! Position: " + position, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "Clicked! Position: " + position, Toast.LENGTH_SHORT).show();
                 Vaccine = position;
             }
         });
@@ -303,7 +311,7 @@ public class MemberReleaseFragment extends Fragment  {
         radGro_releaseVaccine.setOnPositionChangedListener(new RadioRealButtonGroup.OnPositionChangedListener() {
             @Override
             public void onPositionChanged(RadioRealButton button, int currentPosition, int lastPosition) {
-                Toast.makeText(getActivity(), "Position Changed! Position: " + currentPosition, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "Position Changed! Position: " + currentPosition, Toast.LENGTH_SHORT).show();
                 Vaccine = currentPosition;
             }
         });
@@ -401,26 +409,32 @@ public class MemberReleaseFragment extends Fragment  {
                 //地址到时候从后台去除该用户的所在地
                 adoptInfo.setAddress("广州天河区");
 
-//                insertAdoptInfo();
+                //创建Handler，在子线程中使用handler发message给主线程
+                Handler mHandler = new Handler() {
+                    @Override
+                    public void handleMessage(Message msg) {
+                        switch (msg.what) {
+                            case SUCCESS: {// 设置提交成功的图标和颜色
+                                btn_submit.doneLoadingAnimation(getResources().getColor(R.color.green), bitmapDone);
+                                Toast.makeText(getContext(), "提交成功！", Toast.LENGTH_LONG).show();
+                                System.out.println("成功啦啦啦啦啦！！");
+                                break;
+                            }
+                            case FAIL:
+                            {
+                                //设置提交失败的图标和颜色
+                                btn_submit.doneLoadingAnimation(getResources().getColor(R.color.red), bitmapFail);
+                                Toast.makeText(getContext(),"提交失败，请重新提交！",Toast.LENGTH_LONG).show();
+                                System.out.println("失败啦啦啦啦啦啦！！");
+                                break;
+                            }
 
-//                System.out.println("结果："+ (result[0] ? "true":"false"));
-//                if(result[0]){
-//                    //设置提交成功的图标和颜色
-//                    btn_submit.doneLoadingAnimation(getResources().getColor(R.color.green), bitmapDone);
-//                    Toast.makeText(getContext(),"提交成功！",Toast.LENGTH_LONG).show();
-////                    //提示提交成功toast
-////                    Toast toast = TastyToast.makeText(getActivity(), "提交成功!", TastyToast.LENGTH_LONG, TastyToast.SUCCESS);
-////                    //设置toast显示位置
-////                    toast.setGravity(Gravity.CENTER,0,0);
-////                    //调用show使得toast得以显示
-////                    toast.show();
-//                }else {
-//                    //设置提交失败的图标和颜色
-//                    btn_submit.doneLoadingAnimation(getResources().getColor(R.color.red), bitmapFail);
-//                    Toast.makeText(getContext(),"提交失败，请重新提交！",Toast.LENGTH_LONG).show();
-//                }
+                        }
+                    }
+                };
 
-                new Thread(new Runnable() {
+                new Thread(
+                        new Runnable() {
                     @Override
                     public void run() {
                         //建立client
@@ -439,28 +453,23 @@ public class MemberReleaseFragment extends Fragment  {
                                 .build();
                         //新建call联结client和request
                         Call call= client[0].newCall(request);
+                        //新建Message通过Handle与主线程通信
+                        Message msg = new Message();
                         call.enqueue(new Callback() {
                             @Override
                             public void onFailure(Call call, IOException e) {
                                 //请求失败的处理
                                 Log.i("RESPONSE:","fail"+e.getMessage());
-                                result[0] = false;
-//                        Log.i("result的值", String.valueOf(result[0]));
-                                Log.i("result的值", String.valueOf(result[0]));
-                                //设置提交失败的图标和颜色
-                                btn_submit.doneLoadingAnimation(getResources().getColor(R.color.red), bitmapFail);
-                                Toast.makeText(getContext(),"提交失败，请重新提交！",Toast.LENGTH_LONG).show();
-                                return;
+                                msg.what = FAIL;
+                                mHandler.sendMessage(msg);
+                                Log.i("result的值", String.valueOf(false));
                             }
                             @Override
                             public void onResponse(Call call, Response response) throws IOException {
                                 Log.i("RESPONSE:",response.body().string());
-                                result[0] = true;
-                                Log.i("result的值", String.valueOf(result[0]));
-//                                设置提交成功的图标和颜色
-                                btn_submit.doneLoadingAnimation(getResources().getColor(R.color.green), bitmapDone);
-                                Toast.makeText(getContext(),"提交成功！",Toast.LENGTH_LONG).show();
-                                return;
+                                msg.what = SUCCESS;
+                                mHandler.sendMessage(msg);
+                                Log.i("result的值", String.valueOf(true));
                             }
 
                         });

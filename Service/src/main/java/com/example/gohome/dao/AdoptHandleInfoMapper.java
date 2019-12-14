@@ -1,7 +1,9 @@
 package com.example.gohome.dao;
 
 import com.example.gohome.entity.AdoptHandleInfo;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface AdoptHandleInfoMapper {
     int deleteByPrimaryKey(Integer infoId);
 

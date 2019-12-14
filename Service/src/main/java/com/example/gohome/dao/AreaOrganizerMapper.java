@@ -1,7 +1,9 @@
 package com.example.gohome.dao;
 
 import com.example.gohome.entity.AreaOrganizer;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface AreaOrganizerMapper {
     int deleteByPrimaryKey(Integer areaId);
 

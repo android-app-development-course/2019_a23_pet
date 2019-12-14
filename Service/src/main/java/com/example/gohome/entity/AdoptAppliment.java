@@ -17,7 +17,7 @@ public class AdoptAppliment {
 
     private String job;
 
-    private String desciption;
+    private String description;
 
     private Integer state;
 
@@ -79,12 +79,12 @@ public class AdoptAppliment {
         this.job = job == null ? null : job.trim();
     }
 
-    public String getDesciption() {
-        return desciption;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesciption(String desciption) {
-        this.desciption = desciption == null ? null : desciption.trim();
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 
     public Integer getState() {

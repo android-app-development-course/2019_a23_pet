@@ -1,7 +1,9 @@
 package com.example.gohome.dao;
 
 import com.example.gohome.entity.HelpAppliment;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface HelpApplimentMapper {
     int deleteByPrimaryKey(Integer applimentId);
 

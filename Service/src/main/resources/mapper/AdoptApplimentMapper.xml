@@ -9,12 +9,12 @@
     <result column="telephone" property="telephone" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="job" property="job" jdbcType="VARCHAR" />
-    <result column="desciption" property="desciption" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="state" property="state" jdbcType="INTEGER" />
     <result column="created" property="created" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    appliment_id, adopt_id, user_id, apply_name, telephone, address, job, desciption, 
+    appliment_id, adopt_id, user_id, apply_name, telephone, address, job, description,
     state, created
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -32,12 +32,12 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into adopt_appliment (adopt_id, user_id, apply_name, 
-      telephone, address, job, 
-      desciption, state, created
+      telephone, address, job,
+    description, state, created
       )
     values (#{adoptId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{applyName,jdbcType=VARCHAR}, 
       #{telephone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, 
-      #{desciption,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{created,jdbcType=TIMESTAMP}
+      #{description,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{created,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.example.gohome.entity.AdoptAppliment" >
@@ -64,8 +64,8 @@
       <if test="job != null" >
         job,
       </if>
-      <if test="desciption != null" >
-        desciption,
+      <if test="description != null" >
+        description,
       </if>
       <if test="state != null" >
         state,
@@ -93,8 +93,8 @@
       <if test="job != null" >
         #{job,jdbcType=VARCHAR},
       </if>
-      <if test="desciption != null" >
-        #{desciption,jdbcType=VARCHAR},
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
       </if>
       <if test="state != null" >
         #{state,jdbcType=INTEGER},
@@ -125,8 +125,8 @@
       <if test="job != null" >
         job = #{job,jdbcType=VARCHAR},
       </if>
-      <if test="desciption != null" >
-        desciption = #{desciption,jdbcType=VARCHAR},
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
       </if>
       <if test="state != null" >
         state = #{state,jdbcType=INTEGER},
@@ -145,9 +145,11 @@
       telephone = #{telephone,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
       job = #{job,jdbcType=VARCHAR},
-      desciption = #{desciption,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
       state = #{state,jdbcType=INTEGER},
       created = #{created,jdbcType=TIMESTAMP}
     where appliment_id = #{applimentId,jdbcType=INTEGER}
   </update>
+
+
 </mapper>

@@ -410,7 +410,7 @@ public class MemberReleaseFragment extends Fragment  {
                 adoptInfo.setAddress("广州天河区");
 
                 //创建Handler，在子线程中使用handler发message给主线程
-                Handler mHandler = new Handler() {
+                @SuppressLint("HandlerLeak") Handler mHandler = new Handler() {
                     @Override
                     public void handleMessage(Message msg) {
                         switch (msg.what) {

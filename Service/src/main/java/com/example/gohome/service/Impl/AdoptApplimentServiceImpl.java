@@ -1,7 +1,10 @@
 package com.example.gohome.service.Impl;
 
 import com.example.gohome.dao.AdoptApplimentMapper;
+import com.example.gohome.dao.AdoptMessageMapper;
 import com.example.gohome.entity.AdoptAppliment;
+import com.example.gohome.entity.AdoptMessage;
+import com.example.gohome.entity.ResponseEntity.ResponseAdoptAppliment;
 import com.example.gohome.service.AdoptApplimentService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -9,16 +12,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Service
 @Transactional
 public class AdoptApplimentServiceImpl implements AdoptApplimentService {
     @Autowired
     private AdoptApplimentMapper adoptApplimentMapper;
+    @Autowired
+    private AdoptMessageMapper adoptMessageMapper;
 
     @Override
     @Transactional
@@ -81,10 +84,48 @@ public class AdoptApplimentServiceImpl implements AdoptApplimentService {
     public Map queryAdoptApplimentByState(Integer pageNum, Integer pageSize, Integer state) {
         Map adoptApplimentMap = new HashMap();
         PageHelper.startPage(pageNum,pageSize);
+        //获取申请领养信息
         Page<AdoptAppliment> data = adoptApplimentMapper.queryAdoptApplimentByState(state);
-        adoptApplimentMap.put("adoptApplimentInfo",data);  //分页获取的数据
+        List<ResponseAdoptAppliment> responseAdoptApplimentList = new ArrayList<>();
+        for(AdoptAppliment adoptAppliment: data){
+            ResponseAdoptAppliment responseAdoptAppliment = new ResponseAdoptAppliment();
+            //设置领养申请信息
+            responseAdoptAppliment.setApplimentId(adoptAppliment.getApplimentId());
+            responseAdoptAppliment.setUserId(adoptAppliment.getUserId());
+            responseAdoptAppliment.setAddress(adoptAppliment.getAddress());
+            responseAdoptAppliment.setAdoptApplimentId(adoptAppliment.getApplimentId());
+            responseAdoptAppliment.setApplyName(adoptAppliment.getApplyName());
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            responseAdoptAppliment.setDate(simpleDateFormat.format(adoptAppliment.getCreated()));
+            System.out.println("time:"+simpleDateFormat.format(adoptAppliment.getCreated()));
+
+            responseAdoptAppliment.setDescription(adoptAppliment.getDescription());
+            responseAdoptAppliment.setDescription(adoptAppliment.getJob());
+            responseAdoptAppliment.setState(0);
+            responseAdoptAppliment.setTelephone(adoptAppliment.getTelephone());
+
+            //设置领养动物信息
+            //先查询获取该领养申请对应的领养信息
+            AdoptMessage adoptMessage = adoptMessageMapper.selectByPrimaryKey(adoptAppliment.getAdoptId());
+            //将值存储到返回体中
+            responseAdoptAppliment.setPetAge(adoptMessage.getAge());
+            responseAdoptAppliment.setPetGender(adoptMessage.getGender() == 1);
+            responseAdoptAppliment.setPetName(adoptMessage.getPetName());
+            responseAdoptAppliment.setPetPhotoId(adoptMessage.getPictures());
+            responseAdoptAppliment.setPetType(adoptMessage.getPetType());  //0为小猫，1为狗，2为鸟
+            responseAdoptAppliment.setResultDescription(null);
+            responseAdoptAppliment.setSterilization(adoptMessage.getSteriled());
+            responseAdoptAppliment.setVaccine(adoptMessage.getVaccinate());
+
+            responseAdoptApplimentList.add(responseAdoptAppliment);
+        }
+        adoptApplimentMap.put("responseAdoptApplimentList",responseAdoptApplimentList);  //分页获取的数据
         adoptApplimentMap.put("total",data.getTotal());       //总页数
         adoptApplimentMap.put("pageSize",data.getPageSize());     //每页大小
+        adoptApplimentMap.put("pageNum",pageNum);//当前页码
+        System.out.println("adoptApplimentMap"+adoptApplimentMap);
+
+
         return adoptApplimentMap;
     }
 

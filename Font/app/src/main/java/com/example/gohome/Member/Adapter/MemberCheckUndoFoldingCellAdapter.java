@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.gohome.Entity.AdoptAppliment;
 import com.example.gohome.Entity.HelpAppliment;
+import com.example.gohome.Entity.ResponseAdoptAppliment;
 import com.example.gohome.R;
 import com.example.gohome.User.ImageDialog;
 import com.ramotion.foldingcell.FoldingCell;
@@ -24,7 +25,7 @@ import java.util.List;
 public class MemberCheckUndoFoldingCellAdapter extends RecyclerView.Adapter {
 
     //数据源
-    private List<AdoptAppliment> adoptApplimentList;
+    private List<ResponseAdoptAppliment.responseAdoptAppliment> adoptApplimentList;
     private List<HelpAppliment> helpApplimentList;
     private Context context;
 
@@ -269,10 +270,10 @@ public class MemberCheckUndoFoldingCellAdapter extends RecyclerView.Adapter {
             }
         });
 
-        adoptViewHolder.petPhoto2.setOnClickListener(view -> {
-                ImageDialog dialog = new ImageDialog(context, adoptApplimentList.get(position).getPetPhotoId());
-                dialog.show();
-            });
+//        adoptViewHolder.petPhoto2.setOnClickListener(view -> {
+//                ImageDialog dialog = new ImageDialog(context, adoptApplimentList.get(position).getPetPhotoId());
+//                dialog.show();
+//            });
 
         }else{   //信息为求助申请
 

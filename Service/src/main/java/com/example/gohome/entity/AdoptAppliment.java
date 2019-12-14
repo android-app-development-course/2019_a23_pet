@@ -1,5 +1,7 @@
 package com.example.gohome.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class AdoptAppliment {

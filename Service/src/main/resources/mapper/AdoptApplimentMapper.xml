@@ -33,7 +33,7 @@
     </selectKey>
     insert into adopt_appliment (adopt_id, user_id, apply_name, 
       telephone, address, job,
-    description, state, created
+    description, state
       )
     values (#{adoptId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{applyName,jdbcType=VARCHAR}, 
       #{telephone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, 

@@ -18,10 +18,11 @@
     <result column="vaccinate" property="vaccinate" jdbcType="BIT" />
     <result column="pictures" property="pictures" jdbcType="VARCHAR" />
     <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="info_id" property="infoId" jdbcType="INTEGER"/>
   </resultMap>
   <sql id="Base_Column_List" >
     appliment_id, user_id, apply_name, telephone, address, description, apply_date, state, 
-    pet_name, pet_type, gender, age, steriled, vaccinate, pictures, created
+    pet_name, pet_type, gender, age, steriled, vaccinate, pictures, created, info_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -101,6 +102,9 @@
       <if test="created != null" >
         created,
       </if>
+      <if test="infoId != null" >
+        info_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
@@ -147,6 +151,9 @@
       </if>
       <if test="created != null" >
         #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infoId != null" >
+        #{infoId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -198,6 +205,9 @@
       <if test="created != null" >
         created = #{created,jdbcType=TIMESTAMP},
       </if>
+      <if test="infoId != null" >
+        infoId = #{infoId,jdbcType=INTERGER},
+      </if>
     </set>
     where appliment_id = #{applimentId,jdbcType=INTEGER}
   </update>
@@ -218,6 +228,7 @@
       vaccinate = #{vaccinate,jdbcType=BIT},
       pictures = #{pictures,jdbcType=VARCHAR},
       created = #{created,jdbcType=TIMESTAMP}
+      info_id = #{infoId,jdbcType=INTEGER}
     where appliment_id = #{applimentId,jdbcType=INTEGER}
   </update>
 </mapper>

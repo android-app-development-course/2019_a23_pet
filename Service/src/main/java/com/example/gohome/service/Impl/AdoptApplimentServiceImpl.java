@@ -125,6 +125,8 @@ public class AdoptApplimentServiceImpl implements AdoptApplimentService {
                 adoptHandleInfo.setState(0);
                 int effectedNum3 = adoptHandleInfoMapper.insertSelective(adoptHandleInfo);
                 if (effectedNum1 > 0 && effectedNum2 >0 && effectedNum3 > 0) {
+                    adoptAppliment.setInfoId(adoptHandleInfo.getInfoId());
+                    adoptApplimentMapper.updateByPrimaryKeySelective(adoptAppliment);
                     return true;
                 }else {
                     throw new RuntimeException("通过审核失败！");
@@ -201,6 +203,7 @@ public class AdoptApplimentServiceImpl implements AdoptApplimentService {
                 responseAdoptAppliment.setAddress(adoptAppliment.getAddress());
                 responseAdoptAppliment.setAdoptId(adoptAppliment.getApplimentId());
                 responseAdoptAppliment.setApplyName(adoptAppliment.getApplyName());
+                responseAdoptAppliment.setHandleInfoId(adoptAppliment.getInfoId());
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                 responseAdoptAppliment.setDate(simpleDateFormat.format(adoptAppliment.getCreated()));
                 responseAdoptAppliment.setDescription(adoptAppliment.getDescription());

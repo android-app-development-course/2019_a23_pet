@@ -423,13 +423,11 @@ public class MemberCheckUndoFragment extends Fragment {
                     @Override
                     public void onBoomButtonClick(int index) {
                         // When the boom-button corresponding this builder is clicked.
-                        Toast.makeText(getActivity(), "点击了: " + index, Toast.LENGTH_SHORT).show();
                         type = 0;
                         memberCheckUndoFoldingCellAdapter = new MemberCheckUndoFoldingCellAdapter(getContext(),adoptApplimentList,type);
                         memberCheckUndoFoldingCellAdapter.setClickCallBack(new MemberCheckUndoFoldingCellAdapter.ItemClickCallBack() {
                             @Override
                             public void onItemClick(int pos) {
-                                System.out.println("点击了第："+pos+"个item");
                             }
                         });
                         xrv_memberCheckUndo.setAdapter(memberCheckUndoFoldingCellAdapter);

@@ -25,6 +25,16 @@ public class AdoptAppliment {
 
     private Date created;
 
+    private Integer infoId;
+
+    public Integer getInfoId() {
+        return infoId;
+    }
+
+    public void setInfoId(Integer infoId) {
+        this.infoId = infoId;
+    }
+
     public Integer getApplimentId() {
         return applimentId;
     }

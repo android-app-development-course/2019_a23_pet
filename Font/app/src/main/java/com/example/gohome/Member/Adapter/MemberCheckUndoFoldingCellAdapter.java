@@ -2,6 +2,7 @@ package com.example.gohome.Member.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -22,6 +23,7 @@ import com.example.gohome.Entity.ResponseAdoptAppliment;
 import com.example.gohome.Entity.ResponseHelpAppliment;
 import com.example.gohome.R;
 import com.example.gohome.User.ImageDialog;
+import com.example.gohome.Utils.GetHttpBitMap;
 import com.google.gson.Gson;
 import com.ramotion.foldingcell.FoldingCell;
 
@@ -221,117 +223,117 @@ public class MemberCheckUndoFoldingCellAdapter extends RecyclerView.Adapter {
         if(type == 0) {
 
 
-        AdoptViewHolder adoptViewHolder = new AdoptViewHolder(viewHolder.itemView);
-        FoldingCell foldingCell = (FoldingCell) viewHolder.itemView;
+            AdoptViewHolder adoptViewHolder = new AdoptViewHolder(viewHolder.itemView);
+            FoldingCell foldingCell = (FoldingCell) viewHolder.itemView;
 
-        String gender = !adoptApplimentList.get(position).getPetGender() ? s0 : s1;
-        int icon1 = !adoptApplimentList.get(position).getVaccine() ? R.drawable.no : R.drawable.yes;
-        int icon2 = !adoptApplimentList.get(position).getSterilization() ? R.drawable.no : R.drawable.yes;
+            String gender = !adoptApplimentList.get(position).getPetGender() ? s0 : s1;
+            int icon1 = !adoptApplimentList.get(position).getVaccine() ? R.drawable.no : R.drawable.yes;
+            int icon2 = !adoptApplimentList.get(position).getSterilization() ? R.drawable.no : R.drawable.yes;
 
 
-        //title
-        Glide.with(context).load(adoptApplimentList.get(position).getPetPhotoId()).into(adoptViewHolder.petPhoto1);
-        adoptViewHolder.petName1.setText(adoptApplimentList.get(position).getPetName());
-        adoptViewHolder.applicantMessage.setText(adoptApplimentList.get(position).getApplyName() + "发来了申请，点击查看详情");
-        adoptViewHolder.titleDate.setText(adoptApplimentList.get(position).getDate());
-        if (adoptApplimentList.get(position).getPetType().equals("0")) {    //类型为0则表示领养申请
-            adoptViewHolder.type.setText("领养申请");
-        }
+            //title
 
-        //content
-        Glide.with(context).load(adoptApplimentList.get(position).getPetPhotoId()).into(adoptViewHolder.petPhoto2);
-        adoptViewHolder.petName2.setText(adoptApplimentList.get(position).getPetName());
-        adoptViewHolder.petGender.setText(gender);
-        adoptViewHolder.petAge.setText(adoptApplimentList.get(position).getPetAge());
-        adoptViewHolder.contentDate.setText(adoptApplimentList.get(position).getDate() );
-        adoptViewHolder.applicantName.setText(adoptApplimentList.get(position).getApplyName());
-        adoptViewHolder.applicantJob.setText(adoptApplimentList.get(position).getJob());
-        adoptViewHolder.applicantAddress.setText(adoptApplimentList.get(position).getAddress());
-        adoptViewHolder.applicantTelephone.setText(adoptApplimentList.get(position).getTelephone());
-        adoptViewHolder.applicantDescription.setText(adoptApplimentList.get(position).getDescription());
+            Glide.with(context).load(adoptApplimentList.get(position).getPetPhotoId()).into(adoptViewHolder.petPhoto1);
+            adoptViewHolder.petName1.setText(adoptApplimentList.get(position).getPetName());
+            adoptViewHolder.applicantMessage.setText(adoptApplimentList.get(position).getApplyName() + "发来了申请，点击查看详情");
+            adoptViewHolder.titleDate.setText(adoptApplimentList.get(position).getDate());
+            if (type == 0) {    //类型为0则表示领养申请
+                adoptViewHolder.type.setText("领养申请");
+            }
 
-        Glide.with(context).load(icon1).into(adoptViewHolder.vaccine);
-        Glide.with(context).load(icon2).into(adoptViewHolder.sterilization);
-//            adoptViewHolder.contentRequestBtn.setOnClickListener(defaultRequestBtnClickListener);
-        //设置审核通过点击事件
-        adoptViewHolder.contentRequestBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            //content
+            Glide.with(context).load(adoptApplimentList.get(position).getPetPhotoId()).into(adoptViewHolder.petPhoto2);
+            adoptViewHolder.petName2.setText(adoptApplimentList.get(position).getPetName());
+            adoptViewHolder.petGender.setText(gender);
+            adoptViewHolder.petAge.setText(adoptApplimentList.get(position).getPetAge());
+            adoptViewHolder.contentDate.setText(adoptApplimentList.get(position).getDate() );
+            adoptViewHolder.applicantName.setText(adoptApplimentList.get(position).getApplyName());
+            adoptViewHolder.applicantJob.setText(adoptApplimentList.get(position).getJob());
+            adoptViewHolder.applicantAddress.setText(adoptApplimentList.get(position).getAddress());
+            adoptViewHolder.applicantTelephone.setText(adoptApplimentList.get(position).getTelephone());
+            adoptViewHolder.applicantDescription.setText(adoptApplimentList.get(position).getDescription());
 
-                ResponseAdoptAppliment.responseAdoptAppliment responseAdoptAppliment = new ResponseAdoptAppliment.responseAdoptAppliment();
-                responseAdoptAppliment.setAdoptId(adoptApplimentList.get(position).getAdoptId());
-                responseAdoptAppliment.setApplimentId(adoptApplimentList.get(position).getApplimentId());
-                //发送自己的ID
-                responseAdoptAppliment.setHandleId(1);
-                responseAdoptAppliment.setUserId(adoptApplimentList.get(position).getUserId());
+            Glide.with(context).load(icon1).into(adoptViewHolder.vaccine);
+            Glide.with(context).load(icon2).into(adoptViewHolder.sterilization);
+    //            adoptViewHolder.contentRequestBtn.setOnClickListener(defaultRequestBtnClickListener);
+            //设置审核通过点击事件
+            adoptViewHolder.contentRequestBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-                //创建Handler，在子线程中使用handler发message给主线程
-                @SuppressLint("HandlerLeak") Handler handler = new Handler() {
-                    @Override
-                    public void handleMessage(Message msg) {
-                        switch (msg.what) {
-                            case SUCCESS: {
-                                //更新完成
-                                adoptApplimentList.remove(position);
-                                notifyDataSetChanged();
-                                System.out.println("成功啦啦啦啦啦！！");
-                                break;
-                            }
-                            case FAIL:
-                            {
-                                Toast.makeText(context,"通过审核失败！",Toast.LENGTH_LONG).show();
-                                break;
+                    ResponseAdoptAppliment.responseAdoptAppliment responseAdoptAppliment = new ResponseAdoptAppliment.responseAdoptAppliment();
+                    responseAdoptAppliment.setAdoptId(adoptApplimentList.get(position).getAdoptId());
+                    responseAdoptAppliment.setApplimentId(adoptApplimentList.get(position).getApplimentId());
+                    //发送自己的ID
+                    responseAdoptAppliment.setHandleId(1);
+                    responseAdoptAppliment.setUserId(adoptApplimentList.get(position).getUserId());
+
+                    //创建Handler，在子线程中使用handler发message给主线程
+                    @SuppressLint("HandlerLeak") Handler handler = new Handler() {
+                        @Override
+                        public void handleMessage(Message msg) {
+                            switch (msg.what) {
+                                case SUCCESS: {
+                                    //更新完成
+                                    adoptApplimentList.remove(position);
+                                    notifyDataSetChanged();
+                                    System.out.println("成功啦啦啦啦啦！！");
+                                    break;
+                                }
+                                case FAIL:
+                                {
+                                    Toast.makeText(context,"通过审核失败！",Toast.LENGTH_LONG).show();
+                                    break;
+                                }
                             }
                         }
-                    }
-                };
+                    };
 
-                new Thread(
-                        new Runnable() {
-                            @Override
-                            public void run() {
-                                //建立client
-                                final OkHttpClient[] client = {new OkHttpClient()};
-                                //将传送实体类转为string类型的键值对
-                                Gson gson = new Gson();
-                                String json = gson.toJson(responseAdoptAppliment);
+                    new Thread(
+                            new Runnable() {
+                                @Override
+                                public void run() {
+                                    //建立client
+                                    final OkHttpClient[] client = {new OkHttpClient()};
+                                    //将传送实体类转为string类型的键值对
+                                    Gson gson = new Gson();
+                                    String json = gson.toJson(responseAdoptAppliment);
 
-                                System.out.println("json:"+json);
-                                //设置请求体并设置contentType
-                                RequestBody requestBody = FormBody.create(MediaType.parse("application/json;charset=utf-8"),json);
-                                //请求
-                                Request request=new Request.Builder()
-                                        .url(context.getResources().getString(R.string.serverBasePath)+context.getResources().getString(R.string.updateAdoptApplimentToDoing))
-                                        .post(requestBody)
-                                        .build();
-                                //新建call联结client和request
-                                Call call= client[0].newCall(request);
-                                //新建Message通过Handle与主线程通信
-                                Message msg = new Message();
-                                call.enqueue(new Callback() {
-                                    @Override
-                                    public void onFailure(Call call, IOException e) {
-                                        //请求失败的处理
-                                        Log.i("RESPONSE:","fail"+e.getMessage());
-                                        msg.what = FAIL;
-                                        handler.sendMessage(msg);
-                                        Log.i("result的值", String.valueOf(false));
-                                    }
-                                    @Override
-                                    public void onResponse(Call call, Response response) throws IOException {
-                                        Log.i("RESPONSE:",response.body().string());
-                                        msg.what = SUCCESS;
-                                        handler.sendMessage(msg);
-                                        Log.i("result的值", String.valueOf(true));
-                                    }
+                                    System.out.println("json:"+json);
+                                    //设置请求体并设置contentType
+                                    RequestBody requestBody = FormBody.create(MediaType.parse("application/json;charset=utf-8"),json);
+                                    //请求
+                                    Request request=new Request.Builder()
+                                            .url(context.getResources().getString(R.string.serverBasePath)+context.getResources().getString(R.string.updateAdoptApplimentToDoing))
+                                            .post(requestBody)
+                                            .build();
+                                    //新建call联结client和request
+                                    Call call= client[0].newCall(request);
+                                    //新建Message通过Handle与主线程通信
+                                    Message msg = new Message();
+                                    call.enqueue(new Callback() {
+                                        @Override
+                                        public void onFailure(Call call, IOException e) {
+                                            //请求失败的处理
+                                            Log.i("RESPONSE:","fail"+e.getMessage());
+                                            msg.what = FAIL;
+                                            handler.sendMessage(msg);
+                                            Log.i("result的值", String.valueOf(false));
+                                        }
+                                        @Override
+                                        public void onResponse(Call call, Response response) throws IOException {
+                                            Log.i("RESPONSE:",response.body().string());
+                                            msg.what = SUCCESS;
+                                            handler.sendMessage(msg);
+                                            Log.i("result的值", String.valueOf(true));
+                                        }
 
-                                });
-                            }
-                        }).start();
+                                    });
+                                }
+                            }).start();
 
+                }
 
-
-            }
         });
 
         //控制cell的折叠与收缩
@@ -374,7 +376,7 @@ public class MemberCheckUndoFoldingCellAdapter extends RecyclerView.Adapter {
             helpViewHolder.petName1.setText(helpApplimentList.get(position).getPetName());
             helpViewHolder.applicantMessage.setText(helpApplimentList.get(position).getApplicantName()+"发来了申请，点击查看详情");
             helpViewHolder.titleDate.setText(helpApplimentList.get(position).getDate());
-            if(helpApplimentList.get(position).getPetType().equals("0")){    //类型为0则表示领养申请
+            if(type == 1){    //类型为0则表示领养申请
                 helpViewHolder.type.setText("救助申请");
             }
 

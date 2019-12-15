@@ -184,6 +184,16 @@ public class ResponseHelpAppliment {
             this.handleId = handleId;
         }
 
+        private Integer infoId;
+
+        public Integer getInfoId() {
+            return infoId;
+        }
+
+        public void setInfoId(Integer infoId) {
+            this.infoId = infoId;
+        }
+
         private Integer handleId;  //对接人ID
         private Integer userId; //救助申请人ID
         private Integer applimentId; //本救助申请的ID
@@ -215,9 +225,10 @@ public class ResponseHelpAppliment {
         public responseHelpAppliment() {
         }
 
-        public responseHelpAppliment(Integer handleId,Integer userId, Integer applimentId, String address, String date, String applicantName, String applicantTel,
+        public responseHelpAppliment(Integer infoId,Integer handleId,Integer userId, Integer applimentId, String address, String date, String applicantName, String applicantTel,
                                      String petName, String petAge, String petType, boolean petGender, boolean vaccine, boolean sterilization, String description, String resultDescription,
                                      String petPhotoId, Integer state) {
+            this.infoId = infoId;
             this.handleId = handleId;
             this.userId = userId;
             this.applimentId = applimentId;

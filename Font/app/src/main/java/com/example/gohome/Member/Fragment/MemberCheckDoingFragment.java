@@ -106,7 +106,6 @@ public class MemberCheckDoingFragment extends Fragment {
         memberCheckDoingFoldingCellAdapter.setClickCallBack(new MemberCheckDoingFoldingCellAdapter.ItemClickCallBack() {
             @Override
             public void onItemClick(int pos) {
-                System.out.println("点击了第："+pos+"个item");
             }
         });
 
@@ -422,13 +421,11 @@ public class MemberCheckDoingFragment extends Fragment {
                     @Override
                     public void onBoomButtonClick(int index) {
                         // When the boom-button corresponding this builder is clicked.
-                        Toast.makeText(getActivity(), "点击了: " + index, Toast.LENGTH_SHORT).show();
                         type = 0;
                         memberCheckDoingFoldingCellAdapter = new MemberCheckDoingFoldingCellAdapter(getContext(),adoptApplimentList,type);
                         memberCheckDoingFoldingCellAdapter.setClickCallBack(new MemberCheckDoingFoldingCellAdapter.ItemClickCallBack() {
                             @Override
                             public void onItemClick(int pos) {
-                                System.out.println("点击了第："+pos+"个item");
                             }
                         });
                         xrv_memberCheckDoing.setAdapter(memberCheckDoingFoldingCellAdapter);
@@ -444,13 +441,11 @@ public class MemberCheckDoingFragment extends Fragment {
                     @Override
                     public void onBoomButtonClick(int index) {
                         // When the boom-button corresponding this builder is clicked.
-                        Toast.makeText(getActivity(), "点击了: " + index, Toast.LENGTH_SHORT).show();
                         type = 1;
                         memberCheckDoingFoldingCellAdapter = new MemberCheckDoingFoldingCellAdapter(getContext(),helpApplimentList,type);
                         memberCheckDoingFoldingCellAdapter.setClickCallBack(new MemberCheckDoingFoldingCellAdapter.ItemClickCallBack() {
                             @Override
                             public void onItemClick(int pos) {
-                                System.out.println("点击了第："+pos+"个item");
                             }
                         });
                         xrv_memberCheckDoing.setAdapter(memberCheckDoingFoldingCellAdapter);

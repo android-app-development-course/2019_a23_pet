@@ -266,7 +266,6 @@ public class MemberReleaseFragment extends Fragment  {
         radGro_releaseGender.setOnClickedButtonListener(new RadioRealButtonGroup.OnClickedButtonListener() {
             @Override
             public void onClickedButton(RadioRealButton button, int position) {
-//                Toast.makeText(getActivity(), "Clicked! Position: " + position, Toast.LENGTH_SHORT).show();
                 Gender = position;
             }
         });
@@ -275,7 +274,6 @@ public class MemberReleaseFragment extends Fragment  {
         radGro_releaseGender.setOnPositionChangedListener(new RadioRealButtonGroup.OnPositionChangedListener() {
             @Override
             public void onPositionChanged(RadioRealButton button, int currentPosition, int lastPosition) {
-                Toast.makeText(getActivity(), "Position Changed! Position: " + currentPosition, Toast.LENGTH_SHORT).show();
                 Gender = currentPosition;
             }
         });
@@ -284,7 +282,6 @@ public class MemberReleaseFragment extends Fragment  {
         radGro_releaseSterilizine.setOnClickedButtonListener(new RadioRealButtonGroup.OnClickedButtonListener() {
             @Override
             public void onClickedButton(RadioRealButton button, int position) {
-//                Toast.makeText(getActivity(), "Clicked! Position: " + position, Toast.LENGTH_SHORT).show();
                 Sterilizine = position;
             }
         });
@@ -293,7 +290,6 @@ public class MemberReleaseFragment extends Fragment  {
         radGro_releaseSterilizine.setOnPositionChangedListener(new RadioRealButtonGroup.OnPositionChangedListener() {
             @Override
             public void onPositionChanged(RadioRealButton button, int currentPosition, int lastPosition) {
-//                Toast.makeText(getActivity(), "Position Changed! Position: " + currentPosition, Toast.LENGTH_SHORT).show();
                 Sterilizine = currentPosition;
             }
         });
@@ -302,7 +298,6 @@ public class MemberReleaseFragment extends Fragment  {
         radGro_releaseVaccine.setOnClickedButtonListener(new RadioRealButtonGroup.OnClickedButtonListener() {
             @Override
             public void onClickedButton(RadioRealButton button, int position) {
-//                Toast.makeText(getActivity(), "Clicked! Position: " + position, Toast.LENGTH_SHORT).show();
                 Vaccine = position;
             }
         });
@@ -311,7 +306,6 @@ public class MemberReleaseFragment extends Fragment  {
         radGro_releaseVaccine.setOnPositionChangedListener(new RadioRealButtonGroup.OnPositionChangedListener() {
             @Override
             public void onPositionChanged(RadioRealButton button, int currentPosition, int lastPosition) {
-//                Toast.makeText(getActivity(), "Position Changed! Position: " + currentPosition, Toast.LENGTH_SHORT).show();
                 Vaccine = currentPosition;
             }
         });

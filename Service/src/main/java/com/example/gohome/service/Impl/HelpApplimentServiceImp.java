@@ -227,14 +227,12 @@ public class HelpApplimentServiceImp implements HelpApplimentService {
                 responseHelpAppliment.setResultDescription(null);
                 responseHelpAppliment.setHandleId(helpHandleInfo.getHandleId());
                 responseHelpAppliment.setPetType(helpAppliment.getPetType());
-                System.out.println("kasldfa:"+responseHelpAppliment);
 
                 responseHelpApplimentList.add(responseHelpAppliment);
             }
 
         }
 
-        System.out.println("map!!!"+helpApplimentMap);
         helpApplimentMap.put("responseHelpApplimentList",responseHelpApplimentList);  //分页获取的数据
         helpApplimentMap.put("total",data.getTotal());       //总页数
         helpApplimentMap.put("pageSize",data.getPageSize());     //每页大小

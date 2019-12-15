@@ -27,4 +27,7 @@ public interface HelpApplimentService {
     Map queryHelpApplimentByState(Integer pageNum, Integer pageSize, Integer state);
     /*根据申请人*/
     Map queryHelpApplimentByUserId(Integer pageNum, Integer pageSize, Integer userId);
+
+    /*根据救助申请信息状态和接管人信息*/
+    Map queryHelpApplimentByStateAndHandleId(Integer pageNum, Integer pageSize, Integer state,Integer handleId);
 }

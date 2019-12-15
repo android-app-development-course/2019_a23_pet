@@ -181,10 +181,57 @@ public class AdoptApplimentServiceImpl implements AdoptApplimentService {
         adoptApplimentMap.put("pageSize",data.getPageSize());     //每页大小
         adoptApplimentMap.put("pageNum",pageNum);//当前页码
 
-        System.out.println("map!!——"+adoptApplimentMap);
-
-
         return adoptApplimentMap;
+    }
+
+    /*根据领养申请信息状态和处理人id*/
+    public Map queryAdoptApplimentByStateAndHandleId(Integer pageNum, Integer pageSize, Integer state,Integer handleId){
+        Map adoptApplimentMap = new HashMap();
+
+        PageHelper.startPage(pageNum,pageSize);
+        Page<AdoptHandleInfo> data = adoptHandleInfoMapper.queryAdoptHandleInfoByHandleId(handleId);
+        List<ResponseAdoptAppliment> responseAdoptApplimentList = new ArrayList<>();
+        for(AdoptHandleInfo adoptHandleInfo:data){
+            AdoptAppliment adoptAppliment = adoptApplimentMapper.selectByPrimaryKey(adoptHandleInfo.getApplimentId());
+            if(adoptAppliment.getState() == state){
+                ResponseAdoptAppliment responseAdoptAppliment = new ResponseAdoptAppliment();
+                //设置领养申请信息
+                responseAdoptAppliment.setApplimentId(adoptAppliment.getApplimentId());
+                responseAdoptAppliment.setUserId(adoptAppliment.getUserId());
+                responseAdoptAppliment.setAddress(adoptAppliment.getAddress());
+                responseAdoptAppliment.setAdoptId(adoptAppliment.getApplimentId());
+                responseAdoptAppliment.setApplyName(adoptAppliment.getApplyName());
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                responseAdoptAppliment.setDate(simpleDateFormat.format(adoptAppliment.getCreated()));
+                responseAdoptAppliment.setDescription(adoptAppliment.getDescription());
+                responseAdoptAppliment.setJob(adoptAppliment.getJob());
+                responseAdoptAppliment.setState(adoptAppliment.getState());
+                responseAdoptAppliment.setTelephone(adoptAppliment.getTelephone());
+
+                //设置领养动物信息
+                //先查询获取该领养申请对应的领养信息
+                AdoptMessage adoptMessage = adoptMessageMapper.selectByPrimaryKey(adoptAppliment.getAdoptId());
+                //将值存储到返回体中
+                responseAdoptAppliment.setPetAge(adoptMessage.getAge());
+                responseAdoptAppliment.setPetGender(adoptMessage.getGender() == 1);
+                responseAdoptAppliment.setPetName(adoptMessage.getPetName());
+                responseAdoptAppliment.setPetPhotoId(adoptMessage.getPictures());
+                responseAdoptAppliment.setPetType(adoptMessage.getPetType());  //0为小猫，1为狗，2为鸟
+                responseAdoptAppliment.setResultDescription(null);
+                responseAdoptAppliment.setSterilization(adoptMessage.getSteriled());
+                responseAdoptAppliment.setVaccine(adoptMessage.getVaccinate());
+
+                responseAdoptApplimentList.add(responseAdoptAppliment);
+            }
+
+        }
+
+        adoptApplimentMap.put("responseAdoptApplimentList",responseAdoptApplimentList);  //分页获取的数据
+        adoptApplimentMap.put("total",data.getTotal());       //总页数
+        adoptApplimentMap.put("pageSize",data.getPageSize());     //每页大小
+        adoptApplimentMap.put("pageNum",pageNum);//当前页码
+        return adoptApplimentMap;
+
     }
 
     @Override

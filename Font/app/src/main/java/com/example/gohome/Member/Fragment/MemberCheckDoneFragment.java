@@ -172,7 +172,7 @@ public class MemberCheckDoneFragment extends Fragment {
 
                                 //请求
                                 Request requestAdopt=new Request.Builder()
-                                        .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.queryAdoptApplimentByState)+ "/?state=2&pageSize="+PAGE_SIZE+"&pageNum=1")
+                                        .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.queryAdoptApplimentByStateAndHandleId)+ "/?state=2&pageSize="+PAGE_SIZE+"&pageNum=1&handleId="+1)
                                         .get()
                                         .build();
                                 //新建call联结client和request
@@ -215,7 +215,7 @@ public class MemberCheckDoneFragment extends Fragment {
 
                                 //请求
                                 Request requestHelp=new Request.Builder()
-                                        .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.queryHelpApplimentByState)+ "/?state=2&pageSize="+PAGE_SIZE+"&pageNum=1")
+                                        .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.queryHelpApplimentByStateAndHandleId)+ "/?state=2&pageSize="+PAGE_SIZE+"&pageNum=1&handleId="+1)
                                         .get()
                                         .build();
                                 //新建call联结client和request
@@ -308,7 +308,7 @@ public class MemberCheckDoneFragment extends Fragment {
                                 if(type == 0){
                                     //请求
                                     Request request=new Request.Builder()
-                                            .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.queryAdoptApplimentByState)+ "/?state=2&pageSize="+PAGE_SIZE+"&pageNum="+ (curPageNumAdopt+1))
+                                            .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.queryAdoptApplimentByStateAndHandleId)+ "/?state=2&pageSize="+PAGE_SIZE+"&pageNum="+ (curPageNumAdopt+1)+"&handleId="+1)
                                             .get()
                                             .build();
                                     //新建call联结client和request
@@ -360,7 +360,7 @@ public class MemberCheckDoneFragment extends Fragment {
                                 else{  //请求救助申请信息
                                     // 请求
                                     Request request=new Request.Builder()
-                                            .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.queryHelpApplimentByState)+ "/?state=2&pageSize="+PAGE_SIZE+"&pageNum="+ (curPageNumHelp+1))
+                                            .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.queryHelpApplimentByStateAndHandleId)+ "/?state=2&pageSize="+PAGE_SIZE+"&pageNum="+ (curPageNumHelp+1)+"&handleId="+1)
                                             .get()
                                             .build();
                                     //新建call联结client和request
@@ -501,7 +501,7 @@ public class MemberCheckDoneFragment extends Fragment {
             }
         };
 
-        //新建线程，试下下拉刷新，请求第一页，同时请求adoptappliment和helpappliment的信息
+        //新建线程，请求第一页，同时请求adoptappliment和helpappliment的信息
         new Thread(
                 new Runnable() {
                     @Override
@@ -511,7 +511,7 @@ public class MemberCheckDoneFragment extends Fragment {
 
                         //请求
                         Request request=new Request.Builder()
-                                .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.queryAdoptApplimentByState)+ "/?state=2&pageSize="+PAGE_SIZE+"&pageNum=1")
+                                .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.queryAdoptApplimentByStateAndHandleId)+ "/?state=2&pageSize="+PAGE_SIZE+"&pageNum=1&handleId="+1)
                                 .get()
                                 .build();
                         //新建call联结client和request
@@ -539,6 +539,7 @@ public class MemberCheckDoneFragment extends Fragment {
                                 adoptApplimentList.clear();
                                 for(ResponseAdoptAppliment.responseAdoptAppliment i:responseAdoptApplimentList){
                                     adoptApplimentList.add(i);
+                                    System.out.println("kasdfjlaf:"+i);
                                 }
                                 if(responseAdoptAppliment.getPageSize() == 0){
                                     msg.what = ZERO;
@@ -599,7 +600,7 @@ public class MemberCheckDoneFragment extends Fragment {
 
                         //请求
                         Request requestHelp=new Request.Builder()
-                                .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.queryHelpApplimentByState)+ "/?state=2&pageSize="+PAGE_SIZE+"&pageNum=1")
+                                .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.queryHelpApplimentByStateAndHandleId)+ "/?state=2&pageSize="+PAGE_SIZE+"&pageNum=1&handleId="+1)
                                 .get()
                                 .build();
                         //新建call联结client和request

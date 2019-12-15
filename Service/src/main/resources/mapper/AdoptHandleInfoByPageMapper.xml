@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper
+                PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.gohome.dao.AdoptHandleInfoMapper" >
+
+    <!--分页查找-->
+    <select id="queryAdoptHandleInfoByHandleId" resultMap="BaseResultMap" parameterType="com.github.pagehelper.Page">
+        select
+        *
+        from adopt_handle_info
+        where handle_id = #{handleId}
+    </select>
+
+
+</mapper>

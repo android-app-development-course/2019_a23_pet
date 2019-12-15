@@ -197,4 +197,51 @@ public class HelpApplimentServiceImp implements HelpApplimentService {
         }
     }
 
+
+    /*根据领养申请信息状态和处理人id*/
+    public Map queryHelpApplimentByStateAndHandleId(Integer pageNum, Integer pageSize, Integer state,Integer handleId){
+        Map helpApplimentMap = new HashMap();
+
+        PageHelper.startPage(pageNum,pageSize);
+        Page<HelpHandleInfo> data = helpHandleInfoMapper.queryHelpHandleInfoByHandleId(handleId);
+        List<ResponseHelpAppliment> responseHelpApplimentList = new ArrayList<>();
+        for(HelpHandleInfo helpHandleInfo:data){
+            HelpAppliment helpAppliment = helpApplimentMapper.selectByPrimaryKey(helpHandleInfo.getApplimentId());
+            if(helpAppliment.getState() == state){
+                ResponseHelpAppliment responseHelpAppliment = new ResponseHelpAppliment();
+                //设置领养申请信息
+                responseHelpAppliment.setApplimentId(helpAppliment.getApplimentId());
+                responseHelpAppliment.setUserId(helpAppliment.getUserId());
+                responseHelpAppliment.setAddress(helpAppliment.getAddress());
+                responseHelpAppliment.setApplimentId(helpAppliment.getApplimentId());
+                responseHelpAppliment.setApplicantName(helpAppliment.getApplyName());
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                responseHelpAppliment.setDate(simpleDateFormat.format(helpAppliment.getCreated()));
+                responseHelpAppliment.setDescription(helpAppliment.getDescription());
+                responseHelpAppliment.setPetAge(helpAppliment.getAge());
+                responseHelpAppliment.setState(helpAppliment.getState());
+                responseHelpAppliment.setApplicantTel(helpAppliment.getTelephone());
+                responseHelpAppliment.setVaccine(helpAppliment.getVaccinate());
+                responseHelpAppliment.setSterilization(helpAppliment.getSteriled());
+                responseHelpAppliment.setUserId(helpAppliment.getUserId());
+                responseHelpAppliment.setResultDescription(null);
+                responseHelpAppliment.setHandleId(helpHandleInfo.getHandleId());
+                responseHelpAppliment.setPetType(helpAppliment.getPetType());
+                System.out.println("kasldfa:"+responseHelpAppliment);
+
+                responseHelpApplimentList.add(responseHelpAppliment);
+            }
+
+        }
+
+        System.out.println("map!!!"+helpApplimentMap);
+        helpApplimentMap.put("responseHelpApplimentList",responseHelpApplimentList);  //分页获取的数据
+        helpApplimentMap.put("total",data.getTotal());       //总页数
+        helpApplimentMap.put("pageSize",data.getPageSize());     //每页大小
+        helpApplimentMap.put("pageNum",pageNum);//当前页码
+        return helpApplimentMap;
+
+    }
+
+
 }

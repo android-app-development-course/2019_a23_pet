@@ -32,7 +32,6 @@ public class HelpApplimentController {
      */
     @RequestMapping(value = "/inserthelpappliment" , method = RequestMethod.POST)
     private Map<String,Object> insertHelpAppliment(@RequestBody HelpAppliment helpAppliment){
-        System.out.println("helpAppliment:"+ helpAppliment);
         helpAppliment.setState(0);
         Map<String,Object> modelMap = new HashMap<String, Object>();
         modelMap.put("success", helpApplimentService.insert(helpAppliment));
@@ -82,7 +81,6 @@ public class HelpApplimentController {
      */
     @RequestMapping(value = "/updatehelpapplimenttodoing", method = RequestMethod.POST)
     private Map<String,Object> updateHelpApplimentToDoing(@RequestBody ResponseHelpAppliment responseHelpAppliment){
-        System.out.println("responseHelpAppliment:"+responseHelpAppliment);
         Map<String,Object> modelMap = new HashMap<String, Object>();
         //更新救助申请信息
         modelMap.put("success", helpApplimentService.updateHelpApplimentToDoing(responseHelpAppliment));
@@ -108,6 +106,15 @@ public class HelpApplimentController {
         return helpApplimentService.queryHelpApplimentByUserId(pageNum, pageSize, userId);
     }
 
+
+    /**
+     * 根据状态分页显示救助申请信息
+     * @return modelMap
+     */
+    @RequestMapping(value = "/queryhelpapplimentbystateandhandleid", method = RequestMethod.GET)
+    private Map queryHelpApplimentByStateAndHandleId(Integer pageNum, Integer pageSize, Integer state,Integer handleId){
+        return helpApplimentService.queryHelpApplimentByStateAndHandleId(pageNum, pageSize, state,handleId);
+    }
 
 
 }

@@ -26,7 +26,6 @@ public class AdoptMessageController {
      */
     @RequestMapping(value = "/insertadoptmessage" , method = RequestMethod.POST)
     private Map<String,Object> insertAdoptMessage(@RequestBody AdoptMessage adoptMessage){
-        System.out.println("adoptMessage:"+ adoptMessage);
         adoptMessage.setState(0);
         Map<String,Object> modelMap = new HashMap<String, Object>();
         modelMap.put("success", adoptMessageService.insertAdoptMessage(adoptMessage));

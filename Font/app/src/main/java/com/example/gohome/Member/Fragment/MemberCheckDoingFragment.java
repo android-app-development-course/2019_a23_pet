@@ -172,7 +172,7 @@ public class MemberCheckDoingFragment extends Fragment {
 
                                 //请求
                                 Request requestAdopt=new Request.Builder()
-                                        .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.queryAdoptApplimentByState)+ "/?state=1&pageSize="+PAGE_SIZE+"&pageNum=1")
+                                        .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.queryAdoptApplimentByStateAndHandleId)+ "/?state=1&pageSize="+PAGE_SIZE+"&pageNum=1&handleId="+1)
                                         .get()
                                         .build();
                                 //新建call联结client和request
@@ -215,7 +215,7 @@ public class MemberCheckDoingFragment extends Fragment {
 
                                 //请求
                                 Request requestHelp=new Request.Builder()
-                                        .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.queryHelpApplimentByState)+ "/?state=1&pageSize="+PAGE_SIZE+"&pageNum=1")
+                                        .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.queryHelpApplimentByStateAndHandleId)+ "/?state=1&pageSize="+PAGE_SIZE+"&pageNum=1&handleId="+1)
                                         .get()
                                         .build();
                                 //新建call联结client和request
@@ -306,7 +306,7 @@ public class MemberCheckDoingFragment extends Fragment {
                                 if(type == 0){
                                     //请求
                                     Request request=new Request.Builder()
-                                            .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.queryAdoptApplimentByState)+ "/?state=0&pageSize="+PAGE_SIZE+"&pageNum="+ (curPageNumAdopt+1))
+                                            .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.queryAdoptApplimentByStateAndHandleId)+ "/?state=1&pageSize="+PAGE_SIZE+"&pageNum="+ (curPageNumAdopt+1)+"&handleId="+1)
                                             .get()
                                             .build();
                                     //新建call联结client和request
@@ -358,7 +358,7 @@ public class MemberCheckDoingFragment extends Fragment {
                                 else{  //请求救助申请信息
                                     // 请求
                                     Request request=new Request.Builder()
-                                            .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.queryHelpApplimentByState)+ "/?state=0&pageSize="+PAGE_SIZE+"&pageNum="+ (curPageNumHelp+1))
+                                            .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.queryHelpApplimentByStateAndHandleId)+ "/?state=1&pageSize="+PAGE_SIZE+"&pageNum="+ (curPageNumHelp+1)+"&handleId="+1)
                                             .get()
                                             .build();
                                     //新建call联结client和request
@@ -510,7 +510,7 @@ public class MemberCheckDoingFragment extends Fragment {
 
                         //请求
                         Request request=new Request.Builder()
-                                .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.queryAdoptApplimentByState)+ "/?state=1&pageSize="+PAGE_SIZE+"&pageNum=1")
+                                .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.queryAdoptApplimentByStateAndHandleId)+ "/?state=1&pageSize="+PAGE_SIZE+"&pageNum=1&handleId="+1)
                                 .get()
                                 .build();
                         //新建call联结client和request
@@ -596,7 +596,7 @@ public class MemberCheckDoingFragment extends Fragment {
 
                         //请求
                         Request requestHelp=new Request.Builder()
-                                .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.queryHelpApplimentByState)+ "/?state=1&pageSize="+PAGE_SIZE+"&pageNum=1")
+                                .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.queryHelpApplimentByStateAndHandleId)+ "/?state=1&pageSize="+PAGE_SIZE+"&pageNum=1&handleId="+1)
                                 .get()
                                 .build();
                         //新建call联结client和request

@@ -31,7 +31,6 @@ public class AdoptApplimentController {
      */
     @RequestMapping(value = "/insertadoptappliment" , method = RequestMethod.POST)
     private Map<String,Object> insertAdoptAppliment(@RequestBody AdoptAppliment adoptAppliment){
-        System.out.println("adoptAppliment:"+ adoptAppliment);
         adoptAppliment.setState(0);
         Map<String,Object> modelMap = new HashMap<String, Object>();
         modelMap.put("success", adoptApplimentService.insert(adoptAppliment));
@@ -114,6 +113,16 @@ public class AdoptApplimentController {
     private Map queryAdoptApplimentByAdoptId(Integer pageNum, Integer pageSize, Integer adoptId){
         return adoptApplimentService.queryAdoptApplimentByUserId(pageNum, pageSize, adoptId);
     }
+
+    /**
+     * 根据状态分页显示领养申请信息
+     * @return modelMap
+     */
+    @RequestMapping(value = "/queryadoptapplimentbystateandhandleid", method = RequestMethod.GET)
+    private Map queryAdoptApplimentByStateAndHandleId(Integer pageNum, Integer pageSize, Integer state,Integer handleId){
+        return adoptApplimentService.queryAdoptApplimentByStateAndHandleId(pageNum, pageSize, state,handleId);
+    }
+
 
 
 }

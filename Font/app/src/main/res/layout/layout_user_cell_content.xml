@@ -31,8 +31,7 @@
             android:maxLines="1"
             android:text="发布组织"
             android:textColor="@color/red"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/user_tv_pubTime"
@@ -243,7 +242,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="5"
-            android:textSize="15sp" />
+            android:typeface="serif"/>
 
         <!-- request button
         <com.lai.library.ButtonStyle

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -419,6 +420,8 @@ public class MemberCheckUndoFragment extends Fragment {
         HamButton.Builder adoptBuilder = new HamButton.Builder()
                 .normalImageRes(R.drawable.home_selected)
                 .subNormalTextRes(R.string.floatMenuAdopt)
+                .subTextSize(17)
+                .textGravity(Gravity.CENTER)
                 .listener(new OnBMClickListener() {
                     @Override
                     public void onBoomButtonClick(int index) {
@@ -435,12 +438,14 @@ public class MemberCheckUndoFragment extends Fragment {
                         xrv_memberCheckUndo.setAdapter(memberCheckUndoFoldingCellAdapter);
                     }
                 })
-                .normalColor(getResources().getColor(R.color.yellow)) ;
+                .normalColor(getResources().getColor(R.color.yellow));
 
         //救助信息筛选
         HamButton.Builder helpBuilder = new HamButton.Builder()
                 .normalImageRes(R.drawable.help_selected)
                 .subNormalTextRes(R.string.floatMenuHelp)
+                .subTextSize(17)
+                .textGravity(Gravity.CENTER)
                 .listener(new OnBMClickListener() {
                     @Override
                     public void onBoomButtonClick(int index) {

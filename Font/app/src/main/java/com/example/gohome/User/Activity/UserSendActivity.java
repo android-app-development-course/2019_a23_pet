@@ -38,6 +38,9 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class UserSendActivity extends AppCompatActivity {
 
+    public static final int SUCCESS = 1;
+    public static final int FAIL = 0;
+
     private EditText et_sendUserName;
     private EditText et_sendUserPhone;
     private EditText et_sendUserAddress;
@@ -133,7 +136,7 @@ public class UserSendActivity extends AppCompatActivity {
         initListener();
     }
 
-    private void initListener(){
+    private void initListener() {
         radGro_sendGender.setOnClickedButtonListener((btn, pos) -> Gender = pos);
 
         radGro_sendGender.setOnPositionChangedListener((btn, curPos, lastPos) -> Gender = curPos);
@@ -164,17 +167,7 @@ public class UserSendActivity extends AppCompatActivity {
             //调用show使得toast得以显示
             toast.show();
 
-            //清空editText和选择框
-            et_sendUserName.setText("");
-            et_sendUserPhone.setText("");
-            et_sendUserAddress.setText("");
-            et_sendPetName.setText("");
-            et_sendAge.setText("");
-            et_sendType.setText("");
-            et_sendDesc.setText("");
-
-            //还原提交按钮
-//            btn_submit.revertAnimation();
+            cleanUp();
         });
 
         adapter.setOnItemClickListener((position, v) -> {
@@ -198,6 +191,20 @@ public class UserSendActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void cleanUp(){
+        //清空editText和选择框
+        et_sendUserName.setText("");
+        et_sendUserPhone.setText("");
+        et_sendUserAddress.setText("");
+        et_sendPetName.setText("");
+        et_sendAge.setText("");
+        et_sendType.setText("");
+        et_sendDesc.setText("");
+
+        //还原提交按钮
+//        btn_submit.revertAnimation();
     }
 
     //给上传图片添加点击事件
@@ -349,3 +356,92 @@ public class UserSendActivity extends AppCompatActivity {
         }
     }
 }
+/*
+
+
+            Integer petGender = Gender;
+            Boolean vaccinate = Vcn == 0;
+            Boolean sterilize = Stl == 0;
+
+            Bitmap bitmapDone = BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_action_done);
+            Bitmap bitmapFail = BitmapFactory.decodeResource(this.getResources(),R.drawable.ic_action_fail);
+
+            //设置提交成功的图标和颜色
+            btn_submit.doneLoadingAnimation(getResources().getColor(R.color.green), bitmapDone);
+            //设置提交失败的图标和颜色
+            btn_submit.doneLoadingAnimation(getResources().getColor(R.color.red), bitmapFail);
+
+            String userName = et_sendUserName.getText().toString();
+            String phone = et_sendUserPhone.getText().toString();
+            String address = et_sendUserAddress.getText().toString();
+            String petName = et_sendPetName.getText().toString();
+            String petAge = et_sendAge.getText().toString();
+            String type = et_sendType.getText().toString();
+            String description = et_sendDesc.getText();
+
+            if ("".equals(userName) || "".equals(phone) || "".equals(address) ||
+                    "".equals(petName) || "".equals(petAge) || "".equals(type) ||
+                    "".equals(description)){
+                btn_submit.doneLoadingAnimation(getResources().getColor(R.color.red), bitmapFail);
+                Toast.makeText(UserSendActivity.this, "请不要留空", Toast.LENGTH_SHORT).show();
+                Handler handler = new Handler();
+                handler.postDelayed(this::cleanUp, 3000);
+                return;
+            }
+            if(type.contains("猫")) petType = 0;
+            if (type.contains("狗")) petType = 1;
+
+            Handler handler = new Handler() {
+                public void handleMessage(Message message){
+                    switch (message.what){
+                        case SUCCESS:
+                            btn_submit.doneLoadingAnimation(getResources().getColor(R.color.green), bitmapDone);
+                            Toast.makeText(UserSendActivity.this,"提交成功，请耐心等候！",Toast.LENGTH_LONG).show();
+                            break;
+
+                        case FAIL:
+                            btn_submit.doneLoadingAnimation(getResources().getColor(R.color.red), bitmapFail);
+                            Toast.makeText(UserSendActivity.this,"提交失败，请重新提交！",Toast.LENGTH_LONG).show();
+                            break;
+                    }
+                }
+            };
+
+            new Thread(()->
+            {
+                Gson gson = new Gson();
+                String json;
+//                Log.i("表单json: ", json);
+                RequestBody requestBody = FormBody.create(MediaType.parse("application/json;charset=utf-8"),json);
+
+                Request request = new Request.Builder()
+                        .url(getResources().getString(R.string.serverPath) +
+                                getResources().getString(R.string.insertHelpApplication))
+                        .post(requestBody)
+                        .build();
+                Message msg = new Message();
+                OkHttpClient okHttpClient = new OkHttpClient();
+                Call call = okHttpClient.newCall(request);
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        Log.i("提交失败:", e.getMessage());
+                        msg.what = FAIL;
+                        handler.sendMessage(msg);
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        Log.i("提交成功:", response.body().string());
+                        msg.what = SUCCESS;
+                        handler.sendMessage(msg);
+                    }
+                });
+            }).start();
+
+            Handler mHandler = new Handler();
+            mHandler.postDelayed(this::cleanUp, 3000);
+        });
+
+
+*/

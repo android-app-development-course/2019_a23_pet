@@ -107,7 +107,6 @@ public class HelpAppliment {
         this.helpApplimentId = helpApplimentId;
     }
 
-
     private String date;     //救助申请日期
     private String applicantName;   //救助申请人姓名
     private String applicantTel;     //救助申请人电话
@@ -141,8 +140,6 @@ public class HelpAppliment {
     public void setResultDescription(String resultDescription) {
         this.resultDescription = resultDescription;
     }
-
-
 
 
     public HelpAppliment(String date,String applicantName,String applicantTel, String applicantAddress,

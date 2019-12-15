@@ -19,6 +19,11 @@
     adopt_id, pet_name, pet_type, gender, age, handle_id, pictures, state, description, 
     address, vaccinate, steriled
   </sql>
+  <select id="queryAdoptMessageByState" resultMap="BaseResultMap" parameterType="com.github.pagehelper.Page">
+    select  *
+    from adopt_message
+    where state = #{state}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

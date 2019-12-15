@@ -6,7 +6,7 @@
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="apply_name" property="applyName" jdbcType="VARCHAR" />
     <result column="telephone" property="telephone" jdbcType="VARCHAR" />
-    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="apply_date" property="applyDate" jdbcType="TIMESTAMP" />
     <result column="state" property="state" jdbcType="INTEGER" />
@@ -20,7 +20,7 @@
     <result column="created" property="created" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    appliment_id, user_id, apply_name, telephone, area_id, description, apply_date, state, 
+    appliment_id, user_id, apply_name, telephone, address, description, apply_date, state, 
     pet_name, pet_type, gender, age, steriled, vaccinate, pictures, created
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -38,16 +38,16 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into help_appliment (user_id, apply_name, telephone, 
-      area_id, description, apply_date, 
+      address, description, apply_date, 
       state, pet_name, pet_type, 
       gender, age, steriled, 
-      vaccinate, pictures, created
+      vaccinate, pictures
       )
     values (#{userId,jdbcType=INTEGER}, #{applyName,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
-      #{areaId,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, #{applyDate,jdbcType=TIMESTAMP}, 
+      #{address,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{applyDate,jdbcType=TIMESTAMP}, 
       #{state,jdbcType=INTEGER}, #{petName,jdbcType=VARCHAR}, #{petType,jdbcType=INTEGER}, 
       #{gender,jdbcType=INTEGER}, #{age,jdbcType=VARCHAR}, #{steriled,jdbcType=BIT}, 
-      #{vaccinate,jdbcType=BIT}, #{pictures,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}
+      #{vaccinate,jdbcType=BIT}, #{pictures,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.example.gohome.entity.HelpAppliment" >
@@ -65,8 +65,8 @@
       <if test="telephone != null" >
         telephone,
       </if>
-      <if test="areaId != null" >
-        area_id,
+      <if test="address != null" >
+        address,
       </if>
       <if test="description != null" >
         description,
@@ -112,8 +112,8 @@
       <if test="telephone != null" >
         #{telephone,jdbcType=VARCHAR},
       </if>
-      <if test="areaId != null" >
-        #{areaId,jdbcType=INTEGER},
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
       </if>
       <if test="description != null" >
         #{description,jdbcType=VARCHAR},
@@ -162,8 +162,8 @@
       <if test="telephone != null" >
         telephone = #{telephone,jdbcType=VARCHAR},
       </if>
-      <if test="areaId != null" >
-        area_id = #{areaId,jdbcType=INTEGER},
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
       </if>
       <if test="description != null" >
         description = #{description,jdbcType=VARCHAR},
@@ -206,7 +206,7 @@
     set user_id = #{userId,jdbcType=INTEGER},
       apply_name = #{applyName,jdbcType=VARCHAR},
       telephone = #{telephone,jdbcType=VARCHAR},
-      area_id = #{areaId,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
       apply_date = #{applyDate,jdbcType=TIMESTAMP},
       state = #{state,jdbcType=INTEGER},

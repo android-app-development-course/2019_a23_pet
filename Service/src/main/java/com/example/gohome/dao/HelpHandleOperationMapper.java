@@ -1,7 +1,9 @@
 package com.example.gohome.dao;
 
 import com.example.gohome.entity.HelpHandleOperation;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface HelpHandleOperationMapper {
     int deleteByPrimaryKey(Integer operatioinId);
 

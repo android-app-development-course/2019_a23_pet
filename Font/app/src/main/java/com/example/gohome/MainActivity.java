@@ -10,6 +10,7 @@ import android.widget.Button;
 import com.example.gohome.Member.Activity.MemberHomeActivity;
 import com.example.gohome.Organizer.OrganizerMain;
 import com.example.gohome.User.Activity.UserHomeActivity;
+import com.example.gohome.ui.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         Button btn_user = findViewById(R.id.btn_user);
         Button btn_organizer = findViewById(R.id.btn_organizer);
         Button btn_member = findViewById(R.id.btn_member);
+        Button btn_login = findViewById(R.id.btn_login);
 
         btn_user.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +46,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, OrganizerMain.class);
+                startActivity(intent);
+            }
+        });
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });

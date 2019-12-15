@@ -11,7 +11,7 @@ public class HelpAppliment {
 
     private String telephone;
 
-    private Integer areaId;
+    private String address;
 
     private String description;
 
@@ -67,12 +67,12 @@ public class HelpAppliment {
         this.telephone = telephone == null ? null : telephone.trim();
     }
 
-    public Integer getAreaId() {
-        return areaId;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAreaId(Integer areaId) {
-        this.areaId = areaId;
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
     }
 
     public String getDescription() {

@@ -1,7 +1,10 @@
 package com.example.gohome.dao;
 
 import com.example.gohome.entity.HelpHandleInfo;
+import com.github.pagehelper.Page;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface HelpHandleInfoMapper {
     int deleteByPrimaryKey(Integer infoId);
 
@@ -14,4 +17,7 @@ public interface HelpHandleInfoMapper {
     int updateByPrimaryKeySelective(HelpHandleInfo record);
 
     int updateByPrimaryKey(HelpHandleInfo record);
+
+    /*根据接管人id状态*/
+    Page<HelpHandleInfo> queryHelpHandleInfoByHandleId(Integer handId);
 }

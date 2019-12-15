@@ -56,12 +56,12 @@ CREATE TABLE IF NOT EXISTS adopt_message(
 
 INSERT INTO adopt_message(pet_name, pet_type, gender, age, handle_id, pictures, state, description, address, vaccinate, steriled)
 VALUES
-('小狼', '1', '0', '三个月', 1, null, 0, '超级超级可爱的狗子', '广州天河中山大道', false, false),
-('小旺', '1', '1', '四个月', 1, null, 0, '超级超级可爱的狗子啊啊啊', '广州天河中山大道中', false, false),
-('小喵', '0', '0', '六个月', 7, null, 0, '超级超级可爱的喵星人', '广州天河中山大道北', true, true),
-('小黑', '0', '1', '一岁', 8, null, 0, '超级超级粘人的小黑啊啊啊', '广州天河中山大道南', true, true),
-('小白', '0', '1', '三个月', 1, null, 0, '超级超级可爱的小白啊啊啊', '广州天河中山大道东', false, true),
-('小花', '2', '0', '不明', 1, null, 0, '超级超级可爱的鹦鹉', '广州天河中山大道西', false, false);
+('小狼', '1', '0', '三个月', 1, NULL, 0, '超级超级可爱的狗子', '广州天河中山大道', FALSE, FALSE),
+('小旺', '1', '1', '四个月', 1, NULL, 0, '超级超级可爱的狗子啊啊啊', '广州天河中山大道中', FALSE, FALSE),
+('小喵', '0', '0', '六个月', 7, NULL, 0, '超级超级可爱的喵星人', '广州天河中山大道北', TRUE, TRUE),
+('小黑', '0', '1', '一岁', 8, NULL, 0, '超级超级粘人的小黑啊啊啊', '广州天河中山大道南', TRUE, TRUE),
+('小白', '0', '1', '三个月', 1, NULL, 0, '超级超级可爱的小白啊啊啊', '广州天河中山大道东', FALSE, TRUE),
+('小花', '2', '0', '不明', 1, NULL, 0, '超级超级可爱的鹦鹉', '广州天河中山大道西', FALSE, FALSE);
 
 
 # 领养申请信息
@@ -176,7 +176,7 @@ CREATE TABLE IF NOT EXISTS help_appliment(
 	user_id INT UNSIGNED, # 救助申请人id
 	apply_name VARCHAR(49) NOT NULL, # 姓名
 	telephone VARCHAR(16) NOT NULL,# 手机号码
-	area_id INT UNSIGNED,  #区域地址
+	address VARCHAR(100) NOT NULL,  #区域地址
 	description TINYTEXT DEFAULT NULL,# 申请描述
 	apply_date DATETIME NOT NULL,# 申请时间
 	state INT DEFAULT 0,# 申请状态，0为待审核，1为处理中，2为已完成
@@ -222,6 +222,7 @@ CREATE TABLE IF NOT EXISTS help_handle_operation(
 DROP USER IF EXISTS 'gohome_root'@'localhost';
 CREATE USER 'gohome_root'@'localhost' IDENTIFIED BY 'zxcvbn';
 GRANT ALL ON gohome.* TO 'gohome_root'@'localhost';
+
 
 
 

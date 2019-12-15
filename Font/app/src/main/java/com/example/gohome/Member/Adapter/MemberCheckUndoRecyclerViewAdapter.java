@@ -29,7 +29,6 @@ public class MemberCheckUndoRecyclerViewAdapter extends RecyclerView.Adapter<Mem
 
     //负责每一个item
     public class ViewHolder extends RecyclerView.ViewHolder{
-//        TextView mView;
         FoldingCell fc_checkUndo;
         TextView tv_one;
         TextView tv_two;
@@ -37,10 +36,7 @@ public class MemberCheckUndoRecyclerViewAdapter extends RecyclerView.Adapter<Mem
 
         public ViewHolder(View itemView) {
             super(itemView);
-//            mView = itemView.findViewById(R.id.item_tx);
-//            fc_checkUndo = itemView.findViewById(R.id.item_fcCheckUndo);
-//            tv_one = itemView.findViewById(R.id.tv_one);
-//            tv_two = itemView.findViewById(R.id.tv_two);
+
         }
     }
 

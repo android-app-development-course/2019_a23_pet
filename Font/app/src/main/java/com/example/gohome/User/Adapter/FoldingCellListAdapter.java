@@ -89,6 +89,8 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter{
 
         int icon1 = !list.get(pos).getVaccinate() ? R.drawable.no : R.drawable.yes;
         int icon2 = list.get(pos).getSteriled() ? R.drawable.no : R.drawable.yes;
+//        int icon1 = list.get(pos).getVaccinate() == false ? R.drawable.no : R.drawable.yes;
+//        int icon2 = list.get(pos).getSteriled() == false ? R.drawable.no : R.drawable.yes;
 
         // title(外)
         Glide.with(context).load(list.get(pos).getPhotos()).into(mholder.petPhoto1);

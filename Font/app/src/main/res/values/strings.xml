@@ -17,14 +17,20 @@
     <string name="login_failed">"登陆失败"</string>
 
     <!--url配置-->
-<!--<<<<<<< HEAD-->
-<!--    <string name="serverBasePath">http://10.242.108.146:8080/gohome/</string>-->
-<!--=======-->
-    <string name="serverBasePath">http://192.168.101.221:8080/gohome/</string>
+    <string name="serverBasePath">http://10.242.32.191:8080/gohome/</string>
 
     <string name="insertAdoptMessage">adoptmessage/insertadoptmessage</string>
 
     <string name="insertUserMessage">usermessage/insertusermessage</string>
 
     <string name="loginUserMessage">usermessage/loginusermessage</string>
+
+    <string name="queryAdoptApplimentByState">adoptappliment/queryadoptapplimentbystate</string>
+    <string name="queryHelpApplimentByState">helpappliment/queryhelpapplimentbystate</string>
+    <string name="updateAdoptMessage">adoptmessage/updateadoptmessage</string>
+    <string name="updateAdoptApplimentToDoing">adoptappliment/updateadoptapplimenttodoing</string>
+    <string name="updateHelpApplimentToDoing">helpappliment/updatehelpapplimenttodoing</string>
+    <string name="queryAdoptApplimentByStateAndHandleId">adoptappliment/queryadoptapplimentbystateandhandleid</string>
+    <string name="queryHelpApplimentByStateAndHandleId">helpappliment/queryhelpapplimentbystateandhandleid</string>
+
 </resources>

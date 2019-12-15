@@ -1,7 +1,13 @@
 package com.example.gohome.dao;
 
 import com.example.gohome.entity.AdoptAppliment;
+import com.github.pagehelper.Page;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
+@Service
 public interface AdoptApplimentMapper {
     int deleteByPrimaryKey(Integer applimentId);
 
@@ -14,4 +20,11 @@ public interface AdoptApplimentMapper {
     int updateByPrimaryKeySelective(AdoptAppliment record);
 
     int updateByPrimaryKey(AdoptAppliment record);
+
+    /*根据领养申请信息状态*/
+    Page<AdoptAppliment> queryAdoptApplimentByState(Integer state);
+    /*根据申请人*/
+    Page<AdoptAppliment> queryAdoptApplimentByUserId(Integer userId);
+    /*根据领养信息ID*/
+    Page<AdoptAppliment> queryAdoptApplimentByAdoptId(Integer adoptId);
 }

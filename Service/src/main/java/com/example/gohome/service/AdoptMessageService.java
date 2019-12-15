@@ -12,6 +12,8 @@ public interface AdoptMessageService {
 
     boolean deleteAdoptMessage(int adoptId);
 
+    boolean updateAdoptMessageState(AdoptMessage adoptMessage);
+
     /**以下为未使用、未测试方法*/
 //    Map<String, Object> queryAdoptMessage(Integer pageNum, Integer pageSize);
 //

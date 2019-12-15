@@ -25,9 +25,9 @@
     <selectKey resultType="java.lang.Integer" keyProperty="infoId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into adopt_handle_info (handle_id, appliment_id, state, 
+    insert into adopt_handle_info (handle_id, appliment_id, state,
       created)
-    values (#{handleId,jdbcType=INTEGER}, #{applimentId,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, 
+    values (#{handleId,jdbcType=INTEGER}, #{applimentId,jdbcType=INTEGER}, #{state,jdbcType=INTEGER},
       #{created,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.example.gohome.entity.AdoptHandleInfo" >
@@ -90,4 +90,12 @@
       created = #{created,jdbcType=TIMESTAMP}
     where info_id = #{infoId,jdbcType=INTEGER}
   </update>
+  <select id="selectByHandleId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from adopt_handle_info
+    where handle_id = #{handleId,jdbcType=INTEGER}
+  </select>
+
+
 </mapper>

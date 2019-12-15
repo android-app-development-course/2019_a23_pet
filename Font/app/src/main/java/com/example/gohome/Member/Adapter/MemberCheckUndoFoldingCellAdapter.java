@@ -261,7 +261,8 @@ public class MemberCheckUndoFoldingCellAdapter extends RecyclerView.Adapter {
                 ResponseAdoptAppliment.responseAdoptAppliment responseAdoptAppliment = new ResponseAdoptAppliment.responseAdoptAppliment();
                 responseAdoptAppliment.setAdoptId(adoptApplimentList.get(position).getAdoptId());
                 responseAdoptAppliment.setApplimentId(adoptApplimentList.get(position).getApplimentId());
-                responseAdoptAppliment.setHandleId(adoptApplimentList.get(position).getHandleId());
+                //发送自己的ID
+                responseAdoptAppliment.setHandleId(1);
                 responseAdoptAppliment.setUserId(adoptApplimentList.get(position).getUserId());
 
                 //创建Handler，在子线程中使用handler发message给主线程
@@ -398,7 +399,8 @@ public class MemberCheckUndoFoldingCellAdapter extends RecyclerView.Adapter {
 
                     ResponseHelpAppliment.responseHelpAppliment responseHelpAppliment = new ResponseHelpAppliment.responseHelpAppliment();
                     responseHelpAppliment.setApplimentId(helpApplimentList.get(position).getApplimentId());
-                    responseHelpAppliment.setHandleId(helpApplimentList.get(position).getHandleId());
+                    //自己的ID
+                    responseHelpAppliment.setHandleId(1);
                     responseHelpAppliment.setUserId(helpApplimentList.get(position).getUserId());
 
                     //创建Handler，在子线程中使用handler发message给主线程

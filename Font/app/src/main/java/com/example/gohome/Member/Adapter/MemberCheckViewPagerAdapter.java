@@ -69,7 +69,6 @@ public class MemberCheckViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        System.out.println("position:"+position);
         Fragment fragment = null;
         switch (position) {
             case 0:

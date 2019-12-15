@@ -55,7 +55,6 @@ public class MemberCheckUndoFragment extends Fragment {
 
     XRecyclerView xrv_memberCheckUndo;
 
-    private int times = 0;
     final int itemLimit = 5;  //限制最多显示5条记录
 
     private MemberCheckUndoFoldingCellAdapter memberCheckUndoFoldingCellAdapter;
@@ -130,7 +129,6 @@ public class MemberCheckUndoFragment extends Fragment {
             //下拉刷新
             @Override
             public void onRefresh() {
-                times = 0;
 
                 //创建Handler，在子线程中使用handler发message给主线程
                 @SuppressLint("HandlerLeak") Handler pullDownHandle = new Handler() {
@@ -543,7 +541,6 @@ public class MemberCheckUndoFragment extends Fragment {
                                 for(ResponseAdoptAppliment.responseAdoptAppliment i:responseAdoptApplimentList){
                                     adoptApplimentList.add(i);
                                 }
-                                System.out.println("list:"+ responseAdoptAppliment);
                                 if(responseAdoptAppliment.getPageSize() == 0){
                                     msg.what = ZERO;
                                 }else{
@@ -631,8 +628,6 @@ public class MemberCheckUndoFragment extends Fragment {
                                 for(ResponseHelpAppliment.responseHelpAppliment i:responseHelpApplimentList){
                                     helpApplimentList.add(i);
                                 }
-
-                                System.out.println("list:"+ responseHelpAppliment);
                                 if(responseHelpAppliment.getPageSize() == 0){
                                     msgHelp.what = ZERO;
                                 }else{

@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.gohome.Entity.AdoptAppliment;
 import com.example.gohome.Entity.HelpAppliment;
+import com.example.gohome.Entity.ResponseAdoptAppliment;
+import com.example.gohome.Entity.ResponseHelpAppliment;
 import com.example.gohome.Member.Activity.MemberHandleOperationActivity;
 import com.example.gohome.R;
 import com.ramotion.foldingcell.FoldingCell;
@@ -26,8 +28,8 @@ public class MemberCheckDoingFoldingCellAdapter extends RecyclerView.Adapter {
 
 
     //数据源
-    private List<AdoptAppliment> adoptApplimentList;
-    private List<HelpAppliment> helpApplimentList;
+    private List<ResponseAdoptAppliment.responseAdoptAppliment> adoptApplimentList;
+    private List<ResponseHelpAppliment.responseHelpAppliment> helpApplimentList;
     private Context context;
 
     private final String s0 = "♀";
@@ -284,7 +286,7 @@ public class MemberCheckDoingFoldingCellAdapter extends RecyclerView.Adapter {
             helpViewHolder.petAge.setText(helpApplimentList.get(position).getPetAge());
             helpViewHolder.contentDate.setText(helpApplimentList.get(position).getDate());
             helpViewHolder.applicantName.setText(helpApplimentList.get(position).getApplicantName());
-            helpViewHolder.applicantAddress.setText(helpApplimentList.get(position).getApplicantAddress());
+            helpViewHolder.applicantAddress.setText(helpApplimentList.get(position).getAddress());
             helpViewHolder.applicantTelephone.setText(helpApplimentList.get(position).getApplicantTel());
             helpViewHolder.applicantDescription.setText(helpApplimentList.get(position).getDescription());
 

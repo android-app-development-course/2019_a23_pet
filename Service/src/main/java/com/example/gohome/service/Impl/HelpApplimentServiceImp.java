@@ -88,7 +88,6 @@ public class HelpApplimentServiceImp implements HelpApplimentService {
     //将未处理状态的救助申请信息状态转为处理中状态（需要修改help_appliment，help_handle_info两个表）
     @Override
     public boolean updateHelpApplimentToDoing(ResponseHelpAppliment responseHelpAppliment){
-        System.out.println("responseHelpAppliment:"+responseHelpAppliment);
         //判断领养申请信息的ID不为空
         if(responseHelpAppliment.getApplimentId() != null && responseHelpAppliment.getApplimentId()>0 ){
             try{
@@ -96,7 +95,7 @@ public class HelpApplimentServiceImp implements HelpApplimentService {
                 HelpAppliment helpAppliment = helpApplimentMapper.selectByPrimaryKey(responseHelpAppliment.getApplimentId());
                 helpAppliment.setState(1);
                 int effectedNum1 = helpApplimentMapper.updateByPrimaryKeySelective(helpAppliment);
-                //修改help_handle_info两个表
+                //修改help_handle_info个表
                 HelpHandleInfo helpHandleInfo = new HelpHandleInfo();
                 helpHandleInfo.setHandleId(responseHelpAppliment.getHandleId());
                 helpHandleInfo.setApplimentId(responseHelpAppliment.getApplimentId());

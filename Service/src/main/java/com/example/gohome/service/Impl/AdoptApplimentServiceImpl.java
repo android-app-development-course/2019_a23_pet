@@ -181,6 +181,8 @@ public class AdoptApplimentServiceImpl implements AdoptApplimentService {
         adoptApplimentMap.put("pageSize",data.getPageSize());     //每页大小
         adoptApplimentMap.put("pageNum",pageNum);//当前页码
 
+        System.out.println("map!!——"+adoptApplimentMap);
+
 
         return adoptApplimentMap;
     }

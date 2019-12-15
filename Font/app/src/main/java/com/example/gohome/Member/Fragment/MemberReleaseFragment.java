@@ -434,7 +434,7 @@ public class MemberReleaseFragment extends Fragment  {
                         RequestBody requestBody = FormBody.create(MediaType.parse("application/json;charset=utf-8"),json);
                         //请求
                         Request request=new Request.Builder()
-                                .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.insertAdoptMessage))
+                                .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.insertUserMessage))
                                 .post(requestBody)
                                 .build();
                         //新建call联结client和request
@@ -445,7 +445,6 @@ public class MemberReleaseFragment extends Fragment  {
                                 //请求失败的处理
                                 Log.i("RESPONSE:","fail"+e.getMessage());
                                 result[0] = false;
-//                        Log.i("result的值", String.valueOf(result[0]));
                                 Log.i("result的值", String.valueOf(result[0]));
                                 //设置提交失败的图标和颜色
                                 btn_submit.doneLoadingAnimation(getResources().getColor(R.color.red), bitmapFail);

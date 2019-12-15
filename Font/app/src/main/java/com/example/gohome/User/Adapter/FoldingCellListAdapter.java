@@ -86,13 +86,9 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter{
         ViewHolder mholder = new ViewHolder(holder.itemView);
 
         String gender = list.get(pos).getGender() == 0 ? s0 : s1;
-<<<<<<< HEAD
+
         int icon1 = !list.get(pos).getVaccinate() ? R.drawable.no : R.drawable.yes;
         int icon2 = list.get(pos).getSteriled() ? R.drawable.no : R.drawable.yes;
-=======
-        int icon1 = list.get(pos).getVaccinate() == false ? R.drawable.no : R.drawable.yes;
-        int icon2 = list.get(pos).getSteriled() == false ? R.drawable.no : R.drawable.yes;
->>>>>>> 7cf2a76a978bd2c1096e6eb714f744b0aab38a26
 
         // title(外)
         Glide.with(context).load(list.get(pos).getPhotos()).into(mholder.petPhoto1);

@@ -1,17 +1,24 @@
 package com.example.gohome.ui.login;
 
+import com.example.gohome.data.model.LoggedInUser;
+
 /**
  * Class exposing authenticated user details to the UI.
  */
 class LoggedInUserView {
-    private String displayName;
+    private LoggedInUser loggedInUser;
     //... other data fields that may be accessible to the UI
 
-    LoggedInUserView(String displayName) {
-        this.displayName = displayName;
+
+    public LoggedInUserView(LoggedInUser loggedInUser) {
+        this.loggedInUser = loggedInUser;
     }
 
-    String getDisplayName() {
-        return displayName;
+    public LoggedInUser getLoggedInUser() {
+        return loggedInUser;
+    }
+
+    public void setLoggedInUser(LoggedInUser loggedInUser) {
+        this.loggedInUser = loggedInUser;
     }
 }

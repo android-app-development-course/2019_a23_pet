@@ -132,8 +132,18 @@ public class ResponseHelpAppliment {
         this.resultDescription = resultDescription;
     }
 
+
+    public Integer getHandleId() {
+        return handleId;
+    }
+
+    public void setHandleId(Integer handleId) {
+        this.handleId = handleId;
+    }
+
     private Integer userId; //救助申请人ID
     private Integer applimentId; //本救助申请的ID
+    private Integer handleId;     //对接人ID
     private String address; //申请人的地址
     private String date;     //救助申请日期
     private String applicantName;   //救助申请人姓名
@@ -153,9 +163,10 @@ public class ResponseHelpAppliment {
     public ResponseHelpAppliment() {
     }
 
-    public ResponseHelpAppliment(Integer userId, Integer applimentId, String address, String date, String applicantName, String applicantTel,
+    public ResponseHelpAppliment(Integer handleId,Integer userId, Integer applimentId, String address, String date, String applicantName, String applicantTel,
                                  String petName, String petAge, Integer petType, boolean petGender, boolean vaccine, boolean sterilization, String description, String resultDescription,
                                  String petPhotoId, Integer state) {
+        this.handleId = handleId;
         this.userId = userId;
         this.applimentId = applimentId;
         this.address = address;
@@ -180,7 +191,7 @@ public class ResponseHelpAppliment {
         return "responseHelpAppliment [userId=" + userId + ", applimentId=" + applimentId + ",address=" + address + ", date="
                 + date + ", applicantName=" + applicantName + ", applicantTel=" + applicantTel  + ", petName=" + petName +
                 ", petAge= " + petAge + ", petType=" + petType + ",petGender" + petGender + ",vaccine" + vaccine + ",sterilization" + sterilization + ",description" + description
-                + ",resultDescription" + resultDescription + ",petPhotoId" + petPhotoId + ",state" + state + "]";
+                + ",resultDescription" + resultDescription + ",petPhotoId" + petPhotoId + ",state" + state + ",handleId=" + handleId + "]";
     }
 
 }

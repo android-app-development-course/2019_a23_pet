@@ -1,6 +1,7 @@
 package com.example.gohome.service;
 
 import com.example.gohome.entity.AdoptAppliment;
+import com.example.gohome.entity.ResponseEntity.ResponseAdoptAppliment;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -16,6 +17,11 @@ public interface AdoptApplimentService {
     AdoptAppliment selectByPrimaryKey(Integer applimentId);
     //根据主键更新
     boolean updateByPrimaryKey(AdoptAppliment record);
+
+    boolean updateAdoptApplimentState(AdoptAppliment adoptAppliment);
+
+    //将未处理状态的领养申请信息状态转为处理中状态（需要修改adopt_message，adopt_appliment，adopt_handle_info三个表）
+    boolean updateAdoptApplimentToDoing(ResponseAdoptAppliment responseAdoptAppliment);
 
     /* 分页查找领养申请信息  */
     /*根据领养申请信息状态*/

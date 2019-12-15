@@ -2,6 +2,7 @@ package com.example.gohome.web;
 
 
 import com.example.gohome.entity.AdoptAppliment;
+import com.example.gohome.entity.ResponseEntity.ResponseAdoptAppliment;
 import com.example.gohome.service.AdoptApplimentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -69,8 +70,20 @@ public class AdoptApplimentController {
     @RequestMapping(value = "/updateadoptappliment", method = RequestMethod.POST)
     private Map<String,Object> updateByPrimaryKey(AdoptAppliment adoptAppliment){
         Map<String,Object> modelMap = new HashMap<String, Object>();
-        //删除领养申请信息
+        //更新领养申请信息
         modelMap.put("success", adoptApplimentService.updateByPrimaryKey(adoptAppliment));
+        return modelMap;
+    }
+
+    /**
+     * 更新领养申请状态为处理中
+     * @return modelMap
+     */
+    @RequestMapping(value = "/updateadoptapplimenttodoing", method = RequestMethod.POST)
+    private Map<String,Object> updateAdoptApplimentToDoing(@RequestBody ResponseAdoptAppliment responseAdoptAppliment){
+        Map<String,Object> modelMap = new HashMap<String, Object>();
+        //更新领养申请信息
+        modelMap.put("success", adoptApplimentService.updateAdoptApplimentToDoing(responseAdoptAppliment));
         return modelMap;
     }
 

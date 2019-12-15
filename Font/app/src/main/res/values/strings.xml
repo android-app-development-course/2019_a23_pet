@@ -22,4 +22,7 @@
     <string name="insertAdoptMessage">adoptmessage/insertadoptmessage</string>
     <string name="queryAdoptApplimentByState">adoptappliment/queryadoptapplimentbystate</string>
     <string name="queryHelpApplimentByState">helpappliment/queryhelpapplimentbystate</string>
+    <string name="updateAdoptMessage">adoptmessage/updateadoptmessage</string>
+    <string name="updateAdoptApplimentToDoing">adoptappliment/updateadoptapplimenttodoing</string>
+    <string name="updateHelpApplimentToDoing">helpappliment/updatehelpapplimenttodoing</string>
 </resources>

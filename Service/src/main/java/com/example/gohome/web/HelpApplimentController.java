@@ -2,6 +2,7 @@ package com.example.gohome.web;
 
 
 import com.example.gohome.entity.HelpAppliment;
+import com.example.gohome.entity.ResponseEntity.ResponseHelpAppliment;
 import com.example.gohome.service.HelpApplimentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -72,6 +73,19 @@ public class HelpApplimentController {
         Map<String,Object> modelMap = new HashMap<String, Object>();
         //删除救助申请信息
         modelMap.put("success", helpApplimentService.updateByPrimaryKey(helpAppliment));
+        return modelMap;
+    }
+
+    /**
+     * 更新救助申请状态为处理中
+     * @return modelMap
+     */
+    @RequestMapping(value = "/updatehelpapplimenttodoing", method = RequestMethod.POST)
+    private Map<String,Object> updateHelpApplimentToDoing(@RequestBody ResponseHelpAppliment responseHelpAppliment){
+        System.out.println("responseHelpAppliment:"+responseHelpAppliment);
+        Map<String,Object> modelMap = new HashMap<String, Object>();
+        //更新救助申请信息
+        modelMap.put("success", helpApplimentService.updateHelpApplimentToDoing(responseHelpAppliment));
         return modelMap;
     }
 

@@ -46,4 +46,17 @@ public class AdoptMessageController {
     }
 
 
+    /**
+     * 更新领养信息
+     * @return modelMap
+     */
+    @RequestMapping(value = "/updateadoptmessage", method = RequestMethod.POST)
+    private Map<String,Object> updateByPrimaryKey(AdoptMessage adoptMessage){
+        Map<String,Object> modelMap = new HashMap<String, Object>();
+        //删除领养信息
+        modelMap.put("success", adoptMessageService.updateAdoptMessageState(adoptMessage));
+        return modelMap;
+    }
+
+
 }

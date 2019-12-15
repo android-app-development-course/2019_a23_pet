@@ -16,6 +16,8 @@ public class ResponseHelpAppliment {
         this.responseHelpApplimentList = responseHelpApplimentList;
     }
 
+    public ResponseHelpAppliment(){}
+
 
     public Integer getPageSize() {
         return pageSize;
@@ -51,7 +53,7 @@ public class ResponseHelpAppliment {
 
 
     //救助申请信息
-    public class responseHelpAppliment {
+    public static class responseHelpAppliment {
 
         public Integer getUserId() {
             return userId;
@@ -174,6 +176,15 @@ public class ResponseHelpAppliment {
             this.resultDescription = resultDescription;
         }
 
+        public Integer getHandleId() {
+            return handleId;
+        }
+
+        public void setHandleId(Integer handleId) {
+            this.handleId = handleId;
+        }
+
+        private Integer handleId;  //对接人ID
         private Integer userId; //救助申请人ID
         private Integer applimentId; //本救助申请的ID
         private String address; //申请人的地址
@@ -204,9 +215,10 @@ public class ResponseHelpAppliment {
         public responseHelpAppliment() {
         }
 
-        public responseHelpAppliment(Integer userId, Integer applimentId, String address, String date, String applicantName, String applicantTel,
+        public responseHelpAppliment(Integer handleId,Integer userId, Integer applimentId, String address, String date, String applicantName, String applicantTel,
                                      String petName, String petAge, String petType, boolean petGender, boolean vaccine, boolean sterilization, String description, String resultDescription,
                                      String petPhotoId, Integer state) {
+            this.handleId = handleId;
             this.userId = userId;
             this.applimentId = applimentId;
             this.address = address;

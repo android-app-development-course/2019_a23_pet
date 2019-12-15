@@ -49,7 +49,7 @@ public class ResponseAdoptAppliment {
 
 
     //领养申请信息
-    public class responseAdoptAppliment{
+    public static class responseAdoptAppliment{
 
         public Integer getApplimentId() {
             return applimentId;
@@ -69,7 +69,8 @@ public class ResponseAdoptAppliment {
 
         private Integer applimentId; //本申请记录的ID
         private Integer userId; //申请人Id
-        private Integer adoptApplimentId;    //领养申请信息数据库ID
+        private Integer adoptId;    //领养申请信息数据库ID
+        private Integer handleId;       //接管人id
         private String applyName; //用户申请姓名
         private String telephone; //电话号码
         private String address; //用户住址
@@ -85,6 +86,15 @@ public class ResponseAdoptAppliment {
         private String date;  //申请日期
         private Integer state;  //申请领养信息状态
         private String resultDescription; //信息处理结果反馈
+
+
+        public Integer getHandleId() {
+            return handleId;
+        }
+
+        public void setHandleId(Integer handleId) {
+            this.handleId = handleId;
+        }
 
         public String getApplyName() {
             return applyName;
@@ -134,12 +144,12 @@ public class ResponseAdoptAppliment {
             this.resultDescription = resultDescription;
         }
 
-        public Integer getAdoptApplimentId() {
-            return adoptApplimentId;
+        public Integer getAdoptId() {
+            return adoptId;
         }
 
-        public void setAdoptApplimentId(Integer adoptApplimentId) {
-            this.adoptApplimentId = adoptApplimentId;
+        public void setAdoptId(Integer adoptId) {
+            this.adoptId = adoptId;
         }
 
         public String getDate() {
@@ -214,9 +224,12 @@ public class ResponseAdoptAppliment {
             return petPhotoId;
         }
 
-        public responseAdoptAppliment(Integer applimentId,Integer userId,String applyName,String telephone,String address,String description,String petName ,String petAge,
-                              String petType,boolean petGender,boolean vaccine,boolean sterilization,
-                                      String petPhotoId,String date,String job, Integer adoptApplimentId, Integer state, String resultDescription){
+        public responseAdoptAppliment(){}
+
+        public responseAdoptAppliment(Integer handleId,Integer applimentId, Integer userId, String applyName, String telephone, String address, String description, String petName , String petAge,
+                                      String petType, boolean petGender, boolean vaccine, boolean sterilization,
+                                      String petPhotoId, String date, String job, Integer adoptId, Integer state, String resultDescription){
+            this.handleId = handleId;
             this.applimentId =applimentId;
             this.userId = userId;
             this.address = address;
@@ -232,7 +245,7 @@ public class ResponseAdoptAppliment {
             this.petPhotoId = petPhotoId;
             this.date = date;
             this.job = job;
-            this.adoptApplimentId = adoptApplimentId;
+            this.adoptId = adoptId;
             this.state = state;
             this.resultDescription = resultDescription;
         }
@@ -241,7 +254,7 @@ public class ResponseAdoptAppliment {
         public String toString() {
             return "responseAdoptAppliment [address=" + address + ", applyName=" + applyName + ",description=" + description+  ", telephone="
                     + telephone + ", petName=" + petName + ", petAge=" + petAge + ", petType=" + petType + ", petGender=" + petGender  +
-                    ", vaccine= " + vaccine + ", sterilization=" + sterilization  + "petPhotoId" + petPhotoId + "date" + date + "job" +  job + "adoptApplimentId" + adoptApplimentId
+                    ", vaccine= " + vaccine + ", sterilization=" + sterilization  + "petPhotoId" + petPhotoId + "date" + date + "job" +  job + "adoptId" + adoptId
                     + "state" + state + "resultDescription" + resultDescription +"]";
         }
 
@@ -254,6 +267,8 @@ public class ResponseAdoptAppliment {
         this.pageSize = pageSize;
         this.pageNum = pageNum;
     }
+
+    public ResponseAdoptAppliment(){}
 
     @Override
     public String toString() {

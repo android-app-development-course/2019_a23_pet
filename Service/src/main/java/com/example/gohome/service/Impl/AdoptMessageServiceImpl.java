@@ -64,6 +64,27 @@ public class AdoptMessageServiceImpl implements AdoptMessageService {
         }
     }
 
+    @Transactional
+    public boolean updateAdoptMessageState(AdoptMessage adoptMessage){
+        //判断领养信息的ID不为空
+        if(adoptMessage.getAdoptId() != null && adoptMessage.getAdoptId()>0 ){
+            try{
+                //更新领养信息，选择性更新
+                int effectedNum = adoptMessageMapper.updateByPrimaryKeySelective(adoptMessage);
+                if (effectedNum > 0 ) {
+                    return true;
+                }else {
+                    throw new RuntimeException("更新领养信息失败！");
+                }
+            }catch (Exception e){
+                throw new RuntimeException("更新领养信息失败："+e.getMessage());
+            }
+        }else {
+            throw new RuntimeException("更新领养信息人的ID不能为空！");
+        }
+    }
+
+
 //    @Override
 //    @Transactional
 //    public Map<String, Object> queryAdoptMessage(Integer pageNum, Integer pageSize) {

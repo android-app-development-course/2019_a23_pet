@@ -1,6 +1,10 @@
 package com.example.gohome.Member.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +22,27 @@ import com.example.gohome.Entity.ResponseAdoptAppliment;
 import com.example.gohome.Entity.ResponseHelpAppliment;
 import com.example.gohome.R;
 import com.example.gohome.User.ImageDialog;
+import com.google.gson.Gson;
 import com.ramotion.foldingcell.FoldingCell;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 public class MemberCheckUndoFoldingCellAdapter extends RecyclerView.Adapter {
+
+    //记录提交结果
+    public static final int SUCCESS = 1;
+    public static final int FAIL = 0;
 
     //数据源
     private List<ResponseAdoptAppliment.responseAdoptAppliment> adoptApplimentList;
@@ -238,14 +257,78 @@ public class MemberCheckUndoFoldingCellAdapter extends RecyclerView.Adapter {
         adoptViewHolder.contentRequestBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("点击了第" + position + "个通过审核按钮");
-                Toast.makeText(context, "点击了第" + position + "个通过审核按钮", Toast.LENGTH_LONG).show();
-                if(type == 0){
-                    adoptApplimentList.remove(position);
-                }
-                else {
-                    helpApplimentList.remove(position);
-                }
+
+                ResponseAdoptAppliment.responseAdoptAppliment responseAdoptAppliment = new ResponseAdoptAppliment.responseAdoptAppliment();
+                responseAdoptAppliment.setAdoptId(adoptApplimentList.get(position).getAdoptId());
+                responseAdoptAppliment.setApplimentId(adoptApplimentList.get(position).getApplimentId());
+                responseAdoptAppliment.setHandleId(adoptApplimentList.get(position).getHandleId());
+                responseAdoptAppliment.setUserId(adoptApplimentList.get(position).getUserId());
+
+                //创建Handler，在子线程中使用handler发message给主线程
+                @SuppressLint("HandlerLeak") Handler handler = new Handler() {
+                    @Override
+                    public void handleMessage(Message msg) {
+                        switch (msg.what) {
+                            case SUCCESS: {
+                                //更新完成
+                                adoptApplimentList.remove(position);
+                                notifyDataSetChanged();
+                                System.out.println("成功啦啦啦啦啦！！");
+                                break;
+                            }
+                            case FAIL:
+                            {
+                                Toast.makeText(context,"通过审核失败！",Toast.LENGTH_LONG).show();
+                                break;
+                            }
+                        }
+                    }
+                };
+
+                new Thread(
+                        new Runnable() {
+                            @Override
+                            public void run() {
+                                //建立client
+                                final OkHttpClient[] client = {new OkHttpClient()};
+                                //将传送实体类转为string类型的键值对
+                                Gson gson = new Gson();
+                                String json = gson.toJson(responseAdoptAppliment);
+
+                                System.out.println("json:"+json);
+                                //设置请求体并设置contentType
+                                RequestBody requestBody = FormBody.create(MediaType.parse("application/json;charset=utf-8"),json);
+                                //请求
+                                Request request=new Request.Builder()
+                                        .url(context.getResources().getString(R.string.serverBasePath)+context.getResources().getString(R.string.updateAdoptApplimentToDoing))
+                                        .post(requestBody)
+                                        .build();
+                                //新建call联结client和request
+                                Call call= client[0].newCall(request);
+                                //新建Message通过Handle与主线程通信
+                                Message msg = new Message();
+                                call.enqueue(new Callback() {
+                                    @Override
+                                    public void onFailure(Call call, IOException e) {
+                                        //请求失败的处理
+                                        Log.i("RESPONSE:","fail"+e.getMessage());
+                                        msg.what = FAIL;
+                                        handler.sendMessage(msg);
+                                        Log.i("result的值", String.valueOf(false));
+                                    }
+                                    @Override
+                                    public void onResponse(Call call, Response response) throws IOException {
+                                        Log.i("RESPONSE:",response.body().string());
+                                        msg.what = SUCCESS;
+                                        handler.sendMessage(msg);
+                                        Log.i("result的值", String.valueOf(true));
+                                    }
+
+                                });
+                            }
+                        }).start();
+
+
 
             }
         });
@@ -307,13 +390,82 @@ public class MemberCheckUndoFoldingCellAdapter extends RecyclerView.Adapter {
 
             Glide.with(context).load(icon1).into(helpViewHolder.vaccine);
             Glide.with(context).load(icon2).into(helpViewHolder.sterilization);
-//            adoptViewHolder.contentRequestBtn.setOnClickListener(defaultRequestBtnClickListener);
             //设置审核通过点击事件
             helpViewHolder.contentRequestBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    System.out.println("点击了第"+position+"个通过审核按钮");
-                    Toast.makeText(context,"点击了第"+position+"个通过审核按钮",Toast.LENGTH_LONG).show();
+                    System.out.println("数据："+helpApplimentList.get(position).getApplimentId());
+
+                    ResponseHelpAppliment.responseHelpAppliment responseHelpAppliment = new ResponseHelpAppliment.responseHelpAppliment();
+                    responseHelpAppliment.setApplimentId(helpApplimentList.get(position).getApplimentId());
+                    responseHelpAppliment.setHandleId(helpApplimentList.get(position).getHandleId());
+                    responseHelpAppliment.setUserId(helpApplimentList.get(position).getUserId());
+
+                    //创建Handler，在子线程中使用handler发message给主线程
+                    @SuppressLint("HandlerLeak") Handler handler = new Handler() {
+                        @Override
+                        public void handleMessage(Message msg) {
+                            switch (msg.what) {
+                                case SUCCESS: {
+                                    //更新完成
+                                    helpApplimentList.remove(position);
+                                    notifyDataSetChanged();
+                                    System.out.println("成功啦啦啦啦啦！！");
+                                    break;
+                                }
+                                case FAIL:
+                                {
+                                    Toast.makeText(context,"通过审核失败！",Toast.LENGTH_LONG).show();
+                                    break;
+                                }
+                            }
+                        }
+                    };
+
+                    new Thread(
+                            new Runnable() {
+                                @Override
+                                public void run() {
+                                    //建立client
+                                    final OkHttpClient[] client = {new OkHttpClient()};
+                                    //将传送实体类转为string类型的键值对
+                                    Gson gson = new Gson();
+                                    String json = gson.toJson(responseHelpAppliment);
+
+                                    System.out.println("json:"+json);
+                                    //设置请求体并设置contentType
+                                    RequestBody requestBody = FormBody.create(MediaType.parse("application/json;charset=utf-8"),json);
+                                    //请求
+                                    Request request=new Request.Builder()
+                                            .url(context.getResources().getString(R.string.serverBasePath)+context.getResources().getString(R.string.updateHelpApplimentToDoing))
+                                            .post(requestBody)
+                                            .build();
+                                    //新建call联结client和request
+                                    Call call= client[0].newCall(request);
+                                    //新建Message通过Handle与主线程通信
+                                    Message msg = new Message();
+                                    call.enqueue(new Callback() {
+                                        @Override
+                                        public void onFailure(Call call, IOException e) {
+                                            //请求失败的处理
+                                            Log.i("RESPONSE:","fail"+e.getMessage());
+                                            msg.what = FAIL;
+                                            handler.sendMessage(msg);
+                                            Log.i("result的值", String.valueOf(false));
+                                        }
+                                        @Override
+                                        public void onResponse(Call call, Response response) throws IOException {
+                                            Log.i("RESPONSE:",response.body().string());
+                                            msg.what = SUCCESS;
+                                            handler.sendMessage(msg);
+                                            Log.i("result的值", String.valueOf(true));
+                                        }
+
+                                    });
+                                }
+                            }).start();
+
+
                 }
             });
 

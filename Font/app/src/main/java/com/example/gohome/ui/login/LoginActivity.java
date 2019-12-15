@@ -206,14 +206,17 @@ public class LoginActivity extends AppCompatActivity {
                 intent = new Intent(getApplicationContext(), UserHomeActivity.class);
                 startActivity(intent);
                 finish();
+                break;
             case LoggedInUser.USERTYPE_MEMBER:
                 intent = new Intent(getApplicationContext(), MemberHomeActivity.class);
                 startActivity(intent);
                 finish();
+                break;
             case LoggedInUser.USERTYPE_ORGANIZER:
                 intent = new Intent(getApplicationContext(), OrganizerMain.class);
                 startActivity(intent);
                 finish();
+                break;
         }
     }
 

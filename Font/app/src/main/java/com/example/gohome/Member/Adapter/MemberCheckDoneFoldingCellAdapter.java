@@ -219,7 +219,9 @@ public class MemberCheckDoneFoldingCellAdapter extends RecyclerView.Adapter {
             }
 
             //content
-//            Glide.with(context).load(adoptApplimentList.get(position).getPhotos()).into(adoptViewHolder.petPhoto2);
+            System.out.println("description:"+adoptApplimentList.get(position).getDescription());
+            System.out.println("state:"+adoptApplimentList.get(position).getState());
+
             adoptViewHolder.petName2.setText(adoptApplimentList.get(position).getPetName());
             adoptViewHolder.petGender.setText(gender);
             adoptViewHolder.petAge.setText(adoptApplimentList.get(position).getPetAge());
@@ -239,17 +241,6 @@ public class MemberCheckDoneFoldingCellAdapter extends RecyclerView.Adapter {
 
             Glide.with(context).load(icon1).into(adoptViewHolder.vaccine);
             Glide.with(context).load(icon2).into(adoptViewHolder.sterilization);
-//            adoptViewHolder.contentRequestBtn.setOnClickListener(defaultRequestBtnClickListener);
-            //设置审核通过点击事件
-//            adoptViewHolder.contentRequestBtn.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    System.out.println("点击了第" + position + "个处理按钮");
-//                    Toast.makeText(context, "点击了第" + position + "个处理按钮", Toast.LENGTH_LONG).show();
-//                    Intent intent = new Intent(context, MemberHandleOperationActivity.class);
-//                    context.startActivity(intent);
-//                }
-//            });
 
             //控制cell的折叠与收缩
             adoptViewHolder.cell.setOnClickListener(new View.OnClickListener() {
@@ -291,7 +282,6 @@ public class MemberCheckDoneFoldingCellAdapter extends RecyclerView.Adapter {
             }
 
             //content
-//            Glide.with(context).load(helpApplimentList.get(position).getPhotos()).into(helpViewHolder.petPhoto2);
             helpViewHolder.petName2.setText(helpApplimentList.get(position).getPetName());
             helpViewHolder.petGender.setText(gender);
             helpViewHolder.petAge.setText(helpApplimentList.get(position).getPetAge());
@@ -310,17 +300,6 @@ public class MemberCheckDoneFoldingCellAdapter extends RecyclerView.Adapter {
 
             Glide.with(context).load(icon1).into(helpViewHolder.vaccine);
             Glide.with(context).load(icon2).into(helpViewHolder.sterilization);
-//            adoptViewHolder.contentRequestBtn.setOnClickListener(defaultRequestBtnClickListener);
-            //设置审核通过点击事件
-//            helpViewHolder.contentRequestBtn.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    System.out.println("点击了第"+position+"个处理按钮");
-//                    Toast.makeText(context,"点击了第"+position+"个处理按钮",Toast.LENGTH_LONG).show();
-//                    Intent intent = new Intent(context, MemberHandleOperationActivity.class);
-//                    context.startActivity(intent);
-//                }
-//            });
 
 
             //控制cell的折叠与收缩

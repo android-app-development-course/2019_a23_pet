@@ -122,7 +122,7 @@ public class AdoptApplimentServiceImpl implements AdoptApplimentService {
                 AdoptHandleInfo adoptHandleInfo = new AdoptHandleInfo();
                 adoptHandleInfo.setHandleId(responseAdoptAppliment.getHandleId());
                 adoptHandleInfo.setApplimentId(responseAdoptAppliment.getApplimentId());
-                adoptHandleInfo.setState(0);
+                adoptHandleInfo.setState(1);
                 int effectedNum3 = adoptHandleInfoMapper.insertSelective(adoptHandleInfo);
                 if (effectedNum1 > 0 && effectedNum2 >0 && effectedNum3 > 0) {
                     adoptAppliment.setInfoId(adoptHandleInfo.getInfoId());

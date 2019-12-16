@@ -34,12 +34,12 @@ public class AdoptHandleOperationServiceImpl implements AdoptHandleOperationServ
         //判断领养接管信息的ID不为空
         if(adoptHandleOperation.getInfoId()!=null && !"".equals(adoptHandleOperation.getInfoId())){
             try{
-                int effectedNumAdoptMessage = adoptHandleOperationMapper.insert(adoptHandleOperation);
+                int effectedNumAdoptMessage = adoptHandleOperationMapper.insertSelective(adoptHandleOperation);
                 //同时修改adopt_message、adopt_appliment、adopt_handle_info三个表的state值
                 int isSuccess = adoptHandleOperation.getState();     //0为失败，1位成功
 
                 AdoptHandleInfo adoptHandleInfo = adoptHandleInfoMapper.selectByPrimaryKey(adoptHandleOperation.getInfoId());
-                adoptHandleInfo.setState(1);
+                adoptHandleInfo.setState(isSuccess ==1 ?2:3);
                 int effectedNum1 = adoptHandleInfoMapper.updateByPrimaryKeySelective(adoptHandleInfo);
 
                 AdoptAppliment adoptAppliment = adoptApplimentMapper.selectByPrimaryKey(adoptHandleInfo.getApplimentId());

@@ -1,5 +1,8 @@
 package com.example.gohome.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class HelpAppliment {
@@ -32,7 +35,8 @@ public class HelpAppliment {
     private Boolean vaccinate;
 
     private String pictures;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date created;
 
     private Integer infoId;

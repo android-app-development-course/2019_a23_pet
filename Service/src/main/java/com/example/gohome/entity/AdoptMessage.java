@@ -1,6 +1,7 @@
 package com.example.gohome.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -28,7 +29,8 @@ public class AdoptMessage {
     private Boolean vaccinate;
 
     private Boolean steriled;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date created;
 
     public Integer getAdoptId() {

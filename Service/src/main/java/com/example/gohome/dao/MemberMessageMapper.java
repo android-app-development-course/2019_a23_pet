@@ -1,7 +1,10 @@
 package com.example.gohome.dao;
 
 import com.example.gohome.entity.MemberMessage;
+import com.example.gohome.entity.ResponseEntity.ResponseMemberMessage;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public interface MemberMessageMapper {
@@ -18,4 +21,6 @@ public interface MemberMessageMapper {
     int updateByPrimaryKey(MemberMessage record);
 
     MemberMessage selectByUserId(Integer userId);
+
+    List<ResponseMemberMessage> queryMemberMessageByAreaId(Integer areaId);
 }

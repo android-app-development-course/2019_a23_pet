@@ -118,7 +118,12 @@ public class LoginDataSource {
                     }
                     response.close();
                 } catch (Exception e) {
-                    System.out.println("e.getMessage" + e.getMessage());
+                    message = new Message();
+                    message.what = 0;
+                    Bundle bundle = new Bundle();
+                    bundle.putString("exception", e.getMessage());
+                    message.setData(bundle);
+                    Log.i("login connect error", e.getMessage());
                 }
             }
         }).start();
@@ -173,7 +178,7 @@ public class LoginDataSource {
                                         userMsgJSON = jsonObject.getJSONObject("userMessage");
                                         userMessage.setUserId(userMsgJSON.getInt("userId"));
                                         userMessage.setUserName(userMsgJSON.getString("userName"));
-                                        userMessage.setProtrait("");
+                                        userMessage.setProtrait(userMsgJSON.getString("portrait"));
                                         userMessage.setTelephone(userMsgJSON.getString("telephone"));
                                         userMessage.setCreated(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(userMsgJSON.getString("created")));
                                         userMessage.setAddress(userMsgJSON.getString("address"));
@@ -187,7 +192,7 @@ public class LoginDataSource {
                                         userMsgJSON = jsonObject.getJSONObject("userMessage");
                                         userMessage.setUserId(userMsgJSON.getInt("userId"));
                                         userMessage.setUserName(userMsgJSON.getString("userName"));
-                                        userMessage.setProtrait("");
+                                        userMessage.setProtrait(userMsgJSON.getString("portrait"));
                                         userMessage.setTelephone(userMsgJSON.getString("telephone"));
                                         userMessage.setCreated(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(userMsgJSON.getString("created")));
                                         userMessage.setAddress(userMsgJSON.getString("address"));
@@ -212,7 +217,7 @@ public class LoginDataSource {
                                         userMsgJSON = jsonObject.getJSONObject("userMessage");
                                         userMessage.setUserId(userMsgJSON.getInt("userId"));
                                         userMessage.setUserName(userMsgJSON.getString("userName"));
-                                        userMessage.setProtrait("");
+                                        userMessage.setProtrait(userMsgJSON.getString("portrait"));
                                         userMessage.setTelephone(userMsgJSON.getString("telephone"));
                                         userMessage.setCreated(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(userMsgJSON.getString("created")));
                                         userMessage.setAddress(userMsgJSON.getString("address"));
@@ -235,7 +240,7 @@ public class LoginDataSource {
 //                                Toast.makeText(context.getApplicationContext(), errMsg, Toast.LENGTH_SHORT).show();
                             }
                         }catch (Exception e){
-                            Log.i("登录返回信息处理错误", e.getMessage());
+                            Log.i("登录返回信息处理错误" + e.getClass(), e.getMessage());
 //                            Toast.makeText(context.getApplicationContext(), "网络发生错误，登录失败！(" + e.getMessage() + ")", Toast.LENGTH_SHORT).show();
                         }
                         break;

@@ -36,7 +36,7 @@ public class UserMessageDaoTest {
         u.setUserType(1);
         u.setTelephone("13889856476");
         u.setAddress("广州天河");
-        u.setGender("1");
+        u.setGender(1);
         u.setUserName("哈哈");
         u.setUserPassword("123456");
         int effectedNum = uDao.insertUser(u);

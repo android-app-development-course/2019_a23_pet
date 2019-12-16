@@ -2,13 +2,16 @@ package com.example.gohome.User.Fragment;
 
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,8 +80,11 @@ public class UserMineFragment extends Fragment implements View.OnClickListener {
         rootView.findViewById(R.id.user_rel_settingCenter).setOnClickListener(this);
 
         //初始化头像
+        SharedPreferences sharedPreferences = activity.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         imPortrait = rootView.findViewById(R.id.user_iv_portrait);
-        portrait = getResourcesUri(R.drawable.timg);
+//        portrait = getResourcesUri(R.drawable.timg);
+        portrait = Uri.parse(sharedPreferences.getString("protrait", String.valueOf(R.drawable.mine_selected)));
+
         Glide.with(rootView.getContext()).load(portrait).into(imPortrait);
 
         //初始化昵称

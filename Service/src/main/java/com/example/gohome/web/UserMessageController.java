@@ -50,15 +50,18 @@ public class UserMessageController {
             modelMap.put("userMessage", userMessage);
             switch (userMessage.getUserType()){
                 case UserMessage.USER_TYPE_NORMAL://普通用户，获取基本信息
+                    modelMap.put("type", 0);
                     break;
                 case UserMessage.USER_TYPE_MEMBER://组织成员，获取基本信息和组织信息
                     MemberMessage memberMessage = memberMessageService.memberMessageByUserId(userMessage.getUserId());
                     AreaOrganizer areaOrganizer = areaOrganizerService.areaOrganizerByAreaId(memberMessage.getAreaId());
+                    modelMap.put("type", 1);
                     modelMap.put("memberMessage", memberMessage);
                     modelMap.put("areaOrganizer", areaOrganizer);
                     break;
                 case UserMessage.USER_TYPE_ORGANIZER://组织管理员，获取基本信息和组织信息
                     AreaOrganizer areaOrganizer1 = areaOrganizerService.areaOrganizerByUserId(userMessage.getUserId());
+                    modelMap.put("type", 2);
                     modelMap.put("areaOrganizer", areaOrganizer1);
                     break;
             }

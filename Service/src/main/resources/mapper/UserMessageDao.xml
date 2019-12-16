@@ -9,7 +9,7 @@
         <result column="user_type" property="userType" />
         <result column="protrait" property="portrait" />
         <result column="telephone" property="telephone" />
-        <result column="gender" property="gender" />
+        <result column="gender" property="gender" jdbcType="INTEGER"/>
         <result column="address"  property="address" />
         <result column="user_password" property="userPassword"/>
         <result column="created" property="created"/>

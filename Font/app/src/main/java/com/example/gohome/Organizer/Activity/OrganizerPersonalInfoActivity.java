@@ -1,6 +1,8 @@
 package com.example.gohome.Organizer.Activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -75,12 +77,14 @@ public class OrganizerPersonalInfoActivity extends AppCompatActivity implements 
         //初始化头像、昵称
         Intent receivedIntent = getIntent();
 
+        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+
         portrait = Uri.parse(receivedIntent.getStringExtra("oldPortrait"));
         imPortrait = findViewById(R.id.user_iv_portrait2);
         Glide.with(this).load(portrait).into(imPortrait);
         imPortrait.setOnClickListener(this);
 
-        nickname = receivedIntent.getStringExtra("oldNickname");
+        nickname = sharedPreferences.getString("userName", "加载中...");
         tvNickname = findViewById(R.id.user_tv_nickname2);
         tvNickname.setText(nickname);
     }

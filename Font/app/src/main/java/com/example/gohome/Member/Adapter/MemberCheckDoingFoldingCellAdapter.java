@@ -234,8 +234,10 @@ public class MemberCheckDoingFoldingCellAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     System.out.println("点击了第" + position + "个处理按钮");
-                    Toast.makeText(context, "点击了第" + position + "个处理按钮", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(context, MemberHandleOperationActivity.class);
+                    System.out.println("fasjflksadjfa="+adoptApplimentList.get(position).getHandleInfoId());
+                    int infoId = adoptApplimentList.get(position).getHandleInfoId();
+                    intent.putExtra("infoId",infoId);
                     context.startActivity(intent);
                 }
             });

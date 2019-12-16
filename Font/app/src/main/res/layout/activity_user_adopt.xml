@@ -54,6 +54,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:layout_marginTop="@dimen/margin">
+
             <com.rengwuxian.materialedittext.MaterialEditText
                 android:id="@+id/et_adoptUserAddress"
                 android:layout_width="match_parent"
@@ -61,10 +62,10 @@
                 android:layout_marginHorizontal="@dimen/margin"
                 android:hint="您的地址"
                 android:maxLines="1"
-                app:met_textColor="@color/black"
-                app:met_iconLeft="@drawable/address"
                 app:met_baseColor="@color/orange"
-                app:met_primaryColor="@color/orange" />
+                app:met_iconLeft="@drawable/address"
+                app:met_primaryColor="@color/orange"
+                app:met_textColor="@color/black" />
         </FrameLayout>
 
         <FrameLayout

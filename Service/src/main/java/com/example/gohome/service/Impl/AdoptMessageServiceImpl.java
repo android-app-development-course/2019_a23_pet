@@ -5,9 +5,16 @@ import com.example.gohome.dao.AdoptMessageMapper;
 import com.example.gohome.dao.UserMessageDao;
 import com.example.gohome.entity.AdoptMessage;
 import com.example.gohome.service.AdoptMessageService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -82,6 +89,23 @@ public class AdoptMessageServiceImpl implements AdoptMessageService {
         }else {
             throw new RuntimeException("更新领养信息人的ID不能为空！");
         }
+    }
+
+    @Override
+    @Transactional
+    public Map queryAdoptMessageByState(Integer pageNum, Integer pageSize, Integer state) {
+        Map responseMap = new HashMap();
+        PageHelper.startPage(pageNum, pageSize);
+        Page<AdoptMessage> data = adoptMessageMapper.queryAdoptMessageByState(state);
+        List<AdoptMessage> adoptMessageList = new ArrayList<>();
+        for (AdoptMessage message : data) {
+            adoptMessageList.add(message);
+        }
+        responseMap.put("adoptInfoList", adoptMessageList);
+        responseMap.put("total", data.getTotal());
+        responseMap.put("pageSize", data.getPageSize());
+        responseMap.put("pageNum", pageNum);
+        return responseMap;
     }
 
 

@@ -21,10 +21,10 @@ public class AdoptApplimentDaoTest {
         AdoptAppliment adoptAppliment = new AdoptAppliment();
         adoptAppliment.setState(0);
         adoptAppliment.setTelephone("13889856476");
-        adoptAppliment.setAddress("广州天河");
+        adoptAppliment.setAddress("广州白云");
         adoptAppliment.setAdoptId(1);
         adoptAppliment.setApplimentId(2);
-        adoptAppliment.setApplyName("洛洛");
+        adoptAppliment.setApplyName("可可");
         adoptAppliment.setDescription("想领养");
         adoptAppliment.setJob("医生");
         adoptAppliment.setUserId(1);

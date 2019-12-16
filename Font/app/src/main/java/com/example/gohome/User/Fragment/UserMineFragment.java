@@ -168,7 +168,6 @@ public class UserMineFragment extends Fragment implements View.OnClickListener {
                 if (data.getStringExtra("newPortrait") != null) {
                     portrait = Uri.parse(data.getStringExtra("newPortrait"));
                     Glide.with(rootView.getContext()).load(portrait).into(imPortrait);
-                    Toast.makeText(activity, "!", Toast.LENGTH_SHORT).show();
                 }
             }
         }

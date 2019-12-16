@@ -27,7 +27,7 @@ public class HelpApplimentDaoTest {
         helpAppliment.setTelephone("13889856476");
         helpAppliment.setAddress("广州天河");
         helpAppliment.setApplimentId(2);
-        helpAppliment.setApplyName("小话");
+        helpAppliment.setApplyName("luci");
         helpAppliment.setDescription("想领养");
         helpAppliment.setUserId(1);
         helpAppliment.setPetType(0);

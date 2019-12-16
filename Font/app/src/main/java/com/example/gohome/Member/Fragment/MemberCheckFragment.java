@@ -58,6 +58,15 @@ public class MemberCheckFragment extends Fragment {
 
     }
 
+    @Override
+    public void onResume() {
+        int id = getActivity().getIntent().getIntExtra("id", 0);
+        if(id == 2){
+            vp_memberCheck.setCurrentItem(1);
+        }
+        super.onResume();
+    }
+
 
 
 }

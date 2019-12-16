@@ -2,7 +2,11 @@ package com.example.gohome.Member.Activity;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -10,6 +14,7 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.example.gohome.Member.Adapter.MemberHomeViewPagerAdapter;
 import com.example.gohome.Component.NoScrollViewPager;
+import com.example.gohome.Member.Fragment.MemberCheckFragment;
 import com.example.gohome.R;
 
 public class MemberHomeActivity extends AppCompatActivity {
@@ -30,15 +35,6 @@ public class MemberHomeActivity extends AppCompatActivity {
     }
 
     private void initView() {
-//
-//        //隐藏标题栏
-//        ActionBar actionBar = getSupportActionBar();
-//        //ActionBar actionBar = getActionBar();
-//        actionBar.hide();
-//        //隐藏标题栏阴影
-//        if(Build.VERSION.SDK_INT>=21){
-//            getSupportActionBar().setElevation(0);
-//        }
 
         setTitle("待领养宠物");
 
@@ -77,9 +73,6 @@ public class MemberHomeActivity extends AppCompatActivity {
         bottomNavigation.setAccentColor(getResources().getColor(R.color.orange));
         bottomNavigation.setInactiveColor(getResources().getColor(R.color.inactiveGray));
 
-//        // Set current item programmatically
-//        bottomNavigation.setCurrentItem(0);
-
       // Set listeners
         bottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
             @Override
@@ -111,5 +104,26 @@ public class MemberHomeActivity extends AppCompatActivity {
                 // Manage the new y position
             }
         });
+    }
+
+    //activity跳转到fragment
+    @Override
+    protected void onResume() {
+        int idFirst = getIntent().getIntExtra("idFirst", 0);
+        int idSecond = getIntent().getIntExtra("inSecond",0);
+        if (idFirst == 4) {
+            Fragment fragmen = new MemberCheckFragment();
+            FragmentManager fmanger = getSupportFragmentManager();
+            FragmentTransaction transaction = fmanger.beginTransaction();
+            transaction.replace(R.id.vp_home, fragmen);
+            transaction.commit();
+            viewPager.setCurrentItem(3);//
+            bottomNavigation.setCurrentItem(3);
+            //帮助跳转到指定子fragment
+            Intent i=new Intent();
+            i.setClass(MemberHomeActivity.this,MemberCheckFragment.class);
+            i.putExtra("id",idSecond);
+        }
+        super.onResume();
     }
 }

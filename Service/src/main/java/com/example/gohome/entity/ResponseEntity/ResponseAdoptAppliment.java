@@ -21,7 +21,26 @@ public class ResponseAdoptAppliment {
     private String date;  //申请日期
     private Integer state;  //申请领养信息状态
     private String resultDescription; //信息处理结果反馈
+    private Integer handleInfoId;   //对接信息id
+    private Integer handleOperationState;   //对接操作状态
 
+
+    public Integer getHandleOperationState() {
+        return handleOperationState;
+    }
+
+    public void setHandleOperationState(Integer handleOperationState) {
+        this.handleOperationState = handleOperationState;
+    }
+
+
+    public Integer getHandleInfoId() {
+        return handleInfoId;
+    }
+
+    public void setHandleInfoId(Integer handleInfoId) {
+        this.handleInfoId = handleInfoId;
+    }
 
     public Integer getHandleId() {
         return handleId;
@@ -178,9 +197,11 @@ public class ResponseAdoptAppliment {
     public ResponseAdoptAppliment(){}
 
 
-    public ResponseAdoptAppliment(Integer handleId,Integer applimentId, Integer userId, String applyName, String telephone, String address, String description, String petName , String petAge,
+    public ResponseAdoptAppliment(Integer handleOperationState,Integer handleInfoId ,Integer handleId,Integer applimentId, Integer userId, String applyName, String telephone, String address, String description, String petName , String petAge,
                                   Integer petType, boolean petGender, boolean vaccine, boolean sterilization,
                                   String petPhotoId, String date, String job, Integer adoptId, Integer state, String resultDescription){
+        this.handleOperationState = handleOperationState;
+        this.handleInfoId = handleInfoId;
         this.handleId = handleId;
         this.applimentId = applimentId;
         this.userId = userId;

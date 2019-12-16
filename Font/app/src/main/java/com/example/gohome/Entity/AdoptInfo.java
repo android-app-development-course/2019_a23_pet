@@ -58,6 +58,7 @@ public class AdoptInfo implements Serializable {
     }
 
     //用于后端测试
+    private int adoptId;
     private String pictures;
     private int photos;
     private String petName;
@@ -129,4 +130,11 @@ public class AdoptInfo implements Serializable {
         this.requestBtnClickListener = requestBtnClickListener;
     }
 
+    public int getAdoptId() {
+        return adoptId;
+    }
+
+    public void setAdoptId(int adoptId) {
+        this.adoptId = adoptId;
+    }
 }

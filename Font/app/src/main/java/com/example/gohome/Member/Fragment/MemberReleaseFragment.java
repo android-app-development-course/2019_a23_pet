@@ -442,7 +442,7 @@ public class MemberReleaseFragment extends Fragment  {
                         RequestBody requestBody = FormBody.create(MediaType.parse("application/json;charset=utf-8"),json);
                         //请求
                         Request request=new Request.Builder()
-                                .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.insertAdoptMessage))
+                                .url(getResources().getString(R.string.serverBasePath)+getResources().getString(R.string.insertUserMessage))
                                 .post(requestBody)
                                 .build();
                         //新建call联结client和request

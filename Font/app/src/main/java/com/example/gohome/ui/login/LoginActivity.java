@@ -3,10 +3,13 @@ package com.example.gohome.ui.login;
 import android.app.Activity;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -15,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,13 +30,27 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.gohome.Entity.AreaOrganizer;
+import com.example.gohome.Entity.MemberMessage;
+import com.example.gohome.Entity.UserMessage;
+import com.example.gohome.Member.Activity.MemberHomeActivity;
+import com.example.gohome.Organizer.OrganizerMain;
 import com.example.gohome.R;
+import com.example.gohome.Register.RegisterActivity;
+import com.example.gohome.User.Activity.UserHomeActivity;
+import com.example.gohome.data.model.LoggedInUser;
 import com.example.gohome.ui.login.LoginViewModel;
 import com.example.gohome.ui.login.LoginViewModelFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
+
+    private EditText usernameEditText;
+    private EditText passwordEditText;
+    private Button loginButton;
+    private ProgressBar loadingProgressBar;
+    private TextView registerTextView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,10 +59,21 @@ public class LoginActivity extends AppCompatActivity {
         loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
 
-        final EditText usernameEditText = findViewById(R.id.username);
-        final EditText passwordEditText = findViewById(R.id.password);
-        final Button loginButton = findViewById(R.id.login);
-        final ProgressBar loadingProgressBar = findViewById(R.id.loading);
+        usernameEditText = findViewById(R.id.username);
+        passwordEditText = findViewById(R.id.password);
+        loginButton = findViewById(R.id.login);
+        loadingProgressBar = findViewById(R.id.loading);
+        registerTextView = findViewById(R.id.text_register);
+
+        registerTextView.setHighlightColor(ContextCompat.getColor(this, R.color.colorAccent));
+
+        registerTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivityForResult(intent, 0x111);
+            }
+        });
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -53,6 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
                 loginButton.setEnabled(loginFormState.isDataValid());
+                registerTextView.setEnabled(true);
                 if (loginFormState.getUsernameError() != null) {
                     usernameEditText.setError(getString(loginFormState.getUsernameError()));
                 }
@@ -107,7 +137,7 @@ public class LoginActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     loginViewModel.login(usernameEditText.getText().toString(),
-                            passwordEditText.getText().toString());
+                            passwordEditText.getText().toString(), LoginActivity.this);
                 }
                 return false;
             }
@@ -116,9 +146,12 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.i("loginBtn", "onClick...");
                 loadingProgressBar.setVisibility(View.VISIBLE);
+                v.setEnabled(false);
+                registerTextView.setEnabled(false);
                 loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+                        passwordEditText.getText().toString(), LoginActivity.this);
             }
         });
 
@@ -141,13 +174,59 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
-//        String welcome = getString(R.string.welcome) + model.getDisplayName();
-        String welcome = getString(R.string.welcome) + " 张咩阿！";
+////        String welcome = getString(R.string.welcome) + model.getDisplayName();
+//        String welcome = getString(R.string.welcome) + " 张咩阿！";
+//
+//        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
         // TODO : initiate successful logged in experience
-        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
+        LoggedInUser loggedInUser =  loginViewModel.getLoginResult().getValue().getSuccess().getLoggedInUser();
+        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        UserMessage userMessage = loggedInUser.getUserMessage();
+        MemberMessage memberMessage = loggedInUser.getMemberMessage();
+        AreaOrganizer areaOrganizer = loggedInUser.getAreaOrganizer();
+        switch (loggedInUser.getUserType()){
+            case LoggedInUser.USERTYPE_MEMBER:
+                editor.putInt("memberId", memberMessage.getMessageId());
+                editor.putString("memberCreated", memberMessage.getCreated().toString());
+            case  LoggedInUser.USERTYPE_ORGANIZER:
+                editor.putString("organizerName", areaOrganizer.getOrganizerName());
+                editor.putInt("areaId", areaOrganizer.getAreaId());
+                editor.putString("areaAddress", areaOrganizer.getAddress());
+                editor.putString("organizerCreated", areaOrganizer.getCreated().toString());
+            case LoggedInUser.USERTYPE_NORMAL:
+                editor.putInt("userId", userMessage.getUserId());
+                editor.putString("userName", userMessage.getUserName());
+                editor.putString("address", userMessage.getAddress());
+                break;
+        }
+        Intent intent;
+        switch (loggedInUser.getUserType()){
+            case LoggedInUser.USERTYPE_NORMAL:
+                intent = new Intent(getApplicationContext(), UserHomeActivity.class);
+                startActivity(intent);
+                finish();
+                break;
+            case LoggedInUser.USERTYPE_MEMBER:
+                intent = new Intent(getApplicationContext(), MemberHomeActivity.class);
+                startActivity(intent);
+                finish();
+                break;
+            case LoggedInUser.USERTYPE_ORGANIZER:
+                intent = new Intent(getApplicationContext(), OrganizerMain.class);
+                startActivity(intent);
+                finish();
+                break;
+        }
     }
 
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //注册结束返回待补充
     }
 }

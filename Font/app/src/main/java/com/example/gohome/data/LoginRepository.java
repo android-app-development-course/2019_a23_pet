@@ -1,5 +1,11 @@
 package com.example.gohome.data;
 
+import android.app.Activity;
+import android.util.Log;
+
+import com.example.gohome.Entity.AreaOrganizer;
+import com.example.gohome.Entity.MemberMessage;
+import com.example.gohome.Entity.UserMessage;
 import com.example.gohome.data.model.LoggedInUser;
 
 /**
@@ -43,9 +49,10 @@ public class LoginRepository {
         // @see https://developer.android.com/training/articles/keystore
     }
 
-    public Result<LoggedInUser> login(String username, String password) {
+    public Result<LoggedInUser> login(String userName, String userPassword, Activity context) {
         // handle login
-        Result<LoggedInUser> result = dataSource.login(username, password);
+        Log.i("lohinRepository", "login");
+        Result<LoggedInUser> result = dataSource.login(userName, userPassword, context);
         if (result instanceof Result.Success) {
             setLoggedInUser(((Result.Success<LoggedInUser>) result).getData());
         }

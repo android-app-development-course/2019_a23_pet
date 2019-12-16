@@ -57,5 +57,14 @@ public class AdoptMessageController {
         return modelMap;
     }
 
+    /**
+     * 获取领养信息
+     * @return Map
+     */
+
+    @RequestMapping(value = "/queryadoptmessagebystate", method = RequestMethod.GET)
+    private Map queryAdoptMessageByState(Integer pageSize, Integer pageNum, Integer state) {
+        return adoptMessageService.queryAdoptMessageByState(pageNum, pageSize, state);
+    }
 
 }

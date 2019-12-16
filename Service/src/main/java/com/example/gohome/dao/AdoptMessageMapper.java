@@ -1,9 +1,10 @@
 package com.example.gohome.dao;
 
 import com.example.gohome.entity.AdoptMessage;
-import org.springframework.stereotype.Service;
+import com.github.pagehelper.Page;
 
-@Service
+import java.util.List;
+
 public interface AdoptMessageMapper {
     int deleteByPrimaryKey(Integer adoptId);
 
@@ -16,4 +17,6 @@ public interface AdoptMessageMapper {
     int updateByPrimaryKeySelective(AdoptMessage record);
 
     int updateByPrimaryKey(AdoptMessage record);
+
+    Page<AdoptMessage> queryAdoptMessageByState(Integer state);
 }

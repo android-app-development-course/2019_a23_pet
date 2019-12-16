@@ -36,12 +36,14 @@ public class AdoptAppliment {
     }
 
 
+    private Integer userId;
     private String applyName; //用户申请姓名
     private String telephone; //电话号码
     private String address; //用户住址
-
     private String job; //用户职业
     private String description; //描述
+
+    private Integer adoptId; //领养信息id
     private String petName;  //申请领养的宠物姓名
     private String petAge;   //申请领养宠物的年龄
     private String petType;  //宠物类型
@@ -177,4 +179,21 @@ public class AdoptAppliment {
         this.resultDescription = resultDescription;
     }
 
+    public AdoptAppliment(Integer adoptId, Integer userId, String name, String phone, String address, String job, String description){
+        this.adoptId = adoptId;
+        this.userId = userId;
+        this.applyName = name;
+        this.telephone = phone;
+        this.address = address;
+        this.job = job;
+        this.description = description;
+    }
+
+    public Integer getAdoptId() {
+        return adoptId;
+    }
+
+    public void setAdoptId(Integer adoptId) {
+        this.adoptId = adoptId;
+    }
 }

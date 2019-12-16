@@ -25,7 +25,7 @@
     pet_name, pet_type, gender, age, steriled, vaccinate, pictures, created, info_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from help_appliment
     where appliment_id = #{applimentId,jdbcType=INTEGER}
@@ -38,18 +38,18 @@
     <selectKey resultType="java.lang.Integer" keyProperty="applimentId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into help_appliment (user_id, apply_name, telephone, 
-      address, description, apply_date, 
-      state, pet_name, pet_type, 
-      gender, age, steriled, 
-      vaccinate, pictures
-      )
-    values (#{userId,jdbcType=INTEGER}, #{applyName,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{applyDate,jdbcType=TIMESTAMP}, 
-      #{state,jdbcType=INTEGER}, #{petName,jdbcType=VARCHAR}, #{petType,jdbcType=INTEGER}, 
-      #{gender,jdbcType=INTEGER}, #{age,jdbcType=VARCHAR}, #{steriled,jdbcType=BIT}, 
-      #{vaccinate,jdbcType=BIT}, #{pictures,jdbcType=VARCHAR}
-      )
+    insert into help_appliment (user_id, apply_name, telephone,
+    address, description, apply_date,
+    state, pet_name, pet_type,
+    gender, age, steriled,
+    vaccinate, pictures
+    )
+    values (#{userId,jdbcType=INTEGER}, #{applyName,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR},
+    #{address,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{applyDate,jdbcType=TIMESTAMP},
+    #{state,jdbcType=INTEGER}, #{petName,jdbcType=VARCHAR}, #{petType,jdbcType=INTEGER},
+    #{gender,jdbcType=INTEGER}, #{age,jdbcType=VARCHAR}, #{steriled,jdbcType=BIT},
+    #{vaccinate,jdbcType=BIT}, #{pictures,jdbcType=VARCHAR}
+    )
   </insert>
   <insert id="insertSelective" parameterType="com.example.gohome.entity.HelpAppliment" >
     <selectKey resultType="java.lang.Integer" keyProperty="applimentId" order="AFTER" >

@@ -22,7 +22,8 @@
         android:windowSoftInputMode="stateHidden|stateUnchanged">
         <activity
             android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login">
+        </activity>
         <activity android:name=".User.Activity.UserSendDetailActivity" />
         <activity android:name=".User.Activity.UserAdoptDetailActivity" />
         <activity android:name=".User.Activity.UserSystemSettingActivity" />
@@ -43,13 +44,12 @@
         <activity android:name=".Member.Activity.MemberHomeActivity"/>
         <activity android:name=".Member.Activity.MemberHandleOperationActivity"/>
         <activity android:name=".Register.RegisterActivity">
-
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+
             </intent-filter>
         </activity>
     </application>

@@ -5,11 +5,12 @@ import java.util.Date;
 public class UserMessage {
 
     private Integer userId;
+    private String userName;
     private String userPassword;
     private String telephone;
     private String address;
     private Integer gender;
-    private Integer user_type;
+    private Integer userType;
     private String protrait;
     private Date created;
 
@@ -19,6 +20,14 @@ public class UserMessage {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getUserPassword() {
@@ -53,12 +62,12 @@ public class UserMessage {
         this.gender = gender;
     }
 
-    public Integer getUser_type() {
-        return user_type;
+    public Integer getUserType() {
+        return userType;
     }
 
-    public void setUser_type(Integer user_type) {
-        this.user_type = user_type;
+    public void setUserType(Integer userType) {
+        this.userType = userType;
     }
 
     public String getProtrait() {

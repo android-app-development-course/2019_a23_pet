@@ -73,7 +73,7 @@
     <!--foldingCard content 图片大小-->
     <dimen name="cardContentIconSize">20dp</dimen>
     <!--foldingCard content按钮文字大小-->
-    <dimen name="cardContentBtnTextSize">15sp</dimen>
+    <dimen name="cardContentBtnTextSize">16sp</dimen>
     <!--foldingCard content描述文字大小-->
     <dimen name="cardContentTextSize">15sp</dimen>
     <!--foldingCard content动物图片高度-->

@@ -18,6 +18,10 @@ public class UserMassageServiceImpl implements UserMessageService {
     public boolean insertUserMessage(UserMessage userMessage) {
         if(userMessage.getUserName()!=null && userMessage.getUserPassword()!=null && userMessage.getAddress()!=null){
             try{
+                UserMessage userMessage1 = userMessageDao.queryUserByUserName(userMessage.getUserName());
+                if(userMessage1 != null){
+                    throw new RuntimeException("用户名已被使用，注册用户失败！");
+                }
                 int effectNum = userMessageDao.insertUser(userMessage);
                 if(effectNum > 0){
                     return true;
@@ -25,7 +29,7 @@ public class UserMassageServiceImpl implements UserMessageService {
                     throw new RuntimeException("服务器错误，注册用户失败！");
                 }
             }catch (Exception e){
-                throw new RuntimeException("服务器操作错误，注册用户失败！");
+                throw new RuntimeException(e.getMessage());
             }
         }else{
             throw new RuntimeException("用户信息不完整！");

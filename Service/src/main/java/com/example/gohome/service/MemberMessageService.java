@@ -1,6 +1,7 @@
 package com.example.gohome.service;
 
 import com.example.gohome.entity.MemberMessage;
+import com.example.gohome.entity.ResponseEntity.ResponseMemberMessage;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,5 +20,5 @@ public interface MemberMessageService {
     /**
      * 未实现！！
      */
-    List<MemberMessage> queryMemberMessageByAreaId(Integer areaId);
+    List<ResponseMemberMessage> queryMemberMessageByAreaId(Integer areaId);
 }

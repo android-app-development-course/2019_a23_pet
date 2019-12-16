@@ -198,8 +198,10 @@ public class LoginActivity extends AppCompatActivity {
                 editor.putInt("userId", userMessage.getUserId());
                 editor.putString("userName", userMessage.getUserName());
                 editor.putString("address", userMessage.getAddress());
+                editor.putString("protrait", userMessage.getProtrait());
                 break;
         }
+        editor.commit();
         Intent intent;
         switch (loggedInUser.getUserType()){
             case LoggedInUser.USERTYPE_NORMAL:

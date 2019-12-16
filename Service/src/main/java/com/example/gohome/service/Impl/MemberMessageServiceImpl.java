@@ -2,6 +2,7 @@ package com.example.gohome.service.Impl;
 
 import com.example.gohome.dao.MemberMessageMapper;
 import com.example.gohome.entity.MemberMessage;
+import com.example.gohome.entity.ResponseEntity.ResponseMemberMessage;
 import com.example.gohome.service.MemberMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -83,11 +84,15 @@ public class MemberMessageServiceImpl implements MemberMessageService {
     }
 
     @Override
-    public List<MemberMessage> queryMemberMessageByAreaId(Integer areaId) {
-        /**
-         * 未实现！！
-         *
-         */
-        return null;
+    public List<ResponseMemberMessage> queryMemberMessageByAreaId(Integer areaId) {
+        List<ResponseMemberMessage> ResponseMemberMessage = null;
+        if(areaId!=null){
+            try {
+                ResponseMemberMessage = memberMessageMapper.queryMemberMessageByAreaId(areaId);
+            }catch (Exception e){
+                throw new RuntimeException("服务器错误：" + e.getMessage());
+            }
+        }
+        return ResponseMemberMessage;
     }
 }

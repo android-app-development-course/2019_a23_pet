@@ -3,15 +3,15 @@ package com.example.gohome.entity;
 import java.util.Date;
 
 public class MemberMessage {
-    private Integer messageId;
+    protected Integer messageId;
 
-    private Integer userId;
+    protected Integer userId;
 
-    private Integer areaId;
+    protected Integer areaId;
 
-    private Date created;
+    protected Date created;
 
-    public Integer getMessageId() {
+    protected Integer getMessageId() {
         return messageId;
     }
 

@@ -7,6 +7,19 @@
     <result column="area_id" property="areaId" jdbcType="INTEGER" />
     <result column="created" property="created" jdbcType="TIMESTAMP" />
   </resultMap>
+  <resultMap id="ResultMap" type="com.example.gohome.entity.ResponseEntity.ResponseMemberMessage" >
+    <id column="message_id" property="messageId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+    <result column="portrait" property="portrait" jdbcType="VARCHAR"/>
+    <result column="address" property="address" jdbcType="VARCHAR"/>
+    <result column="organizer_id" property="organizerId" jdbcType="INTEGER"/>
+    <result column="organizer_name" property="organizerName" jdbcType="VARCHAR"/>
+    <result column="organizer_address" property="organizerAddress" jdbcType="VARCHAR"/>
+    <result column="organizer_created" property="organizerCreated" jdbcType="TIMESTAMP"/>
+  </resultMap>
   <sql id="Base_Column_List" >
     message_id, user_id, area_id, created
   </sql>
@@ -21,6 +34,23 @@
     <include refid="Base_Column_List" />
     from member_message
     where message_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <select id="queryMemberMessageByAreaId" resultMap="ResultMap" parameterType="java.util.List" >
+    SELECT
+    member_message.message_id AS message_id,
+    member_message.user_id AS user_id,
+    member_message.area_id AS area_id,
+    member_message.created AS created,
+    user_message.user_name AS user_name,
+    user_message.protrait AS portrait,
+    user_message.address AS address,
+    area_organizer.user_id AS organizer_id,
+    area_organizer.organizer_name AS organizer_name,
+    area_organizer.address AS organizer_address,
+    area_organizer.created AS organizer_created
+    FROM member_message, user_message, area_organizer
+    WHERE member_message.area_id=#{areaId,jdbcType=INTEGER} AND member_message.user_id=user_message.user_id AND member_message.area_id=area_organizer.area_id;
+
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from member_message

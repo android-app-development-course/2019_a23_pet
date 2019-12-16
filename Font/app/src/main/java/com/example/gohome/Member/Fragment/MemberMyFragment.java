@@ -1,7 +1,10 @@
 package com.example.gohome.Member.Fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +31,7 @@ public class MemberMyFragment extends Fragment implements View.OnClickListener{
     private Activity activity;
 
     private ImageView imPortrait;
-    private int portrait=R.drawable.timg;
+    private Uri portrait;
 
     private TextView tvNickname;
     private String nickname = "张咩阿";
@@ -63,18 +66,35 @@ public class MemberMyFragment extends Fragment implements View.OnClickListener{
         rootView.findViewById(R.id.user_rel_adoptPro).setOnClickListener(this);
         rootView.findViewById(R.id.user_rel_sendPro).setOnClickListener(this);
         rootView.findViewById(R.id.user_rel_settingCenter).setOnClickListener(this);
-
+//
+//        //初始化头像
+//        imPortrait = rootView.findViewById(R.id.user_iv_portrait);
+//        Glide.with(rootView.getContext()).load(portrait).into(imPortrait);
+//        imPortrait.setOnClickListener(this);
+//
+//        //初始化昵称
+//        tvNickname = rootView.findViewById(R.id.user_tv_nickname);
+//        tvNickname.setText(nickname);
+//
+//        //初始化手机号
+//        tvPhone = rootView.findViewById(R.id.user_tv_phone);
+//        tvPhone.setText(phone);
         //初始化头像
+        SharedPreferences sharedPreferences = activity.getApplicationContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         imPortrait = rootView.findViewById(R.id.user_iv_portrait);
+        portrait = Uri.parse(sharedPreferences.getString("protrait", String.valueOf(R.drawable.timg)));
+//        portrait = Uri.parse("https://tse1-mm.cn.bing.net/th/id/OIP.kbhcK_jmmGTIrDmD_5ZaKwHaHa?w=207&h=203&c=7&o=5&pid=1.7");
         Glide.with(rootView.getContext()).load(portrait).into(imPortrait);
-        imPortrait.setOnClickListener(this);
 
         //初始化昵称
+        nickname = sharedPreferences.getString("userName", "加载中...");
         tvNickname = rootView.findViewById(R.id.user_tv_nickname);
         tvNickname.setText(nickname);
+        tvNickname.setOnClickListener(this);
 
         //初始化手机号
         tvPhone = rootView.findViewById(R.id.user_tv_phone);
+        phone = sharedPreferences.getString("telephone", "");
         tvPhone.setText(phone);
     }
 
@@ -113,8 +133,8 @@ public class MemberMyFragment extends Fragment implements View.OnClickListener{
 
         if(requestCode==0){
             if(resultCode==1){
-                portrait=data.getIntExtra("newPortrait",portrait);
-                Glide.with(rootView.getContext()).load(portrait).into(imPortrait);
+//                portrait=data.getIntExtra("newPortrait",portrait);
+//                Glide.with(rootView.getContext()).load(portrait).into(imPortrait);
             }
             if(resultCode==2){
                 nickname=data.getStringExtra("newNickname");
@@ -129,8 +149,11 @@ public class MemberMyFragment extends Fragment implements View.OnClickListener{
             }
             if(resultCode==3){
                 //更改头像
-                portrait=R.drawable.defaultportrait;
-                Glide.with(rootView.getContext()).load(portrait).into(imPortrait);
+//                portrait=R.drawable.defaultportrait;
+//                Glide.with(rootView.getContext()).load(portrait).into(imPortrait);
+
+                int portrait1=R.drawable.defaultportrait;
+                Glide.with(rootView.getContext()).load(portrait1).into(imPortrait);
 
                 //更改昵称
                 nickname="立即登录";

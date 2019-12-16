@@ -1,5 +1,7 @@
 package com.example.gohome.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class MemberMessage {
@@ -9,9 +11,10 @@ public class MemberMessage {
 
     protected Integer areaId;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     protected Date created;
 
-    protected Integer getMessageId() {
+    public Integer getMessageId() {
         return messageId;
     }
 

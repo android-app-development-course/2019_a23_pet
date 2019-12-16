@@ -48,7 +48,7 @@ public class UserMineFragment extends Fragment implements View.OnClickListener {
     private Uri portrait;
 
     private TextView tvNickname;
-    private String nickname = "张咩阿";
+    private String nickname = "";
 
     private TextView tvPhone;
     private StringBuffer tmpphone = new StringBuffer("15626431234");
@@ -80,14 +80,14 @@ public class UserMineFragment extends Fragment implements View.OnClickListener {
         rootView.findViewById(R.id.user_rel_settingCenter).setOnClickListener(this);
 
         //初始化头像
-        SharedPreferences sharedPreferences = activity.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = activity.getApplicationContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         imPortrait = rootView.findViewById(R.id.user_iv_portrait);
-//        portrait = getResourcesUri(R.drawable.timg);
-        portrait = Uri.parse(sharedPreferences.getString("protrait", String.valueOf(R.drawable.mine_selected)));
-
+        portrait = Uri.parse(sharedPreferences.getString("protrait", String.valueOf(R.drawable.timg)));
+//        portrait = Uri.parse("https://tse1-mm.cn.bing.net/th/id/OIP.kbhcK_jmmGTIrDmD_5ZaKwHaHa?w=207&h=203&c=7&o=5&pid=1.7");
         Glide.with(rootView.getContext()).load(portrait).into(imPortrait);
 
         //初始化昵称
+        nickname = sharedPreferences.getString("userName", "加载中...");
         tvNickname = rootView.findViewById(R.id.user_tv_nickname);
         tvNickname.setText(nickname);
         tvNickname.setOnClickListener(this);

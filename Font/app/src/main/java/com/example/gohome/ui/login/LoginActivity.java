@@ -108,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
                 setResult(1);
 
                 //Complete and destroy login activity once successful
-                finish();
+//                finish();
             }
         });
 
@@ -150,6 +150,7 @@ public class LoginActivity extends AppCompatActivity {
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 v.setEnabled(false);
                 registerTextView.setEnabled(false);
+                Log.i("activity login", usernameEditText.getText().toString());
                 loginViewModel.login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString(), LoginActivity.this);
             }
@@ -180,7 +181,7 @@ public class LoginActivity extends AppCompatActivity {
 //        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
         // TODO : initiate successful logged in experience
         LoggedInUser loggedInUser =  loginViewModel.getLoginResult().getValue().getSuccess().getLoggedInUser();
-        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         UserMessage userMessage = loggedInUser.getUserMessage();
         MemberMessage memberMessage = loggedInUser.getMemberMessage();
@@ -199,6 +200,7 @@ public class LoginActivity extends AppCompatActivity {
                 editor.putString("userName", userMessage.getUserName());
                 editor.putString("address", userMessage.getAddress());
                 editor.putString("protrait", userMessage.getProtrait());
+                editor.putString("telephone", userMessage.getTelephone());
                 break;
         }
         editor.commit();
@@ -224,6 +226,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+        registerTextView.setEnabled(true);
+        loginButton.setEnabled(true);
     }
 
     @Override

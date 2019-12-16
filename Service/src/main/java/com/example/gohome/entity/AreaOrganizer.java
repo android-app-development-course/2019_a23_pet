@@ -1,5 +1,7 @@
 package com.example.gohome.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class AreaOrganizer {
@@ -11,6 +13,7 @@ public class AreaOrganizer {
 
     private String address;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date created;
 
     public Integer getAreaId() {

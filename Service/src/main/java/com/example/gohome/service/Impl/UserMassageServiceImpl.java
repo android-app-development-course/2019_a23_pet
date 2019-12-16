@@ -22,6 +22,7 @@ public class UserMassageServiceImpl implements UserMessageService {
                 if(userMessage1 != null){
                     throw new RuntimeException("用户名已被使用，注册用户失败！");
                 }
+                userMessage.setPortrait("https://tse1-mm.cn.bing.net/th/id/OIP.kbhcK_jmmGTIrDmD_5ZaKwHaHa?w=207&h=203&c=7&o=5&pid=1.7");
                 int effectNum = userMessageDao.insertUser(userMessage);
                 if(effectNum > 0){
                     return true;

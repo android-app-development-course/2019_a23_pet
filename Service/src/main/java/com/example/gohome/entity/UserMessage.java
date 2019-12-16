@@ -1,5 +1,7 @@
 package com.example.gohome.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 /*  用户信息类，记录用户的所有个人信息 */
@@ -26,6 +28,7 @@ public class UserMessage {
     //头像
     private String portrait;
     //信息创建日期
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date created;
 
 

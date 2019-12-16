@@ -3,7 +3,9 @@ package com.example.gohome.User.Activity;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -71,6 +73,10 @@ public class UserSettingCenterActivity extends AppCompatActivity implements View
                 startActivity(new Intent(this, UserSystemSettingActivity.class));
                 break;
             case R.id.user_rel_logout:
+                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.commit();
                 Intent backIntent = new Intent();
                 setResult(3, backIntent);
                 this.finish();

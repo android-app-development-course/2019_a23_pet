@@ -12,24 +12,24 @@ CREATE TABLE IF NOT EXISTS user_message(
 	user_name VARCHAR(33) NOT NULL,   #用户名，8位
 	gender INT DEFAULT 2,   #性别，0为男，1为女，2为未知
  	user_type INT DEFAULT 0,  #用户类型，0为普通用户，1为组员a，2为地区组织管理人
-	protrait VARCHAR(255) DEFAULT NULL,# 头像url
+	protrait VARCHAR(255) DEFAULT 'https://tse1-mm.cn.bing.net/th/id/OIP.kbhcK_jmmGTIrDmD_5ZaKwHaHa?w=207&h=203&c=7&o=5&pid=1.7',# 头像url
 	created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	UNIQUE(user_id),
 	PRIMARY KEY(user_id)
 )ENGINE=INNODB DEFAULT CHARSET=utf8;
 
-INSERT INTO user_message(user_password, telephone, address, user_name, gender, user_type)
+INSERT INTO user_message(user_password, telephone, address, user_name, gender, user_type, protrait)
 VALUES
-('12345678', '15521214343', '广州市', '广州动物保护', 2, 2),
-('12345678', '15521214344', '北京市', '北京动物保护', 2, 2),
-('12345678', '15521214345', '南京市', '南京动物保护', 2, 2),
-('12345678', '15521214346', '广州市天河区', '游客1', 1, 0),
-('12345678', '15521214347', '广州市白云区', '游客2', 0, 0),
-('12345678', '15521214348', '北京市', '游客3', 1, 0),
-('12345678', '15521214343', '广州市天河区', 'a组员1', 0, 1),
-('12345678', '15521214343', '广州市白云区', 'b组员2', 0, 1),
-('12345678', '15521214343', '广州市番禺区', 'c组员3', 1, 1),
-('12345678', '15521214343', '广州市越秀区', 'd组员4', 1, 1);
+('12345678', '15521214343', '广州市', '广州动物保护', 2, 2, 'https://tse4-mm.cn.bing.net/th/id/OIP.XftDufWfBdeH9KNyVCV8YAAAAA?w=150&h=150&c=7&o=5&pid=1.7'),
+('12345678', '15521214344', '北京市', '北京动物保护', 2, 2, 'https://tse4-mm.cn.bing.net/th/id/OIP.XftDufWfBdeH9KNyVCV8YAAAAA?w=150&h=150&c=7&o=5&pid=1.7'),
+('12345678', '15521214345', '南京市', '南京动物保护', 2, 2, 'https://tse4-mm.cn.bing.net/th/id/OIP.XftDufWfBdeH9KNyVCV8YAAAAA?w=150&h=150&c=7&o=5&pid=1.7'),
+('12345678', '15521214346', '广州市天河区', '游客A', 1, 0, 'https://tse2-mm.cn.bing.net/th/id/OIP.ugG2_iJlcejMEoRaupH_awHaHa?w=150&h=150&c=7&o=5&pid=1.7'),
+('12345678', '15521214347', '广州市白云区', '游客B', 0, 0, 'https://tse4-mm.cn.bing.net/th/id/OIP.fMMbZjMrKirkaD_C2SrySgAAAA?w=158&h=158&c=7&o=5&pid=1.7'),
+('12345678', '15521214348', '北京市', '游客C', 1, 0, 'https://tse2-mm.cn.bing.net/th/id/OIP.ugG2_iJlcejMEoRaupH_awHaHa?w=150&h=150&c=7&o=5&pid=1.7'),
+('12345678', '15521214343', '广州市天河区', 'a组员A', 0, 1, 'https://tse4-mm.cn.bing.net/th/id/OIP.fMMbZjMrKirkaD_C2SrySgAAAA?w=158&h=158&c=7&o=5&pid=1.7'),
+('12345678', '15521214343', '广州市白云区', 'b组员B', 0, 1, 'https://tse1-mm.cn.bing.net/th/id/OIP.l4i36c-DQXkP3E_W7XUX2wHaFj?w=265&h=198&c=7&o=5&pid=1.7'),
+('12345678', '15521214343', '广州市番禺区', 'c组员C', 1, 1, 'https://tse4-mm.cn.bing.net/th/id/OIP.fMMbZjMrKirkaD_C2SrySgAAAA?w=158&h=158&c=7&o=5&pid=1.7'),
+('12345678', '15521214343', '广州市越秀区', 'd组员D', 1, 1, 'https://tse1-mm.cn.bing.net/th/id/OIP.-12yZwfZJk2YheWVgzQF7gHaHa?w=150&h=150&c=7&o=5&pid=1.7');
 
 
 

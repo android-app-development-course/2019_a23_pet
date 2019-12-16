@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS user_message(
 	user_name VARCHAR(33) NOT NULL,   #用户名，8位
 	gender INT DEFAULT 2,   #性别，0为男，1为女，2为未知
  	user_type INT DEFAULT 0,  #用户类型，0为普通用户，1为组员a，2为地区组织管理人
-	protrait VARCHAR(255) DEFAULT 'https://tse1-mm.cn.bing.net/th/id/OIP.kbhcK_jmmGTIrDmD_5ZaKwHaHa?w=207&h=203&c=7&o=5&pid=1.7',# 头像url
+	protrait VARCHAR(255) NOT NULL DEFAULT 'https://tse1-mm.cn.bing.net/th/id/OIP.kbhcK_jmmGTIrDmD_5ZaKwHaHa?w=207&h=203&c=7&o=5&pid=1.7',# 头像url
 	created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	UNIQUE(user_id),
 	PRIMARY KEY(user_id)

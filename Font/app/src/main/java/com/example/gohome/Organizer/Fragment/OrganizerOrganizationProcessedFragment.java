@@ -24,10 +24,19 @@ import butterknife.ButterKnife;
 
 public class OrganizerOrganizationProcessedFragment extends Fragment {
 
+    //记录提交结果
+    public static final int SUCCESS = 1;
+    public static final int FAIL = 0;
+    public static final int ZERO = 2;//记录请求回来的数据条数是否为零
+
+    //记录当前页码与每次请求的数量
+    private int curPageNumAdopt = 1; //默认页码数为第一页
+    private int curPageNumHelp = 1; //默认页码数为第一页
+
+    public static final int PAGE_SIZE = 5;
+
     private XRecyclerView xrv_organizerCheckDoing;
-    private int refreshTime = 0;
     private int times = 0;
-    final int itemLimit = 5;
 
     private OrganizationProcessedFoldingCellAdapter organizationProcessedFoldingCellAdapter;
     private List<JoinAppliment> joinApplimentList;
@@ -77,7 +86,6 @@ public class OrganizerOrganizationProcessedFragment extends Fragment {
             //下拉刷新
             @Override
             public void onRefresh() {
-                refreshTime ++;
                 times = 0;
                 new Handler().postDelayed(new Runnable(){
                     public void run() {

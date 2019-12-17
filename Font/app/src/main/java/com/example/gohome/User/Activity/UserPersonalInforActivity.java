@@ -75,14 +75,23 @@ public class UserPersonalInforActivity extends AppCompatActivity implements View
 
         //初始化头像、昵称
 
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-        imPortrait = findViewById(R.id.user_iv_portrait);
-        portrait = Uri.parse(sharedPreferences.getString("protrait", String.valueOf(R.drawable.timg)));
-//        portrait = Uri.parse("https://tse1-mm.cn.bing.net/th/id/OIP.kbhcK_jmmGTIrDmD_5ZaKwHaHa?w=207&h=203&c=7&o=5&pid=1.7");
+//        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+//        imPortrait = findViewById(R.id.user_iv_portrait2);
+//        portrait = Uri.parse(sharedPreferences.getString("protrait", null));
+////        portrait = Uri.parse("https://tse1-mm.cn.bing.net/th/id/OIP.kbhcK_jmmGTIrDmD_5ZaKwHaHa?w=207&h=203&c=7&o=5&pid=1.7");
+//        Glide.with(this).load(portrait).into(imPortrait);
+//
+//        nickname = sharedPreferences.getString("userName", "加载中...");
+//        tvNickname = findViewById(R.id.user_tv_nickname2);
+//        tvNickname.setText(nickname);
+
+        Intent receivedIntent=getIntent();
+
+        portrait=Uri.parse(receivedIntent.getStringExtra("oldPortrait"));
+        imPortrait=findViewById(R.id.user_iv_portrait2);
         Glide.with(this).load(portrait).into(imPortrait);
 
-
-        nickname = sharedPreferences.getString("userName", "加载中...");
+        nickname=receivedIntent.getStringExtra("oldNickname");
         tvNickname = findViewById(R.id.user_tv_nickname2);
         tvNickname.setText(nickname);
     }

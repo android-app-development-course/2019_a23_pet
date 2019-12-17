@@ -104,6 +104,10 @@ public class AdoptApplimentController {
     private Map queryAdoptApplimentByUserId(Integer pageNum, Integer pageSize, Integer userId){
         return adoptApplimentService.queryAdoptApplimentByUserId(pageNum, pageSize, userId);
     }
+    @RequestMapping(value = "/queryadoptapplimentbyuserid2", method = RequestMethod.GET)
+    private Map queryAdoptApplimentByUserId2(Integer pageNum, Integer pageSize, Integer userId){
+        return adoptApplimentService.queryAdoptApplimentByUserId2(pageNum, pageSize, userId);
+    }
 
     /**
      * 根据待领养动物ID分页显示领养申请信息

@@ -6,12 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,16 +25,11 @@ import com.example.gohome.MainActivity;
 import com.example.gohome.R;
 import com.example.gohome.User.Activity.UserAddGroupActivity;
 import com.example.gohome.User.Activity.UserAdoptProActivity;
-import com.example.gohome.User.Activity.UserHomeActivity;
-import com.example.gohome.User.Activity.UserModifyNicknameActivity;
 import com.example.gohome.User.Activity.UserPersonalInforActivity;
 import com.example.gohome.User.Activity.UserSendProActivity;
 import com.example.gohome.User.Activity.UserSettingCenterActivity;
-import com.example.gohome.User.ImageDialog;
 import com.example.gohome.ui.login.LoginActivity;
 import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
-
-import java.io.File;
 
 public class UserMineFragment extends Fragment implements View.OnClickListener {
 
@@ -52,8 +43,7 @@ public class UserMineFragment extends Fragment implements View.OnClickListener {
     private String nickname = "立即登录";
 
     private TextView tvPhone;
-    private StringBuffer tmpphone;
-//    private String phone;
+    private String phone = "未登录";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
@@ -80,38 +70,31 @@ public class UserMineFragment extends Fragment implements View.OnClickListener {
         rootView.findViewById(R.id.user_rel_addGroup).setOnClickListener(this);
         rootView.findViewById(R.id.user_rel_settingCenter).setOnClickListener(this);
 
-        imPortrait = rootView.findViewById(R.id.user_iv_portrait);
-        tvNickname = rootView.findViewById(R.id.user_tv_nickname);
-        tvNickname.setOnClickListener(this);
-        tvPhone = rootView.findViewById(R.id.user_tv_phone);
-        //初始化头像
         SharedPreferences sharedPreferences = activity.getApplicationContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-        if(sharedPreferences.getInt("userType", -1)!=-1) {
 
+        //初始化头像、昵称、手机号
+        imPortrait = rootView.findViewById(R.id.user_iv_portrait);
+        portrait = getResourcesUri(R.drawable.defaultportrait);
+        tvNickname = rootView.findViewById(R.id.user_tv_nickname);
+        tvPhone = rootView.findViewById(R.id.user_tv_phone);
+
+        if (sharedPreferences.getInt("userType", -1) != -1) {
             portrait = Uri.parse(sharedPreferences.getString("protrait", null));
-//        portrait = Uri.parse("https://tse1-mm.cn.bing.net/th/id/OIP.kbhcK_jmmGTIrDmD_5ZaKwHaHa?w=207&h=203&c=7&o=5&pid=1.7");
-            Glide.with(rootView.getContext()).load(portrait).into(imPortrait);
-
-        }else{
-            portrait = getResourcesUri(R.drawable.defaultportrait);
-            Glide.with(rootView.getContext()).load(getResourcesUri(R.drawable.defaultportrait)).into(imPortrait);
-
+//          portrait = Uri.parse("https://tse1-mm.cn.bing.net/th/id/OIP.kbhcK_jmmGTIrDmD_5ZaKwHaHa?w=207&h=203&c=7&o=5&pid=1.7");
+            nickname = sharedPreferences.getString("userName", "加载中...");
+            phone = sharedPreferences.getString("telephone", "加载中...");
         }
 
-        //初始化昵称
-        nickname = sharedPreferences.getString("userName", "立即登录");
-
-        //初始化手机号
-        tmpphone = new StringBuffer(sharedPreferences.getString("telephone", "未设置"));
-//        phone = tmpphone.substring(0, 7) + "****";
+        Glide.with(rootView.getContext()).load(portrait).into(imPortrait);
         tvNickname.setText(nickname);
-        tvPhone.setText(tmpphone);
+        tvNickname.setOnClickListener(this);
+        tvPhone.setText(phone);
     }
 
     @Override
     public void onClick(View v) {
         SharedPreferences sharedPreferences = activity.getApplicationContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-        if (sharedPreferences.getInt("userType", -1)!=-1) {
+        if (sharedPreferences.getInt("userType", -1) != -1) {
             switch (v.getId()) {
                 case R.id.user_rel_personalInfo:
                     Intent intent = new Intent(activity, UserPersonalInforActivity.class);
@@ -132,12 +115,11 @@ public class UserMineFragment extends Fragment implements View.OnClickListener {
                     break;
                 case R.id.user_rel_settingCenter:
                     Intent intent4 = new Intent(activity, UserSettingCenterActivity.class);
-                    intent4.putExtra("oldPhone", tmpphone.toString());
+                    intent4.putExtra("oldPhone", phone);
                     startActivityForResult(intent4, 4);
                     break;
             }
-        }
-        else
+        } else
             switch (v.getId()) {
                 case R.id.user_tv_nickname:
                     startActivityForResult(new Intent(activity, LoginActivity.class), 5);
@@ -187,21 +169,21 @@ public class UserMineFragment extends Fragment implements View.OnClickListener {
 
         if (requestCode == 4) {
             if (resultCode == 1) {
-                tmpphone = new StringBuffer(data.getStringExtra("newPhone"));
-                tvPhone.setText(tmpphone.toString());
+                phone = data.getStringExtra("newPhone");
+                tvPhone.setText(phone);
             }
             if (resultCode == 3) {
 //                ((UserHomeActivity) getActivity()).isLogin = false;
                 //更改头像
-//                portrait = getResourcesUri(R.drawable.defaultportrait);
+                portrait = getResourcesUri(R.drawable.defaultportrait);
                 Glide.with(rootView.getContext()).load(getResourcesUri(R.drawable.defaultportrait)).into(imPortrait);
 
                 //更改昵称
-//                nickname = "立即登录";
+                nickname = "立即登录";
                 tvNickname.setText("立即登录");
 
                 //更改手机号
-//                phone = "请登录";
+                phone = "请登录";
                 tvPhone.setText("请登录");
             }
         }

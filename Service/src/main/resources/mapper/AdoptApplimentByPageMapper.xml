@@ -26,6 +26,4 @@
     from adopt_appliment
     where adopt_id = #{adoptId}
     </select>
-
-
 </mapper>

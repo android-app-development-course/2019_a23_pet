@@ -38,11 +38,10 @@ public class MemberMyFragment extends Fragment implements View.OnClickListener{
     private Uri portrait;
 
     private TextView tvNickname;
-    private String nickname = "";
+    private String nickname = "立即登录";
 
     private TextView tvPhone;
-    private StringBuffer tmpphone = new StringBuffer("15626431234");
-    private String phone=tmpphone.substring(0,7)+"****";
+    private String phone = "未登录";
 
 
     @Nullable
@@ -65,6 +64,7 @@ public class MemberMyFragment extends Fragment implements View.OnClickListener{
         return rootView;
 
     }
+
     public void init(){
         rootView.findViewById(R.id.user_rel_personalInfo).setOnClickListener(this);
         rootView.findViewById(R.id.user_rel_adoptPro).setOnClickListener(this);
@@ -83,22 +83,25 @@ public class MemberMyFragment extends Fragment implements View.OnClickListener{
 //        //初始化手机号
 //        tvPhone = rootView.findViewById(R.id.user_tv_phone);
 //        tvPhone.setText(phone);
-        //初始化头像
-        SharedPreferences sharedPreferences = activity.getApplicationContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-        imPortrait = rootView.findViewById(R.id.user_iv_portrait);
-        portrait = Uri.parse(sharedPreferences.getString("protrait", String.valueOf(R.drawable.timg)));
-//        portrait = Uri.parse("https://tse1-mm.cn.bing.net/th/id/OIP.kbhcK_jmmGTIrDmD_5ZaKwHaHa?w=207&h=203&c=7&o=5&pid=1.7");
-        Glide.with(rootView.getContext()).load(portrait).into(imPortrait);
 
-        //初始化昵称
-        nickname = sharedPreferences.getString("userName", "加载中...");
+        SharedPreferences sharedPreferences = activity.getApplicationContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+
+        //初始化头像、昵称、手机号
+        imPortrait = rootView.findViewById(R.id.user_iv_portrait);
+        portrait = getResourcesUri(R.drawable.defaultportrait);
         tvNickname = rootView.findViewById(R.id.user_tv_nickname);
+        tvPhone = rootView.findViewById(R.id.user_tv_phone);
+
+        if (sharedPreferences.getInt("userType", -1) != -1) {
+            portrait = Uri.parse(sharedPreferences.getString("protrait", null));
+//          portrait = Uri.parse("https://tse1-mm.cn.bing.net/th/id/OIP.kbhcK_jmmGTIrDmD_5ZaKwHaHa?w=207&h=203&c=7&o=5&pid=1.7");
+            nickname = sharedPreferences.getString("userName", "加载中...");
+            phone = sharedPreferences.getString("telephone", "加载中...");
+        }
+
+        Glide.with(rootView.getContext()).load(portrait).into(imPortrait);
         tvNickname.setText(nickname);
         tvNickname.setOnClickListener(this);
-
-        //初始化手机号
-        tvPhone = rootView.findViewById(R.id.user_tv_phone);
-        phone = sharedPreferences.getString("telephone", "");
         tvPhone.setText(phone);
     }
 
@@ -175,7 +178,6 @@ public class MemberMyFragment extends Fragment implements View.OnClickListener{
                 getActivity().finish();
             }
         }
-
     }
 
     private Uri getResourcesUri(@DrawableRes int id) {

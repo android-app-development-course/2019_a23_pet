@@ -79,6 +79,7 @@ public class UserSettingCenterActivity extends AppCompatActivity implements View
                 editor.clear();
                 editor.commit();
                 Intent backIntent = new Intent(getApplicationContext(), MainActivity.class);
+                backIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(backIntent);
                 this.finish();
                 break;

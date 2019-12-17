@@ -1,4 +1,4 @@
-package com.example.gohome.Entity;
+package com.example.gohome.entity;
 
 import java.io.Serializable;
 
@@ -9,17 +9,6 @@ public class ProcessInfo implements Serializable {
     private String petPortrait;
     private String petNickname, userText;
     private Integer processState;
-
-    public ProcessInfo(Integer applimentId, Integer adoptId, Integer userId, String petPortrait, String petNickname, String userText, Integer processState) {
-        super();
-        this.applimentId = applimentId;
-        this.adoptId = adoptId;
-        this.userId = userId;
-        this.petPortrait = petPortrait;
-        this.petNickname = petNickname;
-        this.userText = userText;
-        this.processState = processState;
-    }
 
     public Integer getApplimentId() {
         return applimentId;

@@ -28,6 +28,7 @@ public interface AdoptApplimentService {
     Map queryAdoptApplimentByState(Integer pageNum, Integer pageSize, Integer state);
     /*根据申请人*/
     Map queryAdoptApplimentByUserId(Integer pageNum, Integer pageSize, Integer userId);
+    Map queryAdoptApplimentByUserId2(Integer pageNum, Integer pageSize, Integer userId);
     /*根据领养信息ID*/
     Map queryAdoptApplimentByAdoptId(Integer pageNum, Integer pageSize, Integer adoptId);
     /*根据领养申请信息状态*/

@@ -1,79 +1,158 @@
 package com.example.gohome.Member.Fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.gohome.Entity.AdoptInfo;
+import com.example.gohome.Entity.ResponseAdoptInfo;
 import com.example.gohome.R;
 import com.example.gohome.User.Activity.UserAdoptActivity;
 import com.example.gohome.User.Adapter.FoldingCellListAdapter;
+import com.google.gson.Gson;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.qlh.dropdownmenu.DropDownMenu;
 import com.qlh.dropdownmenu.view.MultiMenusView;
 import com.qlh.dropdownmenu.view.SingleMenuView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class MemberAdoptFragment extends Fragment {
 
+    private static final int SUCCESS = 1;
+    private static final int FAIL = -1;
+    private static final int ZERO = 0; //记录请求回来的数据条数是否为零
+    private static final int PAGE_SIZE = 6;
+    private static int CUR_PAGE_NUM = 1;
+
     private View rootView;
+
+    private XRecyclerView recyclerView;
+    private FoldingCellListAdapter adapter;
 
     private int times = 0; // 记录加载更多次数
 
     private List<AdoptInfo> infoList;
+
+    private String description1 = "性格乖巧，比较黏人，已驱虫。希望找一个爱它的主人，有责任心不抛弃，接受定期回访。";
+    private String description2 = "有偿领养，疫苗已打，未绝育，有证，定期内外驱虫。性格活泼，能吃好动。希望能找到一个对它好的有爱心有经验的铲屎官。";
+    private String description3 = "要求：有时间陪伴，有病治病，吃安全狗粮，有耐心。基本情况：不在家大小便，必须出去上，不破坏东西，很听话。";
+    private String description4 = "身体健康，做了狂犬和驱虫，性格乖巧粘人。最近在发情期还未绝育，希望你能带去配种或绝育。";
+
 
     private DropDownMenu mDropDownMenu;
     private MultiMenusView multiMenusView;//多级菜单
     private SingleMenuView singleMenuView1;//单级菜单
     private SingleMenuView singleMenuView2;//单级菜单
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState ){
-//        View view = inflater.inflate(R.layout.fragment_member_adopt,null);
-
-
-        if (rootView != null){
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             Bundle savedInstanceState) {
+        if (rootView != null) {
             ViewGroup parent = (ViewGroup) rootView.getParent();
-            if(parent != null){
+            if (parent != null) {
                 parent.removeView(rootView);
             }
         } else {
-            rootView = inflater.inflate(R.layout.fragment_member_adopt, null);
+            rootView = inflater.inflate(R.layout.fragment_user_adopt, null);
             initDropMenus();
+            getData();
             initRecyclerView();
-//            initListView();
         }
         return rootView;
     }
 
+    private void getData(){
+        infoList = new ArrayList<>();
+
+        @SuppressLint("HandlerLeak")
+        Handler handler = new Handler() {
+            public void handleMessage(Message message){
+                switch (message.what){
+                    case SUCCESS:
+                        Log.i("获取: ", "成功");
+                        adapter.setList(infoList);
+                        adapter.notifyDataSetChanged();
+                        break;
+
+                    case FAIL:
+                        Log.i("获取: ", "失败");
+                        break;
+
+                    case ZERO:
+                        Log.i("获取: ", "0");
+                        break;
+                }
+            }
+        };
+
+        new Thread(()->{
+            Request request = new Request.Builder()
+                    .url(getResources().getString(R.string.serverBasePath) +
+                            getResources().getString(R.string.getAdoptMessage)
+                            + "/?pageNum=1&pageSize=" + PAGE_SIZE + "&state=0")
+                    .get()
+                    .build();
+            Message msg = new Message();
+            OkHttpClient okHttpClient = new OkHttpClient();
+            Call call = okHttpClient.newCall(request);
+            call.enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    Log.i("获取: ", e.getMessage());
+                    msg.what = FAIL;
+                    handler.sendMessage(msg);
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+
+                    ResponseAdoptInfo adoptMessage = new Gson().fromJson(response.body().string(),
+                            ResponseAdoptInfo.class);
+                    infoList = adoptMessage.getAdoptInfoList();
+                    if(infoList.size() == 0) {
+                        msg.what = ZERO;
+                    } else {
+                        msg.what = SUCCESS;
+                    }
+                    handler.sendMessage(msg);
+                    Log.i("获取: ", String.valueOf(infoList.size()));
+                }
+            });
+        }).start();
+    }
 
     private void initRecyclerView() {
-        initAdoptInfo();
-
-        FoldingCellListAdapter adapter = new FoldingCellListAdapter(getContext(), infoList);
-        adapter.setDefaultRequestBtnClickListener(view -> {
-            Intent intent = new Intent(this.getContext(), UserAdoptActivity.class);
-            startActivity(intent);
-        });
-
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-        XRecyclerView recyclerView = rootView.findViewById(R.id.user_lv_adopt);
+        adapter = new FoldingCellListAdapter(getContext(), infoList);
+
+        recyclerView = rootView.findViewById(R.id.user_lv_adopt);
+
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setArrowImageView(R.drawable.iconfont_downgrey);
@@ -84,41 +163,132 @@ public class MemberAdoptFragment extends Fragment {
         recyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        recyclerView.refreshComplete();
-                        adapter.notifyDataSetChanged();
-                    }
+                new Handler().postDelayed(() -> {
+                    @SuppressLint("HandlerLeak")
+                    Handler handler = new Handler(){
+                        @Override
+                        public void handleMessage(Message msg){
+                            switch (msg.what){
+                                case SUCCESS:
+                                    Log.i("刷新", "成功");
+                                    adapter.setList(infoList);
+                                    adapter.notifyDataSetChanged();
+                                    break;
+                                case FAIL:
+                                    Log.i("刷新", "失败");
+                                    break;
+                                case ZERO:
+                                    Log.i("刷新", "0");
+                                    break;
+                            }
+                            recyclerView.refreshComplete();
+                        }
+                    };
+
+                    new Thread(()->{
+                        CUR_PAGE_NUM = 1;
+                        Request request = new Request.Builder()
+                                .url(getResources().getString(R.string.serverBasePath) +
+                                        getResources().getString(R.string.getAdoptMessage)
+                                        + "/?pageNum="+ CUR_PAGE_NUM +"&pageSize="+ PAGE_SIZE +"&state=0")
+                                .get()
+                                .build();
+                        Message msg = new Message();
+                        OkHttpClient okHttpClient = new OkHttpClient();
+                        Call call = okHttpClient.newCall(request);
+                        call.enqueue(new Callback() {
+                            @Override
+                            public void onFailure(Call call, IOException e) {
+                                Log.i("获取: ", e.getMessage());
+                                msg.what = FAIL;
+                                handler.sendMessage(msg);
+                            }
+
+                            @Override
+                            public void onResponse(Call call, Response response) throws IOException {
+
+                                ResponseAdoptInfo adoptMessage = new Gson().fromJson(response.body().string(),
+                                        ResponseAdoptInfo.class);
+                                infoList = adoptMessage.getAdoptInfoList();
+                                if(infoList.size() == 0) {
+                                    msg.what = ZERO;
+                                } else {
+                                    msg.what = SUCCESS;
+                                }
+                                handler.sendMessage(msg);
+                                Log.i("获取: ", String.valueOf(infoList.size()));
+                            }
+                        });
+                    }).start();
                 }, 1500);
             }
 
             @Override
             public void onLoadMore() {
-                if (times == 0) {
-                    new Handler().postDelayed(() -> {
-                        add1();
-                        recyclerView.loadMoreComplete();
-                        adapter.notifyDataSetChanged();
-                    }, 1000);
-                } else if (times == 1) {
-                    new Handler().postDelayed(() -> {
-                        add2();
-                        recyclerView.loadMoreComplete();
-                        adapter.notifyDataSetChanged();
-                    }, 1000);
-                } else {
-                    new Handler().postDelayed(() -> {
-                        recyclerView.loadMoreComplete();
-                        recyclerView.setNoMore(true);
-                        adapter.notifyDataSetChanged();
-                    }, 1000);
-                }
-                times++;
+                new Handler().postDelayed(() -> {
+                    @SuppressLint("HandlerLeak")
+                    Handler handler = new Handler(){
+                        @Override
+                        public void handleMessage(Message msg){
+                            switch (msg.what){
+                                case SUCCESS:
+                                    Log.i("加载", "成功");
+                                    recyclerView.refreshComplete();
+                                    adapter.notifyDataSetChanged();
+                                    break;
+                                case FAIL:
+                                    Log.i("加载", "失败");
+                                    break;
+                                case ZERO:
+                                    Log.i("加载", "0");
+                                    recyclerView.setNoMore(true);
+                                    break;
+                            }
+                        }
+                    };
+
+                    new Thread(()->{
+                        CUR_PAGE_NUM++;
+                        Request request = new Request.Builder()
+                                .url(getResources().getString(R.string.serverBasePath) +
+                                        getResources().getString(R.string.getAdoptMessage)
+                                        + "/?pageNum="+ CUR_PAGE_NUM +"&pageSize=" + PAGE_SIZE + "&state=0")
+                                .get()
+                                .build();
+                        Message msg = new Message();
+                        OkHttpClient okHttpClient = new OkHttpClient();
+                        Call call = okHttpClient.newCall(request);
+                        call.enqueue(new Callback() {
+                            @Override
+                            public void onFailure(Call call, IOException e) {
+                                Log.i("获取: ", e.getMessage());
+                                msg.what = FAIL;
+                                handler.sendMessage(msg);
+                            }
+
+                            @Override
+                            public void onResponse(Call call, Response response) throws IOException {
+
+                                ResponseAdoptInfo adoptMessage = new Gson().fromJson(response.body().string(),
+                                        ResponseAdoptInfo.class);
+                                infoList.addAll(adoptMessage.getAdoptInfoList());
+                                if((CUR_PAGE_NUM - 2) * PAGE_SIZE + adoptMessage.getPageSize() <
+                                        adoptMessage.getTotal() ){
+                                    msg.what = ZERO;
+                                } else {
+                                    msg.what = SUCCESS;
+                                }
+                                handler.sendMessage(msg);
+                                Log.i("获取: ", String.valueOf(infoList.size()));
+                            }
+                        });
+                    }).start();
+                }, 1500);
             }
         });
 
     }
+
 
     boolean flag1 = true, flag2 = true;
     private void add1(){
@@ -132,12 +302,35 @@ public class MemberAdoptFragment extends Fragment {
     }
     private void add2() {
         if (flag2) {
-            infoList.add(new AdoptInfo(R.drawable.member_dog3, "dodo", "狗狗", 0, "一岁左右", "狗狗很乖很聪明，爱洗澡", "广州白云区", "2019.11.26", false, false, "kekeqin"));
-            infoList.add(new AdoptInfo(R.drawable.member_dog4, "roo", "狗狗", 1, "一岁半", "非常健康，温顺，从来不乱咬东西，不吵闹", "广州荔湾区", "2019.11.26", true, true, "啦啦妹"));
-
-
+            infoList.add(new AdoptInfo(R.drawable.dog5, "圆圆", "狗狗", 0, "1岁10个月", description1, "江苏南京", "1天前", true, false, "门迎百福"));
+            infoList.add(new AdoptInfo(R.drawable.cat6, "扁扁", "猫猫", 1, "2岁2个月", description2, "台湾高雄", "1天前", true, false, "户纳千祥"));
+            infoList.add(new AdoptInfo(R.drawable.dog6, "哼哈", "狗狗", 1, "2岁2个月", description3, "安徽合肥", "2天前", true, false, "五谷丰登"));
+            infoList.add(new AdoptInfo(R.drawable.cat7, "中分", "猫猫", 1, "2岁", description4, "哥谭市", "3天前", true, false, "六畜兴旺"));
             flag2 = false;
         }
+    }
+
+    private void load() {
+        if (times == 0) {
+            new Handler().postDelayed(() -> {
+                add1();
+                recyclerView.loadMoreComplete();
+                adapter.notifyDataSetChanged();
+            }, 1000);
+        } else if (times == 1) {
+            new Handler().postDelayed(() -> {
+                add2();
+                recyclerView.loadMoreComplete();
+                adapter.notifyDataSetChanged();
+            }, 1000);
+        } else {
+            new Handler().postDelayed(() -> {
+                recyclerView.loadMoreComplete();
+                recyclerView.setNoMore(true);
+                adapter.notifyDataSetChanged();
+            }, 1000);
+        }
+        times++;
     }
 
     private void initAdoptInfo() {

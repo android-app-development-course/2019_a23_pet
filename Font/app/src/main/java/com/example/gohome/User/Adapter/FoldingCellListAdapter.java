@@ -133,7 +133,7 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter{
         });
         // 图片放大
         mholder.petPhoto2.setOnClickListener(view -> {
-            ImageDialog dialog = new ImageDialog(context, list.get(pos).getPhotos());
+            ImageDialog dialog = new ImageDialog(context, mholder.pictures[r]);
             dialog.show();
         });
         // 加入组织

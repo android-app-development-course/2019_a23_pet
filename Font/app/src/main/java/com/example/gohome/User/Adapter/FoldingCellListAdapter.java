@@ -20,6 +20,8 @@ import com.example.gohome.Entity.AdoptInfo;
 import com.example.gohome.R;
 import com.example.gohome.User.Activity.UserAdoptActivity;
 import com.example.gohome.User.ImageDialog;
+import com.example.gohome.ui.login.LoginActivity;
+import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 import com.ramotion.foldingcell.FoldingCell;
 
 import java.util.HashSet;
@@ -125,16 +127,32 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter{
         Log.i("holder.time.text", list.get(pos).getCreated());
         // 填写领养信息
         mholder.contentRequestBtn.setOnClickListener(view -> {
-            SharedPreferences sharedPreferences = view.getContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences = context.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
             int userId = sharedPreferences.getInt("userId", -1);
             if (userId == -1) {
-                Toast.makeText(view.getContext(), "请先登录", Toast.LENGTH_SHORT).show();
+                NiftyDialogBuilder dialogBuilderSelect = NiftyDialogBuilder.getInstance(context);
+                dialogBuilderSelect
+                        .withTitle("请登录")
+                        .withMessage("立即登录")
+                        .withDialogColor(view.getResources().getColor(R.color.orange))
+                        .withButton1Text("确定")
+                        .withButton2Text("取消")
+                        .setButton1Click(v -> {
+                            dialogBuilderSelect.dismiss();
+                            context.startActivity(new Intent(context, LoginActivity.class));
+                        })
+                        .setButton2Click(v -> {
+                            Toast.makeText(context, "取消登录", Toast.LENGTH_SHORT).show();
+                            dialogBuilderSelect.dismiss();
+                        })
+                        .show();
+
                 return;
             }
-            Intent intent = new Intent(view.getContext(), UserAdoptActivity.class);
+            Intent intent = new Intent(context, UserAdoptActivity.class);
             intent.putExtra("adoptId", mholder.adoptId);
             intent.putExtra("userId", userId);
-            view.getContext().startActivity(intent);
+            context.startActivity(intent);
         });
         // 图片放大
         mholder.petPhoto2.setOnClickListener(view -> {

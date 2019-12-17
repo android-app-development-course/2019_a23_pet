@@ -18,7 +18,7 @@
 
     <!--url配置-->
 
-    <string name="serverBasePath">http://10.255.26.95:8080/gohome/</string>
+    <string name="serverBasePath">http://10.255.124.146:8080/gohome/</string>
 
     <string name="insertAdoptMessage">adoptmessage/insertadoptmessage</string>
 

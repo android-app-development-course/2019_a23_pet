@@ -3,6 +3,7 @@ package com.example.gohome.User.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,14 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.gohome.Entity.AdoptInfo;
 import com.example.gohome.R;
-import com.example.gohome.User.Activity.UserAddGroupActivity;
 import com.example.gohome.User.Activity.UserAdoptActivity;
 import com.example.gohome.User.ImageDialog;
 import com.ramotion.foldingcell.FoldingCell;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Random;
 
 public class FoldingCellListAdapter extends RecyclerView.Adapter{
 
@@ -104,11 +103,8 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter{
 
         mholder.adoptId = list.get(pos).getAdoptId();
 
-        Random random = new Random();
-        int r = random.nextInt(mholder.pictures.length);
-
         // title(外)
-        Glide.with(context).load(mholder.pictures[r]).into(mholder.petPhoto1);
+        Glide.with(context).load(list.get(pos).getPictures()).into(mholder.petPhoto1);
         mholder.petName1.setText(list.get(pos).getPetName());
         mholder.petGender1.setText(gender);
         mholder.petAge1.setText(list.get(pos).getAge());
@@ -116,7 +112,7 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter{
         mholder.area1.setText(list.get(pos).getAddress());
 
         // content(内)
-        Glide.with(context).load(mholder.pictures[r]).into(mholder.petPhoto2);
+        Glide.with(context).load(list.get(pos).getPictures()).into(mholder.petPhoto2);
         mholder.petName2.setText(list.get(pos).getPetName());
         mholder.petGender2.setText(gender);
         mholder.petAge2.setText(list.get(pos).getAge());
@@ -142,7 +138,7 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter{
         });
         // 图片放大
         mholder.petPhoto2.setOnClickListener(view -> {
-            ImageDialog dialog = new ImageDialog(context, mholder.pictures[r]);
+            ImageDialog dialog = new ImageDialog(context, Uri.parse(list.get(pos).getPictures()));
             dialog.show();
         });
         // 加入组织

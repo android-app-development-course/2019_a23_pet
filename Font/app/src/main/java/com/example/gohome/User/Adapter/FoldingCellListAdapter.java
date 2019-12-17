@@ -2,6 +2,7 @@ package com.example.gohome.User.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -122,8 +123,8 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter{
         Glide.with(context).load(icon1).into(mholder.iv_vacn);
         Glide.with(context).load(icon2).into(mholder.iv_strl);
         mholder.publisher.setText(list.get(pos).getHandleId());
-        String []date = list.get(pos).getCreated().split("-");
-        mholder.time.setText(date[0] + "/" + date[1] + "/" + date[2].substring(0,2));
+        mholder.time.setText(list.get(pos).getCreated());
+        Log.i("holder.time.text", list.get(pos).getCreated());
         // 填写领养信息
         mholder.contentRequestBtn.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), UserAdoptActivity.class);

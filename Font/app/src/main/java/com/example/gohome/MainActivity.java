@@ -2,8 +2,11 @@ package com.example.gohome;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -23,6 +26,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init(){
+
+        SharedPreferences sharedPreferences = getApplication().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        int userType = sharedPreferences.getInt("userType", -1);
+        Log.i("userType", String.valueOf(userType));
+        Intent intent;
+        switch (userType){
+            case -1:
+            case 0:
+                intent = new Intent(getApplicationContext(), UserHomeActivity.class);
+                startActivity(intent);
+                finish();
+                break;
+            case 1:
+                intent = new Intent(getApplicationContext(), MemberHomeActivity.class);
+                startActivity(intent);
+                finish();
+                break;
+            case 2:
+                intent = new Intent(getApplicationContext(), OrganizerMain.class);
+                startActivity(intent);
+                finish();
+                break;
+        }
         Button btn_user = findViewById(R.id.btn_user);
         Button btn_organizer = findViewById(R.id.btn_organizer);
         Button btn_member = findViewById(R.id.btn_member);

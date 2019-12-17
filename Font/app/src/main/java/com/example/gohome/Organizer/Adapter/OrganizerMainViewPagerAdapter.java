@@ -52,4 +52,12 @@ public class OrganizerMainViewPagerAdapter extends FragmentPagerAdapter {
             throw new RuntimeException(e.getMessage());
         }
     }
+
+
+    @Override
+    public long getItemId(int position) {
+        // 获取当前数据的hashCode
+        int hashCode = fragmentList.get(position).hashCode();
+        return hashCode;
+    }
 }

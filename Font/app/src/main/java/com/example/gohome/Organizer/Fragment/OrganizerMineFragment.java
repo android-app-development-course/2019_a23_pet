@@ -21,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.example.gohome.MainActivity;
 import com.example.gohome.Organizer.OrganizerMain;
 import com.example.gohome.R;
 import com.example.gohome.User.Activity.UserAddGroupActivity;
@@ -73,20 +74,6 @@ public class OrganizerMineFragment extends Fragment implements View.OnClickListe
         rootView.findViewById(R.id.user_rel_adoptPro).setOnClickListener(this);
         rootView.findViewById(R.id.user_rel_settingCenter).setOnClickListener(this);
 
-//        //初始化头像
-//        imPortrait = rootView.findViewById(R.id.user_iv_portrait);
-//        portrait = getResourcesUri(R.drawable.timg);
-//        Glide.with(rootView.getContext()).load(portrait).into(imPortrait);
-//
-//        //初始化昵称
-//        tvNickname = rootView.findViewById(R.id.user_tv_nickname);
-//        tvNickname.setText(nickname);
-//        tvNickname.setOnClickListener(this);
-//
-//        //初始化手机号
-//        tvPhone = rootView.findViewById(R.id.user_tv_phone);
-//        tvPhone.setText(phone);
-
         SharedPreferences sharedPreferences = activity.getApplicationContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         imPortrait = rootView.findViewById(R.id.user_iv_portrait);
         portrait = Uri.parse(sharedPreferences.getString("protrait", String.valueOf(R.drawable.timg)));
@@ -107,7 +94,8 @@ public class OrganizerMineFragment extends Fragment implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if (((OrganizerMain) getActivity()).isLogin == true) {
+        SharedPreferences sharedPreferences = activity.getApplicationContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        if (sharedPreferences.getInt("userType", -1)!=-1) {
             switch (v.getId()) {
                 case R.id.user_rel_personalInfo:
                     Intent intent = new Intent(activity, UserPersonalInforActivity.class);
@@ -116,12 +104,12 @@ public class OrganizerMineFragment extends Fragment implements View.OnClickListe
                     startActivityForResult(intent, 0);
                     break;
                 case R.id.user_rel_adoptPro:
-                    startActivity(new Intent(activity, UserAdoptProActivity.class));
+//                    startActivity(new Intent(activity, UserAdoptProActivity.class));
                     break;
                 case R.id.user_rel_addGroup:
-                    Intent intent3 = new Intent(activity, UserAddGroupActivity.class);
-                    intent3.putExtra("group", "");
-                    startActivity(intent3);
+//                    Intent intent3 = new Intent(activity, UserAddGroupActivity.class);
+//                    intent3.putExtra("group", "");
+//                    startActivity(intent3);
                     break;
                 case R.id.user_rel_settingCenter:
                     Intent intent4 = new Intent(activity, UserSettingCenterActivity.class);
@@ -132,7 +120,9 @@ public class OrganizerMineFragment extends Fragment implements View.OnClickListe
         } else {
             switch (v.getId()) {
                 case R.id.user_tv_nickname:
-                    startActivityForResult(new Intent(activity, LoginActivity.class), 5);
+                    Intent intent = new Intent(activity, LoginActivity.class);
+                    startActivity(intent);
+                    activity.finish();
                     break;
                 default:
                     NiftyDialogBuilder dialogBuilderSelect = NiftyDialogBuilder.getInstance(activity);
@@ -146,8 +136,9 @@ public class OrganizerMineFragment extends Fragment implements View.OnClickListe
                                 @Override
                                 public void onClick(View v) {
                                     dialogBuilderSelect.dismiss();
-                                    startActivityForResult(new Intent(activity, LoginActivity.class), 5);
-                                }
+                                    Intent intent = new Intent(activity, LoginActivity.class);
+                                    startActivity(intent);
+                                    activity.finish();                                }
                             })
                             .setButton2Click(new View.OnClickListener() {
                                 @Override
@@ -189,7 +180,7 @@ public class OrganizerMineFragment extends Fragment implements View.OnClickListe
                 tvPhone.setText(phone);
             }
             if (resultCode == 3) {
-                ((UserHomeActivity) getActivity()).isLogin = false;
+//                ((UserHomeActivity) getActivity()).isLogin = false;
                 //更改头像
 //                portrait=R.drawable.defaultportrait;
                 Glide.with(rootView.getContext()).load(getResourcesUri(R.drawable.defaultportrait)).into(imPortrait);
@@ -203,20 +194,11 @@ public class OrganizerMineFragment extends Fragment implements View.OnClickListe
                 tvPhone.setText("请登录");
             }
         }
-        if (requestCode == 5) {
+        if (requestCode == 5) {//重新登录
             if (resultCode == 1) {
-                ((UserHomeActivity) getActivity()).isLogin = true;
-                //更改头像
-//                portrait = getResourcesUri(R.drawable.timg);
-                Glide.with(rootView.getContext()).load(portrait).into(imPortrait);
-
-                //更改昵称
-//                nickname = "张咩阿";
-                tvNickname.setText(nickname);
-
-                //更改手机号
-//                phone = tmpphone.substring(0, 7) + "****";
-                tvPhone.setText(phone);
+                Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                getActivity().finish();
             }
         }
 

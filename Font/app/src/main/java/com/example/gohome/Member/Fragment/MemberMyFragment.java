@@ -1,9 +1,11 @@
 package com.example.gohome.Member.Fragment;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,10 +14,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.example.gohome.MainActivity;
 import com.example.gohome.R;
 import com.example.gohome.User.Activity.UserAddGroupActivity;
 import com.example.gohome.User.Activity.UserAdoptProActivity;
@@ -34,7 +38,7 @@ public class MemberMyFragment extends Fragment implements View.OnClickListener{
     private Uri portrait;
 
     private TextView tvNickname;
-    private String nickname = "张咩阿";
+    private String nickname = "";
 
     private TextView tvPhone;
     private StringBuffer tmpphone = new StringBuffer("15626431234");
@@ -100,30 +104,33 @@ public class MemberMyFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.user_iv_portrait:
-            case R.id.user_rel_personalInfo:
-                Intent intent=new Intent(activity, UserPersonalInforActivity.class);
-                intent.putExtra("oldPortrait",portrait);
-                intent.putExtra("oldNickname",nickname);
-                startActivityForResult(intent,0);
-                break;
-            case R.id.user_rel_adoptPro:
-                startActivity(new Intent(activity, UserAdoptProActivity.class));
-                break;
-            case R.id.user_rel_sendPro:
-                startActivity(new Intent(activity, UserSendProActivity.class));
-                break;
-            case R.id.user_rel_addGroup:
-                Intent intent3 = new Intent(activity, UserAddGroupActivity.class);
-                intent3.putExtra("group", "");
-                startActivity(intent3);
-                break;
-            case R.id.user_rel_settingCenter:
-                Intent intent4=new Intent(activity, UserSettingCenterActivity.class);
-                intent4.putExtra("oldPhone",phone);
-                startActivityForResult(intent4,4);
-                break;
+        SharedPreferences sharedPreferences = activity.getApplicationContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        if (sharedPreferences.getInt("userType", -1)!=-1) {
+            switch (v.getId()) {
+                case R.id.user_iv_portrait:
+                case R.id.user_rel_personalInfo:
+                    Intent intent = new Intent(activity, UserPersonalInforActivity.class);
+                    intent.putExtra("oldPortrait", portrait);
+                    intent.putExtra("oldNickname", nickname);
+                    startActivityForResult(intent, 0);
+                    break;
+                case R.id.user_rel_adoptPro:
+//                startActivity(new Intent(activity, UserAdoptProActivity.class));
+                    break;
+                case R.id.user_rel_sendPro:
+//                startActivity(new Intent(activity, UserSendProActivity.class));
+                    break;
+                case R.id.user_rel_addGroup:
+//                Intent intent3 = new Intent(activity, UserAddGroupActivity.class);
+//                intent3.putExtra("group", "");
+//                startActivity(intent3);
+                    break;
+                case R.id.user_rel_settingCenter:
+                    Intent intent4 = new Intent(activity, UserSettingCenterActivity.class);
+                    intent4.putExtra("oldPhone", phone);
+                    startActivityForResult(intent4, 4);
+                    break;
+            }
         }
     }
 
@@ -149,11 +156,7 @@ public class MemberMyFragment extends Fragment implements View.OnClickListener{
             }
             if(resultCode==3){
                 //更改头像
-//                portrait=R.drawable.defaultportrait;
-//                Glide.with(rootView.getContext()).load(portrait).into(imPortrait);
-
-                int portrait1=R.drawable.defaultportrait;
-                Glide.with(rootView.getContext()).load(portrait1).into(imPortrait);
+                Glide.with(rootView.getContext()).load(getResourcesUri(R.drawable.defaultportrait)).into(imPortrait);
 
                 //更改昵称
                 nickname="立即登录";
@@ -165,5 +168,22 @@ public class MemberMyFragment extends Fragment implements View.OnClickListener{
             }
         }
 
+        if (requestCode == 5) {//重新登录
+            if (resultCode == 1) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        }
+
+    }
+
+    private Uri getResourcesUri(@DrawableRes int id) {
+        Resources resources = getResources();
+        Uri drawableUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" +
+                resources.getResourcePackageName(id) + "/" +
+                resources.getResourceTypeName(id) + "/" +
+                resources.getResourceEntryName(id));
+        return drawableUri;
     }
 }

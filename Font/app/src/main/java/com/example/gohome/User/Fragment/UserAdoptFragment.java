@@ -124,7 +124,7 @@ public class UserAdoptFragment extends Fragment {
                     new Thread(()->{
                         CUR_PAGE_NUM = 1;
                         Request request = new Request.Builder()
-                                .url(getResources().getString(R.string.serverPath) +
+                                .url(getResources().getString(R.string.serverBasePath) +
                                         getResources().getString(R.string.getAdoptMessage)
                                         + "/?pageNum="+ CUR_PAGE_NUM +"&pageSize="+ PAGE_SIZE +"&state=0")
                                 .get()
@@ -186,7 +186,7 @@ public class UserAdoptFragment extends Fragment {
                     new Thread(()->{
                         CUR_PAGE_NUM++;
                         Request request = new Request.Builder()
-                                .url(getResources().getString(R.string.serverPath) +
+                                .url(getResources().getString(R.string.serverBasePath) +
                                         getResources().getString(R.string.getAdoptMessage)
                                         + "/?pageNum="+ CUR_PAGE_NUM +"&pageSize=" + PAGE_SIZE + "&state=0")
                                 .get()
@@ -251,7 +251,7 @@ public class UserAdoptFragment extends Fragment {
 
         new Thread(()->{
            Request request = new Request.Builder()
-                   .url(getResources().getString(R.string.serverPath) +
+                   .url(getResources().getString(R.string.serverBasePath) +
                            getResources().getString(R.string.getAdoptMessage)
                            + "/?pageNum=1&pageSize=" + PAGE_SIZE + "&state=0")
                    .get()

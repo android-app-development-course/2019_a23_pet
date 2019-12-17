@@ -25,6 +25,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.example.gohome.MainActivity;
 import com.example.gohome.R;
 import com.example.gohome.User.Activity.UserAddGroupActivity;
 import com.example.gohome.User.Activity.UserAdoptProActivity;
@@ -48,11 +49,11 @@ public class UserMineFragment extends Fragment implements View.OnClickListener {
     private Uri portrait;
 
     private TextView tvNickname;
-    private String nickname = "";
+    private String nickname = "立即登录";
 
     private TextView tvPhone;
-    private StringBuffer tmpphone = new StringBuffer("15626431234");
-    private String phone = tmpphone.substring(0, 7) + "****";
+    private StringBuffer tmpphone;
+//    private String phone;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
@@ -79,27 +80,38 @@ public class UserMineFragment extends Fragment implements View.OnClickListener {
         rootView.findViewById(R.id.user_rel_addGroup).setOnClickListener(this);
         rootView.findViewById(R.id.user_rel_settingCenter).setOnClickListener(this);
 
+        imPortrait = rootView.findViewById(R.id.user_iv_portrait);
+        tvNickname = rootView.findViewById(R.id.user_tv_nickname);
+        tvNickname.setOnClickListener(this);
+        tvPhone = rootView.findViewById(R.id.user_tv_phone);
         //初始化头像
         SharedPreferences sharedPreferences = activity.getApplicationContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-        imPortrait = rootView.findViewById(R.id.user_iv_portrait);
-        portrait = Uri.parse(sharedPreferences.getString("protrait", String.valueOf(R.drawable.timg)));
+        if(sharedPreferences.getInt("userType", -1)!=-1) {
+
+            portrait = Uri.parse(sharedPreferences.getString("protrait", null));
 //        portrait = Uri.parse("https://tse1-mm.cn.bing.net/th/id/OIP.kbhcK_jmmGTIrDmD_5ZaKwHaHa?w=207&h=203&c=7&o=5&pid=1.7");
-        Glide.with(rootView.getContext()).load(portrait).into(imPortrait);
+            Glide.with(rootView.getContext()).load(portrait).into(imPortrait);
+
+        }else{
+            portrait = getResourcesUri(R.drawable.defaultportrait);
+            Glide.with(rootView.getContext()).load(getResourcesUri(R.drawable.defaultportrait)).into(imPortrait);
+
+        }
 
         //初始化昵称
-        nickname = sharedPreferences.getString("userName", "加载中...");
-        tvNickname = rootView.findViewById(R.id.user_tv_nickname);
-        tvNickname.setText(nickname);
-        tvNickname.setOnClickListener(this);
+        nickname = sharedPreferences.getString("userName", "立即登录");
 
         //初始化手机号
-        tvPhone = rootView.findViewById(R.id.user_tv_phone);
-        tvPhone.setText(phone);
+        tmpphone = new StringBuffer(sharedPreferences.getString("telephone", "未设置"));
+//        phone = tmpphone.substring(0, 7) + "****";
+        tvNickname.setText(nickname);
+        tvPhone.setText(tmpphone);
     }
 
     @Override
     public void onClick(View v) {
-        if (((UserHomeActivity) getActivity()).isLogin == true)
+        SharedPreferences sharedPreferences = activity.getApplicationContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        if (sharedPreferences.getInt("userType", -1)!=-1) {
             switch (v.getId()) {
                 case R.id.user_rel_personalInfo:
                     Intent intent = new Intent(activity, UserPersonalInforActivity.class);
@@ -120,10 +132,11 @@ public class UserMineFragment extends Fragment implements View.OnClickListener {
                     break;
                 case R.id.user_rel_settingCenter:
                     Intent intent4 = new Intent(activity, UserSettingCenterActivity.class);
-                    intent4.putExtra("oldPhone", phone);
+                    intent4.putExtra("oldPhone", tmpphone.toString());
                     startActivityForResult(intent4, 4);
                     break;
             }
+        }
         else
             switch (v.getId()) {
                 case R.id.user_tv_nickname:
@@ -174,11 +187,11 @@ public class UserMineFragment extends Fragment implements View.OnClickListener {
 
         if (requestCode == 4) {
             if (resultCode == 1) {
-                phone = data.getStringExtra("newPhone");
-                tvPhone.setText(phone);
+                tmpphone = new StringBuffer(data.getStringExtra("newPhone"));
+                tvPhone.setText(tmpphone.toString());
             }
             if (resultCode == 3) {
-                ((UserHomeActivity) getActivity()).isLogin = false;
+//                ((UserHomeActivity) getActivity()).isLogin = false;
                 //更改头像
 //                portrait = getResourcesUri(R.drawable.defaultportrait);
                 Glide.with(rootView.getContext()).load(getResourcesUri(R.drawable.defaultportrait)).into(imPortrait);
@@ -195,18 +208,9 @@ public class UserMineFragment extends Fragment implements View.OnClickListener {
 
         if (requestCode == 5) {
             if (resultCode == 1) {
-                ((UserHomeActivity) getActivity()).isLogin = true;
-                //更改头像
-//                portrait = getResourcesUri(R.drawable.timg);
-                Glide.with(rootView.getContext()).load(portrait).into(imPortrait);
-
-                //更改昵称
-//                nickname = "张咩阿";
-                tvNickname.setText(nickname);
-
-                //更改手机号
-//                phone = tmpphone.substring(0, 7) + "****";
-                tvPhone.setText(phone);
+                Intent intent = new Intent(activity.getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                activity.finish();
             }
         }
     }

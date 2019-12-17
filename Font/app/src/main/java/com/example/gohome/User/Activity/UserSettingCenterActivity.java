@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.gohome.MainActivity;
 import com.example.gohome.R;
 
 public class UserSettingCenterActivity extends AppCompatActivity implements View.OnClickListener {
@@ -77,8 +78,8 @@ public class UserSettingCenterActivity extends AppCompatActivity implements View
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.clear();
                 editor.commit();
-                Intent backIntent = new Intent();
-                setResult(3, backIntent);
+                Intent backIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(backIntent);
                 this.finish();
                 break;
         }

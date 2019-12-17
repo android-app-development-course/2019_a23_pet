@@ -186,6 +186,7 @@ public class LoginActivity extends AppCompatActivity {
         UserMessage userMessage = loggedInUser.getUserMessage();
         MemberMessage memberMessage = loggedInUser.getMemberMessage();
         AreaOrganizer areaOrganizer = loggedInUser.getAreaOrganizer();
+        editor.putInt("userType", loggedInUser.getUserType());
         switch (loggedInUser.getUserType()){
             case LoggedInUser.USERTYPE_MEMBER:
                 editor.putInt("memberId", memberMessage.getMessageId());

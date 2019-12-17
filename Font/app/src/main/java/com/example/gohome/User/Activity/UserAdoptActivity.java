@@ -130,7 +130,7 @@ public class UserAdoptActivity extends AppCompatActivity {
                 RequestBody requestBody = FormBody.create(MediaType.parse("application/json;charset=utf-8"),json);
 
                 Request request = new Request.Builder()
-                        .url(getResources().getString(R.string.serverPath) +
+                        .url(getResources().getString(R.string.serverBasePath) +
                                 getResources().getString(R.string.insertAdoptApplication))
                         .post(requestBody)
                         .build();

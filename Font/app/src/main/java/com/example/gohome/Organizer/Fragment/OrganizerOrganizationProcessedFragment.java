@@ -46,7 +46,9 @@ public class OrganizerOrganizationProcessedFragment extends Fragment {
 
     private void init(){
 
-        //初始化模拟数据
+        joinApplimentList = new ArrayList<>();
+
+        //初始化数据
         initJoinAppliment();
 
         //管理器
@@ -138,7 +140,6 @@ public class OrganizerOrganizationProcessedFragment extends Fragment {
     }
 
     private void initJoinAppliment(){
-        joinApplimentList = new ArrayList<>();
         joinApplimentList.add(new JoinAppliment(Integer.valueOf(1), new Date(), "小小", "13445456576", "广州市天河区", "blablabla", "xiaoxiao", R.drawable.cat, new Date()));
         joinApplimentList.add(new JoinAppliment(Integer.valueOf(1), new Date(), "大大","13124545434","星河楼", "blablabla", "dada", R.drawable.dog, new Date()));
         joinApplimentList.add(new JoinAppliment(Integer.valueOf(2), new Date(), "种种","13456565444","西一宿舍", "blablabla", "zhzh", R.drawable.dog1, new Date()));

@@ -1,6 +1,8 @@
 package com.example.gohome.User.Activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -46,7 +48,8 @@ public class UserAdoptActivity extends AppCompatActivity {
     private FJEditTextCount et_adoptDesc;
     private CircularProgressButton btn_submit;
 
-    private int adoptId;
+    private int adoptId, userId;
+    private String phone, address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,10 +80,17 @@ public class UserAdoptActivity extends AppCompatActivity {
         // 获取传过来的领养信息id
         Intent intent = getIntent();
         adoptId = intent.getIntExtra("adoptId", -1);
+        userId = intent.getIntExtra("userId", -1);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        phone = sharedPreferences.getString("telephone", "");
+        address = sharedPreferences.getString("address", "");
 
         et_adoptUserName = findViewById(R.id.et_adoptUserName);
         et_adoptUserPhone = findViewById(R.id.et_adoptUserPhone);
+        et_adoptUserPhone.setText(phone);
         et_adoptUserAddress = findViewById(R.id.et_adoptUserAddress);
+        et_adoptUserAddress.setText(address);
         et_adoptUserJob = findViewById(R.id.et_adoptUserJob);
         et_adoptDesc = findViewById(R.id.et_adoptDesc);
         btn_submit = findViewById(R.id.btn_adoptSubmit);
@@ -92,8 +102,8 @@ public class UserAdoptActivity extends AppCompatActivity {
             btn_submit.startAnimation();
 
             String name = et_adoptUserName.getText().toString();
-            String phone = et_adoptUserPhone.getText().toString();
-            String address = et_adoptUserAddress.getText().toString();
+            phone = et_adoptUserPhone.getText().toString();
+            address = et_adoptUserAddress.getText().toString();
             String job = et_adoptUserJob.getText().toString();
             String desc = et_adoptDesc.getText();
 
@@ -125,7 +135,7 @@ public class UserAdoptActivity extends AppCompatActivity {
             new Thread(()->
             {
                 Gson gson = new Gson();
-                String json = gson.toJson(new AdoptAppliment(1, 1, name, phone, address, job, desc));
+                String json = gson.toJson(new AdoptAppliment(adoptId, userId, name, phone, address, job, desc));
                 Log.i("表单json: ", json);
                 RequestBody requestBody = FormBody.create(MediaType.parse("application/json;charset=utf-8"),json);
 

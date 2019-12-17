@@ -2,12 +2,14 @@ package com.example.gohome.User.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -122,26 +124,33 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter{
         mholder.area2.setText(list.get(pos).getAddress());
         Glide.with(context).load(icon1).into(mholder.iv_vacn);
         Glide.with(context).load(icon2).into(mholder.iv_strl);
-        mholder.publisher.setText(list.get(pos).getHandleId());
+//        mholder.publisher.setText(list.get(pos).getHandleId());
         mholder.time.setText(list.get(pos).getCreated());
         Log.i("holder.time.text", list.get(pos).getCreated());
         // 填写领养信息
         mholder.contentRequestBtn.setOnClickListener(view -> {
+            SharedPreferences sharedPreferences = view.getContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+            int userId = sharedPreferences.getInt("userId", -1);
+            if (userId == -1) {
+                Toast.makeText(view.getContext(), "请先登录", Toast.LENGTH_SHORT).show();
+                return;
+            }
             Intent intent = new Intent(view.getContext(), UserAdoptActivity.class);
             intent.putExtra("adoptId", mholder.adoptId);
+            intent.putExtra("userId", userId);
             view.getContext().startActivity(intent);
         });
         // 图片放大
         mholder.petPhoto2.setOnClickListener(view -> {
-            ImageDialog dialog = new ImageDialog(context, list.get(pos).getPhotos());
+            ImageDialog dialog = new ImageDialog(context, mholder.pictures[r]);
             dialog.show();
         });
         // 加入组织
-        mholder.publisher.setOnClickListener(view -> {
-            Intent intent = new Intent(context, UserAddGroupActivity.class);
-            intent.putExtra("group", mholder.publisher.getText());
-            context.startActivity(intent);
-        });
+//        mholder.publisher.setOnClickListener(view -> {
+//            Intent intent = new Intent(context, UserAddGroupActivity.class);
+//            intent.putExtra("group", mholder.publisher.getText());
+//            context.startActivity(intent);
+//        });
         // 展开折叠
         mholder.cell.setOnClickListener(view -> {
             if(mholder.cell.isUnfolded()) {

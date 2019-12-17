@@ -1,6 +1,8 @@
 package com.example.gohome.User.Activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -36,6 +38,8 @@ import fj.edittextcount.lib.FJEditTextCount;
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class UserReportActivity extends AppCompatActivity {
+    Integer userId;
+    String phone, address;
 
     private EditText et_reportUserName;
     private EditText et_reportUserPhone;
@@ -88,9 +92,18 @@ public class UserReportActivity extends AppCompatActivity {
     }
 
     private void init() {
+        Intent intent = getIntent();
+        userId = intent.getIntExtra("userId", -1);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        phone = sharedPreferences.getString("telephone", "");
+        address = sharedPreferences.getString("address", "");
+
         et_reportUserName = findViewById(R.id.et_reportUserName);
         et_reportUserPhone = findViewById(R.id.et_reportUserPhone);
+        et_reportUserPhone.setText(phone);
         et_reportUserAddress = findViewById(R.id.et_reportUserAddress);
+        et_reportUserAddress.setText(address);
         et_reportType = findViewById(R.id.et_reportType);
         et_reportDesc = findViewById(R.id.et_reportDesc);
         RecyclerView recyclerViewImg = findViewById(R.id.rv_reportImg);

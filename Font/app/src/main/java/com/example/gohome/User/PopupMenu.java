@@ -7,7 +7,9 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Build;
@@ -22,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.example.gohome.R;
 import com.example.gohome.User.Activity.UserReportActivity;
@@ -96,7 +99,12 @@ public class PopupMenu extends PopupWindow implements View.OnClickListener {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void onClick(View view) {
-
+        SharedPreferences sharedPreferences = view.getContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        int userId = sharedPreferences.getInt("userId", -1);
+        if (userId == -1) {
+            Toast.makeText(view.getContext(), "请先登录", Toast.LENGTH_SHORT).show();
+            return;
+        }
         switch (view.getId()) {
             case R.id.rel_bg:
             case R.id.lin_bottomNav:
@@ -109,6 +117,7 @@ public class PopupMenu extends PopupWindow implements View.OnClickListener {
 //                bl_report.setFocused(false);
                 close();
                 Intent intent1 = new Intent(mActivity, UserSendActivity.class);
+                intent1.putExtra("userId", userId);
                 mActivity.startActivity(intent1);
                 break;
             case R.id.bl_report:
@@ -116,6 +125,7 @@ public class PopupMenu extends PopupWindow implements View.OnClickListener {
 //                bl_report.setFocused(true);
                 close();
                 Intent intent2 = new Intent(mActivity, UserReportActivity.class);
+                intent2.putExtra("userId", userId);
                 mActivity.startActivity(intent2);
                 break;
         }

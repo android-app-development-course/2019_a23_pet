@@ -85,28 +85,58 @@ public class ProcessRecyclerViewAdapter extends RecyclerView.Adapter<ProcessRecy
         infoViewHolder.petNickname.setText(infoList.get(pos).getPetNickname());
         infoViewHolder.userText.setText(infoList.get(pos).getUserText());
 
+//        switch (processState) {
+//            //提交成功
+//            case 1:
+//                Glide.with(context).load(infoViewHolder.processIV[1]).into(infoViewHolder.ivPro[0]);
+//                infoViewHolder.tvPro[0].setText(infoViewHolder.processTV[0][1]);
+//                break;
+//            //审核成功
+//            case 2:
+//                Glide.with(context).load(infoViewHolder.processIV[1]).into(infoViewHolder.ivPro[0]);
+//                infoViewHolder.tvPro[0].setText(infoViewHolder.processTV[0][1]);
+//                Glide.with(context).load(infoViewHolder.processIV[1]).into(infoViewHolder.ivPro[1]);
+//                infoViewHolder.tvPro[1].setText(infoViewHolder.processTV[1][1]);
+//                break;
+//            //审核失败
+//            case 3:
+//                Glide.with(context).load(infoViewHolder.processIV[1]).into(infoViewHolder.ivPro[0]);
+//                infoViewHolder.tvPro[0].setText(infoViewHolder.processTV[0][1]);
+//                Glide.with(context).load(infoViewHolder.processIV[2]).into(infoViewHolder.ivPro[1]);
+//                infoViewHolder.tvPro[1].setText(infoViewHolder.processTV[1][2]);
+//                break;
+//            //申请成功
+//            case 4:
+//                Glide.with(context).load(infoViewHolder.processIV[1]).into(infoViewHolder.ivPro[0]);
+//                infoViewHolder.tvPro[0].setText(infoViewHolder.processTV[0][1]);
+//                Glide.with(context).load(infoViewHolder.processIV[1]).into(infoViewHolder.ivPro[1]);
+//                infoViewHolder.tvPro[1].setText(infoViewHolder.processTV[1][1]);
+//                Glide.with(context).load(infoViewHolder.processIV[1]).into(infoViewHolder.ivPro[2]);
+//                infoViewHolder.tvPro[2].setText(infoViewHolder.processTV[2][1]);
+//                break;
+//            //申请失败
+//            case 5:
+//                Glide.with(context).load(infoViewHolder.processIV[1]).into(infoViewHolder.ivPro[0]);
+//                infoViewHolder.tvPro[0].setText(infoViewHolder.processTV[0][1]);
+//                Glide.with(context).load(infoViewHolder.processIV[1]).into(infoViewHolder.ivPro[1]);
+//                infoViewHolder.tvPro[1].setText(infoViewHolder.processTV[1][1]);
+//                Glide.with(context).load(infoViewHolder.processIV[2]).into(infoViewHolder.ivPro[2]);
+//                infoViewHolder.tvPro[2].setText(infoViewHolder.processTV[2][2]);
+//                break;
+//        }
+
+        Glide.with(context).load(infoViewHolder.processIV[1]).into(infoViewHolder.ivPro[0]);
+        infoViewHolder.tvPro[0].setText(infoViewHolder.processTV[0][1]);
         switch (processState) {
-            //提交成功
-            case 1:
-                Glide.with(context).load(infoViewHolder.processIV[1]).into(infoViewHolder.ivPro[0]);
-                infoViewHolder.tvPro[0].setText(infoViewHolder.processTV[0][1]);
-                break;
             //审核成功
-            case 2:
+            case 1:
                 Glide.with(context).load(infoViewHolder.processIV[1]).into(infoViewHolder.ivPro[0]);
                 infoViewHolder.tvPro[0].setText(infoViewHolder.processTV[0][1]);
                 Glide.with(context).load(infoViewHolder.processIV[1]).into(infoViewHolder.ivPro[1]);
                 infoViewHolder.tvPro[1].setText(infoViewHolder.processTV[1][1]);
                 break;
-            //审核失败
-            case 3:
-                Glide.with(context).load(infoViewHolder.processIV[1]).into(infoViewHolder.ivPro[0]);
-                infoViewHolder.tvPro[0].setText(infoViewHolder.processTV[0][1]);
-                Glide.with(context).load(infoViewHolder.processIV[2]).into(infoViewHolder.ivPro[1]);
-                infoViewHolder.tvPro[1].setText(infoViewHolder.processTV[1][2]);
-                break;
             //申请成功
-            case 4:
+            case 2:
                 Glide.with(context).load(infoViewHolder.processIV[1]).into(infoViewHolder.ivPro[0]);
                 infoViewHolder.tvPro[0].setText(infoViewHolder.processTV[0][1]);
                 Glide.with(context).load(infoViewHolder.processIV[1]).into(infoViewHolder.ivPro[1]);
@@ -115,7 +145,7 @@ public class ProcessRecyclerViewAdapter extends RecyclerView.Adapter<ProcessRecy
                 infoViewHolder.tvPro[2].setText(infoViewHolder.processTV[2][1]);
                 break;
             //申请失败
-            case 5:
+            case 3:
                 Glide.with(context).load(infoViewHolder.processIV[1]).into(infoViewHolder.ivPro[0]);
                 infoViewHolder.tvPro[0].setText(infoViewHolder.processTV[0][1]);
                 Glide.with(context).load(infoViewHolder.processIV[1]).into(infoViewHolder.ivPro[1]);
@@ -123,7 +153,7 @@ public class ProcessRecyclerViewAdapter extends RecyclerView.Adapter<ProcessRecy
                 Glide.with(context).load(infoViewHolder.processIV[2]).into(infoViewHolder.ivPro[2]);
                 infoViewHolder.tvPro[2].setText(infoViewHolder.processTV[2][2]);
                 break;
-        }
+            }
 
         infoViewHolder.cardView.setOnClickListener(cardViewOnClickListener);
         infoViewHolder.petPortrait.setOnClickListener(view -> {

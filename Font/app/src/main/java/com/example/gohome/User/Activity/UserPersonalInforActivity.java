@@ -85,13 +85,14 @@ public class UserPersonalInforActivity extends AppCompatActivity implements View
 //        tvNickname = findViewById(R.id.user_tv_nickname2);
 //        tvNickname.setText(nickname);
 
-        Intent receivedIntent=getIntent();
+        Intent receivedIntent = getIntent();
 
-        portrait=Uri.parse(receivedIntent.getStringExtra("oldPortrait"));
-        imPortrait=findViewById(R.id.user_iv_portrait2);
+        portrait = Uri.parse(receivedIntent.getStringExtra("oldPortrait"));
+        imPortrait = findViewById(R.id.user_iv_portrait2);
+        imPortrait.setOnClickListener(this);
         Glide.with(this).load(portrait).into(imPortrait);
 
-        nickname=receivedIntent.getStringExtra("oldNickname");
+        nickname = receivedIntent.getStringExtra("oldNickname");
         tvNickname = findViewById(R.id.user_tv_nickname2);
         tvNickname.setText(nickname);
     }
@@ -156,6 +157,12 @@ public class UserPersonalInforActivity extends AppCompatActivity implements View
                     LocalMedia media = selectList.get(0);
                     portrait = Uri.fromFile(new File(media.getPath()));
                     Glide.with(this).load(portrait).into(imPortrait);
+
+                    SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.remove("protrait");
+                    editor.putString("protrait",portrait.toString());
+                    editor.commit();
 
                     backIntent.putExtra("newPortrait", portrait.toString());
                     setResult(1, backIntent);

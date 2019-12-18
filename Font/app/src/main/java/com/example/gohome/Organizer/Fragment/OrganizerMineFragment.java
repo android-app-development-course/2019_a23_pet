@@ -116,9 +116,7 @@ public class OrganizerMineFragment extends Fragment implements View.OnClickListe
         } else {
             switch (v.getId()) {
                 case R.id.user_tv_nickname:
-                    Intent intent = new Intent(activity, LoginActivity.class);
-                    startActivity(intent);
-                    activity.finish();
+                    startActivityForResult(new Intent(activity, LoginActivity.class), 5);
                     break;
                 default:
                     NiftyDialogBuilder dialogBuilderSelect = NiftyDialogBuilder.getInstance(activity);

@@ -179,7 +179,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/user_iv_add"
-                android:text="领养信息发布记录"
+                android:text="发布记录"
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 android:typeface="serif" />

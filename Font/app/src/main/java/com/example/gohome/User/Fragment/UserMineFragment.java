@@ -96,6 +96,7 @@ public class UserMineFragment extends Fragment implements View.OnClickListener {
         SharedPreferences sharedPreferences = activity.getApplicationContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         if (sharedPreferences.getInt("userType", -1) != -1) {
             switch (v.getId()) {
+                case R.id.user_tv_nickname:
                 case R.id.user_rel_personalInfo:
                     Intent intent = new Intent(activity, UserPersonalInforActivity.class);
                     intent.putExtra("oldPortrait", portrait.toString());

@@ -23,6 +23,7 @@
     select  *
     from adopt_message
     where state = #{state}
+    order by adopt_id desc
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

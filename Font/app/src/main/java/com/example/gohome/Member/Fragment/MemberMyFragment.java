@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
@@ -26,6 +27,8 @@ import com.example.gohome.User.Activity.UserAdoptProActivity;
 import com.example.gohome.User.Activity.UserPersonalInforActivity;
 import com.example.gohome.User.Activity.UserSendProActivity;
 import com.example.gohome.User.Activity.UserSettingCenterActivity;
+import com.example.gohome.ui.login.LoginActivity;
+import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 
 import java.util.Objects;
 
@@ -69,6 +72,7 @@ public class MemberMyFragment extends Fragment implements View.OnClickListener{
         rootView.findViewById(R.id.user_rel_personalInfo).setOnClickListener(this);
         rootView.findViewById(R.id.user_rel_adoptPro).setOnClickListener(this);
         rootView.findViewById(R.id.user_rel_sendPro).setOnClickListener(this);
+        rootView.findViewById(R.id.user_rel_addGroup).setOnClickListener(this);
         rootView.findViewById(R.id.user_rel_settingCenter).setOnClickListener(this);
 //
 //        //初始化头像
@@ -108,25 +112,25 @@ public class MemberMyFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         SharedPreferences sharedPreferences = activity.getApplicationContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-        if (sharedPreferences.getInt("userType", -1)!=-1) {
+        if (sharedPreferences.getInt("userType", -1) != -1) {
             switch (v.getId()) {
-                case R.id.user_iv_portrait:
+                case R.id.user_tv_nickname:
                 case R.id.user_rel_personalInfo:
                     Intent intent = new Intent(activity, UserPersonalInforActivity.class);
-                    intent.putExtra("oldPortrait", portrait);
+                    intent.putExtra("oldPortrait", portrait.toString());
                     intent.putExtra("oldNickname", nickname);
                     startActivityForResult(intent, 0);
                     break;
                 case R.id.user_rel_adoptPro:
-//                startActivity(new Intent(activity, UserAdoptProActivity.class));
+                    startActivity(new Intent(activity, UserAdoptProActivity.class));
                     break;
                 case R.id.user_rel_sendPro:
-//                startActivity(new Intent(activity, UserSendProActivity.class));
+                    startActivity(new Intent(activity, UserSendProActivity.class));
                     break;
                 case R.id.user_rel_addGroup:
-//                Intent intent3 = new Intent(activity, UserAddGroupActivity.class);
-//                intent3.putExtra("group", "");
-//                startActivity(intent3);
+//                    Intent intent3 = new Intent(activity, UserAddGroupActivity.class);
+//                    intent3.putExtra("group", "");
+//                    startActivity(intent3);
                     break;
                 case R.id.user_rel_settingCenter:
                     Intent intent4 = new Intent(activity, UserSettingCenterActivity.class);
@@ -134,48 +138,80 @@ public class MemberMyFragment extends Fragment implements View.OnClickListener{
                     startActivityForResult(intent4, 4);
                     break;
             }
-        }
+        } else
+            switch (v.getId()) {
+                case R.id.user_tv_nickname:
+                    startActivityForResult(new Intent(activity, LoginActivity.class), 5);
+                    break;
+                default:
+                    NiftyDialogBuilder dialogBuilderSelect = NiftyDialogBuilder.getInstance(activity);
+                    dialogBuilderSelect
+                            .withTitle("请登录")
+                            .withMessage("立即登录")
+                            .withDialogColor(getResources().getColor(R.color.orange))                               //def  | withDialogColor(int resid)
+                            .withButton1Text("确定")                                      //def gone
+                            .withButton2Text("取消")                                  //def gone
+                            .setButton1Click(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialogBuilderSelect.dismiss();
+                                    startActivityForResult(new Intent(activity, LoginActivity.class), 5);
+                                }
+                            })
+                            .setButton2Click(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Toast.makeText(activity, "取消登录", Toast.LENGTH_SHORT).show();
+                                    dialogBuilderSelect.dismiss();
+                                }
+                            })
+                            .show();
+            }
     }
 
     @Override
-    public void onActivityResult(int requestCode,int resultCode,Intent data){
-        super.onActivityResult(requestCode,resultCode,data);
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode==0){
-            if(resultCode==1){
-//                portrait=data.getIntExtra("newPortrait",portrait);
-//                Glide.with(rootView.getContext()).load(portrait).into(imPortrait);
-            }
-            if(resultCode==2){
-                nickname=data.getStringExtra("newNickname");
-                tvNickname.setText(nickname);
+        if (requestCode == 0) {
+            if (resultCode == 1) {
+                if (data.getStringExtra("newNickname") != null) {
+                    nickname = data.getStringExtra("newNickname");
+                    tvNickname.setText(nickname);
+                }
+                if (data.getStringExtra("newPortrait") != null) {
+                    portrait = Uri.parse(data.getStringExtra("newPortrait"));
+                    Glide.with(rootView.getContext()).load(portrait).into(imPortrait);
+                }
             }
         }
 
-        if(requestCode==4){
-            if(resultCode==1){
-                phone=data.getStringExtra("newPhone");
+        if (requestCode == 4) {
+            if (resultCode == 1) {
+                phone = data.getStringExtra("newPhone");
                 tvPhone.setText(phone);
             }
-            if(resultCode==3){
+            if (resultCode == 3) {
+//                ((UserHomeActivity) getActivity()).isLogin = false;
                 //更改头像
+                portrait = getResourcesUri(R.drawable.defaultportrait);
                 Glide.with(rootView.getContext()).load(getResourcesUri(R.drawable.defaultportrait)).into(imPortrait);
 
                 //更改昵称
-                nickname="立即登录";
-                tvNickname.setText(nickname);
+                nickname = "立即登录";
+                tvNickname.setText("立即登录");
 
                 //更改手机号
-                phone="请登录";
-                tvPhone.setText(phone);
+                phone = "请登录";
+                tvPhone.setText("请登录");
             }
         }
 
-        if (requestCode == 5) {//重新登录
+        if (requestCode == 5) {
             if (resultCode == 1) {
-                Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(activity.getApplicationContext(), MainActivity.class);
                 startActivity(intent);
-                getActivity().finish();
+                activity.finish();
             }
         }
     }

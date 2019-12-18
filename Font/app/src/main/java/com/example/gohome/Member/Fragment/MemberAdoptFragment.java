@@ -444,5 +444,4 @@ public class MemberAdoptFragment extends Fragment {
 
         initFilterListener();
     }
-
 }

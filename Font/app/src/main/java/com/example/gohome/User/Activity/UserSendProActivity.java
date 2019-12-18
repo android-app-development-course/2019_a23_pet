@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -45,6 +47,9 @@ public class UserSendProActivity extends AppCompatActivity {
     private ProcessRecyclerViewAdapter adapter;
     private List<ProcessInfo> infoList;
 
+    SharedPreferences sharedPreferences;
+    Integer userId;
+
 //    private int[] processState1 = {1, 1, 0};
 //    private int[] processState2 = {1, 1, 1};
 //    private int[] processState3 = {1, 0, 0};
@@ -71,6 +76,9 @@ public class UserSendProActivity extends AppCompatActivity {
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        userId = sharedPreferences.getInt("userId", -1);
 
         //initPetInfo();
         getData();
@@ -116,7 +124,7 @@ public class UserSendProActivity extends AppCompatActivity {
             Request request = new Request.Builder()
                     .url(getResources().getString(R.string.serverBasePath) +
                             getResources().getString(R.string.queryAdoptApplimentByUserId2)
-                            + "/?pageNum=1&pageSize=" + PAGE_SIZE + "&userId=5")
+                            + "/?pageNum=1&pageSize=" + PAGE_SIZE + "&userId=" + userId)
                     .get()
                     .build();
             Message msg = new Message();
@@ -200,7 +208,7 @@ public class UserSendProActivity extends AppCompatActivity {
                         Request request = new Request.Builder()
                                 .url(getResources().getString(R.string.serverBasePath) +
                                         getResources().getString(R.string.queryAdoptApplimentByUserId2)
-                                        + "/?pageNum=" + CUR_PAGE_NUM + "&pageSize=" + PAGE_SIZE + "&userId=5")
+                                        + "/?pageNum=" + CUR_PAGE_NUM + "&pageSize=" + PAGE_SIZE + "&userId=" + userId)
                                 .get()
                                 .build();
                         Message msg = new Message();
@@ -262,7 +270,7 @@ public class UserSendProActivity extends AppCompatActivity {
                         Request request = new Request.Builder()
                                 .url(getResources().getString(R.string.serverBasePath) +
                                         getResources().getString(R.string.queryAdoptApplimentByUserId2)
-                                        + "/?pageNum=" + CUR_PAGE_NUM + "&pageSize=" + PAGE_SIZE + "&userId=5")
+                                        + "/?pageNum=" + CUR_PAGE_NUM + "&pageSize=" + PAGE_SIZE + "&userId=" + userId)
                                 .get()
                                 .build();
                         Message msg = new Message();

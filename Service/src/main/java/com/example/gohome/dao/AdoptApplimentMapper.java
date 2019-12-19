@@ -1,6 +1,7 @@
 package com.example.gohome.dao;
 
 import com.example.gohome.entity.AdoptAppliment;
+import com.example.gohome.entity.ProcessInfo;
 import com.github.pagehelper.Page;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,7 @@ public interface AdoptApplimentMapper {
     Page<AdoptAppliment> queryAdoptApplimentByState(Integer state);
     /*根据申请人*/
     Page<AdoptAppliment> queryAdoptApplimentByUserId(Integer userId);
+    Page<ProcessInfo> queryAdoptApplimentByUserId2(Integer userId);
     /*根据领养信息ID*/
     Page<AdoptAppliment> queryAdoptApplimentByAdoptId(Integer adoptId);
 }

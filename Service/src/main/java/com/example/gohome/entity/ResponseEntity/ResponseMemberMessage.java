@@ -9,11 +9,29 @@ public class ResponseMemberMessage extends MemberMessage {
     private String userName;
     private String portrait;
     private String address;
+    private String telephone;//user
+    private Integer gender;//user
 
     private Integer organizerId;
     private String organizerName;
     private String organizerAddress;
     private Date organizerCreated;
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public Integer getGender() {
+        return gender;
+    }
+
+    public void setGender(Integer gender) {
+        this.gender = gender;
+    }
 
     public String getUserName() {
         return userName;

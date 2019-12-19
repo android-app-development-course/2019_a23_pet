@@ -17,6 +17,10 @@ public class OrganizerMain extends AppCompatActivity {
     private OrganizerViewPager viewPager;
     public Boolean isLogin=true;
 
+    public OrganizerViewPager getViewPager() {
+        return viewPager;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

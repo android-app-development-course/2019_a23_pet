@@ -1,12 +1,14 @@
 package com.example.gohome.Organizer.Adapter;
 
 import android.content.Context;
+import android.database.DataSetObserver;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -20,6 +22,14 @@ public class MemberListViewAdapter extends BaseAdapter {
 
     private List<Member> memberList;
     private LayoutInflater inflater;
+
+    public List<Member> getMemberList() {
+        return memberList;
+    }
+
+    public void setMemberList(List<Member> memberList) {
+        this.memberList = memberList;
+    }
 
     private class ViewHolder{
         private ImageView iv_protrait;
@@ -73,9 +83,9 @@ public class MemberListViewAdapter extends BaseAdapter {
 
         //赋值
         Member member = memberList.get(i);
-        String word = member.getHeaderWord();
+        String word = member.getPinyin();
         viewHolder.tv_userName.setText(member.getUserName());
-        Glide.with(view.getContext()).load(member.getPhotoId()).override(60, 60).centerCrop().into(viewHolder.iv_protrait);
+        Glide.with(view.getContext()).load(member.getPortrait()).override(60, 60).centerCrop().into(viewHolder.iv_protrait);
         viewHolder.tv_address.setText(member.getAddress());//            viewHolder.tv_pinyin = member.getPinyin();
         viewHolder.tv_headerWord.setText(word);
 
@@ -108,5 +118,6 @@ public class MemberListViewAdapter extends BaseAdapter {
         }
         return -1;
     }
+
 
 }

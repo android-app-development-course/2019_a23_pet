@@ -6,12 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,19 +21,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.example.gohome.MainActivity;
 import com.example.gohome.R;
 import com.example.gohome.User.Activity.UserAddGroupActivity;
 import com.example.gohome.User.Activity.UserAdoptProActivity;
-import com.example.gohome.User.Activity.UserHomeActivity;
-import com.example.gohome.User.Activity.UserModifyNicknameActivity;
 import com.example.gohome.User.Activity.UserPersonalInforActivity;
 import com.example.gohome.User.Activity.UserSendProActivity;
 import com.example.gohome.User.Activity.UserSettingCenterActivity;
-import com.example.gohome.User.ImageDialog;
 import com.example.gohome.ui.login.LoginActivity;
 import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
-
-import java.io.File;
 
 public class UserMineFragment extends Fragment implements View.OnClickListener {
 
@@ -48,11 +40,10 @@ public class UserMineFragment extends Fragment implements View.OnClickListener {
     private Uri portrait;
 
     private TextView tvNickname;
-    private String nickname = "张咩阿";
+    private String nickname = "立即登录";
 
     private TextView tvPhone;
-    private StringBuffer tmpphone = new StringBuffer("15626431234");
-    private String phone = tmpphone.substring(0, 7) + "****";
+    private String phone = "未登录";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
@@ -79,28 +70,33 @@ public class UserMineFragment extends Fragment implements View.OnClickListener {
         rootView.findViewById(R.id.user_rel_addGroup).setOnClickListener(this);
         rootView.findViewById(R.id.user_rel_settingCenter).setOnClickListener(this);
 
-        //初始化头像
-        SharedPreferences sharedPreferences = activity.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = activity.getApplicationContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+
+        //初始化头像、昵称、手机号
         imPortrait = rootView.findViewById(R.id.user_iv_portrait);
-//        portrait = getResourcesUri(R.drawable.timg);
-        portrait = Uri.parse(sharedPreferences.getString("protrait", String.valueOf(R.drawable.mine_selected)));
+        portrait = getResourcesUri(R.drawable.defaultportrait);
+        tvNickname = rootView.findViewById(R.id.user_tv_nickname);
+        tvPhone = rootView.findViewById(R.id.user_tv_phone);
+
+        if (sharedPreferences.getInt("userType", -1) != -1) {
+            portrait = Uri.parse(sharedPreferences.getString("protrait", null));
+//          portrait = Uri.parse("https://tse1-mm.cn.bing.net/th/id/OIP.kbhcK_jmmGTIrDmD_5ZaKwHaHa?w=207&h=203&c=7&o=5&pid=1.7");
+            nickname = sharedPreferences.getString("userName", "加载中...");
+            phone = sharedPreferences.getString("telephone", "加载中...");
+        }
 
         Glide.with(rootView.getContext()).load(portrait).into(imPortrait);
-
-        //初始化昵称
-        tvNickname = rootView.findViewById(R.id.user_tv_nickname);
         tvNickname.setText(nickname);
         tvNickname.setOnClickListener(this);
-
-        //初始化手机号
-        tvPhone = rootView.findViewById(R.id.user_tv_phone);
         tvPhone.setText(phone);
     }
 
     @Override
     public void onClick(View v) {
-        if (((UserHomeActivity) getActivity()).isLogin == true)
+        SharedPreferences sharedPreferences = activity.getApplicationContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        if (sharedPreferences.getInt("userType", -1) != -1) {
             switch (v.getId()) {
+                case R.id.user_tv_nickname:
                 case R.id.user_rel_personalInfo:
                     Intent intent = new Intent(activity, UserPersonalInforActivity.class);
                     intent.putExtra("oldPortrait", portrait.toString());
@@ -124,7 +120,7 @@ public class UserMineFragment extends Fragment implements View.OnClickListener {
                     startActivityForResult(intent4, 4);
                     break;
             }
-        else
+        } else
             switch (v.getId()) {
                 case R.id.user_tv_nickname:
                     startActivityForResult(new Intent(activity, LoginActivity.class), 5);
@@ -178,35 +174,26 @@ public class UserMineFragment extends Fragment implements View.OnClickListener {
                 tvPhone.setText(phone);
             }
             if (resultCode == 3) {
-                ((UserHomeActivity) getActivity()).isLogin = false;
+//                ((UserHomeActivity) getActivity()).isLogin = false;
                 //更改头像
-//                portrait = getResourcesUri(R.drawable.defaultportrait);
+                portrait = getResourcesUri(R.drawable.defaultportrait);
                 Glide.with(rootView.getContext()).load(getResourcesUri(R.drawable.defaultportrait)).into(imPortrait);
 
                 //更改昵称
-//                nickname = "立即登录";
+                nickname = "立即登录";
                 tvNickname.setText("立即登录");
 
                 //更改手机号
-//                phone = "请登录";
+                phone = "请登录";
                 tvPhone.setText("请登录");
             }
         }
 
         if (requestCode == 5) {
             if (resultCode == 1) {
-                ((UserHomeActivity) getActivity()).isLogin = true;
-                //更改头像
-//                portrait = getResourcesUri(R.drawable.timg);
-                Glide.with(rootView.getContext()).load(portrait).into(imPortrait);
-
-                //更改昵称
-//                nickname = "张咩阿";
-                tvNickname.setText(nickname);
-
-                //更改手机号
-//                phone = tmpphone.substring(0, 7) + "****";
-                tvPhone.setText(phone);
+                Intent intent = new Intent(activity.getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                activity.finish();
             }
         }
     }

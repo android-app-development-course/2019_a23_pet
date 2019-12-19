@@ -15,6 +15,8 @@
     <result column="user_name" property="userName" jdbcType="VARCHAR"/>
     <result column="portrait" property="portrait" jdbcType="VARCHAR"/>
     <result column="address" property="address" jdbcType="VARCHAR"/>
+    <result column="telephone" property="telephone" jdbcType="VARCHAR"/>
+    <result column="gender" property="gender" jdbcType="INTEGER"/>
     <result column="organizer_id" property="organizerId" jdbcType="INTEGER"/>
     <result column="organizer_name" property="organizerName" jdbcType="VARCHAR"/>
     <result column="organizer_address" property="organizerAddress" jdbcType="VARCHAR"/>
@@ -31,9 +33,9 @@
   </select>
   <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
-    <include refid="Base_Column_List" />
+    *
     from member_message
-    where message_id = #{userId,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
   </select>
   <select id="queryMemberMessageByAreaId" resultMap="ResultMap" parameterType="java.util.List" >
     SELECT
@@ -44,6 +46,8 @@
     user_message.user_name AS user_name,
     user_message.protrait AS portrait,
     user_message.address AS address,
+    user_message.telephone AS telephone,
+    user_message.gender AS gender,
     area_organizer.user_id AS organizer_id,
     area_organizer.organizer_name AS organizer_name,
     area_organizer.address AS organizer_address,

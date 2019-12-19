@@ -27,7 +27,7 @@
         android:layout_marginTop="@dimen/margin_xs"
         android:layout_below="@id/text_view_member_headerword"
         android:layout_toRightOf="@id/image_view_protrait"
-        android:textSize="@dimen/font_size_l"
+        android:textSize="@dimen/font_size_s"
         android:ellipsize="end"
         android:singleLine="true"
         />
@@ -38,7 +38,7 @@
         android:layout_margin="@dimen/margin_xs"
         android:layout_toRightOf="@id/image_view_protrait"
         android:layout_below="@id/text_view_username"
-        android:textSize="@dimen/font_size_s"
+        android:textSize="@dimen/font_size_xs"
         android:ellipsize="end"
         android:singleLine="true"
         />

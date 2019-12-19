@@ -1,21 +1,9 @@
 package com.example.gohome.ui.login;
 
-import android.app.Activity;
-
-import androidx.appcompat.app.ActionBar;
-import androidx.core.content.ContextCompat;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -30,6 +18,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.example.gohome.Entity.AreaOrganizer;
 import com.example.gohome.Entity.MemberMessage;
 import com.example.gohome.Entity.UserMessage;
@@ -39,8 +35,6 @@ import com.example.gohome.R;
 import com.example.gohome.Register.RegisterActivity;
 import com.example.gohome.User.Activity.UserHomeActivity;
 import com.example.gohome.data.model.LoggedInUser;
-import com.example.gohome.ui.login.LoginViewModel;
-import com.example.gohome.ui.login.LoginViewModelFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -56,9 +50,9 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
-
         usernameEditText = findViewById(R.id.username);
         passwordEditText = findViewById(R.id.password);
         loginButton = findViewById(R.id.login);
@@ -108,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                 setResult(1);
 
                 //Complete and destroy login activity once successful
-                finish();
+//                finish();
             }
         });
 
@@ -150,6 +144,7 @@ public class LoginActivity extends AppCompatActivity {
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 v.setEnabled(false);
                 registerTextView.setEnabled(false);
+                Log.i("activity login", usernameEditText.getText().toString());
                 loginViewModel.login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString(), LoginActivity.this);
             }
@@ -180,11 +175,12 @@ public class LoginActivity extends AppCompatActivity {
 //        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
         // TODO : initiate successful logged in experience
         LoggedInUser loggedInUser =  loginViewModel.getLoginResult().getValue().getSuccess().getLoggedInUser();
-        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         UserMessage userMessage = loggedInUser.getUserMessage();
         MemberMessage memberMessage = loggedInUser.getMemberMessage();
         AreaOrganizer areaOrganizer = loggedInUser.getAreaOrganizer();
+        editor.putInt("userType", loggedInUser.getUserType());
         switch (loggedInUser.getUserType()){
             case LoggedInUser.USERTYPE_MEMBER:
                 editor.putInt("memberId", memberMessage.getMessageId());
@@ -199,6 +195,7 @@ public class LoginActivity extends AppCompatActivity {
                 editor.putString("userName", userMessage.getUserName());
                 editor.putString("address", userMessage.getAddress());
                 editor.putString("protrait", userMessage.getProtrait());
+                editor.putString("telephone", userMessage.getTelephone());
                 break;
         }
         editor.commit();
@@ -206,16 +203,19 @@ public class LoginActivity extends AppCompatActivity {
         switch (loggedInUser.getUserType()){
             case LoggedInUser.USERTYPE_NORMAL:
                 intent = new Intent(getApplicationContext(), UserHomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();
                 break;
             case LoggedInUser.USERTYPE_MEMBER:
                 intent = new Intent(getApplicationContext(), MemberHomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();
                 break;
             case LoggedInUser.USERTYPE_ORGANIZER:
                 intent = new Intent(getApplicationContext(), OrganizerMain.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();
                 break;
@@ -224,6 +224,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+        registerTextView.setEnabled(true);
+        loginButton.setEnabled(true);
     }
 
     @Override

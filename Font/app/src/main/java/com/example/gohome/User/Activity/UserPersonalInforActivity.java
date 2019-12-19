@@ -1,6 +1,8 @@
 package com.example.gohome.User.Activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -72,12 +74,23 @@ public class UserPersonalInforActivity extends AppCompatActivity implements View
         findViewById(R.id.user_rel_address).setOnClickListener(this);
 
         //初始化头像、昵称
+
+//        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+//        imPortrait = findViewById(R.id.user_iv_portrait2);
+//        portrait = Uri.parse(sharedPreferences.getString("protrait", null));
+////        portrait = Uri.parse("https://tse1-mm.cn.bing.net/th/id/OIP.kbhcK_jmmGTIrDmD_5ZaKwHaHa?w=207&h=203&c=7&o=5&pid=1.7");
+//        Glide.with(this).load(portrait).into(imPortrait);
+//
+//        nickname = sharedPreferences.getString("userName", "加载中...");
+//        tvNickname = findViewById(R.id.user_tv_nickname2);
+//        tvNickname.setText(nickname);
+
         Intent receivedIntent = getIntent();
 
         portrait = Uri.parse(receivedIntent.getStringExtra("oldPortrait"));
         imPortrait = findViewById(R.id.user_iv_portrait2);
-        Glide.with(this).load(portrait).into(imPortrait);
         imPortrait.setOnClickListener(this);
+        Glide.with(this).load(portrait).into(imPortrait);
 
         nickname = receivedIntent.getStringExtra("oldNickname");
         tvNickname = findViewById(R.id.user_tv_nickname2);
@@ -144,6 +157,12 @@ public class UserPersonalInforActivity extends AppCompatActivity implements View
                     LocalMedia media = selectList.get(0);
                     portrait = Uri.fromFile(new File(media.getPath()));
                     Glide.with(this).load(portrait).into(imPortrait);
+
+                    SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.remove("protrait");
+                    editor.putString("protrait",portrait.toString());
+                    editor.commit();
 
                     backIntent.putExtra("newPortrait", portrait.toString());
                     setResult(1, backIntent);

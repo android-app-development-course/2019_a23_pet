@@ -1,11 +1,17 @@
 package com.example.gohome.Organizer.Fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,18 +22,126 @@ import com.example.gohome.Organizer.Adapter.MemberListViewAdapter;
 import com.example.gohome.Component.OrganizerMemberSideBar;
 import com.example.gohome.R;
 import com.example.gohome.Utils.MemberUserNameComparator;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class OrganizerMemberFragment extends Fragment {
 
+    public static final int SUCCESS_CODE = 1;
+    public static final int FAILURE_CODE = 0;
 
     private ListView memberListView;
+    private MemberListViewAdapter memberListViewAdapter;
     private OrganizerMemberSideBar memberSideBar;
-    private List<Member> memberList;
+    private List<Member> memberList = null;
+    private Object lock = null;
+
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            try {
+                if(msg.what==SUCCESS_CODE){//链接成功
+                    JSONObject jsonObject = new JSONObject(msg.getData().getString("response"));
+                    Boolean success = jsonObject.getBoolean("success");
+
+                    if(success){
+                        String jsonStr = jsonObject.getString("memberMessage");
+                        Gson gson = new Gson();
+                        JsonParser parser = new JsonParser();
+                        JsonArray jsonArray = parser.parse(jsonStr).getAsJsonArray();
+                        List<Member> list = new ArrayList<>();
+                        for(JsonElement obj : jsonArray){
+                            Member member = gson.fromJson(obj, Member.class);
+                            System.out.println(member);
+                            member.setUserName(member.getUserName());
+                            list.add(member);
+                        }
+                        if(list!=null){
+                            //根据拼音排序
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                list.sort(new Comparator<Member>() {
+                                    @Override
+                                    public int compare(Member member, Member t1) {
+                                        return member.getPinyin().compareTo(t1.getPinyin());
+                                    }
+                                });
+                            } else {
+                                MemberUserNameComparator comparator = new MemberUserNameComparator();
+                                Collections.sort(list, comparator);
+                            }
+                            synchronized (lock){
+
+                                memberList = list;
+                                memberListViewAdapter = new MemberListViewAdapter(getActivity(), memberList);
+                                memberListView.setAdapter(memberListViewAdapter);
+                                memberListViewAdapter.notifyDataSetChanged();
+                            }
+                        }
+                    }else{
+                        throw new RuntimeException(jsonObject.getString("errMsg"));
+                    }
+                }else{//链接失败或者处理失败
+                    Bundle bundle = msg.getData();
+                    String errMsg = bundle.getString("errMsg");
+                    Toast.makeText(getActivity().getApplicationContext(), errMsg, Toast.LENGTH_SHORT).show();
+                }
+            }catch (Exception e){
+                Log.i("handle member exception", e.getMessage());
+            }
+        }
+    };
+
+    public ListView getMemberListView() {
+        return memberListView;
+    }
+
+    public void setMemberListView(ListView memberListView) {
+        this.memberListView = memberListView;
+    }
+
+    public OrganizerMemberSideBar getMemberSideBar() {
+        return memberSideBar;
+    }
+
+    public void setMemberSideBar(OrganizerMemberSideBar memberSideBar) {
+        this.memberSideBar = memberSideBar;
+    }
+
+    public List<Member> getMemberList() {
+        return memberList;
+    }
+
+    public void setMemberList(List<Member> memberList) {
+        this.memberList = memberList;
+    }
+
+    public Handler getHandler() {
+        return handler;
+    }
+
+    public void setHandler(Handler handler) {
+        this.handler = handler;
+    }
 
     @Nullable
     @Override
@@ -37,6 +151,8 @@ public class OrganizerMemberFragment extends Fragment {
         memberListView = view.findViewById(R.id.list_view);
         memberSideBar = view.findViewById(R.id.member_side_bar);
 
+        lock = new Object();
+
         initList();
         initView();
 
@@ -45,56 +161,62 @@ public class OrganizerMemberFragment extends Fragment {
 
     private void initList() {
         memberList = new ArrayList<>();
-        String partait = "https://cn.bing.com/th?id=OIP.rrK2-xNV0Mw0hLDUPffEQgHaG-&pid=Api&rs=1";
-        Member member1 = new Member(1, "啦啦", "广州市天河区中山大道西", partait, R.drawable.dog1);
-        Member member2 = new Member(2, "贝贝", "广州市天河区中山大道东", partait, R.drawable.cat);
-        Member member3 = new Member(3, "卡卡", "广州市天河区中山大道西", partait, R.drawable.dog2);
-        Member member4 = new Member(4, "成成", "广州市天河区中山大道中", partait, R.drawable.cat1);
-        Member member5 = new Member(5, "东东", "广州市天河区中山大道北", partait, R.drawable.dog);
-        Member member6 = new Member(6, "么么", "广州市天河区中山大道上", partait, R.drawable.cat3);
-        Member member7 = new Member(7, "咕咕", "广州市天河区中山大道下", partait, R.drawable.dog3);
-        Member member8 = new Member(8, "哈哈", "广州市天河区中山大道西", partait, R.drawable.cat4);
-        Member member9 = new Member(9, "橘橘", "广州市天河区中山大道南", partait, R.drawable.dog4);
-        Member member10 = new Member(10, "冰冰", "广州市天河区中山大道中", partait, R.drawable.cat5);
-        Member member11 = new Member(11, "安安", "广州市天河区中山大道西", partait, R.drawable.dog5);
-        Member member12 = new Member(12, "方方", "广州市天河区中山大道南", partait, R.drawable.dog6);
-        memberList.add(member1);
-        memberList.add(member2);
-        memberList.add(member3);
-        memberList.add(member4);
-        memberList.add(member5);
-        memberList.add(member6);
-        memberList.add(member7);
-        memberList.add(member8);
-        memberList.add(member9);
-        memberList.add(member10);
-        memberList.add(member11);
-        memberList.add(member12);
+        memberList = new ArrayList<>();
+        memberListViewAdapter = new MemberListViewAdapter(this.getContext(), memberList);
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Message msg = null;
+                try {
+                    OkHttpClient client = new OkHttpClient.Builder()
+                            .connectTimeout(10, TimeUnit.SECONDS)//设置连接超时时间
+                            .readTimeout(20, TimeUnit.SECONDS)//设置读取超时时间
+                            .build();
+                    //生成json数据
+                    Request.Builder reqBuilder = new Request.Builder();
+                    HttpUrl.Builder urlBuilder = HttpUrl.parse(getActivity().getResources().getString(R.string.serverBasePath) + getActivity().getResources().getString(R.string.memberMessageByAreaId)).newBuilder();
+                    SharedPreferences sharedPreferences = getActivity().getApplicationContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+                    int areaId = sharedPreferences.getInt("areaId", 0);
+                    urlBuilder.addQueryParameter("areaId", String.valueOf(areaId));
+                    //请求
+                    reqBuilder.url(urlBuilder.build());
+                    Request request = reqBuilder.build();
+                    //新建call联结client和request
+                    Response response = client.newCall(request).execute();
+                    //新建call联结client和request
+                    //新建Message通过Handle与主线程通信
+                    if(response.isSuccessful()){
+                        msg = new Message();
+                        msg.what = SUCCESS_CODE;
+                        String responseBody = response.body().string();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("response", responseBody);
+                        msg.setData(bundle);
+                        handler.sendMessage(msg);
+                    }else{
+                        String responseBody = response.body().string();
+                        JSONObject jsonObject = new JSONObject(responseBody);
+                        String errMsg = jsonObject.getString("errMsg");
+                        throw new RuntimeException(errMsg);
 
-        //根据拼音排序
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            memberList.sort(new Comparator<Member>() {
-                @Override
-                public int compare(Member member, Member t1) {
-                    return member.getPinyin().compareTo(t1.getPinyin());
+                    }
+                }catch (Exception e){
+                    msg = new Message();
+                    msg.what = FAILURE_CODE;
+                    Bundle bundle = new Bundle();
+                    bundle.putString("errMsg", e.getMessage());
+                    msg.setData(bundle);
+                    handler.sendMessage(msg);
                 }
-            });
-            System.out.println(memberList.get(0));
-            System.out.println(memberList.get(1));
-        } else {
-            MemberUserNameComparator comparator = new MemberUserNameComparator();
-            Collections.sort(memberList, comparator);
-            System.out.println(memberList.get(0));
-            System.out.println(memberList.get(1));
+            }
+        }).start();
 
-        }
     }
 
     private void initView(){
         //设置列表适配器
-        MemberListViewAdapter memberListViewAdapter = new MemberListViewAdapter(this.getContext(), memberList);
-        memberListView.setAdapter(memberListViewAdapter);
+//        memberListView.setAdapter(memberListViewAdapter);
 
         //设置字母栏跳转监听
         memberSideBar.setOnStrSelectCallBack(new OrganizerMemberSideBar.ISideBarSelectCallBack() {

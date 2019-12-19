@@ -6,6 +6,7 @@ import com.example.gohome.dao.AdoptMessageMapper;
 import com.example.gohome.entity.AdoptAppliment;
 import com.example.gohome.entity.AdoptHandleInfo;
 import com.example.gohome.entity.AdoptMessage;
+import com.example.gohome.entity.ProcessInfo;
 import com.example.gohome.entity.ResponseEntity.ResponseAdoptAppliment;
 import com.example.gohome.service.AdoptApplimentService;
 import com.github.pagehelper.Page;
@@ -249,6 +250,22 @@ public class AdoptApplimentServiceImpl implements AdoptApplimentService {
     }
 
     @Override
+    public Map queryAdoptApplimentByUserId2(Integer pageNum, Integer pageSize, Integer userId) {
+        Map adoptApplimentMap = new HashMap();
+        PageHelper.startPage(pageNum,pageSize);
+        Page<ProcessInfo> data = adoptApplimentMapper.queryAdoptApplimentByUserId2(userId);
+        List<ProcessInfo> processInfoList = new ArrayList<>();
+        for (ProcessInfo message : data) {
+            processInfoList.add(message);
+        }
+        adoptApplimentMap.put("processInfoList",processInfoList);  //分页获取的数据
+        adoptApplimentMap.put("total",data.getTotal());       //总页数
+        adoptApplimentMap.put("pageSize",data.getPageSize());     //每页大小
+        adoptApplimentMap.put("pageNum", pageNum);
+        return adoptApplimentMap;
+    }
+
+    @Override
     public Map queryAdoptApplimentByAdoptId(Integer pageNum, Integer pageSize, Integer adoptId) {
         Map adoptApplimentMap = new HashMap();
         PageHelper.startPage(pageNum,pageSize);
@@ -278,6 +295,4 @@ public class AdoptApplimentServiceImpl implements AdoptApplimentService {
             throw new RuntimeException("删除领养申请的ID不能为空！");
         }
     }
-
-
 }

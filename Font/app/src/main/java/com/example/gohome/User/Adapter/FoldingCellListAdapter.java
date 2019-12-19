@@ -2,11 +2,15 @@ package com.example.gohome.User.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,14 +18,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.gohome.Entity.AdoptInfo;
 import com.example.gohome.R;
-import com.example.gohome.User.Activity.UserAddGroupActivity;
 import com.example.gohome.User.Activity.UserAdoptActivity;
 import com.example.gohome.User.ImageDialog;
+import com.example.gohome.ui.login.LoginActivity;
+import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 import com.ramotion.foldingcell.FoldingCell;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Random;
 
 public class FoldingCellListAdapter extends RecyclerView.Adapter{
 
@@ -101,11 +105,8 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter{
 
         mholder.adoptId = list.get(pos).getAdoptId();
 
-        Random random = new Random();
-        int r = random.nextInt(mholder.pictures.length);
-
         // title(外)
-        Glide.with(context).load(mholder.pictures[r]).into(mholder.petPhoto1);
+        Glide.with(context).load(list.get(pos).getPictures()).into(mholder.petPhoto1);
         mholder.petName1.setText(list.get(pos).getPetName());
         mholder.petGender1.setText(gender);
         mholder.petAge1.setText(list.get(pos).getAge());
@@ -113,7 +114,7 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter{
         mholder.area1.setText(list.get(pos).getAddress());
 
         // content(内)
-        Glide.with(context).load(mholder.pictures[r]).into(mholder.petPhoto2);
+        Glide.with(context).load(list.get(pos).getPictures()).into(mholder.petPhoto2);
         mholder.petName2.setText(list.get(pos).getPetName());
         mholder.petGender2.setText(gender);
         mholder.petAge2.setText(list.get(pos).getAge());
@@ -121,26 +122,49 @@ public class FoldingCellListAdapter extends RecyclerView.Adapter{
         mholder.area2.setText(list.get(pos).getAddress());
         Glide.with(context).load(icon1).into(mholder.iv_vacn);
         Glide.with(context).load(icon2).into(mholder.iv_strl);
-        mholder.publisher.setText(list.get(pos).getHandleId());
-        String []date = list.get(pos).getCreated().split("-");
-        mholder.time.setText(date[0] + "/" + date[1] + "/" + date[2].substring(0,2));
+//        mholder.publisher.setText(list.get(pos).getHandleId());
+        mholder.time.setText(list.get(pos).getCreated());
+        Log.i("holder.time.text", list.get(pos).getCreated());
         // 填写领养信息
         mholder.contentRequestBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(view.getContext(), UserAdoptActivity.class);
+            SharedPreferences sharedPreferences = context.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+            int userId = sharedPreferences.getInt("userId", -1);
+            if (userId == -1) {
+                NiftyDialogBuilder dialogBuilderSelect = NiftyDialogBuilder.getInstance(context);
+                dialogBuilderSelect
+                        .withTitle("请登录")
+                        .withMessage("立即登录")
+                        .withDialogColor(view.getResources().getColor(R.color.orange))
+                        .withButton1Text("确定")
+                        .withButton2Text("取消")
+                        .setButton1Click(v -> {
+                            dialogBuilderSelect.dismiss();
+                            context.startActivity(new Intent(context, LoginActivity.class));
+                        })
+                        .setButton2Click(v -> {
+                            Toast.makeText(context, "取消登录", Toast.LENGTH_SHORT).show();
+                            dialogBuilderSelect.dismiss();
+                        })
+                        .show();
+
+                return;
+            }
+            Intent intent = new Intent(context, UserAdoptActivity.class);
             intent.putExtra("adoptId", mholder.adoptId);
-            view.getContext().startActivity(intent);
+            intent.putExtra("userId", userId);
+            context.startActivity(intent);
         });
         // 图片放大
         mholder.petPhoto2.setOnClickListener(view -> {
-            ImageDialog dialog = new ImageDialog(context, list.get(pos).getPhotos());
+            ImageDialog dialog = new ImageDialog(context, Uri.parse(list.get(pos).getPictures()));
             dialog.show();
         });
         // 加入组织
-        mholder.publisher.setOnClickListener(view -> {
-            Intent intent = new Intent(context, UserAddGroupActivity.class);
-            intent.putExtra("group", mholder.publisher.getText());
-            context.startActivity(intent);
-        });
+//        mholder.publisher.setOnClickListener(view -> {
+//            Intent intent = new Intent(context, UserAddGroupActivity.class);
+//            intent.putExtra("group", mholder.publisher.getText());
+//            context.startActivity(intent);
+//        });
         // 展开折叠
         mholder.cell.setOnClickListener(view -> {
             if(mholder.cell.isUnfolded()) {

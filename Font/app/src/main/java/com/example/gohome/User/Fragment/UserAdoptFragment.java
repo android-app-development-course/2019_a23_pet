@@ -124,7 +124,7 @@ public class UserAdoptFragment extends Fragment {
                     new Thread(()->{
                         CUR_PAGE_NUM = 1;
                         Request request = new Request.Builder()
-                                .url(getResources().getString(R.string.serverPath) +
+                                .url(getResources().getString(R.string.serverBasePath) +
                                         getResources().getString(R.string.getAdoptMessage)
                                         + "/?pageNum="+ CUR_PAGE_NUM +"&pageSize="+ PAGE_SIZE +"&state=0")
                                 .get()
@@ -166,10 +166,10 @@ public class UserAdoptFragment extends Fragment {
                     Handler handler = new Handler(){
                         @Override
                         public void handleMessage(Message msg){
+                            recyclerView.loadMoreComplete();
                             switch (msg.what){
                                 case SUCCESS:
                                     Log.i("加载", "成功");
-                                    recyclerView.refreshComplete();
                                     adapter.notifyDataSetChanged();
                                     break;
                                 case FAIL:
@@ -186,7 +186,7 @@ public class UserAdoptFragment extends Fragment {
                     new Thread(()->{
                         CUR_PAGE_NUM++;
                         Request request = new Request.Builder()
-                                .url(getResources().getString(R.string.serverPath) +
+                                .url(getResources().getString(R.string.serverBasePath) +
                                         getResources().getString(R.string.getAdoptMessage)
                                         + "/?pageNum="+ CUR_PAGE_NUM +"&pageSize=" + PAGE_SIZE + "&state=0")
                                 .get()
@@ -208,8 +208,7 @@ public class UserAdoptFragment extends Fragment {
                                 ResponseAdoptInfo adoptMessage = new Gson().fromJson(response.body().string(),
                                         ResponseAdoptInfo.class);
                                 infoList.addAll(adoptMessage.getAdoptInfoList());
-                                if((CUR_PAGE_NUM - 2) * PAGE_SIZE + adoptMessage.getPageSize() <
-                                    adoptMessage.getTotal() ){
+                                if(CUR_PAGE_NUM  * PAGE_SIZE  >= adoptMessage.getTotal() ){
                                     msg.what = ZERO;
                                 } else {
                                     msg.what = SUCCESS;
@@ -251,7 +250,7 @@ public class UserAdoptFragment extends Fragment {
 
         new Thread(()->{
            Request request = new Request.Builder()
-                   .url(getResources().getString(R.string.serverPath) +
+                   .url(getResources().getString(R.string.serverBasePath) +
                            getResources().getString(R.string.getAdoptMessage)
                            + "/?pageNum=1&pageSize=" + PAGE_SIZE + "&state=0")
                    .get()

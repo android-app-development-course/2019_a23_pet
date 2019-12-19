@@ -52,8 +52,8 @@ public class LoginDataSource {
     private String errMsg;
     private Activity context;
     private Message message;
-    private Object lock = new Object();//控制message
-    private Object lock1 = new Object();//控制userMessage
+    private Object lock;//控制message
+    private Object lock1;//控制userMessage
     public static final int SUCCESS_CODE = 1;
     public static final int FAILURE_CODE = 0;
 
@@ -61,12 +61,20 @@ public class LoginDataSource {
 
         Log.i("loginDataSource", "login");
         this.context = context;
+        lock1 = new Object();
+        lock = new Object();
 
         return sendLoginMessage(userName, userPassword);
     }
 
     public void logout() {
         // TODO: revoke authentication
+        this.userMessage = null;
+        this.areaOrganizer = null;
+        this.memberMessage = null;
+        this.type = -1;
+        this.message = null;
+        this.lock1 = this.lock = null;
     }
 
     private Result<LoggedInUser> sendLoginMessage(String userName, String userPassword){
@@ -202,7 +210,7 @@ public class LoginDataSource {
                                         memberMsgJSON = jsonObject.getJSONObject("memberMessage");
                                         memberMessage.setAreaId(memberMsgJSON.getInt("areaId"));
                                         memberMessage.setCreated(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(memberMsgJSON.getString("created")));
-                                        memberMessage.setMessageId(memberMsgJSON.getInt("memberId"));
+                                        memberMessage.setMessageId(memberMsgJSON.getInt("messageId"));
                                         memberMessage.setUserId(memberMsgJSON.getInt("userId"));
                                         areaOrganizer = new AreaOrganizer();
                                         areaOrganizerJSON = jsonObject.getJSONObject("areaOrganizer");
@@ -223,7 +231,6 @@ public class LoginDataSource {
                                         userMessage.setAddress(userMsgJSON.getString("address"));
                                         userMessage.setGender(userMsgJSON.getInt("gender"));
                                         userMessage.setUserType(type);
-                                        userMessage = (UserMessage) jsonObject.get("userMessage");
                                         memberMessage = null;
                                         areaOrganizer = new AreaOrganizer();
                                         areaOrganizerJSON = jsonObject.getJSONObject("areaOrganizer");

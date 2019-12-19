@@ -1,6 +1,8 @@
 package com.example.gohome.User.Activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -40,6 +42,9 @@ public class UserSendActivity extends AppCompatActivity {
 
     public static final int SUCCESS = 1;
     public static final int FAIL = 0;
+
+    Integer userId;
+    String phone, address;
 
     private EditText et_sendUserName;
     private EditText et_sendUserPhone;
@@ -100,9 +105,18 @@ public class UserSendActivity extends AppCompatActivity {
     }
 
     private void init() {
+        Intent intent = getIntent();
+        userId = intent.getIntExtra("userId", -1);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        phone = sharedPreferences.getString("telephone", "");
+        address = sharedPreferences.getString("address", "");
+
         et_sendUserName = findViewById(R.id.et_sendUserName);
         et_sendUserPhone = findViewById(R.id.et_sendUserPhone);
+        et_sendUserPhone.setText(phone);
         et_sendUserAddress = findViewById(R.id.et_sendUserAddress);
+        et_sendUserAddress.setText(address);
         et_sendPetName = findViewById(R.id.et_sendPetName);
         et_sendAge = findViewById(R.id.et_sendAge);
         et_sendType = findViewById(R.id.et_sendType);

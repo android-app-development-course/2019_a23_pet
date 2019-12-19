@@ -11,6 +11,7 @@
     *
     from adopt_appliment
     where state = #{state}
+    order by appliment_id desc
     </select>
 
     <select id="queryAdoptApplimentByUserId" resultMap="BaseResultMap" parameterType="com.github.pagehelper.Page">
@@ -18,14 +19,13 @@
     *
     from adopt_appliment
     where user_id = #{userId}
+    order by appliment_id desc
     </select>
-
+ 
     <select id="queryAdoptApplimentByAdoptId" resultMap="BaseResultMap" parameterType="com.github.pagehelper.Page">
     select
     *
     from adopt_appliment
     where adopt_id = #{adoptId}
     </select>
-
-
 </mapper>

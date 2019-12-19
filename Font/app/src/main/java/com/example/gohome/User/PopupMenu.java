@@ -7,7 +7,9 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Build;
@@ -22,11 +24,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.example.gohome.R;
 import com.example.gohome.User.Activity.UserReportActivity;
 import com.example.gohome.User.Activity.UserSendActivity;
 import com.example.gohome.Utils.KickBackAnimator;
+import com.example.gohome.ui.login.LoginActivity;
+import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder;
 
 public class PopupMenu extends PopupWindow implements View.OnClickListener {
     private Activity mActivity;
@@ -38,6 +43,9 @@ public class PopupMenu extends PopupWindow implements View.OnClickListener {
     private View bgView;
     private ImageView iv_close;
     private ButtonLayout bl_send, bl_report;
+
+    private SharedPreferences sharedPreferences;
+    private Integer userId;
 
     public PopupMenu(Activity activity) {
         mActivity = activity;
@@ -96,6 +104,8 @@ public class PopupMenu extends PopupWindow implements View.OnClickListener {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void onClick(View view) {
+        sharedPreferences = view.getContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        userId = sharedPreferences.getInt("userId", -1);
 
         switch (view.getId()) {
             case R.id.rel_bg:
@@ -105,17 +115,57 @@ public class PopupMenu extends PopupWindow implements View.OnClickListener {
                     close();
                 break;
             case R.id.bl_send:
+                if (userId == -1) {
+                    NiftyDialogBuilder dialogBuilderSelect = NiftyDialogBuilder.getInstance(mActivity);
+                    dialogBuilderSelect
+                            .withTitle("请登录")
+                            .withMessage("立即登录")
+                            .withDialogColor(view.getResources().getColor(R.color.orange))
+                            .withButton1Text("确定")
+                            .withButton2Text("取消")
+                            .setButton1Click(v -> {
+                                dialogBuilderSelect.dismiss();
+                                mActivity.startActivityForResult(new Intent(mActivity, LoginActivity.class),5);
+                            })
+                            .setButton2Click(v -> {
+                                Toast.makeText(mActivity, "取消登录", Toast.LENGTH_SHORT).show();
+                                dialogBuilderSelect.dismiss();
+                            })
+                            .show();
+                    return;
+                }
 //                bl_send.setFocused(true);
 //                bl_report.setFocused(false);
                 close();
                 Intent intent1 = new Intent(mActivity, UserSendActivity.class);
+                intent1.putExtra("userId", userId);
                 mActivity.startActivity(intent1);
                 break;
             case R.id.bl_report:
+                if (userId == -1) {
+                    NiftyDialogBuilder dialogBuilderSelect = NiftyDialogBuilder.getInstance(mActivity);
+                    dialogBuilderSelect
+                            .withTitle("请登录")
+                            .withMessage("立即登录")
+                            .withDialogColor(view.getResources().getColor(R.color.orange))
+                            .withButton1Text("确定")
+                            .withButton2Text("取消")
+                            .setButton1Click(v -> {
+                                dialogBuilderSelect.dismiss();
+                                mActivity.startActivityForResult(new Intent(mActivity, LoginActivity.class),5);
+                            })
+                            .setButton2Click(v -> {
+                                Toast.makeText(mActivity, "取消登录", Toast.LENGTH_SHORT).show();
+                                dialogBuilderSelect.dismiss();
+                            })
+                            .show();
+                    return;
+                }
 //                bl_send.setFocused(false);
 //                bl_report.setFocused(true);
                 close();
                 Intent intent2 = new Intent(mActivity, UserReportActivity.class);
+                intent2.putExtra("userId", userId);
                 mActivity.startActivity(intent2);
                 break;
         }

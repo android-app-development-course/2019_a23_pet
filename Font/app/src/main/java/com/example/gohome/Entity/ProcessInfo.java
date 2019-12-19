@@ -3,19 +3,37 @@ package com.example.gohome.Entity;
 import java.io.Serializable;
 
 public class ProcessInfo implements Serializable {
-    private int petPortrait;
+    private Integer applimentId;
+    private Integer adoptId;
+    private Integer userId;
+    private String petPortrait;
     private String petNickname, userText;
-    private int[] processState;
+    private Integer processState;
 
-    public ProcessInfo(int petPortrait, String petNickname, String userText, int[] processState) {
+    public ProcessInfo(Integer applimentId, Integer adoptId, Integer userId, String petPortrait, String petNickname, String userText, Integer processState) {
         super();
+        this.applimentId = applimentId;
+        this.adoptId = adoptId;
+        this.userId = userId;
         this.petPortrait = petPortrait;
         this.petNickname = petNickname;
         this.userText = userText;
         this.processState = processState;
     }
 
-    public int getPetPortrait() {
+    public Integer getApplimentId() {
+        return applimentId;
+    }
+
+    public Integer getAdoptId() {
+        return adoptId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public String getPetPortrait() {
         return petPortrait;
     }
 
@@ -27,11 +45,23 @@ public class ProcessInfo implements Serializable {
         return userText;
     }
 
-    public int[] getProcessState() {
+    public Integer getProcessState() {
         return processState;
     }
 
-    public void setPetPortrait(int petPortrait) {
+    public void setApplimentId(Integer applimentId) {
+        this.applimentId = applimentId;
+    }
+
+    public void setAdoptId(Integer adoptId) {
+        this.adoptId = adoptId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public void setPetPortrait(String petPortrait) {
         this.petPortrait = petPortrait;
     }
 
@@ -43,7 +73,7 @@ public class ProcessInfo implements Serializable {
         this.userText = userText;
     }
 
-    public void setProcessState(int[] processState) {
+    public void setProcessState(Integer processState) {
         this.processState = processState;
     }
 }

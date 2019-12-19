@@ -3,7 +3,9 @@ package com.example.gohome.User.Activity;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.gohome.MainActivity;
 import com.example.gohome.R;
 
 public class UserSettingCenterActivity extends AppCompatActivity implements View.OnClickListener {
@@ -71,8 +74,13 @@ public class UserSettingCenterActivity extends AppCompatActivity implements View
                 startActivity(new Intent(this, UserSystemSettingActivity.class));
                 break;
             case R.id.user_rel_logout:
-                Intent backIntent = new Intent();
-                setResult(3, backIntent);
+                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.commit();
+                Intent backIntent = new Intent(getApplicationContext(), MainActivity.class);
+                backIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(backIntent);
                 this.finish();
                 break;
         }

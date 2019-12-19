@@ -28,8 +28,18 @@ public class MemberMessageController {
     public Map<String, Object> memberMessageOfArea(Integer areaId){
         System.out.println("areaId: " + areaId);
         Map<String, Object> modelMap = new HashMap<>();
-        List<ResponseMemberMessage> responseMemberMessage = memberMessageService.queryMemberMessageByAreaId(areaId);
-        modelMap.put("memberMessage", responseMemberMessage);
+        try{
+            List<ResponseMemberMessage> responseMemberMessage = memberMessageService.queryMemberMessageByAreaId(areaId);
+            if(responseMemberMessage==null){
+                throw new RuntimeException("查无组员");
+            }
+            modelMap.put("memberMessage", responseMemberMessage);
+            modelMap.put("success", true);
+        }catch (Exception e){
+            modelMap.put("success", false);
+            modelMap.put("errMsg", e.getMessage());
+        }
+
         return modelMap;
     }
 }

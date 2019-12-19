@@ -14,6 +14,17 @@
     <result column="created" property="created" jdbcType="TIMESTAMP" />
     <result column="info_id" property="infoId" jdbcType="INTEGER"/>
   </resultMap>
+
+  <resultMap id="ResultMap" type="com.example.gohome.entity.ProcessInfo" >
+    <id column="appliment_id" property="applimentId" jdbcType="INTEGER" />
+    <result column="adopt_id" property="adoptId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="pet_portrait" property="petPortrait" jdbcType="VARCHAR" />
+    <result column="pet_nickname" property="petNickname" jdbcType="VARCHAR" />
+    <result column="user_text" property="userText" jdbcType="VARCHAR" />
+    <result column="process_state" property="processState" jdbcType="INTEGER"/>
+  </resultMap>
+
   <sql id="Base_Column_List" >
     appliment_id, adopt_id, user_id, apply_name, telephone, address, job, description,
     state, created, info_id
@@ -23,6 +34,7 @@
     <include refid="Base_Column_List" />
     from adopt_appliment
     where appliment_id = #{applimentId,jdbcType=INTEGER}
+    order by appliment_id desc
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from adopt_appliment
@@ -162,5 +174,17 @@
     where appliment_id = #{applimentId,jdbcType=INTEGER}
   </update>
 
+  <select id="queryAdoptApplimentByUserId2" resultMap="ResultMap" parameterType="com.github.pagehelper.Page">
+    SELECT
+    adopt_appliment.appliment_id AS appliment_id,
+    adopt_appliment.adopt_id AS adopt_id,
+    adopt_appliment.user_id AS user_id,
+    adopt_message.pictures AS pet_portrait,
+    adopt_message.pet_name AS pet_nickname,
+    adopt_appliment.description AS user_text,
+    adopt_appliment.state AS process_state
+    FROM adopt_message, adopt_appliment
+    WHERE adopt_appliment.user_id=#{userId,jdbcType=INTEGER} AND adopt_message.adopt_id=adopt_appliment.adopt_id
+  </select>
 
 </mapper>

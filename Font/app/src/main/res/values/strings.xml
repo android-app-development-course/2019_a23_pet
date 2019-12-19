@@ -7,7 +7,7 @@
     <string name="floatMenuAdopt">领养信息</string>
     <string name="floatMenuHelp">求助信息</string>
     <string name="title_activity_login">登录</string>
-    <string name="prompt_email">手机号</string>
+    <string name="prompt_email">用户名</string>
     <string name="prompt_password">密码</string>
     <string name="action_sign_in">注册账号</string>
     <string name="action_sign_in_short">登录</string>
@@ -17,12 +17,8 @@
     <string name="login_failed">"登陆失败"</string>
 
     <!--url配置-->
-<<<<<<< HEAD
-    <string name="serverBasePath">http://172.20.10.3:8080/gohome/</string>
-=======
-    <string name="serverBasePath">http://10.242.32.191:8080/gohome/</string>
-    <string name="serverPath">http://10.242.59.121:8080/gohome/</string>
->>>>>>> 38b88d43d0d0a2d2a8c5b07ce513ffc321176e3a
+
+    <string name="serverBasePath">http://10.242.42.97:8080/gohome/</string>
 
     <string name="insertAdoptMessage">adoptmessage/insertadoptmessage</string>
 
@@ -42,5 +38,9 @@
 
     <string name="insertAdoptApplication">adoptappliment/insertadoptappliment</string>
     <string name="getAdoptMessage">adoptmessage/queryadoptmessagebystate</string>
+
+    <string name="queryAdoptApplimentByUserId2">adoptappliment/queryadoptapplimentbyuserid2</string>
+
+    <string name="memberMessageByAreaId">membermessage/membermessageofarea</string>
 
 </resources>

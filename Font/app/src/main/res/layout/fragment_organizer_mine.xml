@@ -108,13 +108,6 @@
                 android:layout_marginRight="30dp"
                 android:src="@drawable/user_back" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_alignLeft="@+id/user_tv_adoptPro"
-                android:layout_alignParentBottom="true"
-                android:background="@color/selectedGray" />
-
         </RelativeLayout>
 
         <RelativeLayout
@@ -140,7 +133,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/user_iv_add"
-                android:text="领养信息发布记录"
+                android:text="发布记录"
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 android:typeface="serif" />
